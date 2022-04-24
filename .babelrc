@@ -1,0 +1,8 @@
+{
+    "presets": [
+        "env",
+        "react",
+        "typescript"
+    ],
+    "plugins": ["react-hot-loader/babel"]
+}
