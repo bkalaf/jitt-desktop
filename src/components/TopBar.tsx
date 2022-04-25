@@ -1,9 +1,13 @@
-import React from 'react';
+import { useReactiveVar } from '@apollo/client';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useWhyDidYou } from '../hooks/useWhyDidYou';
 import { $cn } from './$cn';
-import { isLower } from './isLower';
-import { NavLinkListItem } from "./NavLinkListItem";
+import { $currentUser } from './App';
+import { Button } from './Button';
+import { ButtonGroup } from './ButtonGroup';
+import { ButtonListItem } from './ButtonListItem';
+import { isLower } from '../common/text/isLower';
+import { NavLinkListItem } from './NavLinkListItem';
 import { TopBarItems } from './TopBarItems';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 
@@ -26,44 +30,66 @@ export function isPascalCase(str: string) {
 export function isTitleCase(str: string) {
     return str.includes(' ') || (!str.includes('-') && !str.includes('_') && isUpper(str[0]));
 }
+
+type PulseStatus = 'fading-in' | 'fading-out' | 'faded' | 'not-faded';
+export function cyclePulseStatus(current: PulseStatus) {
+    switch (current) {
+        case 'faded':
+            return 'fading-in';
+        case 'fading-in':
+            return 'not-faded';
+        case 'fading-out':
+            return 'faded';
+        case 'not-faded':
+            return 'fading-out';
+    }
+}
+export function usePulsingAnimation<T extends React.HTMLAttributes<HTMLElement>>(...classes: string[]) {
+    const [status, setStatus] = useState<PulseStatus>('faded');
+    const cycleStatus = useCallback(() => setStatus(cyclePulseStatus), []);
+    const onTransitionEnd = cycleStatus;
+    const cn =
+        (props: T) =>
+        ({ isActive }: { isActive: boolean }) =>
+            $cn(
+                props,
+                {
+                    'ring-opacity-100': isActive && (status === 'not-faded' || status === 'fading-in'),
+                    'ring-opacity-0': isActive && (status === 'fading-out' || status === 'faded')
+                },
+                ...classes
+            );
+    useEffect(() => {
+        if (status === 'faded' || status === 'not-faded') {
+            setTimeout(() => cycleStatus(), 500);
+        }
+    });
+    return { status, cycleStatus, cn, onTransitionEnd };
+}
+export function ModuleMenu() {
+    return (
+        <ol className='flex flex-row p-3 space-x-1.5'>
+            <TopBarItems.Menu.ModuleMenuItems />
+        </ol>
+    );
+}
 export function TopBar() {
+    const cu = useReactiveVar($currentUser);
+    const logOutFunction = useCallback(() => {
+        if (!cu) return Promise.resolve();
+        return cu.logOut();
+    }, [cu]);
     return (
         <nav className='flex w-full px-2 text-lg font-bold leading-loose tracking-wide text-white transition duration-1000 ease-in-out delay-200 border border-white rounded-md shadow-md bg-sky-dark font-fira-sans mb-0.5 items-center justify-between'>
             <TopBarItems.Menu.Logo />
-            <ol className='flex flex-row p-3'>
-                <TopBarItems.Menu.RootItems />
-            </ol>
+            <TopBarItems.Menu.ModuleMenu />
             <ButtonGroup>
-                <NavLinkListItem className='px-3 nav-button auth-button' to='login' index={0}>
-                    Log-In
-                </NavLinkListItem>
-                <li>
-                    <Button className='px-3 nav-button auth-button'>Register</Button>
-                </li>
-                <li>
-                    <Button className='px-3 py-3 nav-button auth-button'>Log-Out</Button>
-                </li>
+                <TopBarItems.AuthButtons.Login />
+                <ButtonListItem ix={1}>Register</ButtonListItem>
+                <ButtonListItem ix={2} onClick={logOutFunction}>
+                    Log-Out
+                </ButtonListItem>
             </ButtonGroup>
         </nav>
     );
-}
-
-export function ButtonGroup(props: { children: Children }) {
-    useWhyDidYou(ButtonGroup.name, props);
-    const { children, ...spread } = $cn(props, {}, 'flex flex-row p-3');
-    return <ol {...spread}>{children}</ol>;
-}
-
-export function Button(props: { children?: Children } & React.ButtonHTMLAttributes<HTMLButtonElement>) {
-    useWhyDidYou(Button.name, props);
-    const spread = $cn(props, {}, 'nav-button');
-    return <button type='button' {...spread}></button>;
-}
-
-export function ButtonListItem(props: { ix: number }) {
-    useWhyDidYou(ButtonListItem.name, props);
-    const { ix, ...spread } = $cn(props, {}, 'px-3 nav-button auth-button py-1.5');
-    return <li key={ix} className='flex'>
-        <Button {...spread}></Button>
-    </li>
 }

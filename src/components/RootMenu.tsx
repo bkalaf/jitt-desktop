@@ -1,11 +1,11 @@
 import React from 'react';
-import { NavLinkListItem } from "./NavLinkListItem";
+import { NavLinkListItem } from './NavLinkListItem';
 
-export function RootMenu() {
+export function RootMenuListItems() {
     return (
         <>
             {['api', 'data', 'files', 'queues'].map((x, index) => (
-                <NavLinkListItem className='px-3 nav-button' key={index} index={index} to={x} />
+                <NavLinkListItem className='px-3 nav-button' key={index} to={x} />
             ))}
         </>
     );

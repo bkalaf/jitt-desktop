@@ -643,6 +643,42 @@
     }
 }
 
+@keyframes ringThrob {
+    0% {
+        --tw-ring-opacity: 1;
+        --tw-ring-color: dodgerblue;
+    }
+    
+    25% {
+        --tw-ring-opacity: 0;
+    }
+
+    50% {
+        --tw-ring-color: linen;
+        --tw-ring-opacity: 1;
+    }
+
+    75% {
+        --tw-ring-opacity: 0
+    }
+
+    100% {
+        --tw-ring-color: dodgerblue;
+        --tw-ring-opacity: 1;
+    }
+}
+
+.ringThrob {
+    -webkit-animation-name: ringThrob;
+    animation-name: ringThrob;
+    animation-fill-mode: both;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+.ringPulse {
+    animation: ringThrob 2s ease-in-out 150ms infinite both;
+}
+
 @keyframes slideOutUp {
     from {
         -webkit-transform: translate3d(0, 0, 0);

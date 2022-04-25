@@ -1,5 +1,5 @@
 import { partitionBy } from "./partitionBy";
-import { distinct } from "./distinct";
+import { distinct } from "../common/array/distinct";
 
 export function $cn<T>(props: { className?: string; } & T, flags: Record<string, boolean> = {}, ...classes: string[]) {
     const { className, ...remain } = props;

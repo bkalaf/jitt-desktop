@@ -1,6 +1,6 @@
 import { isSnakeCase, isPascalCase, isUpper, isTitleCase } from './TopBar';
-import { isCamelCase } from "./isCamelCase";
-import { isKebabCase } from "./isKebabCase";
+import { isCamelCase } from "../common/text/isCamelCase";
+import { isKebabCase } from "../common/text/isKebabCase";
 import { splitAt } from "./splitAt";
 import { capitalize } from "./capitalize";
 import { decapitalize } from "./decapitalize";
