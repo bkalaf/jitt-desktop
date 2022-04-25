@@ -1,4 +1,5 @@
 @-webkit-keyframes bounceInDown {
+
     from,
     60%,
     75%,
@@ -37,6 +38,7 @@
 }
 
 @keyframes bounceInDown {
+
     from,
     60%,
     75%,
@@ -205,6 +207,7 @@
         opacity: 0;
     }
 }
+
 @keyframes flipOutVertical {
     from {
         -webkit-transform: perspective(400px);
@@ -223,6 +226,7 @@
         opacity: 0;
     }
 }
+
 .flipOutVertical {
     -webkit-animation-duration: 1s;
     animation-duration: 1s;
@@ -233,6 +237,7 @@
 }
 
 @-webkit-keyframes pulseInCenter {
+
     from,
     20%,
     40%,
@@ -278,6 +283,7 @@
 }
 
 @keyframes pulseInCenter {
+
     from,
     20%,
     40%,
@@ -643,29 +649,69 @@
     }
 }
 
-@keyframes ringThrob {
+@-webkit-keyframes ringThob {
     0% {
         --tw-ring-opacity: 1;
-        --tw-ring-color: dodgerblue;
-    }
-    
-    25% {
-        --tw-ring-opacity: 0;
+        --tw-ring-color: rgb(34 211 238 / var(--tw-ring-opacity));
+        -webkit-transform: scale(1.0);
+        transform: scale(1.0)
     }
 
-    50% {
-        --tw-ring-color: linen;
-        --tw-ring-opacity: 1;
-    }
-
-    75% {
-        --tw-ring-opacity: 0
+    70% {
+        --tw-ring-opacity: 0.7;
+        --tw-ring-color: rgb(34 211 238 / var(--tw-ring-opacity));
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
     }
 
     100% {
-        --tw-ring-color: dodgerblue;
-        --tw-ring-opacity: 1;
+        --tw-ring-opacity: 0;
+        --tw-ring-color: rgb(34 211 238 / var(--tw-ring-opacity));
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1)
     }
+}
+@keyframes ringThrob {
+    0% {
+        --tw-ring-opacity: 1;
+        --tw-ring-color: rgb(239 68 68 / var(--tw-ring-opacity));
+        -webkit-transform: scale(1.0);
+        transform: scale(1.0)
+    }
+
+    70% {
+        --tw-ring-opacity: 0.7;
+        --tw-ring-color: rgb(239 68 68 / var(--tw-ring-opacity));
+        -webkit-transform: scale(0.9);
+        transform: scale(0.9);
+    }
+
+    100% {
+        --tw-ring-opacity: 0;
+        --tw-ring-color: transparent;
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1)
+    }
+
+    /* 0% {
+        @apply ring ring-offset-1 ring-offset-blue-dark ring-opacity-75 ring-yellow;
+    }
+
+    25% {
+        @apply ring ring-opacity-0 ring-offset-blue-dark ring-offset-1 ring-yellow;
+    }
+
+    50% {
+        @apply ring ring-opacity-75 ring-offset-blue-dark ring-offset-1 ring-red;
+    }
+
+    75% {
+        @apply ring ring-opacity-0 ring-offset-blue-dark ring-offset-1 ring-red;
+    }
+
+    100% {
+        @apply ring ring-offset-1 ring-offset-blue-dark ring-opacity-75 ring-yellow;
+    } */
 }
 
 .ringThrob {
@@ -674,7 +720,9 @@
     animation-fill-mode: both;
     animation-duration: 2s;
     animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
 }
+
 .ringPulse {
     animation: ringThrob 2s ease-in-out 150ms infinite both;
 }

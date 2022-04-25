@@ -1,6 +1,6 @@
 import { useReactiveVar } from '@apollo/client';
 import React, { useCallback, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { $cn } from './$cn';
 import { $currentUser } from './App';
 import { Button } from './Button';
@@ -8,9 +8,9 @@ import { ButtonGroup } from './ButtonGroup';
 import { ButtonListItem } from './ButtonListItem';
 import { isLower } from '../common/text/isLower';
 import { NavLinkListItem } from './NavLinkListItem';
-import { TopBarItems } from './TopBarItems';
+import { RootMenuListItems } from './RootMenu';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-
+const logo = require('./../assets/logos/resized-logo.png');
 export function LinkButton({ children, to }: { children: Children; to: string }) {
     return (
         <Link to={to} className='flex'>
@@ -69,10 +69,41 @@ export function usePulsingAnimation<T extends React.HTMLAttributes<HTMLElement>>
 export function ModuleMenu() {
     return (
         <ol className='flex flex-row p-3 space-x-1.5'>
-            <TopBarItems.Menu.ModuleMenuItems />
+            {['api', 'data', 'files', 'queues'].map((x, index) => (
+                <NavLinkListItem className='px-3 nav-button' key={index} to={x} />
+            ))}
         </ol>
     );
 }
+export const TopBarItems = {
+    AuthButtons: {
+        Login: React.memo(
+            () => (
+                <NavLinkListItem className='px-3 nav-button auth-button' to='login'>
+                    Log-In
+                </NavLinkListItem>
+            ),
+            () => true
+        )
+    },
+    Menu: {
+        ModuleMenu: React.memo(ModuleMenu),
+        MenuItem: undefined,
+        ModuleMenuItems: React.memo(RootMenuListItems),
+        Logo: React.memo(
+            () => {
+                const { cn, onTransitionEnd, cycleStatus, status } = usePulsingAnimation('flex');
+                const $className = useCallback(({ isActive }: { isActive: boolean }) => cn({})({ isActive }).className, [cn]);
+                return (
+                    <NavLink className={$className} to='/' onTransitionEnd={onTransitionEnd}>
+                        <img src={logo} className='object-scale-down h-14'></img>
+                    </NavLink>
+                );
+            },
+            () => true
+        )
+    }
+};
 export function TopBar() {
     const cu = useReactiveVar($currentUser);
     const logOutFunction = useCallback(() => {

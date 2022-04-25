@@ -167,7 +167,7 @@
         @apply whitespace-pre indent-2 text-base font-normal py-1.5;
     }
     .active {
-        @apply text-white ring-emerald-dark bg-lime-dark hover:shadow-white hover:bg-yellow ringThrob;
+        @apply text-white bg-lime-dark hover:shadow-white animate ringThrob;
     }
     .not-active {
         @apply text-white bg-blue-dark hover:shadow-white;
@@ -179,18 +179,12 @@
         @apply transform hover:scale-105;
     }
     .animate {
-        @apply transition duration-1000 ease-in-out delay-200 transform;
+        @apply transition-all duration-1000 ease-in-out delay-200 transform;
     }
     .auth-button {
         @apply text-white bg-rose-dark;
     }
     .nav-button {
-        @apply flex items-center justify-center w-auto h-auto border border-black rounded-lg shadow-inner fs-0 animate hover:shadow-white outline-2 hover:bg-teal-dark focus:outline outline-transparent ring ring-transparent ring-offset-2 ring-offset-transparent shadow-white;
-    }
-    .fading-out {
-        @apply ring-opacity-0 animate;
-    }
-    .fading-in {
-        @apply ring-opacity-100 animate;
+        @apply flex items-center justify-center w-auto h-auto border border-black rounded-lg shadow-inner fs-0 animate hover:shadow-white outline-2 hover:bg-teal-dark focus:outline outline-transparent ring shadow-white;
     }
 }
