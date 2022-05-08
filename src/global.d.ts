@@ -1,22 +1,26 @@
 import Realm from 'realm';
 import { ObjectId } from 'bson';
-import { CountryISO2 } from './data-access/enums/CountryISO2';
-import { Provinces } from './data-access/enums/Provinces';
-import { CapacityUOM } from './data-access/Capacity';
+import { Country } from './data/enums/country';
+import { Provinces } from './data/enums/province';
+import { LengthUOM } from './data/enums/lengthUOM';
+import { CapacityUOM } from './data/enums/capacityUOM';
 
 declare global {
     export type IEventPublisher = {
         addEventListener: <TEvent extends Event>(name: string, listener: (ev: TEvent) => void) => void;
         removeEventListener: <TEvent extends Event>(name: string, listener: (ev: TEvent) => void) => void;
     };
+    export type DataElement = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
     export type HeteroEqComparator<T, U> = (a: T) => (b: U) => boolean;
     export type EqComparator<T> = HeteroEqComparator<T, T> | HeteroEqComparator<T, any>;
 
     export type StateUpdaterFunc<T> = (prev: T) => T;
     export type StateSetterFunc<T> = (setOrUpdate: T | StateUpdaterFunc<T>) => void;
 
+    export type RealmClass<T> = Realm.ObjectClass & { new (): T & Realm.Object };
+    export type Result<T> = (T & Realm.Object);
     export type Children = React.ReactNode | React.ReactNode[];
-    export type DataElement = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
+
     export interface IAction {
         (): void;
     }
@@ -25,16 +29,15 @@ declare global {
         _id: ObjectId;
         name: string;
         website?: string;
-        facilities: FacilityDTO[];
+        facilities: IFacility[];
     }
     export interface IAddress {
         street?: string;
         suite?: string;
         city: string;
         state: Provinces;
-        country: CountryISO2;
+        country: Country;
         postalCode?: string;
-        readonly shortString: string;
     }
     export interface IFacility {
         _id: ObjectId;
@@ -43,14 +46,28 @@ declare global {
         email?: string;
         phone?: string;
         facilityNumber?: string;
+        units: IRentalUnit[];
         readonly name: string;
+    }
+    export interface ILength {
+        value: number;
+        uom: LengthUOM;
+        readonly displayAs: string;
+    }
+    export interface ISquareFootage {
+        length: ILength;
+        width: ILength;
+        readonly displayAs: string;
+    }
+    export interface IRentalUnit {
+        _id: ObjectId;
+        facility?: IFacility;
+        unit: string;
+        size: ISquareFootage;
     }
     export interface ICapacity {
         value: number;
         uom: CapacityUOM;
-        normalize();
-        convertUp();
-        convertDown();
     }
     export interface IFileEntry {
         _id: ObjectId;

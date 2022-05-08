@@ -1,4 +1,3 @@
-
 import { app, BrowserWindow, session } from 'electron';
 import { enable, initialize } from '@electron/remote/main';
 import * as fs from 'graceful-fs';
@@ -29,7 +28,10 @@ process.on('uncaughtException', function (error) {
 });
 
 function getExtensionPath(extensionID: string) {
-    const platformPath = process.platform === 'win32' ? 'C:/Users/bobby/AppData/Local/Google/Chrome/User/Data/Default/Extensions/' + extensionID : `/home/bobby/.config/google-chrome/Default/Extensions/${extensionID}`;
+    const platformPath =
+        process.platform === 'win32'
+            ? 'C:/Users/bobby/AppData/Local/Google/Chrome/User/Data/Default/Extensions/' + extensionID
+            : `/home/bobby/.config/google-chrome/Default/Extensions/${extensionID}`;
     const versionFolder = fs.readdirSync(platformPath)[0];
     const devToolsPath = [platformPath, versionFolder].join('/');
     console.log(devToolsPath);
@@ -38,25 +40,27 @@ function getExtensionPath(extensionID: string) {
 function getDevToolsPath() {
     const platformPaths =
         process.platform === 'win32'
-            ? `C:/Users/bobby/AppData/Local/Google/Chrome/User Data/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi` : '/home/bobby/.config/google-chrome/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi';
+            ? `C:/Users/bobby/AppData/Local/Google/Chrome/User Data/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi`
+            : '/home/bobby/.config/google-chrome/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi';
     // ? 'C:/Users/bobby/AppData/Local/Electron/extensions/fmkadmapgofadopljbjfkapdkoienihi'
     // : '/home/bobby/.config/google-chrome/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi';
     const versionFolder = fs.readdirSync(platformPaths)[0];
     const devToolsPath = [platformPaths, versionFolder].join('/');
     console.log(devToolsPath);
     return devToolsPath;
-
 }
 app.on('ready', function () {
-    return session.defaultSession.loadExtension(getExtensionPath('fmkadmapgofadopljbjfkapdkoienihi'), { allowFileAccess: true }).then(() =>
-        session.defaultSession.loadExtension(getExtensionPath('jdkknkkbebbapilgoeccciglkfbmbnfm'), { allowFileAccess: true })).then(() => createWindow()).then(() => {
+    return session.defaultSession
+        .loadExtension(getExtensionPath('fmkadmapgofadopljbjfkapdkoienihi'), { allowFileAccess: true })
+        .then(() => session.defaultSession.loadExtension(getExtensionPath('jdkknkkbebbapilgoeccciglkfbmbnfm'), { allowFileAccess: true }))
+        .then(() => createWindow())
+        .then(() => {
             if (window == null) throw new Error('null window');
             window.webContents.openDevTools();
             enable(window.webContents);
             window.webContents.on('did-finish-load', () => console.log('finished loading...'));
         });
 });
-
 
 // ().then(async () => {
 //     // await session.defaultSession.loadExtension(getDevToolsPath(), { allowFileAccess: true });

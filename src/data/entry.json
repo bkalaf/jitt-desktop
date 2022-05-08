@@ -1,0 +1,69 @@
+{
+    "address": {
+        "columns": [
+            { "name": "suite" },
+            { "name": "street" },
+            { "name": "city" },
+            { "name": "state", "enum": "provinces" },
+            { "name": "country", "enum": "countries" },
+            { "name": "postalCode" }
+        ]
+    },
+    "facility": {
+        "columns": [
+            {
+                "icon": "faKey",
+                "label": "ID",
+                "name": "_id"
+            },
+            { "name": "name", "calculated": true },
+            { "name": "selfStorage", "option": ["_id", "name"] },
+            { "name": "address", "embedded": true },
+            { "name": "facilityNumber" },
+            { "name": "email" },
+            { "name": "phone" }
+        ],
+        "descendants": [["units", "rental-unit"]],
+        "sort": ["name"]
+    },
+    "length": {
+        "columns": [{ "name": "value" }, { "name": "uom", "enum": "length" }],
+        "displayAs": true
+    },
+    "square-footage": {
+        "columns": [
+            { "name": "length", "embedded": true },
+            { "name": "width", "embedded": true }
+        ],
+        "displayAs": true
+    },
+    "rental-unit": {
+        "columns": [
+            {
+                "icon": "faKey",
+                "label": "ID",
+                "name": "_id"
+            },
+            { "name": "facility", "option": ["_id", "name"]},
+            { "name": "unit" },
+            { "name": "size", "embedded": true }
+        ]
+    },
+    "self-storage": {
+        "columns": [
+            {
+                "icon": "faKey",
+                "label": "ID",
+                "name": "_id"
+            },
+            {
+                "name": "name"
+            },
+            {
+                "name": "website"
+            }
+        ],
+        "descendants": [["facilities", "facility"]],
+        "sort": "name"
+    }
+}

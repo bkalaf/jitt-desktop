@@ -1,13 +1,48 @@
 import Realm from 'realm';
-import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache, makeVar } from '@apollo/client';
+import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache, makeVar, useReactiveVar } from '@apollo/client';
 import { HashRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { UI } from './UI';
 import { MainWindow } from './MainWindow';
+import { ignore } from '../common/ignore';
+import { app } from '@electron/remote';
+import { schema } from '../data';
+import { SchemaProvider } from './providers/SchemaProvider';
+import { MetaDataProvider } from './providers/DataTypeInfo';
+import { $currentUser, $realm } from './globals';
+import { ICommand } from '../hooks/ICommand';
 
-export const realmApp = new Realm.App('jitt-mntcv');
-export const $currentUser = makeVar(realmApp.currentUser);
+export const $insertCommand = makeVar<ICommand<any[]>>({
+    disabled: true,
+    execute: ignore,
+    canExecute: () => true,
+    validFor: ['grid', 'insert', 'edit']
+});
+export const $deleteCommand = makeVar<ICommand<any[]>>({
+    disabled: true,
+    execute: ignore,
+    canExecute: () => true,
+    validFor: ['grid', 'insert', 'edit']
+});
+export const $selectAllCommand = makeVar<ICommand<any[]>>({
+    disabled: true,
+    execute: ignore,
+    canExecute: () => true,
+    validFor: ['grid', 'insert', 'edit']
+});
+export const $clearSelectedCommand = makeVar<ICommand<any[]>>({
+    disabled: true,
+    execute: ignore,
+    canExecute: () => true,
+    validFor: ['grid', 'insert', 'edit']
+});
+export const $clearSortCommand = makeVar<ICommand<any[]>>({
+    disabled: true,
+    execute: ignore,
+    canExecute: () => true,
+    validFor: ['grid', 'insert', 'edit']
+});
 export async function getAccessToken() {
     const user = $currentUser();
     if (user) {
@@ -28,14 +63,31 @@ export const apolloClient = new ApolloClient({
 });
 export const queryClient = new QueryClient();
 export function App() {
+    const cu = useReactiveVar($currentUser);
+    useEffect(() => {
+        if (cu) {
+            Realm.open({
+                schema: schema,
+                path: [app.getPath('appData'), 'jitt-desktop', 'db.realm'].join('/'),
+                sync: {
+                    user: cu,
+                    partitionValue: cu.profile?.email ?? ''
+                }
+            }).then($realm);
+        }
+    }, [cu]);
     return (
         <React.StrictMode>
             <HashRouter>
                 <QueryClientProvider client={queryClient}>
                     <ApolloProvider client={apolloClient}>
-                        <UI>
-                            <MainWindow />
-                        </UI>
+                        <SchemaProvider>
+                            <MetaDataProvider>
+                                <UI>
+                                    <MainWindow />
+                                </UI>
+                            </MetaDataProvider>
+                        </SchemaProvider>
                     </ApolloProvider>
                 </QueryClientProvider>
             </HashRouter>
