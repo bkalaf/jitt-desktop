@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import { getCaptureGroups } from '../components/providers/getCaptureGroups';
+import { getCaptureGroups } from '../common/regex/getCaptureGroups';
 
 const COLLECTION_REGEX = /\/\w*\/v1\/?([\w-]*)\/?([\w-]*)/;
 

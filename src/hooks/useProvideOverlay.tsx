@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { $cn } from '../components/$cn';
 import { Visibility } from '../types/ui/Visibility';
 import { isNotIn } from '../common/array/isNotIn';
-import { cycleVisibility } from '../components/cycleVisibility';
+import { cycleVisibility } from '../util/cycleVisibility';
 import { useArray } from './useArray';
 
 export function useProvideOverlay() {

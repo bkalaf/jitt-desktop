@@ -1,4 +1,4 @@
-import { Visibility } from '../types/ui/Visibility';
+import { Visibility } from '../types';
 
 export function cycleVisibility(current: Visibility): Visibility {
     switch (current) {
