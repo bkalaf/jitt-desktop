@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 import { useLocation } from 'react-router';
 import { SortDescriptor } from 'realm';
 import { useLocalRealm } from '../grid';
-import { ViewKind } from './ViewKind';
+import { ViewKind } from '../../types/metadata/ViewKind';
 
 export interface IGridViewContext<T extends { _id: Realm.BSON.ObjectId } = { _id: Realm.BSON.ObjectId }> {
     viewKind: 'grid';

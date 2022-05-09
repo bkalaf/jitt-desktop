@@ -14,7 +14,7 @@ export function LeftSidebar() {
             flex: visibility !== 'hidden',
             hidden: visibility === 'hidden'
         },
-        'h-full w-1/4 resize-x bg-black/80 text-white rounded-r-lg border border-white left-0 top-0'
+        'h-full  resize-x bg-black/80 text-white rounded-r-lg border border-white left-0 top-0 max-w-fit'
     );
     const location = useLocation();
     useEffect(() => {

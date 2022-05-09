@@ -2,7 +2,7 @@ import { createContext, useEffect } from 'react';
 import { isIn } from '../common/array/isIn';
 import { useArray } from '../hooks/useArray';
 import { useVisibility } from '../hooks/useVisibility';
-import { Visibility } from './Visibility';
+import { Visibility } from '../types/ui/Visibility';
 import { useProvidedContext } from './providers/OverlayProvider';
 
 export type HorizontalDirection = 'left' | 'right';

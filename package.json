@@ -74,9 +74,9 @@
     },
     "scripts": {
         "build": "NODE_ENV=development webpack-cli -c ./webpack.config.ts",
-        "start": "./node_modules/.bin/electron public/app.js",
+        "start": "ELECTRON_NO_ATTACH_CONSOLE=true ./node_modules/.bin/electron public/app.js",
         "dev": "./node_modules/.bin/webpack --watch",
-        "app": "./node_modules/.bin/electron public/app.js",
+        "app": "ELECTRON_NO_ATTACH_CONSOLE=true ./node_modules/.bin/electron public/app.js",
         "start-linux": "yarn build && yarn start"
     }
 }

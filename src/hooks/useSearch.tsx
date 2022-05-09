@@ -1,8 +1,8 @@
 import { useCallback, useRef } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
-import { distinct } from '../../common/array/distinct';
-import { objEq } from './objEq';
-import { balanceState } from './balanceState';
+import { distinct } from '../common/array/distinct';
+import { objEq } from '../components/grid/objEq';
+import { balanceState } from '../components/grid/balanceState';
 
 /* : (
     key: string

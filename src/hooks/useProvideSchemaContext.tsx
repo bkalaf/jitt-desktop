@@ -7,6 +7,9 @@ import { indexSort } from '../common/obj/indexSort';
 import { ISchemaContext, ITypeInfo, toTypeInfo, IPropertyInfo, createProps } from '../components/providers/SchemaProvider';
 import { useRealm } from './useRealm';
 
+/**
+ * @deprecated
+ */
 export function useProvideSchemaContext(): ISchemaContext {
     const realm = useRealm();
     const getObjectClass = useCallback(function <T>(name: string) {

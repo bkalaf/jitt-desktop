@@ -1,19 +1,17 @@
-import { ObjectSchemaProperty, SortDescriptor, UserIdentity } from 'realm';
+import { SortDescriptor, UserIdentity } from 'realm';
 import { identity } from '../../common/identity';
 import { padZero } from '../../common/text/padZero';
 import { composeR } from '../../common/composeR';
 import { ObjectId } from 'bson';
 import { createContext, FieldsetHTMLAttributes, HTMLInputTypeAttribute, OlHTMLAttributes, TdHTMLAttributes, useCallback, useRef, useState } from 'react';
 import { IconDefinition } from '@fortawesome/pro-duotone-svg-icons';
-import { Descendant, ORM } from './SchemaProvider';
-import { useRealm } from '../../hooks/useRealm';
-import { fst } from '../../common/fst';
-import { Output } from '../forms/elements/Output';
-import { Select } from '../forms/elements/Select';
-import { Input } from '../forms/elements/Input';
+import { Descendant } from './SchemaProvider';
+import { fst } from '../../common/tuple/fst';
 import { icon } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useProvideMetaData } from './useProvideMetaData';
 
+// TODO Extract
 export const toOutput: Record<string, (x: any) => string> = {
     objectId: (x: ObjectId) => x.toHexString(),
     string: identity,
@@ -55,30 +53,30 @@ export interface DataTypeInfo {
     indexed: boolean;
 }
 
-export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-    inputType: HTMLInputTypeAttribute;
-    name: string;
-    dataType: DataTypeInfo;
-}
-export interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
-    enumMap?: Record<string, string>;
-    name: string;
+// export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+//     inputType: HTMLInputTypeAttribute;
+//     name: string;
+//     dataType: DataTypeInfo;
+// }
+// export interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
+//     enumMap?: Record<string, string>;
+//     name: string;
 
-    dataType: DataTypeInfo;
-}
-export interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
-    name: string;
-    dataType: DataTypeInfo;
-}
-export interface OutputProps extends React.OutputHTMLAttributes<HTMLOutputElement> {
-    name: string;
-    dataType: DataTypeInfo;
-}
-export interface FieldSetProps extends React.FieldsetHTMLAttributes<HTMLFieldSetElement> {
-    name: string;
-    dataType: DataTypeInfo;
-}
-export type ControlProps = FieldSetProps | OutputProps | TextAreaProps | InputProps | SelectProps;
+//     dataType: DataTypeInfo;
+// }
+// export interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+//     name: string;
+//     dataType: DataTypeInfo;
+// }
+// export interface OutputProps extends React.OutputHTMLAttributes<HTMLOutputElement> {
+//     name: string;
+//     dataType: DataTypeInfo;
+// }
+// export interface FieldSetProps extends React.FieldsetHTMLAttributes<HTMLFieldSetElement> {
+//     name: string;
+//     dataType: DataTypeInfo;
+// }
+// export type ControlProps = FieldSetProps | OutputProps | TextAreaProps | InputProps | SelectProps;
 export interface CellProps extends React.TdHTMLAttributes<HTMLTableCellElement> {
     icon?: IconDefinition;
     displayAs?: string;
@@ -92,116 +90,6 @@ export interface PropertyInfo {
     Cell: (x: CellProps) => JSX.Element;
     props: any;
 }
-export interface TypeInfo {
-    name: string;
-    sort?: SortDescriptor[];
-    descendants?: Descendant[];
-    properties?: Record<string, PropertyInfo>;
-}
-
-export function useQueue<T>(init: T[] = []) {
-    const [queue, setQueue] = useState<T[]>(init);
-    const next = useRef<T | undefined>(undefined);
-    const enqueue = useCallback((item: T) => {
-        setQueue((prev) => [...prev, item]);
-    }, []);
-    const dequeue = useCallback(function* () {
-        setQueue((prev) => {
-            if (prev.length > 0) {
-                const [head, ...tail] = prev;
-                next.current = head;
-                return tail;
-            }
-            return [];
-        });
-        yield next.current;
-    }, []);
-    return [enqueue, dequeue];
-}
-export function useProvideMetaData() {
-    const realm = useRealm();
-    const findRealmSchema = (x: string, t: string) => realm?.schema.find((y) => y.name === x)?.properties[t] as ObjectSchemaProperty;
-    const ormTypes = Object.fromEntries(
-        Object.entries(ORM).map(([typeName, { columns, descendants, sort, displayAs }]) => [
-            typeName,
-            {
-                sort,
-                descendants,
-                displayAs,
-                properties: Object.fromEntries(
-                    columns.map(
-                        ({
-                            name,
-                            autoGen,
-                            displayAs: fieldDisplayAs,
-                            embedded,
-                            enum: enumMap,
-                            icon,
-                            inputType,
-                            label,
-                            local,
-                            min,
-                            option,
-                            pattern,
-                            readOnly,
-                            to
-                        }) => {
-                            const { optional, indexed, property, objectType, type } = findRealmSchema(typeName, name) ?? {};
-                            return [
-                                name,
-                                {
-                                    name,
-                                    dataType: {
-                                        type: type,
-                                        objectType: objectType,
-                                        indexed: indexed ?? false,
-                                        optional: optional ?? false,
-                                        property: property
-                                    },
-                                    props: {
-                                        autoGen,
-                                        inputType,
-                                        label,
-                                        local,
-                                        min,
-                                        option,
-                                        pattern,
-                                        readOnly,
-                                        to,
-                                        enumMap,
-                                        embedded,
-                                        displayAs: fieldDisplayAs ?? displayAs
-                                    },
-                                    Control:
-                                        property != null
-                                            ? Select
-                                            : objectType != null && type === 'object' && fieldDisplayAs == null
-                                            ? FieldSet
-                                            : objectType != null && type === 'object'
-                                            ? Input
-                                            : objectType != null
-                                            ? ListElement
-                                            : type == null
-                                            ? Output
-                                            : Input,
-                                    Cell: icon ? (IconCell as any) : TableCell
-                                }
-                            ];
-                        }
-                    ) as [string, PropertyInfo][]
-                )
-            }
-        ])
-    );
-    return {
-        types: ormTypes,
-        getType: (x: string) => ormTypes[x],
-        getProperty: (x: string, t: string) => ormTypes[x].properties[t],
-        getObjectClass: (x: string) => realm?.schema.find((y) => y.name === x),
-        getSort: (x: string) => ormTypes[x].sort
-    };
-}
-
 export function ListElement(props: OlHTMLAttributes<HTMLOListElement>) {
     return <ol {...props}></ol>;
 }

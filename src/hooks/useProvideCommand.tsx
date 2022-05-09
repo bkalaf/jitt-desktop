@@ -1,8 +1,8 @@
 import { ReactiveVar, useReactiveVar } from '@apollo/client';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ignore } from '../common/ignore';
-import { useForceUpdate } from './useProvideInsertCommand';
-import { ICommand } from './ICommand';
+import { useForceUpdate } from "./useForceUpdate";
+import { ICommand } from '../types/ui/ICommand';
 
 export function useProvideCommand<TArgs extends any[]>(
     rVar: ReactiveVar<ICommand<TArgs>>
@@ -15,7 +15,7 @@ export function useProvideCommand<TArgs extends any[]>(
     const forceUpdate = useForceUpdate();
     const [isDisabled, setEnabled] = useState(true);
     const execute = useRef<(...args: TArgs) => void>(ignore);
-    const command = useMemo(() => ({ execute: execute.current, disabled: isDisabled }), [isDisabled]);
+    const command = useMemo(() => ({ execute: execute.current, disabled: isDisabled, canExecute: () => isDisabled, validFor: [] }), [isDisabled]);
 
     const setCommand = useCallback(
         (func: (...args: TArgs) => void, isDisabled = false) => {

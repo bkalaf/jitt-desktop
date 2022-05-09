@@ -1,17 +1,13 @@
 import { useCallback, useRef } from 'react';
 import { useMutation, useQuery } from 'react-query';
-import { useNavigate } from 'react-router-dom';
 import { SortDescriptor } from 'realm';
-import { ControlOpts } from '../../hooks/useForm';
-import { useRealm } from '../../hooks/useRealm';
-import { useToast } from '../../hooks/useToast';
-import { ignore } from '../../common/ignore';
-import { useSchema } from '../useSchema';
+import { ControlOpts } from './useForm';
+import { useRealm } from './useRealm';
+import { useToast } from './useToast';
+import { ignore } from '../common/ignore';
+import { useSchema } from './useSchema';
+import { useNavigateDown } from './useNavigateDown.1';
 
-export function useNavigateDown() {
-    const navigate = useNavigate();
-    return useCallback(() => navigate('..'), [navigate]);
-}
 export function useInsertForm<T extends { _id: Realm.BSON.ObjectId }>(collection: string, sort: SortDescriptor[], convert: (fd: FormData) => T & Realm.Object) {
     const realm = useRealm();
     if (realm == null) throw new Error('no realm');

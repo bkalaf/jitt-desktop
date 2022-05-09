@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { ToastType } from '../components/providers/ToasterProvider';
+import { ToastType } from "../types/ui/ToastType";
 import { useToaster } from './useToaster';
 
 export function useToast(type: ToastType) {

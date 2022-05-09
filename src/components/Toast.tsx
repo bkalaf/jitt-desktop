@@ -4,7 +4,7 @@ import { $cn } from './$cn';
 import { useDeleteToast } from '../hooks/useDeleteToast';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { faBanParking, faBug, faExclamationSquare, faThumbsUp, faTrafficCone } from '@fortawesome/pro-duotone-svg-icons';
-import { ToastType } from './providers/ToasterProvider';
+import { ToastType } from '../types/ui/ToastType';
 import { useToggle } from '../hooks/useToggle';
 import { useToken } from '../hooks/useToken';
 import { useVisibility } from '../hooks/useVisibility';

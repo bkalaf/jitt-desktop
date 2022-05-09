@@ -1,6 +1,6 @@
 import { createContext, useCallback, useRef } from 'react';
-import { ICommand } from '../../hooks/ICommand';
-import { ViewKind } from './ViewKind';
+import { ICommand } from '../../types/ui/ICommand';
+import { ViewKind } from '../../types/metadata/ViewKind';
 
 export interface ICommander {
     clearFilter?: ICommand<never[], 'grid'>;

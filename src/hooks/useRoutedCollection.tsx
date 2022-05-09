@@ -1,9 +1,12 @@
 import { useLocation } from 'react-router-dom';
+import { getCaptureGroups } from '../components/providers/getCaptureGroups';
 
-export function useRoutedCollection() {
+const COLLECTION_REGEX = /\/\w*\/v1\/?([\w-]*)\/?([\w-]*)/;
+
+export function useRoutedCollection(reqNotNull = false): [string, string] {
     const location = useLocation();
-    const collectionName = location.pathname.split('/').reverse()[0];
+    const [ collectionName, id] = getCaptureGroups(COLLECTION_REGEX, 1, 3)(location.pathname);
     console.log('collectionName', collectionName);
-    if (collectionName == null) throw new Error('useRoutedCollection called by no collection in scope');
-    return collectionName;
+    if (collectionName == null && reqNotNull) throw new Error('useRoutedCollection called by no collection in scope');
+    return [collectionName, id];
 }

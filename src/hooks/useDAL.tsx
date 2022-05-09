@@ -1,27 +1,24 @@
 /* eslint-disable dot-notation */
-import { faPenAlt, faSquare, faTrash, faTrashCan } from '@fortawesome/pro-duotone-svg-icons';
+import { faPenAlt, faSquare, faTrashCan } from '@fortawesome/pro-duotone-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useCallback, useMemo } from 'react';
 import { ObjectSchemaProperty } from 'realm';
-import { $cn } from '../$cn';
-import { distinct } from '../../common/array/distinct';
-import { fst } from '../../common/fst';
-import { identity } from '../../common/identity';
-import { ignore } from '../../common/ignore';
-import { fromKebabToCamelCase } from '../../common/text/fromKebabToCamelCase';
-import { toTitleCase } from '../../common/text/toTitleCase';
-import { Control } from '../forms/Control';
-import { FormEl } from '../forms/elements/Input';
-import { IconButton } from '../MainWindow';
-import { DAL } from '../providers/DAL';
-import { toDB, toOutput } from '../providers/DataTypeInfo';
-import { getProperty } from '../../common/obj/getProperty';
-import { HeaderDef } from './HeaderDef';
-import { objectFilter } from '../../common/obj/objectFilter';
-import { PropertyData } from './PropertyData';
-import { useConfigSchema } from '../../hooks/useConfigSchema';
+import { $cn } from '../components/$cn';
+import { distinct } from '../common/array/distinct';
+import { identity } from '../common/identity';
+import { ignore } from '../common/ignore';
+import { toTitleCase } from '../common/text/toTitleCase';
+import { Control } from '../components/forms/Control';
+import { FormEl } from '../components/forms/elements/Input';
+import { DAL } from '../components/providers/DAL';
+import { toDB, toOutput } from '../components/providers/DataTypeInfo';
+import { getProperty } from '../common/obj/getProperty';
+import { HeaderDef } from '../components/grid/HeaderDef';
+import { objectFilter } from '../common/obj/objectFilter';
+import { PropertyData } from '../components/grid/PropertyData';
+import { useConfigSchema } from './useConfigSchema';
 import React from 'react';
-import { SelectButtonCell } from './SelectButtonCell';
+import { SelectButtonCell } from '../components/grid/SelectButtonCell';
 
 function toField(typeLookup: Map<string, { typeName: string; embedded?: boolean }>, osp: ObjectSchemaProperty) {
     return [
@@ -38,7 +35,7 @@ function toField(typeLookup: Map<string, { typeName: string; embedded?: boolean 
         }
     ] as [string, string, Record<'reference' | 'collection' | 'primitive' | 'embedded' | 'linkingObjects' | 'optional' | 'local', boolean>];
 }
-type PropertyMap = Map<
+export type PropertyMap = Map<
     string,
     [string, string, Record<'reference' | 'collection' | 'primitive' | 'embedded' | 'linkingObjects' | 'optional' | 'local', boolean>]
 >;

@@ -1,6 +1,6 @@
 import { ReactiveVar, useReactiveVar } from '@apollo/client';
 import React from 'react';
-import { ICommand } from '../hooks/ICommand';
+import { ICommand } from '../types/ui/ICommand';
 import { IconButtonProps, IconButton } from './MainWindow';
 
 export function CommandButton<TArgs extends any[]>(props: Omit<IconButtonProps, 'onClick' | 'disabled'> & { rVar: ReactiveVar<ICommand<TArgs>> }) {

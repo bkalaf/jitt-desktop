@@ -1,13 +1,10 @@
 import React, { useCallback, useMemo, useRef } from 'react';
-import { useProvideDeleteCommand } from '../../hooks/useProvideDeleteCommand';
-import { useDeleteCommand } from '../../hooks/useDeleteCommand';
-import { checkForOID } from './checkForOID';
+import { useProvideDeleteCommand } from './useProvideDeleteCommand';
+import { useDeleteCommand } from './useDeleteCommand';
+import { attemptToGetOID } from '../util/attemptToGetOID';
 import { useSearch } from './useSearch';
-import { useNavigateDown } from '../../hooks/useNavigateDown';
+import { useNavigateDown } from './useNavigateDown';
 
-export function useProvideViewContext() {
-    return [];
-}
 export function useSelection() {
     // TODO set sorts for column header
     useProvideDeleteCommand();
@@ -56,7 +53,7 @@ export function useSelection() {
         (ev: React.MouseEvent<HTMLElement>) => {
             console.log('on-click', ev);
             alert(ev);
-            const oid = checkForOID(ev.target as HTMLElement);
+            const oid = attemptToGetOID(ev.target as HTMLElement);
             if (ev.detail > 2) {
                 return;
             } else if (ev.detail === 2) {
@@ -94,7 +91,7 @@ export function useSelection() {
     );
     const onSelectClick = useCallback(
         (ev: React.MouseEvent<HTMLElement>) => {
-            const oid = checkForOID(ev.target as HTMLElement);
+            const oid = attemptToGetOID(ev.target as HTMLElement);
             if (oid == null) throw new Error('cannot set selected: oid not found');
             toggleSelected(oid);
         },

@@ -9,13 +9,10 @@ import { Fieldset } from '../forms/elements/Fieldset';
 import { FormElement, Input } from '../forms/elements/Input';
 import { Output } from '../forms/elements/Output';
 import { Select } from '../forms/elements/Select';
+import { IFieldInfo } from "../../types/metadata/IFieldInfo";
 
 export type ColumnScope = [string, string | undefined];
 
-type OptionElementFields = {
-    value: string;
-    label: string;
-};
 export const DAL: Record<
     string,
     {
@@ -23,23 +20,7 @@ export const DAL: Record<
         columns: string[];
         row: (x: any) => Array<string | undefined | Array<any>>;
         sorted: SortDescriptor[];
-        fields: {
-            el: FormElement;
-            name: string;
-            readOnly?: boolean;
-            required?: boolean;
-            type?: HTMLInputTypeAttribute;
-            icon?: IconDefinition;
-            label?: string;
-            minLength?: number;
-            enumMap?: Record<string, string>;
-            defaultValue?: string;
-            pattern?: string;
-            to?: string;
-            optionMap?: OptionElementFields;
-            hideOnInsert?: boolean;
-            min?: number;
-        }[];
+        fields: IFieldInfo[];
     }
 > = {
     'self-storage': {
@@ -80,23 +61,23 @@ export const DAL: Record<
             { el: Output, name: 'name' },
             { el: Select, name: 'selfStorage', to: 'self-storage', optionMap: { value: '_id', label: 'name' } },
             { el: Fieldset, name: 'address' },
-            { el: Input, type: 'email', name: 'email' },
+            { el: Input, type: 'email', name: 'email', label: 'E-mail' },
             { el: Input, type: 'tel', name: 'phone' }
         ]
     },
     length: {
         headers: [],
-        columns: [],
+        columns: [ 'value', 'uom'],
         row: (x: any) => [],
         sorted: [],
         fields: [
             { el: Input, name: 'value', required: true, min: 0, defaultValue: '0' },
-            { el: Select, name: 'uom', defaultValue: 'in', enumMap: lengths, required: true }
+            { el: Select, name: 'uom', defaultValue: 'in', enumMap: lengths, required: true, label: 'Unit of Measure' }
         ]
     },
     'square-footage': {
         headers: [],
-        columns: [],
+        columns: ['length', 'width'],
         row: (x: any) => [],
         sorted: [],
         fields: [
@@ -107,7 +88,7 @@ export const DAL: Record<
     },
     'rental-unit': {
         headers: [],
-        columns: [],
+        columns: ['_id', 'facility', 'unit', 'size'],
         row: (x: any) => [],
         sorted: [
             ['facility.selfStorage.name', false],

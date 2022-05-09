@@ -5,7 +5,9 @@ import { RealmTypes } from '../MainRouter';
 export type TypeControls = 'input' | 'select' | 'radio' | 'textarea' | 'output' | 'list' | 'hidden' | 'fieldset';
 
 export type TypeCells = 'text' | 'icon';
-
+/**
+ * @deprecated
+ */
 export type IType = {
     name: string;
     index: number;
@@ -16,6 +18,9 @@ export type IType = {
     control: TypeControls;
     cell: TypeCells;
 };
+/**
+ * @deprecated
+ */
 export type IPrimitive<T> = {
     propertyType: 'primitive';
     type: Exclude<RealmTypes, 'dictionary' | 'set' | 'list'>;

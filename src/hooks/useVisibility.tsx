@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 import { cycleVisibility } from '../components/cycleVisibility';
-import { Visibility } from '../components/Visibility';
+import { Visibility } from '../types/ui/Visibility';
 
 export function useVisibility(init: Visibility = 'hidden'): [Visibility, () => void] {
     const [state, setState] = useState<Visibility>(init);

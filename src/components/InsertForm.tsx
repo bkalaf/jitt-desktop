@@ -1,16 +1,16 @@
 import React, { useCallback, useEffect, useMemo } from 'react';
-import { useSchema } from './useSchema';
+import { useSchema } from '../hooks/useSchema';
 import { FormProvider } from './providers/FormProvider';
 import { useForm } from '../hooks/useForm';
 import { IPropertyInfo } from './providers/SchemaProvider';
 import { useMutation, useQueryClient } from 'react-query';
 import { useRealm } from '../hooks/useRealm';
 import { useToast } from '../hooks/useToast';
-import { snd } from '../common/snd';
+import { snd } from '../common/tuple/snd';
 import { convertFormData, setReferenceField } from '../util/convertFormData';
 import { insertMutation } from '../queries/insertMutation';
 import { Property } from './forms/Property';
-import { useDAL } from './grid/useDAL';
+import { useDAL } from '../hooks/useDAL';
 
 export function InsertForm<T extends Record<string, any>>(props: { collectionName: string }) {
     console.group('InsertForm');

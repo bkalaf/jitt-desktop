@@ -1,9 +1,9 @@
 import { useCallback, useMemo, useState } from 'react';
-import { fst } from '../common/fst';
+import { fst } from '../common/tuple/fst';
 import { generateRandomString } from '../common/generateRandomString';
-import { snd } from '../common/snd';
+import { snd } from '../common/tuple/snd';
 import { toastTypeMap, Toast } from '../components/Toast';
-import { ToastType } from '../components/providers/ToasterProvider';
+import { ToastType } from '../types/ui/ToastType';
 
 export function useProvideToaster(): [
     () => JSX.Element[],

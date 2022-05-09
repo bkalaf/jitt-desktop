@@ -11,7 +11,10 @@ import { schema } from '../data';
 import { SchemaProvider } from './providers/SchemaProvider';
 import { MetaDataProvider } from './providers/DataTypeInfo';
 import { $currentUser, $realm } from './globals';
-import { ICommand } from '../hooks/ICommand';
+import { ICommand } from '../types/ui/ICommand';
+import { buildLibrary } from './providers/buildLibrary';
+import { MetaDataContextProvider } from './providers/MetaDataProvider';
+import { getAccessToken } from '../util/getAccessToken';
 
 export const $insertCommand = makeVar<ICommand<any[]>>({
     disabled: true,
@@ -43,13 +46,6 @@ export const $clearSortCommand = makeVar<ICommand<any[]>>({
     canExecute: () => true,
     validFor: ['grid', 'insert', 'edit']
 });
-export async function getAccessToken() {
-    const user = $currentUser();
-    if (user) {
-        return user.accessToken ?? '';
-    }
-    return '';
-}
 export const apolloClient = new ApolloClient({
     link: new HttpLink({
         uri: 'https://realm.mongodb.com/api/client/v2.0/app/jitt-mntcv/graphql',
@@ -73,7 +69,12 @@ export function App() {
                     user: cu,
                     partitionValue: cu.profile?.email ?? ''
                 }
-            }).then($realm);
+            })
+                .then((x) => {
+                    $realm(x);
+                    return x;
+                })
+                .then(buildLibrary);
         }
     }, [cu]);
     return (
@@ -81,13 +82,13 @@ export function App() {
             <HashRouter>
                 <QueryClientProvider client={queryClient}>
                     <ApolloProvider client={apolloClient}>
-                        <SchemaProvider>
-                            <MetaDataProvider>
+                        <MetaDataContextProvider>
+                            <SchemaProvider>
                                 <UI>
                                     <MainWindow />
                                 </UI>
-                            </MetaDataProvider>
-                        </SchemaProvider>
+                            </SchemaProvider>
+                        </MetaDataContextProvider>
                     </ApolloProvider>
                 </QueryClientProvider>
             </HashRouter>

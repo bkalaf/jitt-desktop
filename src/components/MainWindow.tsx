@@ -20,11 +20,11 @@ import { useToast } from '../hooks/useToast';
 import { AuthStatus } from './StatusBar/AuthStatus';
 import { $deleteCommand, $insertCommand } from './App';
 import { MainRouter } from './MainRouter';
-import { useDAL } from './grid/useDAL';
+import { useDAL } from '../hooks/useDAL';
 import { useRealm } from '../hooks/useRealm';
 import { $cn } from './$cn';
 import { CommandButton } from './CommandButton';
-import { useSchema } from './useSchema';
+import { useSchema } from '../hooks/useSchema';
 
 export type IconButtonProps = {
     title: string;
