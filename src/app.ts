@@ -1,4 +1,4 @@
-import { app, BrowserWindow, session } from 'electron';
+import { app, BrowserWindow, ipcMain, session } from 'electron';
 import { enable, initialize } from '@electron/remote/main';
 import * as fs from 'graceful-fs';
 
@@ -61,7 +61,21 @@ app.on('ready', function () {
             window.webContents.on('did-finish-load', () => console.log('finished loading...'));
         });
 });
+// const browser: Promise<WebdriverIO.Browser> = Webdriver.remote({
+//     logLevel: 'trace',
+//     capabilities: {
+//         browserName: 'chrome'
+//     }
+// });
 
+// ipcMain.handle('webdriver::url', async (event, url: string) => {
+//     const b = await browser;
+//     return b.url(url);
+// });
+// ipcMain.handle('webdriver::click', async (event, selector: string) => {
+//     const b = await browser;
+//     return b.$(selector).click();
+// });
 // ().then(async () => {
 //     // await session.defaultSession.loadExtension(getDevToolsPath(), { allowFileAccess: true });
 //     // await session.defaultSession.loadExtension(getExtensionPath('jdkknkkbebbapilgoeccciglkfbmbnfm'), { allowFileAccess: true });

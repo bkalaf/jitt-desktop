@@ -1,5 +1,5 @@
 @import './fonts.css';
-@import './animations.css';
+@import './animations/index.css';
 @import './base.css';
 @import './components.css';
 @import './utilities.css';
@@ -8,6 +8,7 @@
 
 .font-small-caps {
     font-variant-caps: small-caps;
+    background-color: slategrey
 }
 
 .font-petite-caps {

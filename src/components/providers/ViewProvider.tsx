@@ -2,8 +2,15 @@ import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { useQuery } from 'react-query';
 import { useLocation } from 'react-router';
 import { SortDescriptor } from 'realm';
-import { useLocalRealm } from '../grid';
 import { ViewKind } from '../../types/metadata/ViewKind';
+import { fst, snd } from '../../common';
+import { useNavigateDown } from '../../hooks/useNavigateDown.1';
+import { checkElementForDataAttribute } from '../../util';
+import { useSelectable } from '../../hooks/useSelectable';
+import { deleteSelected } from '../../queries/deleteById';
+import { Commander } from './CommanderProvider';
+import { IAppCommand } from '../../types/ui/ICommand';
+import { useLocalRealm } from '../../hooks/useLocalRealm';
 
 export interface IGridViewContext<T extends { _id: Realm.BSON.ObjectId } = { _id: Realm.BSON.ObjectId }> {
     viewKind: 'grid';
@@ -12,6 +19,9 @@ export interface IGridViewContext<T extends { _id: Realm.BSON.ObjectId } = { _id
     filtered: string;
     selected: string[];
     data?: Realm.Results<T>;
+    isSelected(item: string): boolean;
+    onClick(ev: React.MouseEvent<HTMLElement>): void;
+    deleteRows(selected: string[]): Promise<string[]>;
 }
 export interface IInsertViewContext<T extends { _id: Realm.BSON.ObjectId } = { _id: Realm.BSON.ObjectId }> {
     viewKind: 'insert';
@@ -62,11 +72,13 @@ const COLLECTION_REGEX = /\/\w*\/v1\/?([\w-]*)\/?([\w-]*)/;
 export function ViewProvider<T extends { _id: Realm.BSON.ObjectId } = { _id: Realm.BSON.ObjectId }>({
     children,
     viewKind,
-    ObjClass
+    ObjClass,
+    commands
 }: {
     children: Children;
     viewKind: ViewKind;
     ObjClass: RealmClass<T>;
+    commands?: [string, IAppCommand<any>][]
 }) {
     const location = useLocation();
     const realm = useLocalRealm();
@@ -75,14 +87,8 @@ export function ViewProvider<T extends { _id: Realm.BSON.ObjectId } = { _id: Rea
         const [a, b] = COLLECTION_REGEX.exec(location.pathname)?.slice(1, 3) ?? [];
         return [a.length === 0 ? undefined : a, b.length === 0 ? undefined : b === 'new' ? undefined : b, b === 'new'];
     }, [location.pathname]);
-    const vk =
-        id != null && viewKind !== 'edit'
-            ? 'edit'
-            : id == null && collection != null && !insert && viewKind !== 'grid'
-            ? 'grid'
-            : insert && viewKind !== 'insert'
-            ? 'insert'
-            : 'none';
+    const vk = id != null ? 'edit' : id == null && collection != null && !insert ? 'grid' : insert ? 'insert' : 'none';
+    const [selected, isSelected, onClick] = useSelectable();
 
     const { data: data1 } = useQuery(['selectAll', collection], () => Promise.resolve(realm.objects<T>(collection ?? 'n/a')), {
         enabled: viewKind === 'grid',
@@ -101,8 +107,11 @@ export function ViewProvider<T extends { _id: Realm.BSON.ObjectId } = { _id: Rea
             case 'grid':
                 (value as IGridViewContext).sorted = [];
                 (value as IGridViewContext).filtered = '';
-                (value as IGridViewContext).selected = [];
+                (value as IGridViewContext).selected = selected;
                 (value as IGridViewContext).data = data1;
+                (value as IGridViewContext).isSelected = isSelected;
+                (value as IGridViewContext).onClick = onClick;
+                (value as IGridViewContext).deleteRows = deleteSelected(realm, collection ?? '');
                 break;
             case 'insert':
                 (value as IInsertViewContext).data = new ObjClass();
@@ -113,11 +122,15 @@ export function ViewProvider<T extends { _id: Realm.BSON.ObjectId } = { _id: Rea
                 break;
         }
         return value as IViewContext;
-    }, [ObjClass, collection, data1, data2, id, viewKind]);
+    }, [ObjClass, collection, data1, data2, id, isSelected, onClick, realm, selected, viewKind]);
 
     if (viewKind != vk) throw new Error(`viewkind mistmatch: passed: ${viewKind} calculated: ${vk}`);
 
-    return <ViewContext.Provider value={context}>{children}</ViewContext.Provider>;
+    return (
+        <ViewContext.Provider value={context}>
+            <Commander commands={commands ?? []}>{children}</Commander>
+        </ViewContext.Provider>
+    );
 }
 // export function useProvideViewContext(): IViewContext {
 //     const [viewKind, setViewKind] = useState<ViewKind | 'none'>('none');

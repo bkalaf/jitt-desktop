@@ -1,7 +1,7 @@
 import { IconDefinition, SizeProp } from '@fortawesome/fontawesome-svg-core';
 import { faBan, faCalculatorAlt, faExclamationCircle, faPenSlash, faShieldXmark } from '@fortawesome/pro-duotone-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { $cn } from './$cn';
+import { $cn } from '../util/$cn';
 
 export type IProps = {
     className?: string;

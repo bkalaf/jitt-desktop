@@ -6,6 +6,9 @@ import { Select } from '../forms/elements/Select';
 import { Input } from '../forms/elements/Input';
 import { FieldSet, ListElement, IconCell, TableCell, PropertyInfo } from './DataTypeInfo';
 
+/**
+ * @deprecated
+ */
 export function useProvideMetaData() {
     const realm = useRealm();
     const findRealmSchema = (x: string, t: string) => realm?.schema.find((y) => y.name === x)?.properties[t] as ObjectSchemaProperty;

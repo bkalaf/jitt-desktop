@@ -1,6 +1,6 @@
 import { faSquare, faSquareDashed } from '@fortawesome/pro-duotone-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { $cn } from '../$cn';
+import { $cn } from '../../util/$cn';
 import React from 'react';
 
 export function SelectButtonCell(props: {

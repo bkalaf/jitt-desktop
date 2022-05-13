@@ -19,4 +19,7 @@ export interface IFieldInfo {
     optionMap?: OptionElementFields;
     hideOnInsert?: boolean;
     min?: number;
+    max?: number;
+
+    asDisplay?: boolean;
 }

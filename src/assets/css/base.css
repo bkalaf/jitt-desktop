@@ -157,7 +157,7 @@
         @apply ring-yellow ring-2 border-yellow;
     }
     .selected > td {
-        @apply font-bold text-white bg-lime;
+        @apply font-bold text-black bg-lime;
     }
 
     tr>td {
@@ -167,7 +167,7 @@
         @apply whitespace-pre indent-2 text-base font-normal py-1.5;
     }
     .active {
-        @apply text-white bg-lime-dark hover:shadow-white animate ringThrob;
+        @apply text-white bg-lime-dark hover:shadow-white animate;
     }
     .not-active {
         @apply text-white bg-blue-dark hover:shadow-white;

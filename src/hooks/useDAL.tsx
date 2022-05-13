@@ -3,7 +3,7 @@ import { faPenAlt, faSquare, faTrashCan } from '@fortawesome/pro-duotone-svg-ico
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useCallback, useMemo } from 'react';
 import { ObjectSchemaProperty } from 'realm';
-import { $cn } from '../components/$cn';
+import { $cn } from '../util/$cn';
 import { distinct } from '../common/array/distinct';
 import { identity } from '../common/identity';
 import { ignore } from '../common/ignore';

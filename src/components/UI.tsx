@@ -1,5 +1,4 @@
 import { createPortal } from 'react-dom';
-import { Overlay } from './Overlay';
 import { OverlayProvider } from './providers/OverlayProvider';
 import { ToasterProvider } from './providers/ToasterProvider';
 import { LeftSidebarProvider, RightSidebarProvider } from './Sidebar';
@@ -10,10 +9,10 @@ export function UI({ children }: { children: Children }) {
         <ToasterProvider>
             <RightSidebarProvider>
                 <LeftSidebarProvider>
-                    <OverlayProvider>
-                        {children}
-                        {createPortal(<Overlay />, container)}
-                    </OverlayProvider>
+                    {/* <OverlayProvider> */}
+                    {children}
+                    {/* {createPortal(<Overlay />, container)} */}
+                    {/* </OverlayProvider> */}
                 </LeftSidebarProvider>
             </RightSidebarProvider>
         </ToasterProvider>

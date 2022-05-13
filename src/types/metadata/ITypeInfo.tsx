@@ -10,7 +10,7 @@ export interface ITypeInfo {
     ColGroup: JSX.Element;
     Headers: JSX.Element;
     Row: (props: { rowData: { _id: Realm.BSON.ObjectId } }) => JSX.Element;
-    InputFormBody: JSX.Element[]; // JSX.Element[];
-    EditFormBody: JSX.Element[];
+    InputFormBody: () => JSX.Element; // JSX.Element[];
+    EditFormBody: () => JSX.Element;
     Payload: RealmClass<any>;
 }

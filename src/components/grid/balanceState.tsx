@@ -1,4 +1,4 @@
-import { SearchOp } from './SearchOp';
+import { SearchOp } from '../../types/SearchOp';
 
 export function balanceState(state: [SearchOp, string, string][]) {
     const [[op, k, v], ...tail] = state.reverse();

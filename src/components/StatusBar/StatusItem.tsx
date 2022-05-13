@@ -1,5 +1,5 @@
 import React from 'react';
-import { $cn } from '../$cn';
+import { $cn } from '../../util/$cn';
 
 export function StatusItem(props: { className?: string; title?: string; children: Children }) {
     const spread = $cn(

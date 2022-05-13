@@ -7,6 +7,9 @@ import { LoginPage } from './MainWindow';
 import { Spinner } from './Spinner';
 import { Modal } from './Modal';
 import { InsertForm } from './InsertForm';
+import { GridContainer } from './GridContainer';
+import { LoginForm } from './forms/LoginForm';
+import { ModalContainer } from './ModalContainer';
 
 export type RealmTypes =
     | 'objectId'
@@ -33,62 +36,29 @@ export function MainRouter() {
                     path='login'
                     element={
                         <Modal>
-                            <LoginPage />
+                            <LoginForm />
                         </Modal>
                     }
                 />
                 <Route path='data'>
                     <Route path='v1'>
-                        <Route path='self-storage'>
+                        <Route path=':collection'>
                             <Route path='new'>
                                 <Route
                                     index
                                     element={
-                                        <React.Suspense fallback={<Spinner />}>
-                                            <Modal>
-                                                <InsertForm collectionName='self-storage' />
-                                            </Modal>
-                                        </React.Suspense>
-                                    }
+                                        <ModalContainer>
+                                            <InsertForm  />
+                                        </ModalContainer>
+                                        }
                                 />
                             </Route>
                             <Route path=':id'>
                                 <Route index element={<></>} />
                             </Route>
-                            <Route
-                                index
-                                element={
-                                    <React.Suspense fallback={<Spinner />}>
-                                        <Grid />
-                                    </React.Suspense>
-                                }
-                            />
+                            <Route index element={<GridContainer />} />
                         </Route>
-                        <Route path='facility'>
-                            <Route path='new'>
-                                <Route
-                                    index
-                                    element={
-                                        <React.Suspense fallback={<Spinner />}>
-                                            <Modal>
-                                                <InsertForm collectionName='facility' />
-                                            </Modal>
-                                        </React.Suspense>
-                                    }
-                                />
-                            </Route>
-                            <Route path=':id'>
-                                <Route index element={<></>} />
-                            </Route>
-                            <Route
-                                index
-                                element={
-                                    <React.Suspense fallback={<Spinner />}>
-                                        <Grid />
-                                    </React.Suspense>
-                                }
-                            />
-                        </Route>
+
                         {/* <Route path=':collection'>
                             <Route path='new'>
                                 <Route

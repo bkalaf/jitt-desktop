@@ -10,8 +10,8 @@ class Fake {
 export function LoginForm() {
     const navigate = useNavigate();
     const [handleSubmit, register, formRef] = useForm<{ email: string; password: string }, Realm.User | null>(
-        (fd) => ({ email: fd.get('email')?.toString() ?? '', password: fd.get('password')?.toString() ?? '' }),
-        Fake
+        (fd) => Promise.resolve(({ email: fd.get('email')?.toString() ?? '', password: fd.get('password')?.toString() ?? '' })),
+        () => new Fake()
     );
     const submitter = (credentials: { email: string; password: string }) =>
         realmApp.logIn(Realm.Credentials.emailPassword(credentials.email, credentials.password));
@@ -32,7 +32,7 @@ export function LoginForm() {
     );
 
     return (
-        <form className='grid grid-col-1' onSubmit={onSubmit} ref={formRef}>
+        <form className='grid grid-cols-1' onSubmit={onSubmit} ref={formRef}>
             <div className='flex flex-col'>
                 <label htmlFor='email' id='email-label' className='flex text-lg font-bold indent-3 font-fira-sans'>
                     E-mail

@@ -11,6 +11,7 @@ export function ofProperties(embeddedTypes: string[], typeName: string, pTypes: 
             x,
             {
                 name: x,
+                datatype: (pTypes[x] as ObjectSchemaProperty)?.type ?? 'string',
                 flags: {
                     optional: false,
                     indexed: false,
@@ -27,6 +28,7 @@ export function ofProperties(embeddedTypes: string[], typeName: string, pTypes: 
     const merged = props.map(([k, v]) => [
         k,
         {
+            datatype: (pTypes[k] as ObjectSchemaProperty)?.type ?? 'string',
             mappedTo: v.mapTo,
             property: v.property,
             objectType: v.objectType,

@@ -1,0 +1,47 @@
+
+@-webkit-keyframes slideOutRight {
+    0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    20% {
+        -webkit-transform: translateX(0px) scale(0.7);
+        transform: translateX(0px) scale(0.7);
+        opacity: 0.7;
+    }
+
+    100% {
+        -webkit-transform: translateX(100%) scale(0.7);
+        transform: translateX(100%) scale(0.7);
+        opacity: 0;
+    }
+}
+
+@keyframes slideOutRight {
+    0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    20% {
+        -webkit-transform: translateX(0px) scale(0.7);
+        transform: translateX(0px) scale(0.7);
+        opacity: 0.7;
+    }
+
+    100% {
+        -webkit-transform: translateX(100%) scale(0.7);
+        transform: translateX(100%) scale(0.7);
+        opacity: 0;
+    }
+}
+
+.slideOutRight {
+    -webkit-animation-name: slideOutRight;
+    animation-name: slideOutRight;
+    animation-fill-mode: both;
+    animation-duration: 1s;
+}

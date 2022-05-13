@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router';
-import { $cn } from './$cn';
+import { $cn } from '../util/$cn';
 import { useLeftSidebar } from './Sidebar';
 import { NavMenu } from './NavMenu';
 

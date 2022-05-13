@@ -2,14 +2,18 @@ import { useCallback, useRef, useState } from 'react';
 import React from 'react';
 import { ignore } from '../common/ignore';
 import { useArray } from './useArray';
+import { useMetaDataContext } from '../components/Toaster';
+import { useRoutedCollection } from './useRoutedCollection';
+import { convertFromFormData } from '../components/convertFromFormData';
+import { useLocalRealm } from './useLocalRealm';
 
 export type ControlOpts = {
     validators?: string[];
     local?: boolean;
 };
 export function useForm<TFormData, TSubmitResult = undefined>(
-    convert: (fd: FormData) => any,
-    objectClass: RealmClass<any>
+    convert: (fd: FormData) => Promise<any>,
+    objectClass: () => any
 ): [
     handleSubmit: (
         onSubmit: (fd: TFormData) => Promise<TSubmitResult>,
@@ -26,36 +30,42 @@ export function useForm<TFormData, TSubmitResult = undefined>(
     const unregister = useCallback((key: string) => {
         controls.current?.delete(key);
     }, []);
+    const { getFormPayload, getInfoFor } = useMetaDataContext();
+    const [collection] = useRoutedCollection();
+    const realm = useLocalRealm();
     const addLocal = useCallback(
         (name: string) => {
             console.group('addLocal');
-            const temp = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(objectClass), name)?.get?.toString()?.replace(`get ${name}() {`, ``) ?? '';
-            console.log(`temp`, temp);
-            const regEx = /^this[.]((\w.)+\w*)$/g;
-
-            const local = temp
-                .substring(0, temp.lastIndexOf('}') - 1)
-                .replace('return ', `${name}.value =`)
-                .split(' ')
-                .map((x) => {
-                    const result = x.replace(regEx, x.replace('this.', '').includes('.') ? "'$1'.value" : '$1.value');
-                    return result;
-                })
-                .join(' ');
-            appendLocal(local);
+            const proto = Object.getPrototypeOf((getFormPayload(collection) as any)());
+            console.log('proto', proto);
+            const descriptor = Object.getOwnPropertyDescriptor(proto, name);
+            console.log('descriptor', descriptor);
+            const funcText = descriptor?.get?.toString();
+            console.log('funcText', funcText);
+            if (!formRef.current) throw Error('bad ref');
+            const formData = new FormData(formRef.current);
+            const fd = convertFromFormData((getFormPayload(collection) as any)(), getInfoFor, collection, realm)(formData);
+            console.log('formData', formData, 'fd', fd);
+            ;
+            const revisedText = `${funcText?.replace(`get ${name}`, `document.getElementById(${formRef.current.id}).elements.namedItem(${name}).value = function get${name}`)}.bind(convertFromFormData((getFormPayload(collection) as any)(), getInfoFor, collection, realm)(new FormData(document.getElementById(${formRef.current.id}))}))()`;
+            console.log(`revistedText`, revisedText);
+            appendLocal(revisedText);
             console.groupEnd();
         },
-        [appendLocal, objectClass]
+        [appendLocal, collection, getFormPayload, getInfoFor, objectClass, realm]
     );
     const register = useCallback(
         (name: string, opts?: ControlOpts) => {
+            console.log('register', name, opts);
             if (opts?.local) {
+                console.log('register oninput');
                 // const onInput = (fd: any) => Object.getOwnPropertyDescriptor(Object.getPrototypeOf(fd), name)?.get?.toString().replace('get', 'function').concat(`; ${name}.value = ${name}.bind(new FormData())();`) ?? '';
+
                 addLocal(name);
             }
             const newOpts = { ...(opts ?? {}), validators: opts?.validators ?? [] };
             controls.current.set(name, newOpts);
-            return { name, id: name };
+            return { ...opts, name, id: name };
         },
         [addLocal]
     );
@@ -76,9 +86,9 @@ export function useForm<TFormData, TSubmitResult = undefined>(
     }, []);
     const handleSubmit = useCallback(
         (
-            onSubmit: (fd: TFormData) => Promise<TSubmitResult>,
-            onSuccess: (result?: TSubmitResult) => void = ignore,
-            onFailure: (result?: Error) => void = ignore
+            onSubmit: (fd: TFormData) => Promise<TSubmitResult>
+            // onSuccess: (result?: TSubmitResult) => void = ignore,
+            // onFailure: (result?: Error) => void = ignore
         ) => {
             return function (ev: React.FormEvent) {
                 console.log('submit event', ev);
@@ -89,8 +99,9 @@ export function useForm<TFormData, TSubmitResult = undefined>(
                     const formData = new FormData(formRef.current);
                     console.log('fd', Array.from(formData.entries()));
                     if (!validate()) throw new Error('Did not pass validation');
-                    const result = onSubmit(convert(formData));
-                    result.then(onSuccess).catch(onFailure);
+                    const result = convert(formData).then(onSubmit);
+                    return result;
+                    // result.then(onSuccess).catch(onFailure);
                 } catch (error) {
                     console.error((error as any).message);
                     process.stdout.write((error as any).message);

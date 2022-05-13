@@ -1,41 +1,36 @@
-import React, { useCallback, useEffect, useMemo } from 'react';
-import { useSchema } from '../hooks/useSchema';
+import { useMemo } from 'react';
 import { FormProvider } from './providers/FormProvider';
 import { useForm } from '../hooks/useForm';
-import { IPropertyInfo } from './providers/SchemaProvider';
 import { useMutation, useQueryClient } from 'react-query';
-import { useRealm } from '../hooks/useRealm';
 import { useToast } from '../hooks/useToast';
-import { snd } from '../common/tuple/snd';
-import { convertFormData, setReferenceField } from '../util/convertFormData';
+import { setReferenceField } from '../util/convertFormData';
 import { insertMutation } from '../queries/insertMutation';
-import { Property } from './forms/Property';
-import { useDAL } from '../hooks/useDAL';
+import { useRoutedCollection } from '../hooks/useRoutedCollection';
+import { useLocalRealm } from '../hooks/useLocalRealm';
+import { useMetaDataContext } from './Toaster';
+import { convertFromFormData } from './convertFromFormData';
+import { determineGridSize } from './determineGridSize';
 
-export function InsertForm<T extends Record<string, any>>(props: { collectionName: string }) {
+export function InsertForm<T extends Record<string, any>>() {
     console.group('InsertForm');
-    const { collectionName } = props;
-    if (collectionName == null) throw new Error('no collectionName');
-    const { getObjectClass, getProperty, getControls } = useSchema();
-    const realm = useRealm();
-    console.log('collectionName', collectionName);
-    const oc = getObjectClass<T>(collectionName)!;
-    console.log('oc', oc);
-    const { getFieldFromType } = useDAL(collectionName);
-
-    const convert = useMemo(() => convertFormData<T>(oc!, getFieldFromType!, collectionName), [collectionName, getFieldFromType, oc]);
-    const [handleSubmit, register, formRef, onInput] = useForm<T, undefined>(convert, oc);
-    const insertQuery = useMemo(() => insertMutation<T>(realm!, collectionName), [collectionName, realm]);
+    const [collection] = useRoutedCollection();
+    const realm = useLocalRealm();
+    const { getFormPayload, getInputControls, getInfoFor, getType } = useMetaDataContext();
+    const Controls = useMemo(() => getInputControls(collection), [collection, getInputControls]);
+    const Payload = useMemo(() => getFormPayload(collection), [collection, getFormPayload]);
+    const convert = useMemo(() => convertFromFormData(Payload as any, getInfoFor, collection, realm), [Payload, collection, getInfoFor, realm]);
+    const [handleSubmit, register, formRef, onInput] = useForm<T, undefined>(convert, Payload as any);
+    const insertQuery = useMemo(() => insertMutation<T>(realm!, collection), [collection, realm]);
     const successToast = useToast('success');
     const failureToast = useToast('failure');
     const queryClient = useQueryClient();
     const mutation = useMutation(insertQuery, {
         onSuccess: (record: T & Realm.Object) => {
             successToast('You have successfully inserted a record.', 'SUCCESS', (record as any)._id.toHexString());
-            queryClient.invalidateQueries(['selectAll', collectionName]);
-            queryClient.invalidateQueries(['dropdown', collectionName]);
-            queryClient.refetchQueries(['selectAll', collectionName]);
-            queryClient.refetchQueries(['dropdown', collectionName]);
+            queryClient.invalidateQueries(['selectAll', collection]);
+            queryClient.invalidateQueries(['dropdown', collection]);
+            queryClient.refetchQueries(['selectAll', collection]);
+            queryClient.refetchQueries(['dropdown', collection]);
         },
         onError: (error: any) => {
             failureToast(error.message, 'FAILURE', error.name);
@@ -51,16 +46,14 @@ export function InsertForm<T extends Record<string, any>>(props: { collectionNam
             }),
         [handleSubmit, mutation]
     );
-    const { insertControls: controls } = useDAL(collectionName);
-    const Controls = useMemo(() => controls, [controls]);
     console.groupEnd();
     return (
         <FormProvider register={register}>
-            <form ref={formRef} className='grid grid-cols-4' onInput={onInput} onSubmit={onSubmit}>
-                <section>
+            <form ref={formRef} className='flex flex-col' onInput={onInput} onSubmit={onSubmit}>
+                <section className={determineGridSize(getType(collection).flatColumns.length)[0]}>
                     <Controls />
                 </section>
-                <footer>
+                <footer className='flex justify-center w-full'>
                     <input
                         type='submit'
                         className='inline-flex items-center justify-center text-lg font-bold leading-loose tracking-wide text-white transition duration-1000 ease-in-out delay-200 transform bg-black rounded-md appearance-none font-fira-sans hover:bg-rose outline outline-transparent ring ring-transparent focus:outline-amber-dark focus:ring-red hover:scale-105'

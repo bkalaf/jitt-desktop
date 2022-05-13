@@ -11,16 +11,16 @@ import { schema } from '../data';
 import { SchemaProvider } from './providers/SchemaProvider';
 import { MetaDataProvider } from './providers/DataTypeInfo';
 import { $currentUser, $realm } from './globals';
-import { ICommand } from '../types/ui/ICommand';
+import { IAppCommand, ICommand } from '../types/ui/ICommand';
 import { buildLibrary } from './providers/buildLibrary';
 import { MetaDataContextProvider } from './providers/MetaDataProvider';
 import { getAccessToken } from '../util/getAccessToken';
+import { Spinner } from './Spinner';
+import { Boundary } from './grid/Boundary';
 
-export const $insertCommand = makeVar<ICommand<any[]>>({
-    disabled: true,
+export const $insertCommand = makeVar<IAppCommand<never[]>>({
     execute: ignore,
-    canExecute: () => true,
-    validFor: ['grid', 'insert', 'edit']
+    canExecute: () => false
 });
 export const $deleteCommand = makeVar<ICommand<any[]>>({
     disabled: true,
@@ -79,19 +79,23 @@ export function App() {
     }, [cu]);
     return (
         <React.StrictMode>
-            <HashRouter>
-                <QueryClientProvider client={queryClient}>
-                    <ApolloProvider client={apolloClient}>
-                        <MetaDataContextProvider>
-                            <SchemaProvider>
-                                <UI>
-                                    <MainWindow />
-                                </UI>
-                            </SchemaProvider>
-                        </MetaDataContextProvider>
-                    </ApolloProvider>
-                </QueryClientProvider>
-            </HashRouter>
+            <Boundary>
+                <HashRouter>
+                    <QueryClientProvider client={queryClient}>
+                        <ApolloProvider client={apolloClient}>
+                            <MetaDataContextProvider>
+                                <SchemaProvider>
+                                    <UI>
+                                        <React.Suspense fallback='loading'>
+                                            <MainWindow />
+                                        </React.Suspense>
+                                    </UI>
+                                </SchemaProvider>
+                            </MetaDataContextProvider>
+                        </ApolloProvider>
+                    </QueryClientProvider>
+                </HashRouter>
+            </Boundary>
         </React.StrictMode>
     );
 }

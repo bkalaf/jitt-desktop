@@ -14,6 +14,10 @@ export function setReferenceField(name: string) {
         };
     };
 }
+
+/**
+ * @deprecated
+ */
 export function convertFormData<T>(oc: RealmClass<T>, getProperty: (typeName: string, name: string) => PropertyData, typeName: string) {
     return function (fd: FormData) {
         console.group('convertFormData');

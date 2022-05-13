@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useCallback, useEffect } from 'react';
-import { $cn } from './$cn';
+import { $cn } from '../util/$cn';
 import { useDeleteToast } from '../hooks/useDeleteToast';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { faBanParking, faBug, faExclamationSquare, faThumbsUp, faTrafficCone } from '@fortawesome/pro-duotone-svg-icons';

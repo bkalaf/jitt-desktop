@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useCallback, useState } from 'react';
 import { useEventListener } from '../../hooks/useEventListener';
 import React from 'react';
-import { $cn } from '../$cn';
+import { $cn } from '../../util/$cn';
 import { StatusItem } from './StatusItem';
 
 export function OnlineStatus() {

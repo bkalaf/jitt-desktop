@@ -1,6 +1,8 @@
-import { createContext, useCallback, useRef } from 'react';
-import { ICommand } from '../../types/ui/ICommand';
+import { createContext, useCallback, useContext, useEffect, useMemo, useRef } from 'react';
+import { IAppCommand, ICommand } from '../../types/ui/ICommand';
 import { ViewKind } from '../../types/metadata/ViewKind';
+import { ignore } from '../../common';
+import { isNotNull } from './isNotNull';
 
 export interface ICommander {
     clearFilter?: ICommand<never[], 'grid'>;
@@ -22,11 +24,8 @@ export interface ICommander {
     toggleSort?: ICommand<[string], 'grid'>;
 }
 
-export const CommanderContext = createContext<ICommander | undefined>(undefined);
+export const CommanderContext = createContext<Record<string, IAppCommand<any[]>>>({});
 
-export function isNotNull<T>(x: T | null | undefined): x is NonNullable<T> {
-    return x != null;
-}
 export function useProvideCommander() {
     const commands = useRef<Map<string, ICommand<any, any>>>(new Map());
     const addCommand = useCallback(function <T extends any[]>(
@@ -41,9 +40,21 @@ export function useProvideCommander() {
         commands.current.set(key, { canExecute, disabled: false, execute, validFor });
     },
     []);
-    
+    const removeCommand = useCallback((key: string) => {
+        commands.current.set(key, { canExecute: () => false, disabled: true, execute: ignore, validFor: ['grid', 'insert', 'edit'] });
+    }, []);
+    return {
+        commands,
+        addCommand,
+        removeCommand
+    };
 }
-export function CommanderProvider(props: { children: Children }) {
-    const value = useProvideCommander();
-    return <CommanderContext.Provider value={undefined}>{props.children}</CommanderContext.Provider>;
+export function Commander(props: { children: Children; commands: [string, IAppCommand<any>][] }) {
+    const current = useContext(CommanderContext);
+    const nextContext: Record<string, IAppCommand<any>> = useMemo(() => ({}), []);
+    Object.getOwnPropertyNames(current).map((x) => (nextContext[x] = current[x]));
+    useEffect(() => {
+        props.commands.map(([k, v]) => (nextContext[k] = v));
+    }, [nextContext, props.commands]);
+    return <CommanderContext.Provider value={nextContext}>{props.children}</CommanderContext.Provider>;
 }

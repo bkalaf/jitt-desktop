@@ -1,13 +1,7 @@
 import { makeVar } from '@apollo/client';
-import { createContext, HTMLAttributes, useContext, useEffect } from 'react';
+import { createContext, useContext, useEffect } from 'react';
 import { useProvideOverlay } from '../../hooks/useProvideOverlay';
-
-export type IOverlayContext = {
-    contents: JSX.Element[];
-    appendOverlay: (item: JSX.Element) => void;
-    popOverlay: () => void;
-    props: HTMLAttributes<HTMLElement>;
-};
+import { IOverlayContext } from '../../types/ui/IOverlayContext';
 
 export const OverlayContext = createContext<IOverlayContext | undefined>(undefined);
 

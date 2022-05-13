@@ -3,7 +3,7 @@ import { useProvideDeleteCommand } from './useProvideDeleteCommand';
 import { useDeleteCommand } from './useDeleteCommand';
 import { attemptToGetOID } from '../util/attemptToGetOID';
 import { useSearch } from './useSearch';
-import { useNavigateDown } from './useNavigateDown';
+import { useNavigateAndDrill } from './useNavigateAndDrill';
 
 export function useSelection() {
     // TODO set sorts for column header
@@ -42,7 +42,7 @@ export function useSelection() {
         [addSort, removeSortDesc, sortAsc, sortDesc]
     );
     const cb = useRef<NodeJS.Timeout | null>(null);
-    const navigateToId = useNavigateDown();
+    const navigateToId = useNavigateAndDrill();
     const isSelected = useCallback(
         (oid: string) => {
             return selected().includes(oid);

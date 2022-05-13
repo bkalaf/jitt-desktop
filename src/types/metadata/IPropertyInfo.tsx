@@ -2,6 +2,7 @@ export interface IPropertyInfo {
     typeName: string;
     name: string;
     type: string;
+    datatype: string;
     objectType?: string;
     property?: string;
     defaultValue?: any;

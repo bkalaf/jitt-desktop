@@ -1,37 +1,19 @@
-import { useMemo } from 'react';
-import { ErrorBoundary } from 'react-error-boundary';
-import { QueryErrorResetBoundary, useQuery } from 'react-query';
-import { SortDescriptor } from 'realm';
+import { useQuery } from 'react-query';
 import { toTitleCase } from '../../common/text/toTitleCase';
-import { useSchema } from '../../hooks/useSchema';
-import { useCollectionParam } from '../../hooks/useCollectionParam';
-import { Spinner } from '../Spinner';
-import { useProvideInsertCommand } from '../../hooks/useProvideInsertCommand';
 import { Boundary } from './Boundary';
-import { useRealm } from '../../hooks/useRealm';
 import { Queries } from '../../queries';
 import { RowComponent, useDAL } from '../../hooks/useDAL';
 import { useRoutedCollection } from '../../hooks/useRoutedCollection';
-import { URLSearchParamsInit } from 'react-router-dom';
 import { useSelection } from '../../hooks/useSelection';
 import { useWhyDidYou } from '../../hooks/useWhyDidYou';
 import React from 'react';
+import { useLocalRealm } from '../../hooks/useLocalRealm';
 const { fetchAll } = Queries;
 
-export function useLocalRealm() {
-    const realm = useRealm();
-    if (!realm) throw new Error('useLocalRealm called: no realm');
-    return realm;
-}
-
-export function deepEq(x1: any, x2: any) {
-    // console.log('x1', 'x2', x1, x2, x1 === x2);
-    return x1 === x2;
-}
 export function Grid<T extends Record<string, any>>() {
     useWhyDidYou('Grid', {});
     console.group('Grid');
-    const collectionName = useRoutedCollection();
+    const [collectionName] = useRoutedCollection();
     const {
         td: { onDeleteClick, onSelectClick },
         tr: { deleteEnabled, isSelected, onClick }

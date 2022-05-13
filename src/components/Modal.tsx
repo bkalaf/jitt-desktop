@@ -4,8 +4,10 @@ import React from 'react';
 import { Spinner } from './Spinner';
 import { useParams } from 'react-router-dom';
 import { useWhyDidYou } from '../hooks/useWhyDidYou';
-import { Overlay } from './Overlay';
 
+/**
+ * @deprecated
+ */
 export function Modal(props: { children: JSX.Element }) {
     useWhyDidYou('Modal', props);
     const { children } = props;

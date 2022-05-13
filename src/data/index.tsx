@@ -4,6 +4,8 @@ import { objectMap } from '../common/obj/objectMap';
 import { Provinces } from './enums/province';
 import { Country } from './enums/country';
 import { lengths, pluralize } from './enums/lengthUOM';
+import { AuctionSites } from './enums/auctionSite';
+import { MimeTypes } from './enums/mimeTypes';
 
 export const primitives = {
     objectId: 'objectId',
@@ -37,9 +39,11 @@ export const mongo = {
     length: 'length',
     squareFootage: 'square-footage',
     cost: 'cost',
-    filesystemItem: 'filesystem-item',
-    file: 'file',
-    fileKind: 'file-kind'
+    fsAlloc: 'fs-alloc',
+    fsItem: 'fs-item',
+    fileKind: 'file-kind',
+    company: 'company',
+    brand: 'brand'
 };
 
 export class SelfStorage {
@@ -123,7 +127,7 @@ export class Facility {
         this.units = [];
     }
     get name() {
-        return [this.selfStorage?.name ?? '', [this.address.city, this.address.state].join(', '), this.address.street?.split(' ').slice(1)].join(' - ');
+        return [this.selfStorage?.name ?? '', [this.address.city, this.address.state].join(', '), this.address.street?.split(' ').slice(1).join(' ')].join(' - ');
     }
 }
 export class Length {
@@ -173,7 +177,12 @@ export class RentalUnit {
             _id: dt.objectId,
             facility: Facility.schema.name,
             unit: dt.string,
-            size: SquareFootage.schema.name
+            size: SquareFootage.schema.name,
+            purchase: {
+                type: dt.linkingObjects,
+                objectType: mongo.purchase,
+                property: 'rentalUnit'
+            }
         }
     };
     _id: ObjectId;
@@ -185,6 +194,191 @@ export class RentalUnit {
         this.size = new SquareFootage();
         this.unit = '';
     }
+    get name() {
+        return [this.facility?.name, this.unit].join(' - ');
+    }
 }
 
-export const schema = [SelfStorage, Facility, Address, RentalUnit, Length, SquareFootage];
+export class Company {
+    static schema: ObjectSchema = {
+        name: 'company',
+        primaryKey: '_id',
+        properties: {
+            _id: dt.objectId
+        }
+    }
+}
+export class Cost {
+    static schema: ObjectSchema = {
+        name: mongo.cost,
+        embedded: true,
+        properties: {
+            bid: { type: dt.double, default: 0 },
+            taxPercent: { type: dt.optional.double, default: 0 },
+            taxExempt: { type: dt.bool, default: false },
+            premiumPercent: { type: dt.optional.double, default: 0 }
+        }
+    }
+    bid: number;
+    taxPercent: number;
+    taxExempt: boolean;
+    premiumPercent: number;
+    constructor() {
+        this.bid = 0;
+        this.taxPercent = 0;
+        this.premiumPercent = 0;
+        this.taxExempt = false;
+    }
+    get taxDollar() {
+        return this.taxExempt ? 0 : this.bid * (this.taxPercent / 100);
+    }
+    get premiumDollar() {
+        return this.bid * (this.premiumPercent / 100);
+    }
+    get totalDollar() {
+        return this.bid + this.premiumDollar + this.taxDollar;
+    }
+}
+export class Purchase {
+    static schema: ObjectSchema = {
+        name: mongo.purchase,
+        primaryKey: '_id',
+        properties: {
+            _id: dt.objectId,
+            cost: mongo.cost,
+            closeDate: dt.date,
+            auctionSite: dt.string,
+            auctionId: dt.optional.string,
+            invoiceId: dt.optional.string,
+            invoice: mongo.fsItem,
+            rentalUnit: mongo.rentalUnit
+        }
+    }
+    _id: ObjectId;
+    cost: Cost;
+    closeDate: Date;
+    auctionSite: AuctionSites;
+    auctionId?: string;
+    invoiceId?: string;
+    invoice?: FileItem;
+    rentalUnit?: RentalUnit;
+    constructor() {
+        this._id = new ObjectId();
+        this.cost = new Cost();
+        this.closeDate = new Date(Date.now());
+        this.auctionSite = 'storagetreasures.com';
+    }
+}
+
+export class FileItem {
+    static INVOICE_REGEX = /^\/auctions\/(\d*\/)?invoices\//;
+    static PHOTO_REGEX = /^\/products\/(\d*\/)?images\//;
+    static DOC_REGEX = /^\/products\/(\d*\/)?docs\//;
+    static RECEIPT_REGEX = /^\/(auctions|products)\/(\d*\/)?receipts\//;
+
+    
+    static schema: ObjectSchema = {
+        name: mongo.fsItem,
+        primaryKey: '_id',
+        properties: {
+            _id: dt.objectId,
+            fsAlloc: {
+                type: dt.linkingObjects,
+                objectType: mongo.fsAlloc,
+                property: 'fsItem'
+            },
+            data: dt.optional.data,
+            size: dt.int,
+            mimeType: dt.optional.string,
+            invoice: {
+                type: dt.linkingObjects,
+                objectType: mongo.purchase,
+                property: 'invoice'
+            }
+            // TODO add doc
+            // TODO add photo
+            // TODO add receipt
+        }
+    }
+    _id: ObjectId;
+    fsAlloc?: FileAlloc;
+    data?: ArrayBuffer;
+    size: number;
+    mimeType?: MimeTypes;
+    invoice?: Purchase;
+    constructor() {
+        this._id = new ObjectId();
+        this.size = 0;
+        this.mimeType = '';
+    }
+    get name() {
+        return this.fsAlloc?.name;
+    }
+    get isAssigned() {
+        return this.invoice != null;
+    }
+    get isInvoice() {
+        return FileItem.INVOICE_REGEX.test(this.fsAlloc?.path ?? '/');
+    }
+    get isPhoto() {
+        return FileItem.PHOTO_REGEX.test(this.fsAlloc?.path ?? '/');
+    }
+    get isReceipt() {
+        return FileItem.RECEIPT_REGEX.test(this.fsAlloc?.path ?? '/');
+    }
+    get isDoc() {
+        return FileItem.DOC_REGEX.test(this.fsAlloc?.path ?? '/');
+    }
+}
+export class FileAlloc {
+    
+    static schema: ObjectSchema = {
+        name: mongo.fsAlloc,
+        primaryKey: '_id',
+        properties: {
+            _id: dt.objectId,
+            name: dt.string,
+            originalName: dt.string,
+            parent: mongo.fsAlloc,
+            content: {
+                type: dt.linkingObjects,
+                objectType: mongo.fsAlloc,
+                property: 'parent'
+            },
+            materializedPath: dt.string,
+            fsItem: mongo.fsItem,
+            fileCreation: dt.optional.date
+        }
+    }
+    _id: ObjectId;
+    name: string;
+    originalName: string;
+    parent?: FileAlloc;
+    content: FileItem[];
+    materializedPath: string;
+    fsItem?: FileItem;
+    fileCreation?: Date;
+    constructor() {
+        this._id = new ObjectId();
+        this.name = '';
+        this.originalName = '';
+        this.content = [];
+        this.materializedPath = '';
+    }
+    get path(): string {
+        return [this.parent?.path ?? '/', this.name].join('/');
+    }
+    get isFolder(): boolean {
+        return this.fsItem == null;
+    }
+    get isFile(): boolean {
+        return !this.isFolder;
+    }
+    get count(): number {
+        return this.content.length;
+    }
+    get size(): number {
+        return this.content.map(s => s.size).reduce((x, y) => x + y, 0);
+    }
+}
+export const schema = [SelfStorage, Facility, Address, RentalUnit, Length, SquareFootage, FileAlloc, FileItem, Purchase, Cost];
