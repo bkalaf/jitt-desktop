@@ -1,4 +1,4 @@
-import { faKey, IconDefinition } from '@fortawesome/pro-duotone-svg-icons';
+import { faBinoculars, faKey, faSquare, faSquareCheck, IconDefinition } from '@fortawesome/pro-duotone-svg-icons';
 import { HTMLInputTypeAttribute } from 'react';
 import { ObjectClass, SortDescriptor } from 'realm';
 import { Address, Facility, mongo, SelfStorage } from '../../data';
@@ -100,13 +100,13 @@ export const DAL: Record<
         ]
     },
     [mongo.cost]: {
-        sorted: [],
+        sorted: [['bid', false]],
         columns: ['bid', 'taxPercent', 'taxDollar', 'taxExempt', 'premiumPercent', 'premiumDollar', 'totalDollar'],
         fields: [
-            { el: Input, name: 'bid', min: 0, type: 'number', required: true },
-            { el: Input, name: 'taxPercent', min: 0, max: 100, type: 'number', required: true },
-            { el: Input, name: 'taxExempt', type: 'checkbox', required: true },
-            { el: Input, name: 'premiumPercent', min: 0, max: 100, type: 'number', required: true },
+            { el: Input, name: 'bid', min: 0, type: 'number',   required: true, step: 0.01, placeholder: '$10.00' },
+            { el: Input, name: 'taxPercent', min: 0, max: 100, step: 0.01, type: 'number', required: true, placeholder: '5.00%' },
+            { el: Input, name: 'taxExempt', type: 'checkbox' },
+            { el: Input, name: 'premiumPercent', min: 0, max: 100, step: 0.01, placeholder: '5.00%', type: 'number', required: true },
             { el: Output, name: 'taxDollar' },
             { el: Output, name: 'premiumDollar' },
             { el: Output, name: 'totalDollar' },
@@ -127,23 +127,23 @@ export const DAL: Record<
         ]
     },
     [mongo.fsItem]: {
-        sorted: [['fsAlloc.materializedPath', false]],
+        sorted: [['size', false]],
         columns: ['_id', 'fsAlloc', 'data', 'size', 'mimeType', 'invoice', 'name', 'isAssigned', 'isInvoice'],
         fields: [
             { el: Input, name: '_id', readOnly: true, required: true, type: 'text', icon: faKey, label: 'ID', hideOnInsert: true },
             { el: Select, name: 'fsAlloc', hideOnInsert: true },
-            { el: Input, name: 'data', type: 'image' },
+            { el: Input, name: 'data', type: 'image', icon: faBinoculars },
             { el: Input, name: 'size', type: 'number', required: true },
             { el: Select, name: 'mimeType', enumMap: mimeTypes },
             { el: Select, name: 'invoice', hideOnInsert: true },
             { el: Output, name: 'name' },
-            { el: Output, name: 'isAssigned' },
-            { el: Output, name: 'isInvoice' }
+            { el: Output, name: 'isAssigned', iconTrue: faSquareCheck, iconFalse: faSquare },
+            { el: Output, name: 'isInvoice', iconTrue: faSquareCheck, iconFalse: faSquare }
         ]
     },
     [mongo.fsAlloc]: {
         sorted: [['materializedPath', false]],
-        columns: ['_id', 'name', 'originalName', 'parent', 'content', 'materializedPath', 'fsItem', 'fileCreation', 'count', 'path', 'isFolder', 'isFile', 'size'],
+        columns: ['_id', 'name', 'originalName', 'parent', 'materializedPath', 'fsItem', 'type', 'fileCreation', 'count', 'path', 'isFolder', 'isFile', 'size'],
         fields: [
             { el: Input, name: '_id', readOnly: true, required: true, type: 'text', icon: faKey, label: 'ID', hideOnInsert: true },
             { el: Input, name: 'name', type: 'text', required: true},
@@ -151,8 +151,9 @@ export const DAL: Record<
             { el: Select, name: 'parent', to: mongo.fsAlloc, optionMap: { value: '_id', label: 'materializedPath' }  },
             { el: Input, name: 'materializedPath', readOnly: true },
             { el: Select, name: 'fsItem', to: mongo.fsItem, optionMap: {
-                value: '_id', label: 'name'
+                value: '_id', label: 'isAssigned'
             }},
+            { el: Output, name: 'type' },
             { el: Input, name: 'fileCreation', type: 'date' },
             { el: Input, name: 'count', type:'number'},
             { el: Output, name: 'path' },

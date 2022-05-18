@@ -12,11 +12,12 @@ import { SchemaProvider } from './providers/SchemaProvider';
 import { MetaDataProvider } from './providers/DataTypeInfo';
 import { $currentUser, $realm } from './globals';
 import { IAppCommand, ICommand } from '../types/ui/ICommand';
-import { buildLibrary } from './providers/buildLibrary';
+import { buildLibrary, useLog } from './providers/buildLibrary';
 import { MetaDataContextProvider } from './providers/MetaDataProvider';
 import { getAccessToken } from '../util/getAccessToken';
 import { Spinner } from './Spinner';
 import { Boundary } from './grid/Boundary';
+import { useAsyncResource } from 'use-async-resource';
 
 export const $insertCommand = makeVar<IAppCommand<never[]>>({
     execute: ignore,
@@ -58,39 +59,37 @@ export const apolloClient = new ApolloClient({
     cache: new InMemoryCache()
 });
 export const queryClient = new QueryClient();
-export function App() {
-    const cu = useReactiveVar($currentUser);
-    useEffect(() => {
-        if (cu) {
-            Realm.open({
-                schema: schema,
-                path: [app.getPath('appData'), 'jitt-desktop', 'db.realm'].join('/'),
-                sync: {
-                    user: cu,
-                    partitionValue: cu.profile?.email ?? ''
-                }
-            })
-                .then((x) => {
-                    $realm(x);
-                    return x;
-                })
-                .then(buildLibrary);
+async function openRealm(cu: Realm.User | null | undefined) {
+    if (!cu) return;
+    const x = await Realm.open({
+        schema: schema,
+        path: [app.getPath('appData'), 'jitt-desktop', 'db.realm'].join('/'),
+        sync: {
+            user: cu,
+            partitionValue: 'bobby.kalaf@junk-in-the-trunk.com'
         }
-    }, [cu]);
+    });
+    $realm(x);
+    buildLibrary(x);
+    return x;
+}
+export function App() {
+    const log = useLog();
+    const currentUser = useReactiveVar($currentUser);
+    log(currentUser);
+    const [realmReader, updateReader] = useAsyncResource(() => openRealm(currentUser), []);
     return (
         <React.StrictMode>
             <Boundary>
                 <HashRouter>
                     <QueryClientProvider client={queryClient}>
                         <ApolloProvider client={apolloClient}>
-                            <MetaDataContextProvider>
-                                <SchemaProvider>
-                                    <UI>
-                                        <React.Suspense fallback='loading'>
-                                            <MainWindow />
-                                        </React.Suspense>
-                                    </UI>
-                                </SchemaProvider>
+                            <MetaDataContextProvider reader={realmReader}>
+                                <UI>
+                                    <React.Suspense fallback='loading'>
+                                        <MainWindow realmReader={realmReader} />
+                                    </React.Suspense>
+                                </UI>
                             </MetaDataContextProvider>
                         </ApolloProvider>
                     </QueryClientProvider>

@@ -19,7 +19,7 @@ export const webdriver = {
             dropdown1: ['#downshift-0-item-0'],
             noBrand: ['testid', 'NoBrandLink'] as [string, string],
             category: ['testid', 'CategoryL0'] as [string, string],
-            categoryList: '#categoryId > li',
+            categoryList: 'ul#categoryId > li',
             subCategory: ['testid', 'CategoryL1'] as [string, string],
             subCategoryList: 'ul#subCategoryId > li',
             subSubCategory: ['testid', 'CategoryL2'] as [string, string],
@@ -36,7 +36,7 @@ export const webdriver = {
                 black: ['testid', 'select-opt-0'] as [string, string],
                 grey: ['testid', 'select-opt-1'] as [string, string],
                 white: ['testid', 'select-opt-2'] as [string, string],
-                beige: ['testid', 'select-opt-3'], as [string, string] 
+                beige: ['testid', 'select-opt-3'] as [string, string],
                 red: ['testid', 'select-opt-4'] as [string, string],
                 pink: ['testid', 'select-opt-5'] as [string, string],
                 purple: ['testid', 'select-opt-6'] as [string, string],

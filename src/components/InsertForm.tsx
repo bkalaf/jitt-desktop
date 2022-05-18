@@ -10,6 +10,10 @@ import { useLocalRealm } from '../hooks/useLocalRealm';
 import { useMetaDataContext } from './Toaster';
 import { convertFromFormData } from './convertFromFormData';
 import { determineGridSize } from './determineGridSize';
+import { createFileAlloc, FileAlloc, mongo, Purchase } from '../data';
+import { useChangeFileParent } from './MainWindow';
+import { useRealmMutation } from '../queries/useRealmMutation';
+import { Mutation } from '../queries';
 
 export function InsertForm<T extends Record<string, any>>() {
     console.group('InsertForm');
@@ -20,31 +24,40 @@ export function InsertForm<T extends Record<string, any>>() {
     const Payload = useMemo(() => getFormPayload(collection), [collection, getFormPayload]);
     const convert = useMemo(() => convertFromFormData(Payload as any, getInfoFor, collection, realm), [Payload, collection, getInfoFor, realm]);
     const [handleSubmit, register, formRef, onInput] = useForm<T, undefined>(convert, Payload as any);
-    const insertQuery = useMemo(() => insertMutation<T>(realm!, collection), [collection, realm]);
-    const successToast = useToast('success');
-    const failureToast = useToast('failure');
-    const queryClient = useQueryClient();
-    const mutation = useMutation(insertQuery, {
-        onSuccess: (record: T & Realm.Object) => {
-            successToast('You have successfully inserted a record.', 'SUCCESS', (record as any)._id.toHexString());
-            queryClient.invalidateQueries(['selectAll', collection]);
-            queryClient.invalidateQueries(['dropdown', collection]);
-            queryClient.refetchQueries(['selectAll', collection]);
-            queryClient.refetchQueries(['dropdown', collection]);
-        },
-        onError: (error: any) => {
-            failureToast(error.message, 'FAILURE', error.name);
-        }
-    });
+    // const insertQuery = useMemo(() => insertMutation<T>(realm!, collection), [collection, realm]);
+    // const successToast = useToast('success');
+    // const failureToast = useToast('failure');
+    // const queryClient = useQueryClient();
+    const [isLoading, moveFile] = useChangeFileParent();
+    const [state, loading, execute] = useRealmMutation(Mutation.insert, (record) => {
+        if ('auctionId' in record) {
+                const parent = createFileAlloc(realm, (record as any).auctionId, 'auctions', 'invoices');
+                if (parent?.materializedPath?.length ?? 0 > 0) {
+                    moveFile(parent?.materializedPath ?? '', (record as any)._id.toHexString());
+                }
+            }
+    })
+    // const mutation = useMutation(insertQuery, {
+    //     onSuccess: (record: T & Realm.Object) => {
+    //         successToast('You have successfully inserted a record.', 'SUCCESS', (record as any)._id.toHexString());
+    //         queryClient.invalidateQueries(['selectAll', collection]);
+    //         queryClient.invalidateQueries(['dropdown', collection]);
+    //         queryClient.refetchQueries(['selectAll', collection]);
+    //         queryClient.refetchQueries(['dropdown', collection]);
+            
+    //     },
+    //     onError: (error: any) => {
+    //         failureToast(error.message, 'FAILURE', error.name);
+    //     }
+    // });
     const onSubmit = useMemo(
         () =>
             handleSubmit((x) => {
-                console.log('handleSubmit', 'x', x);
                 setReferenceField('_id')(x)(new Realm.BSON.ObjectId());
-                mutation.mutate(x);
+                execute(x);
                 return Promise.resolve(undefined);
             }),
-        [handleSubmit, mutation]
+        [execute, handleSubmit]
     );
     console.groupEnd();
     return (

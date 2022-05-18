@@ -8,7 +8,9 @@ export interface IFieldInfo {
     name: string;
     readOnly?: boolean;
     required?: boolean;
+    step?: number;
     type?: HTMLInputTypeAttribute;
+    placeholder?: string;
     icon?: IconDefinition;
     label?: string;
     minLength?: number;
@@ -22,4 +24,7 @@ export interface IFieldInfo {
     max?: number;
 
     asDisplay?: boolean;
+    iconTrue?: IconDefinition;
+    iconFalse?: IconDefinition;
+
 }

@@ -2,7 +2,7 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useRef } fr
 import { IAppCommand, ICommand } from '../../types/ui/ICommand';
 import { ViewKind } from '../../types/metadata/ViewKind';
 import { ignore } from '../../common';
-import { isNotNull } from './isNotNull';
+import { isNotNull } from '../../common/isNotNull';
 
 export interface ICommander {
     clearFilter?: ICommand<never[], 'grid'>;

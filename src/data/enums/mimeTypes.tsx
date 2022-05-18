@@ -17,5 +17,9 @@ export const mimeTypes = {
     '': 'unknown'
 };
 
+export function invertObject(obj: Record<string, string>) {
+    return Object.fromEntries(Object.entries(obj).map(([k, v]) => [v, k]))
+}
 
+export const invertMimeTypes: Record<string, MimeTypes> = invertObject(mimeTypes) as any;
 export type MimeTypes = keyof typeof mimeTypes;

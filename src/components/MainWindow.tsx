@@ -1,42 +1,37 @@
 /* eslint-disable react/boolean-prop-naming */
-import { faArrowAltLeft, faArrowLeft, faHome, faPlusCircle, faTrashAlt, faWifi1, IconDefinition } from '@fortawesome/pro-duotone-svg-icons';
+import { faArrowLeft, faFileInvoiceDollar, faHome, faPlusCircle, IconDefinition } from '@fortawesome/pro-duotone-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useCallback, useContext, useEffect } from 'react';
+import { useCallback, useEffect, useTransition } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { TopBar } from './TopBar';
-import { makeVar } from '@apollo/client';
-import { Button } from './Button';
-import { stringify } from 'querystring';
-import React from 'react';
 import { LoginForm } from './forms/LoginForm';
-import { OnlineStatus } from './StatusBar/OnlineStatus';
-import { ignore } from '../common/ignore';
 import { Toaster, useMetaDataContext } from './Toaster';
 import { LeftSidebar } from './LeftSidebar';
-import { useInsertCommand } from '../hooks/useInsertCommand';
-import { useDeleteCommand } from '../hooks/useDeleteCommand';
 import { IconLinkButton } from './Buttons/IconLinkButton';
-import { useToast } from '../hooks/useToast';
-import { AuthStatus } from './StatusBar/AuthStatus';
-import { $deleteCommand, $insertCommand } from './App';
+import { $insertCommand } from './App';
 import { MainRouter } from './MainRouter';
-import { useDAL } from '../hooks/useDAL';
 import { useRealm } from '../hooks/useRealm';
 import { $cn } from '../util/$cn';
 import { CommandButton } from './Buttons/CommandButton';
-import { useSchema } from '../hooks/useSchema';
-import { QueryParams } from './StatusBar/QueryParams';
 import { StatusBar } from './StatusBar';
 import { createWebdriver } from './providers/WebdriverProvider';
 import * as Webdriver from 'webdriverio';
-import { DataOrModifiedFn, useAsyncResource } from 'use-async-resource';
-import { process } from '@electron/remote';
+import { DataOrModifiedFn, LazyDataOrModifiedFn, useAsyncResource } from 'use-async-resource';
 import * as fs from 'graceful-fs';
-import { charRange, distinct, rangeBetween } from '../common';
+import { charRange, ignore } from '../common';
 import { webdriver } from '../config/webdriver';
 import { APP_CONFIG, files } from '../config';
-import { useLog } from './providers/buildLibrary';
+import { readFile } from './readFile';
+import { writeFile } from './writeFile';
+import { makeVar, useReactiveVar } from '@apollo/client';
+import { useMutation, useQueryClient } from 'react-query';
+import { updateFile } from '../queries/insertMutation';
+import { useLocalRealm } from '../hooks/useLocalRealm';
+import { FileAlloc, mongo } from '../data';
+import { useSelected } from '../hooks/useSelected';
+import { checkDirectory } from './checkDirectory';
 import path from 'path';
+import { isNotNil } from '../common/isNotNull';
 
 export type IconButtonProps = {
     title: string;
@@ -79,28 +74,10 @@ export function ifNotExistCreate(fn: string) {
         return fs.writeFileSync(fn, '');
     }
 }
-export function readFile(filename: string) {
-    return fs.readFileSync(filename).toString();
-}
 export function joinText(str: string[]) {
     return str.join('');
 }
-export function checkDirectory(folder: string) {
-    if (fs.existsSync(folder)) return;
-    const next = folder.split(path.sep).reverse().slice(1).reverse().join(path.sep);
-    console.log(`next`, next);
-    checkDirectory(next);
-    fs.mkdirSync(folder);
-}
-
-function writeFile(filename: string) {
-    return (value: string) => {
-        const folder = path.dirname(filename);
-        checkDirectory(folder);
-        fs.writeFileSync(filename, value);
-    };
-}
-function startBrands(log: (...args: any[]) => void) {
+export function startBrands(log: (...args: any[]) => void) {
     function purgeFiles() {
         ifExistsDelete(files.brands);
         ifExistsDelete(files.brandsDone);
@@ -134,20 +111,22 @@ function startBrands(log: (...args: any[]) => void) {
     return result;
 }
 
-function writeBrands(entry: string, brands: string[]) {
+export function writeBrands(entry: string, brands: string[]) {
     if (brands.length > 0) {
         fs.appendFileSync(files.brands, `${brands.join('\n')}\n`);
     }
     fs.appendFileSync(files.brandsDone, entry);
 }
 
-function finishBrands(log: (...args: any[]) => void) {
+export function finishBrands(log: (...args: any[]) => void) {
+    log(`output file: ${files.brands}`);
     const data = readFile(files.brands).split('\n');
     log('totalBrands', data.length);
-    const uniqueBrands = distinct(data);
-    log('uniqueBrands', uniqueBrands.length);
-    const result = { uniqueBrands };
+    const uniqueBrands = new Set(data);
+    log('uniqueBrands', uniqueBrands.size);
+    const result = { uniqueBrands: Array.from(uniqueBrands.entries()) };
     fs.writeFileSync(files.brandListings, JSON.stringify(result));
+    log('output written');
     localStorage.setItem('brandsLastFetched', new Date(Date.now()).toString());
 }
 
@@ -174,6 +153,13 @@ function sequences() {
     return result;
 }
 
+export function clickById(browser: Webdriver.Browser<'async'>) {
+    return async function (selector: string) {
+        const el = await browser.$($selector.id(selector));
+        await el.waitForExist({ timeout: 20000 });
+        await el.click();
+    };
+}
 export function click(browser: Webdriver.Browser<'async'>) {
     return async function (selector: [string, string]) {
         const el = await browser.$($selector.data(selector));
@@ -198,6 +184,15 @@ export function setValue(browser: Webdriver.Browser<'async'>) {
         });
     };
 }
+export function ifNotExistDo(browser: Webdriver.Browser<'async'>, log: any) {
+    return async function (existSelector: string, clickSelector: [string, string]) {
+        const el = await browser.$($selector.id(existSelector));
+        if (!(await el.isExisting())) {
+            log(`not existsing: ${existSelector} clicking: ${clickSelector}`);
+            await click(browser)(clickSelector);
+        }
+    };
+}
 export async function MercariLogIn(browser: Webdriver.Browser<'async'>) {
     await browser.url(webdriver.urls.mercari);
     await click(browser)(webdriver.selectors.logInButton);
@@ -208,148 +203,104 @@ export async function MercariLogIn(browser: Webdriver.Browser<'async'>) {
 }
 
 const dataAttribute = ([dataname, value]: [string, string]) => `[data-${dataname}="${value}"]`;
+const idAttribute = (id: string) => `#${id}`;
 export const $selector = {
-    data: dataAttribute
+    data: dataAttribute,
+    id: idAttribute
 };
 
-export function CategoryScraper({ reader }: { reader: DataOrModifiedFn<Webdriver.Browser<'async'>> }) {
-    const browser = reader();
-    const log = useLog();
-    useEffect(() => {}, []);
-    return <></>;
+export const $showFileTools = makeVar<boolean>(false);
+
+export function useAssignFile(): [boolean, () => void] {
+    return [true, ignore];
 }
 
-export function Test({ reader }: { reader: DataOrModifiedFn<Webdriver.Browser<'async'>> }) {
-    const browser = reader();
-    const log = useLog();
-    useEffect(() => {
-        async function run() {
-            async function inner([x1, x2, x3]: [string, string, string]) {
-                // await browser.$('[data-testid="Brand"]').waitForEnabled({
-                //     timeout: 5000
-                // });
-                await browser.$('[data-testid="Brand"]').clearValue();
-                await browser.$('[data-testid="Brand"]').click();
-                await browser.keys([x1]);
-                await browser.keys([x2]);
-                await browser.keys([x3]);
-                // await browser.keys([x4]);
-                await browser.pause(500);
-                const result = await browser.$('[data-testid="BrandDropdown"]');
-                const result1 = await result.$$('div > span');
-                const result2 = result1.map(async (x) => await x.$$('span > span'));
-                const result3 = await Promise.all(result2);
-                const result4 = await Promise.all(result3.map(async (x) => await Promise.all(x.map(async (y) => await y.getText()))));
-                // const result5 = await Promise.all(result4.map(async (x) => await Promise.all(x)));
-                console.log('result4', result4);
-                const final = result4.map((x) => x.join(''));
-                // console.log('result5', result5);
-                console.log('final', final);
-                writeBrands(`${x1}${x2}${x3}\n`, final);
-            }
-            console.log('starting');
-            await browser.url(webdriver.urls.mercari);
-            // await browser.pause(1000);
-            // await browser.keys(['Control', 'Shift', 'I']);
-            // await browser.pause(1000);
-            // await browser.keys(['Control', 'Shift', 'P']);
-            // await browser.pause(1000);
-            // await browser.keys(['e', 'm', 'f', 'o', 'ArrowDown', 'ArrowDown', 'Enter']);
-            // await browser.pause(1000);
-            await browser.$('[data-testid="LoginButton"]').click();
-            await browser.$('[data-testid="EmailInput"]').setValue('bobby.kalaf.jr@gmail.com');
-            await browser.$('[data-testid="PasswordInput"]').setValue('Achilles@92111');
-            await browser.waitUntil(async () => {
-                const value = await browser.$('[data-testid="PasswordInput"]').getValue();
-                return value === 'Achilles@92111';
-            });
+export function moveFile(src: string, destination: string) {
+    checkDirectory(path.dirname(destination));
+    if (!fs.existsSync(src)) {
+        throw new Error('source does not exist');
+    }
+    fs.renameSync(src, destination);
+}
 
-            await browser.$('[data-testid="LoginSubmitButton"]').click();
-            await browser.$('[data-testid="SellOnMercariCTA"]').waitForClickable({
-                timeout: 50000
-            });
-            await browser.$('[data-testid="SellOnMercariCTA"]').click();
-
-            const seqs = startBrands(log);
-            await browser.pause(10000);
-
-            // const seqs = [['r', 'o', 'o', 'm'], ['a', 'b', 'e', 'r'], ['t', 'a', 'r', 'g'],['a', 'b', 'b', 'i'],  ['a', 'b', 'b', ' ']] as [string, string, string, string][];
-            await seqs.reduce((pv, cv) => pv.then((x) => inner(cv)), Promise.resolve());
-
-            // console.log(`result`, await result.getHTML())
-            // console.log(`result1`, result1);
-            // console.log(`result2`, result2);
-            // console.log(`result3`, result3);
-            // console.log(`result4`, result4);
-            // console.log(`result5`, result5);
-
-            // .map(async y => await y.getText()));
-
-            // console.log(result.map(x => x.join('')).join('\n'));
-
-            // .$$('div > div')
-            //     .map(async (el) => {
-            //         return await el.$$('span > span').map(async (x) => {
-            //             return await x.getText();
-            //         });
-            //     });
-            // process.stdout.write(`${result.map((x) => `${x.join('')}\n`).join('')}]\n`);
-            finishBrands(log);
-            return;
+export function useChangeFileParent(): [boolean, (parent: string, id?: string) => void] {
+    const realm = useLocalRealm();
+    const selected = useSelected();
+    const queryClient = useQueryClient();
+    const mutation = useMutation(updateFile(realm, mongo.fsAlloc), {
+        onSuccess: ([src, dest]: [string, string]) => {
+            queryClient.invalidateQueries(['selectAll', mongo.fsAlloc]);
+            queryClient.invalidateQueries(['dropdown', mongo.fsAlloc]);
+            queryClient.refetchQueries(['selectAll', mongo.fsAlloc]);
+            queryClient.refetchQueries(['dropdown', mongo.fsAlloc]);
+            moveFile([APP_CONFIG.fs.path, src].join(''), [APP_CONFIG.fs.path, dest].join(''));
         }
-        run();
-    }, [browser, log]);
-    return <></>;
+    });
+    const [isLoading, startTransition] = useTransition();
+    const onClick = useCallback(
+        (matPath: string, id?: string) => {
+            const parent = realm.objects<FileAlloc>(mongo.fsAlloc).filtered(`materializedPath == '${matPath}'`)[0];
+            const current = realm.objectForPrimaryKey<FileAlloc>(mongo.fsAlloc, new Realm.BSON.ObjectId(selected[0]));
+            startTransition(() =>
+                mutation.mutate({
+                    id: isNotNil(selected[0]) ? selected[0] : id!,
+                    data: { parent, materializedPath: [parent.materializedPath, current?.name].join('/') }
+                })
+            );
+        },
+        [mutation, realm, selected]
+    );
+    return [isLoading, onClick];
+}
+export function useAssignInvoice(): [boolean, () => void] {
+    const realm = useLocalRealm();
+    const [isLoading, moveFile] = useChangeFileParent();
+    const execute = useCallback(() => moveFile('/auctions/invoices'), [moveFile]);
+    return [isLoading, execute];
+}
+export function ToolBar() {
+    const navigate = useNavigate();
+    const location = useLocation();
+    const goBack = useCallback(() => {
+        navigate(location.pathname.split('/').reverse().slice(1).reverse().join('/'));
+        // navigate('..');
+    }, [location.pathname, navigate]);
+    const showFileTools = useReactiveVar($showFileTools);
+    const [isSavingInvoice, saveToInvoice] = useAssignInvoice();
+    const selected = useSelected();
+    const isSelected = selected.length > 0;
+    return (
+        <div className='flex w-full px-2 text-lg font-bold leading-loose tracking-wide text-black transition duration-1000 ease-in-out delay-200 border border-white rounded-lg shadow-lg bg-indigo-dark font-fira-sans mb-0.5 justify-center space-x-4'>
+            <ul className='flex flex-row justify-center p-1 space-x-1 text-black border border-white rounded-lg bg-slate-dark'>
+                <IconLinkButton to='/dashboard' title='Go to your dashboard.' icon={faHome} />
+                <IconButton icon={faArrowLeft} title='Go back 1 page.' onClick={goBack} />
+                <CommandButton icon={faPlusCircle} title='Insert a new record.' rVar={$insertCommand} />
+                {/* <CommandButton icon={faTrashAlt} title='Delete selected records.' rVar={$deleteCommand} /> */}
+            </ul>
+            {showFileTools && (
+                <ul className='flex flex-row justify-center p-1 space-x-1 text-black border border-white rounded-lg bg-slate-dark'>
+                    {isSavingInvoice ? (
+                        <span className='inline-flex'>Saving</span>
+                    ) : (
+                        <IconButton icon={faFileInvoiceDollar} title='Assign to invoice' onClick={saveToInvoice} disabled={!isSelected} />
+                    )}
+                </ul>
+            )}
+        </div>
+    );
 }
 
-export function MainWindow() {
-    const realm = useRealm();
+export function MainWindow({ realmReader }: { realmReader: LazyDataOrModifiedFn<Realm> }) {
+    const realm = realmReader();
     const location = useLocation();
     const navigate = useNavigate();
-    const goBack = useCallback(() => navigate(-1), [navigate]);
     const metadata = useMetaDataContext();
-    const [reader, updateReader] = useAsyncResource(createWebdriver, []);
-    useDAL('self-storage');
-    useDAL('facility');
-    // useEffect(() => {
-    //     async function run() {
-    //         console.log('starting');
-    //         await resource.url('https://www.google.com/');
-    //         await resource.url('https://www.mercari.com/');
-    //         return;
-    //     }
-    //     run();
-    // }, [resource]);
-    useEffect(() => {
-        if (realm) {
-            console.log(metadata.getType('self-storage'));
-            console.log(metadata.getType('facility'));
-            console.log(metadata.getControlList('self-storage'));
-            console.log(metadata.getControlList('facility'));
-            // console.log('new realm', realm);
-            // console.log(schema.types);
-            // console.log(schema.getType('self-storage'));
-            // console.log(schema.getColumns('self-storage'));
-            // console.log(schema.getColumns('facility'));
-            // console.log(schema.getColumns('rental-unit'));
-            // console.log(schema.getControls('facility'));
-            // console.log(schema.getControls('self-storage'));
-            // console.log(schema.getControls('rental-unit'));
-        }
-    }, [metadata, realm]);
-
+    const [reader, updateReader] = useAsyncResource(createWebdriver);
     return (
         <div className='relative flex flex-col w-full h-full py-0.5'>
             <TopBar />
-            <Test reader={reader} />
-            <div className='flex w-full px-2 text-lg font-bold leading-loose tracking-wide text-black transition duration-1000 ease-in-out delay-200 border border-white rounded-lg shadow-lg bg-indigo-dark font-fira-sans mb-0.5 justify-center'>
-                <ul className='flex flex-row justify-center p-1 space-x-1 text-black border border-white rounded-lg bg-slate-dark'>
-                    <IconLinkButton to='/dashboard' title='Go to your dashboard.' icon={faHome} />
-                    <IconButton icon={faArrowLeft} title='Go back 1 page.' onClick={goBack} />
-                    <CommandButton icon={faPlusCircle} title='Insert a new record.' rVar={$insertCommand} />
-                    {/* <CommandButton icon={faTrashAlt} title='Delete selected records.' rVar={$deleteCommand} /> */}
-                </ul>
-            </div>
+            {/* <CategoryScraper reader={reader} /> */}
+            <ToolBar />
             <div className='flex w-full px-2 text-base font-bold leading-loose tracking-wide text-white transition duration-1000 ease-in-out delay-200 border border-white rounded-lg shadow-lg bg-slate-very-dark font-fira-sans  mb-0.5 flex-row justify-between items-center'>
                 <div className='flex bg-blue text-white font-fira-sans border border-white rounded-lg px-2 my-0.5 tracking-wider leading-loose font-bold duration-1000 ease-in-out delay-200'>
                     {location.pathname}

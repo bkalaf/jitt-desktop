@@ -8,7 +8,8 @@ import { DataOrModifiedFn, useAsyncResource } from 'use-async-resource';
 
 export function createWebdriver() {
     return Webdriver.remote({
-        logLevel: 'trace',
+        logLevel: 'warn',
+        headless: true,
         capabilities: {
             browserName: 'chrome',
         }   

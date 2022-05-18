@@ -4,12 +4,16 @@ export const files = {
     brands: getFullPathMaintenance('brands.txt'),
     brandsDone: getFullPathMaintenance('brands-done.txt'),
     brandsTodo: getFullPathMaintenance('brands-todo.txt'),
-    brandListings: getFullPath('brands.json', 'appData', 'jitt-desktop')
+    brandListings: getFullPath('brands.json', 'appData', 'jitt-desktop'),
+    categoryListings: getFullPath('category.json', 'appData', 'jitt-desktop')
 };
 export const APP_CONFIG = {
     appFolder: 'jitt-desktop',
     db: {
         path: getFullPath('db.realm', 'appData', 'jitt-desktop')
+    },
+    fs: {
+        path: getFullPath('fs', 'appData', 'jitt-desktop')
     },
     maintenance: {
         brandsLastFetched: '2022-01-01T12:00:00+07:00',

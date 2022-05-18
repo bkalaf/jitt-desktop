@@ -10,8 +10,9 @@ import { createContext, useCallback, useMemo } from 'react';
 import { buildLibrary } from './buildLibrary';
 import { useReactiveVar } from '@apollo/client';
 import { useWhyDidYou } from '../../hooks/useWhyDidYou';
-import { Facility, RentalUnit, SelfStorage } from '../../data';
+import { Address, Cost, Facility, FileAlloc, FileItem, Length, mongo, Purchase, RentalUnit, SelfStorage, SquareFootage } from '../../data';
 import { isDotNotation } from '../../util';
+import { LazyDataOrModifiedFn } from 'use-async-resource';
 export interface IMetaDataContext<T extends { _id: Realm.BSON.ObjectId } = { _id: Realm.BSON.ObjectId }> {
     library: Record<string, ITypeInfo>;
     getType(x: string): ITypeInfo;
@@ -27,9 +28,9 @@ export interface IMetaDataContext<T extends { _id: Realm.BSON.ObjectId } = { _id
 
 export const MetaDataContext = createContext<undefined | IMetaDataContext>(undefined);
 
-export function MetaDataContextProvider(props: { children: Children }) {
+export function MetaDataContextProvider(props: { children: Children, reader: LazyDataOrModifiedFn<Realm> }) {
     useWhyDidYou('MetaDataProvider', props);
-    const realm = useReactiveVar($realm);
+    const realm = props.reader();
     const library = useMemo(() => {
         return Object.fromEntries(realm == null ? [] : buildLibrary(realm).map((x) => [x.typeName, x]));
     }, [realm]);
@@ -81,9 +82,16 @@ export function MetaDataContextProvider(props: { children: Children }) {
             },
             getFormPayload(typeName: string) {
                 return {
-                    'self-storage': () => new SelfStorage(),
-                    facility: () => new Facility(),
-                    'rental-unit': () => new RentalUnit()
+                    [mongo.selfStorage]: () => new SelfStorage(),
+                    [mongo.facility]: () => new Facility(),
+                    [mongo.rentalUnit]: () => new RentalUnit(),
+                    [mongo.purchase]: () => new Purchase(),
+                    [mongo.address]: () => new Address(),
+                    [mongo.cost]: () => new Cost(),
+                    [mongo.fsAlloc]: () => new FileAlloc(),
+                    [mongo.fsItem]: () => new FileItem(),
+                    [mongo.length]: () => new Length(),
+                    [mongo.squareFootage]: () => new SquareFootage()
                 }[typeName] as any;
             }
         }),

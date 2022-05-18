@@ -12,26 +12,35 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useProvideMetaData } from './useProvideMetaData';
 
 // TODO Extract
-export const toOutput: Record<string, (x: any) => string> = {
+export const toOutput: Record<string, (x: any) => (string)> = {
     objectId: (x: ObjectId) => x.toHexString(),
     string: identity,
     int: (x: number) => x.toFixed(0),
     float: (x: number) => x.toFixed(4),
     double: (x: number) => x.toFixed(2),
     decimal128: (x: number) => x.toString(),
-    boolean: (x: boolean) => (x ? 'true' : 'false'),
+    bool: (x: boolean) => (x ? 'true' : 'false'),
     date: (x: Date) =>
-        [
-            [padZero(2)(x.getMonth() + 1), padZero(2)(x.getDate()), x.getFullYear()].join('/'),
-            [
-                [padZero(2)(x.getHours() === 0 ? 12 : x.getHours() > 13 ? x.getHours() - 12 : x.getHours()), padZero(2)(x.getMinutes())].join(':'),
-                x.getHours() >= 12 ? 'PM' : 'AM'
-            ].join(' ')
-        ].join(' '),
+        x == null
+            ? ''
+            : [
+                  [padZero(2)(x.getMonth() + 1), padZero(2)(x.getDate()), x.getFullYear()].join('/'),
+                  [
+                      [padZero(2)(x.getHours() === 0 ? 12 : x.getHours() > 13 ? x.getHours() - 12 : x.getHours()), padZero(2)(x.getMinutes())].join(':'),
+                      x.getHours() >= 12 ? 'PM' : 'AM'
+                  ].join(' ')
+              ].join(' '),
     data: (x: ArrayBuffer) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(new Blob([x]));
-        return (reader.result as string) ?? '';
+        function inner() {
+            return new Promise<string>((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(new Blob([x]));
+                reader.addEventListener('loadend', () => {
+                    resolve(reader.result as string);
+                });
+            });
+        }
+        return 'junk'
     }
 };
 export const toDB: Record<string, (x: string) => any> = {
@@ -40,7 +49,7 @@ export const toDB: Record<string, (x: string) => any> = {
     float: (x: string) => parseFloat(x),
     double: (x: string) => parseFloat(x),
     decimal128: (x: string) => parseFloat(x),
-    boolean: (x: string) => x === 'true',
+    bool: (x: string) => x === 'true',
     string: identity,
     date: (x: string) => new Date(Date.parse(x)),
     data: async (x: string) => new Blob([x]).arrayBuffer()

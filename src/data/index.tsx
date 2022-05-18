@@ -6,6 +6,7 @@ import { Country } from './enums/country';
 import { lengths, pluralize } from './enums/lengthUOM';
 import { AuctionSites } from './enums/auctionSite';
 import { MimeTypes } from './enums/mimeTypes';
+import { not } from '../common';
 
 export const primitives = {
     objectId: 'objectId',
@@ -301,33 +302,42 @@ export class FileItem {
         }
     }
     _id: ObjectId;
-    fsAlloc?: FileAlloc;
+    fsAlloc: FileAlloc[];
     data?: ArrayBuffer;
     size: number;
     mimeType?: MimeTypes;
-    invoice?: Purchase;
+    invoice: Purchase[];
     constructor() {
         this._id = new ObjectId();
         this.size = 0;
         this.mimeType = '';
+        this.fsAlloc = [];
+        this.invoice = [];
     }
     get name() {
-        return this.fsAlloc?.name;
+        // const arr = Object.entries(this.fsAlloc ?? {})[0][1];
+        // const arr1 = this.fsAlloc[0];
+        // console.log("ARR1", arr1);
+        // const arr2 = Object.entries(this.fsAlloc[0]);
+        // console.log('ARR2', arr2);
+        // console.log('ARR', arr);
+        console.log('NEW NAME', this.fsAlloc[0])
+        return this.fsAlloc[0].name;
     }
     get isAssigned() {
-        return this.invoice != null;
+        return (this.invoice[0] != null).toString();
     }
     get isInvoice() {
-        return FileItem.INVOICE_REGEX.test(this.fsAlloc?.path ?? '/');
+        return (FileItem.INVOICE_REGEX.test(this.fsAlloc[0]?.path ?? '/')).toString();
     }
     get isPhoto() {
-        return FileItem.PHOTO_REGEX.test(this.fsAlloc?.path ?? '/');
+        return (FileItem.PHOTO_REGEX.test(this.fsAlloc[0]?.path ?? '/')).toString();
     }
     get isReceipt() {
-        return FileItem.RECEIPT_REGEX.test(this.fsAlloc?.path ?? '/');
+        return (FileItem.RECEIPT_REGEX.test(this.fsAlloc[0]?.path ?? '/')).toString();
     }
     get isDoc() {
-        return FileItem.DOC_REGEX.test(this.fsAlloc?.path ?? '/');
+        return (FileItem.DOC_REGEX.test(this.fsAlloc[0]?.path ?? '/')).toString();
     }
 }
 export class FileAlloc {
@@ -366,13 +376,13 @@ export class FileAlloc {
         this.materializedPath = '';
     }
     get path(): string {
-        return [this.parent?.path ?? '/', this.name].join('/');
+        return [this.parent?.path ?? '', this.name].join('/');
     }
-    get isFolder(): boolean {
-        return this.fsItem == null;
+    get isFolder(): string {
+        return (this.fsItem == null).toString();
     }
-    get isFile(): boolean {
-        return !this.isFolder;
+    get isFile(): string {
+        return (!(this.fsItem == null)).toString();
     }
     get count(): number {
         return this.content.length;
@@ -380,5 +390,37 @@ export class FileAlloc {
     get size(): number {
         return this.content.map(s => s.size).reduce((x, y) => x + y, 0);
     }
+    get type(): string {
+        if (this.fsItem == null) return 'folder';
+        if (this.fsItem.isInvoice === 'true') return 'invoice';
+        if (this.fsItem.isPhoto === 'true') return 'photo';
+        if (this.fsItem.isDoc === 'true') return 'document';
+        if (this.fsItem.isReceipt === 'true') return 'receipt';
+        return 'unknown';
+    }
 }
 export const schema = [SelfStorage, Facility, Address, RentalUnit, Length, SquareFootage, FileAlloc, FileItem, Purchase, Cost];
+
+
+export function createFileAlloc(realm: Realm, name: string, parentName: string, child: string) {
+    const parent = realm.objects<FileAlloc>(mongo.fsAlloc).filtered(`materializedPath == '/${parentName}'`)[0];
+    const obj = {
+        _id: new Realm.BSON.ObjectId(),
+        name,
+        originalName: name, 
+        materializedPath: [parent.materializedPath, name].join('/'),
+        parent
+    };
+    const gpobj = {
+        _id: new Realm.BSON.ObjectId(),
+        name: child,
+        originalName: child,
+        materializedPath: [obj.materializedPath, child].join('/'),
+        parent: obj
+    };
+    let result: FileAlloc | undefined;
+    realm.write(() => {
+        result = realm.create<FileAlloc>(mongo.fsAlloc, gpobj as any);
+    });
+    return result;
+}

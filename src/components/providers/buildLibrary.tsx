@@ -1,5 +1,5 @@
 import { process as electronProcess } from '@electron/remote';
-import { cloneElement, useCallback, useTransition } from 'react';
+import { cloneElement, useCallback, useEffect, useRef, useState, useTransition } from 'react';
 import { createFrom } from '../../common/array/createFrom';
 import { identity } from '../../common/identity';
 import { ignore } from '../../common/ignore';
@@ -15,7 +15,7 @@ import { ofProperties } from './ofProperties';
 import { embeddedFieldsByType } from './embeddedFieldsByType';
 import { getProperty } from '../../common';
 import { IconButton } from '../MainWindow';
-import { faPenAlt, faTrashCan, faSquare, faCheckSquare } from '@fortawesome/pro-duotone-svg-icons';
+import { faPenAlt, faTrashCan, faSquare, faCheckSquare, IconDefinition, faWindowClose } from '@fortawesome/pro-duotone-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { DuotoneIcon } from '../icons/DuotoneIcon';
 // import { faSquare } from '@fortawesome/pro-regular-svg-icons';
@@ -27,12 +27,53 @@ import { useViewContext } from '../../hooks/useViewContext';
 import { IGridViewContext } from './ViewProvider';
 import { attemptToGetOID } from '../../util';
 import { deleteSelected } from '../../queries/deleteById';
-import { DuotoneBtn } from './DuotoneBtn';
+import { DuotoneBtn, DuotoneButton } from './DuotoneBtn';
 import { useMetaDataContext } from '../Toaster';
 import { IColumnInfo } from '../../types';
+import { useToggle } from '../../hooks/useToggle';
+import { ModalContainer } from '../ModalContainer';
+import { FilePreview } from '../MainRouter';
+import { MimeTypes } from '../../data/enums/mimeTypes';
+
+export function DataCell({ result, icon, x, mimeType }: { result: ArrayBuffer; icon: IconDefinition; x: string; mimeType: MimeTypes }) {
+    const [showImage, toggleImage] = useToggle(false);
+    const [src, setSrc] = useState<undefined | string>(undefined);
+    const reader = useRef(new FileReader());
+    const cb = useCallback((ev: ProgressEvent<FileReader>) => setSrc(ev.target!.result as string), [])
+    useEffect(() => {
+        const r = reader.current;
+        r.addEventListener('loadend', cb);
+        return () => r.removeEventListener('loadend', cb);
+    }, [cb]);
+    useEffect(() => {
+        if (src == null && reader.current.readyState === reader.current.EMPTY) {
+            reader.current.readAsDataURL(new Blob([result], { type: 'application/pdf' }));
+        }
+        return () => src != null ? URL.revokeObjectURL(src) : ignore();
+    }, [result, src]);
+    return (
+        <TableCell key={x}>
+            <DuotoneButton icon={icon} primary='red' secondary='black' size='lg' onClick={toggleImage} />
+            {showImage && (
+                <ModalContainer>
+                    <div className='relative flex items-center justify-center w-full h-full p-4 '>
+                        <DuotoneButton
+                            primary='white'
+                            secondary='cyan'
+                            icon={faWindowClose}
+                            size='2x'
+                            className='absolute top-0 right-0 mt-2 mr-2'
+                            onClick={toggleImage}></DuotoneButton>
+                        {mimeType === 'pdf' ? <iframe src={`${src}#zoom-75`} className='flex object-scale-down w-full h-full' /> : <img src={src} className='flex object-scale-down w-full h-full' />}
+                    </div>
+                </ModalContainer>
+            )}
+        </TableCell>
+    );
+}
 export function useLog() {
-    const log = useCallback((name: string, ...args: string[]) => {
-        electronProcess.stdout.write([name, ...args].join(' :: ').concat('\n'));
+    const log = useCallback((name: any, ...args: string[]) => {
+        electronProcess.stdout.write([typeof name !== 'string' ? JSON.stringify(name) : name, ...args].join(' :: ').concat('\n'));
         console.log(name, ...args);
     }, []);
     return log;
@@ -96,23 +137,34 @@ export function buildLibrary(realm: Realm) {
             // Filter out _id field
             InputFormBody: () => {
                 const { getInfoFor, getControlList } = useMetaDataContext();
-                return <>
-                    {getControlList(name)
-                        .filter((x) => x.name !== '_id' && x.datatype !== 'linkingObjects')
-                        .map((info) => {
-                            console.log('handling...', info)
-                            // electronProcess.stdout.write(`isDotNotation: ${isDotNotation} name: ${name} x: ${x} t: ${t} f: ${f}\n`);
-                            // electronProcess.stdout.write(`DAL[t]: ${DAL[t]}\n`);
-                            // electronProcess.stdout.write(`DAL[t].fields: ${DAL[t].fields}\n`);
-                            // electronProcess.stdout.write(`DAL[t].fields.find: ${DAL[t].fields.find((a) => a.name === f)}\n`);
+                return (
+                    <>
+                        {getControlList(name)
+                            .filter((x) => x.name !== '_id' && x.datatype !== 'linkingObjects')
+                            .map((info) => {
+                                console.log('handling...', info);
+                                // electronProcess.stdout.write(`isDotNotation: ${isDotNotation} name: ${name} x: ${x} t: ${t} f: ${f}\n`);
+                                // electronProcess.stdout.write(`DAL[t]: ${DAL[t]}\n`);
+                                // electronProcess.stdout.write(`DAL[t].fields: ${DAL[t].fields}\n`);
+                                // electronProcess.stdout.write(`DAL[t].fields.find: ${DAL[t].fields.find((a) => a.name === f)}\n`);
 
-                            if (info == null) return <Control name={x.name} key={x.name} El={Output} tag='OUTPUT' label={toTitleCase(x.name)} />;
-                            if (info.el == null) throw new Error('element null');
-                            const tag = (info.el as React.FunctionComponent).displayName?.toUpperCase() ?? '';
-                            const { mappedTo, objectType, property, typeName, flags, ...spread} = info;
-                            return <Control key={info.name} El={info.el} tag={tag} label={getLabelForCol(x.name)(info.name)} objectType={objectType} {...spread} />;
-                        })}
-                </>
+                                if (info == null) return <Control name={x.name} key={x.name} El={Output} tag='OUTPUT' label={toTitleCase(x.name)} />;
+                                if (info.el == null) throw new Error('element null');
+                                const tag = (info.el as React.FunctionComponent).displayName?.toUpperCase() ?? '';
+                                const { mappedTo, objectType, property, typeName, flags, ...spread } = info;
+                                return (
+                                    <Control
+                                        key={info.name}
+                                        El={info.el}
+                                        tag={tag}
+                                        label={getLabelForCol(x.name)(info.name)}
+                                        objectType={objectType}
+                                        {...spread}
+                                    />
+                                );
+                            })}
+                    </>
+                );
             },
             // All columns
             EditFormBody: () => (
@@ -136,6 +188,7 @@ export function buildLibrary(realm: Realm) {
                 </>
             ),
             Row: <T extends { _id: Realm.BSON.ObjectId }>(props: { rowData: T }) => {
+                console.log(props.rowData);
                 const { isSelected, onClick, deleteRows } = useViewContext() as IGridViewContext;
                 const { getInfoFor } = useMetaDataContext();
                 // const [isLoading, startTransition] = useTransition();
@@ -184,7 +237,7 @@ export function buildLibrary(realm: Realm) {
                             </TableCell>
 
                             {flatColumns[name].map((x) => {
-                                console.log(`HANDLING: ${x}`)
+                                console.log(`HANDLING: ${x}`);
                                 const value = getProperty(x)(props.rowData);
                                 const {
                                     datatype,
@@ -193,7 +246,9 @@ export function buildLibrary(realm: Realm) {
                                     enumMap,
                                     to,
                                     icon,
-                                    asDisplay
+                                    asDisplay,
+                                    iconTrue,
+                                    iconFalse
                                 } = getInfoFor(name, x);
                                 let func;
                                 console.log(
@@ -208,21 +263,40 @@ export function buildLibrary(realm: Realm) {
                                     toOutput
                                 );
                                 if (icon) {
+                                    const result = value;
+                                    if (datatype === 'data') {
+                                        console.log('handling-data');
+                                        return <DataCell mimeType={(props.rowData as any).mimeType} result={result} x={x} icon={icon} />;
+                                    }
+
                                     func = function (x: any) {
-                                        const id = toOutput[datatype](x);
+                                        const id = toOutput[datatype](x) as string;
                                         return (
                                             <TableCell key={x} title={id}>
                                                 <FontAwesomeIcon size='lg' icon={icon} className='block' />
                                             </TableCell>
                                         );
                                     };
-                                }
-                                else if (asDisplay) {
+                                } else if (iconTrue) {
+                                    return (
+                                        <TableCell key={x}>
+                                            <DuotoneIcon
+                                                icon={value === 'true' ? iconTrue : iconFalse!}
+                                                size='lg'
+                                                primaryOpacity={1.0}
+                                                secondaryOpacity={0.9}
+                                                primary='linen'
+                                                secondary={value === 'true' ? 'red' : 'black'}
+                                            />
+                                        </TableCell>
+                                    );
+                                } else if (asDisplay) {
                                     func = (x: any) => x.displayAs;
-                                }
-                                else if (datatype === 'object') {
+                                } else if (datatype === 'object') {
                                     console.log('optionMap', optionMap);
-                                    func = (a: Record<string, any>) => a[optionMap?.label ?? ''];
+                                    func = function (a?: Record<string, any>) {
+                                        return a != null ? a[optionMap?.label ?? ''] : '/';
+                                    };
                                 } else if (primitive) {
                                     func = toOutput[datatype] ?? identity;
                                 } else if (enumMap != null) {
