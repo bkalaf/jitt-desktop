@@ -1,15 +1,15 @@
 import React from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
-import { Spinner } from '../Spinner';
+import { Spinner } from '../Indicators/Spinner';
 
 export function Boundary({ children }: { children: Children }) {
     return (
         <React.Suspense fallback={<Spinner />}>
             <ErrorBoundary
                 fallbackRender={({ error }) => (
-                    <div>
-                        <div>Error happened.</div>
-                        <div>{error.message}</div>
+                    <div className='text-white'>
+                        <div className='text-white'>Error happened.</div>
+                        <div className='text-white'>{error.message}</div>
                     </div>
                 )}>
                 {children}

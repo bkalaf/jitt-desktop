@@ -1,0 +1,17 @@
+export type SpecialFolder =
+    | 'appData'
+    | 'home'
+    | 'userData'
+    | 'desktop'
+    | 'cache'
+    | 'temp'
+    | 'exe'
+    | 'module'
+    | 'documents'
+    | 'videos'
+    | 'pictures'
+    | 'downloads'
+    | 'music'
+    | 'recent'
+    | 'logs'
+    | 'crashDumps';

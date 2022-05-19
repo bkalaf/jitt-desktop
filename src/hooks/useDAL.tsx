@@ -84,7 +84,7 @@ export function useDAL(collection: string) {
     const getFieldFromType = useCallback(
         (typeName: string, fieldName: string): PropertyData => {
             console.log(`typeName`, typeName, `fieldName`, fieldName);
-            return ((typeMap[typeName] ?? { fields: {} }).fields ?? {})[fieldName] ?? { name: fieldName, local: true } as any;
+            return ((typeMap[typeName] ?? { fields: {} }).fields ?? {})[fieldName] ?? ({ name: fieldName, local: true } as any);
         },
         [typeMap]
     );

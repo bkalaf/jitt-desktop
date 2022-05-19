@@ -1,7 +1,6 @@
 import { app } from '@electron/remote';
 import path from 'path';
-
-export type SpecialFolder = 'appData' | 'home' | 'userData' | 'desktop' | 'cache' | 'temp' | 'exe' | 'module' | 'documents' | 'videos' | 'pictures' | 'downloads' | 'music' | 'recent' | 'logs' | 'crashDumps';
+import { SpecialFolder } from './SpecialFolder';
 
 export function getFullPath(filename: string, pathFolder: SpecialFolder = 'appData', ...folders: string[]) {
     const configPath = app.getPath(pathFolder);

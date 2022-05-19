@@ -10,7 +10,8 @@ import { MutationState, invalidateRefetch, $queryKey } from './index';
 
 export function useRealmMutation<T, TResult = void>(
     asyncFunc: (realm: Realm, collection: string) => (args: T) => Promise<TResult>,
-    extraWork: (result: TResult) => void
+    extraWork: (result: TResult) => void,
+    overrideCollection?: string
 ): [state: MutationState, isLoading: boolean, execute: (arg: T) => void] {
     const realm = useLocalRealm();
     const mutationName = toTitleCase(asyncFunc.name);
@@ -21,12 +22,13 @@ export function useRealmMutation<T, TResult = void>(
     const failureToast = useToast('failure');
     const log = useLog();
     const errorToast = useToast('error');
-    const navigateDescend = useNavigateDown()
-    const mutation = useMutation(asyncFunc(realm, collection), {
+    const navigateDescend = useNavigateDown();
+    const usableCollection = overrideCollection ?? collection;
+    const mutation = useMutation(asyncFunc(realm, usableCollection), {
         onSuccess: (data: TResult) => {
             successToast(`Mutation completed successfully. ${data}`, `SUCCESS`, mutationName);
-            refetch(...$queryKey.selectAll(collection));
-            refetch(...$queryKey.dropdown(collection));
+            refetch(...$queryKey.selectAll(usableCollection));
+            refetch(...$queryKey.dropdown(usableCollection));
             extraWork(data);
             navigateDescend();
         },
@@ -36,17 +38,18 @@ export function useRealmMutation<T, TResult = void>(
         }
     });
     const status = useMemo(
-        () => mutation.isLoading
-            ? 'loading'
-            : mutation.isError
+        () =>
+            mutation.isLoading
+                ? 'loading'
+                : mutation.isError
                 ? 'error'
                 : mutation.isIdle
-                    ? 'idle'
-                    : mutation.isPaused
-                        ? 'paused'
-                        : mutation.isSuccess
-                            ? 'success'
-                            : mutation,
+                ? 'idle'
+                : mutation.isPaused
+                ? 'paused'
+                : mutation.isSuccess
+                ? 'success'
+                : mutation,
         [mutation]
     );
     const [isLoading, startTransition] = useTransition();

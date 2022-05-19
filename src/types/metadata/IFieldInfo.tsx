@@ -26,5 +26,4 @@ export interface IFieldInfo {
     asDisplay?: boolean;
     iconTrue?: IconDefinition;
     iconFalse?: IconDefinition;
-
 }

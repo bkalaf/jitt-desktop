@@ -1,5 +1,5 @@
 import path from 'path';
-import { checkDirectory } from '../components/checkDirectory';
+import { checkDirectory } from '../common/fs/checkDirectory';
 import { APP_CONFIG } from '../config';
 import { FileAlloc, FileItem, mongo } from '../data';
 import { invertMimeTypes } from '../data/enums/mimeTypes';
@@ -20,7 +20,7 @@ export function insertMutation<T extends Record<string, any>>(realm: Realm, coll
 }
 
 export function updateFile(realm: Realm, collection: string) {
-    return async function ({ id, data }: { id: string, data: Record<string, any>}){
+    return async function ({ id, data }: { id: string; data: Record<string, any> }) {
         const obj = realm.objectForPrimaryKey<FileAlloc>(collection, new Realm.BSON.ObjectId(id));
         if (obj == null) throw new Error('null obj');
 
@@ -31,8 +31,8 @@ export function updateFile(realm: Realm, collection: string) {
             });
         });
         const dest = obj.path;
-        return [orig, dest] as [string, string]
-    }
+        return [orig, dest] as [string, string];
+    };
 }
 export function uploadFile(realm: Realm) {
     return function (files: File[]) {

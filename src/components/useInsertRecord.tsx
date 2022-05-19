@@ -7,8 +7,8 @@ import { ButtonGroup } from './ButtonGroup';
 import { Btn } from './providers/Btn';
 import { FormProvider } from './providers/FormProvider';
 import { useMetaDataContext } from './Toaster';
-import { determineGridSize } from "./determineGridSize";
-import { convertFromFormData } from "./convertFromFormData";
+import { determineGridSize } from './determineGridSize';
+import { convertFromFormData } from './convertFromFormData';
 import { ViewHeader } from './ViewHeader';
 import { useLocalRealm } from '../hooks/useLocalRealm';
 

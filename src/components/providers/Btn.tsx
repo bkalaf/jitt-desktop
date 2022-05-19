@@ -3,7 +3,10 @@ import { useCallback, useRef, useState } from 'react';
 import { useWhyDidYou } from '../../hooks/useWhyDidYou';
 import { $cn } from '../../util/$cn';
 
-export type IBtnProps = React.ButtonHTMLAttributes<HTMLButtonElement> & { toEnable?: (ref: React.RefObject<HTMLButtonElement>) => boolean; initState?: boolean };
+export type IBtnProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+    toEnable?: (ref: React.RefObject<HTMLButtonElement>) => boolean;
+    initState?: boolean;
+};
 
 export function Btn(props: IBtnProps) {
     useWhyDidYou(Btn.name, props);
@@ -59,7 +62,7 @@ export function Btn(props: IBtnProps) {
         { heartBeat: animating },
         'transform transition-all duration-1000 delay-150 ease-in-out flex items-center justify-center px-2 py-0.5 align-middle text-center bg-amber-light border rounded-md border-cyan/70 shadow-lg shadow-sky m-auto w-auto disabled:opacity-30 disabled:hover:opacity-30 disabled:focus:opacity-30 focus:ring focus:ring-red/70 hover:ring hover:ring-red/70'
     );
-    const actualDisable = disabled === true ? true : (toEnable != null ? toEnable(ref) : false);
+    const actualDisable = disabled === true ? true : toEnable != null ? toEnable(ref) : false;
     return (
         <button
             ref={ref}

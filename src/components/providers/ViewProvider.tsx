@@ -79,7 +79,7 @@ export function ViewProvider<T extends { _id: Realm.BSON.ObjectId } = { _id: Rea
     children: Children;
     viewKind: ViewKind;
     ObjClass: RealmClass<T>;
-    commands?: [string, IAppCommand<any>][]
+    commands?: [string, IAppCommand<any>][];
 }) {
     const location = useLocation();
     const realm = useLocalRealm();

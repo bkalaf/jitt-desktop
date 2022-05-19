@@ -4,10 +4,10 @@ import * as Webdriver from 'webdriverio';
 import { DataOrModifiedFn } from 'use-async-resource';
 import { webdriver } from '../config/webdriver';
 import { useLog } from './providers/buildLibrary';
-import { writeBrands, MercariLogIn, startBrands, finishBrands } from './MainWindow';
+import { writeBrands, startBrands, finishBrands } from './MainWindow';
+import { MercariLogIn } from "./MercariLogIn";
 
-
-export function BrandScraper({ reader }: { reader: DataOrModifiedFn<Webdriver.Browser<'async'>>; }) {
+export function BrandScraper({ reader }: { reader: DataOrModifiedFn<Webdriver.Browser<'async'>> }) {
     const browser = reader();
     const log = useLog();
     useEffect(() => {

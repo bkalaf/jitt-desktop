@@ -1,12 +1,14 @@
-import { getFullPath, getFullPathMaintenance } from '../components/getFullPath';
+import { getFullPath, getFullPathMaintenance } from '../common/fs/getFullPath';
 
 export const files = {
     brands: getFullPathMaintenance('brands.txt'),
     brandsDone: getFullPathMaintenance('brands-done.txt'),
     brandsTodo: getFullPathMaintenance('brands-todo.txt'),
     brandListings: getFullPath('brands.json', 'appData', 'jitt-desktop'),
-    categoryListings: getFullPath('category.json', 'appData', 'jitt-desktop')
+    categoryListings: getFullPath('category.json', 'appData', 'jitt-desktop'),
+    taxonomyListings: getFullPath('taxonomy.json', 'appData', 'jitt-desktop')
 };
+
 export const APP_CONFIG = {
     appFolder: 'jitt-desktop',
     db: {
@@ -26,5 +28,15 @@ export const APP_CONFIG = {
             username: 'bobby.kalaf.jr@gmail.com',
             password: 'Achilles@92111'
         }
+    },
+    ui: {
+        mainMenu: [
+            ['API', 'api'],
+            ['Data', 'data'],
+            ['Files', 'fs'],
+            ['Queues', 'queues'],
+            ['Reports', 'reports'],
+            ['Admin', 'admin']
+        ]
     }
 };

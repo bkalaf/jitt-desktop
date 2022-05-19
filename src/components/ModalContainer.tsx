@@ -4,7 +4,7 @@ import { Visibility } from '../types';
 import { cycleVisibility } from '../util';
 import { $cn } from '../util/$cn';
 import { ModalAnchor } from './ModalAnchor';
-import { Spinner } from './Spinner';
+import { Spinner } from './Indicators/Spinner';
 
 export function ModalContainer({ children }: { children?: Children }) {
     const [visibility, setVisibility] = useState<Visibility>('showing');

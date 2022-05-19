@@ -1,7 +1,7 @@
 import { useToggle } from '../../hooks/useToggle';
 import { useWhyDidYou } from '../../hooks/useWhyDidYou';
 import { $cn } from '../../util/$cn';
-import { useViewContext } from "../../hooks/useViewContext";
+import { useViewContext } from '../../hooks/useViewContext';
 import { IGridViewContext } from '../providers/ViewProvider';
 
 export type ITableRowProps = React.TableHTMLAttributes<HTMLTableRowElement> & { oid: string };
@@ -21,6 +21,3 @@ export function TableRow(props: ITableRowProps) {
         </tr>
     );
 }
-
-
-

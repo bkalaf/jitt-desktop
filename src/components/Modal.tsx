@@ -1,7 +1,7 @@
 import { cloneElement, useEffect, useMemo } from 'react';
 import { useOverlay } from './providers/OverlayProvider';
 import React from 'react';
-import { Spinner } from './Spinner';
+import { Spinner } from './Indicators/Spinner';
 import { useParams } from 'react-router-dom';
 import { useWhyDidYou } from '../hooks/useWhyDidYou';
 

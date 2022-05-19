@@ -11,7 +11,7 @@ import { useMetaDataContext } from './Toaster';
 import { convertFromFormData } from './convertFromFormData';
 import { determineGridSize } from './determineGridSize';
 import { createFileAlloc, FileAlloc, mongo, Purchase } from '../data';
-import { useChangeFileParent } from './MainWindow';
+import { useChangeFileParent } from "./useChangeFileParent";
 import { useRealmMutation } from '../queries/useRealmMutation';
 import { Mutation } from '../queries';
 
@@ -31,12 +31,12 @@ export function InsertForm<T extends Record<string, any>>() {
     const [isLoading, moveFile] = useChangeFileParent();
     const [state, loading, execute] = useRealmMutation(Mutation.insert, (record) => {
         if ('auctionId' in record) {
-                const parent = createFileAlloc(realm, (record as any).auctionId, 'auctions', 'invoices');
-                if (parent?.materializedPath?.length ?? 0 > 0) {
-                    moveFile(parent?.materializedPath ?? '', (record as any)._id.toHexString());
-                }
+            const parent = createFileAlloc(realm, (record as any).auctionId, 'auctions', 'invoices');
+            if (parent?.materializedPath?.length ?? 0 > 0) {
+                moveFile(parent?.materializedPath ?? '', (record as any)._id.toHexString());
             }
-    })
+        }
+    });
     // const mutation = useMutation(insertQuery, {
     //     onSuccess: (record: T & Realm.Object) => {
     //         successToast('You have successfully inserted a record.', 'SUCCESS', (record as any)._id.toHexString());
@@ -44,7 +44,7 @@ export function InsertForm<T extends Record<string, any>>() {
     //         queryClient.invalidateQueries(['dropdown', collection]);
     //         queryClient.refetchQueries(['selectAll', collection]);
     //         queryClient.refetchQueries(['dropdown', collection]);
-            
+
     //     },
     //     onError: (error: any) => {
     //         failureToast(error.message, 'FAILURE', error.name);

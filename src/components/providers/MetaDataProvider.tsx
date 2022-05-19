@@ -1,18 +1,12 @@
-import { app } from 'electron';
-import { stringify } from 'querystring';
-import { distinct } from '../../common/array/distinct';
-import { fst } from '../../common/tuple/fst';
-import { objectFilter } from '../../common/obj/objectFilter';
-import { $realm } from '../globals';
 import { ITypeInfo } from '../../types/metadata/ITypeInfo';
 import { IColumnInfo } from '../../types/metadata/IColumnInfo';
 import { createContext, useCallback, useMemo } from 'react';
 import { buildLibrary } from './buildLibrary';
-import { useReactiveVar } from '@apollo/client';
 import { useWhyDidYou } from '../../hooks/useWhyDidYou';
 import { Address, Cost, Facility, FileAlloc, FileItem, Length, mongo, Purchase, RentalUnit, SelfStorage, SquareFootage } from '../../data';
 import { isDotNotation } from '../../util';
 import { LazyDataOrModifiedFn } from 'use-async-resource';
+
 export interface IMetaDataContext<T extends { _id: Realm.BSON.ObjectId } = { _id: Realm.BSON.ObjectId }> {
     library: Record<string, ITypeInfo>;
     getType(x: string): ITypeInfo;
@@ -28,7 +22,7 @@ export interface IMetaDataContext<T extends { _id: Realm.BSON.ObjectId } = { _id
 
 export const MetaDataContext = createContext<undefined | IMetaDataContext>(undefined);
 
-export function MetaDataContextProvider(props: { children: Children, reader: LazyDataOrModifiedFn<Realm> }) {
+export function MetaDataContextProvider(props: { children: Children; reader: LazyDataOrModifiedFn<Realm> }) {
     useWhyDidYou('MetaDataProvider', props);
     const realm = props.reader();
     const library = useMemo(() => {
@@ -40,10 +34,15 @@ export function MetaDataContextProvider(props: { children: Children, reader: Laz
         },
         [library]
     );
-    const getControlFlat = useCallback((typename: string): IColumnInfo[] => {
-        const infos = getControlUnflat(typename);
-        return infos.map((x) => (x.flags.embedded ? getControlFlat(x.objectType ?? '').map(a => ({ ...a, name: [x.name, a.name].join('.') })) : [x])).reduce((pv, cv) => [...pv, ...cv], []);
-    }, [getControlUnflat]);
+    const getControlFlat = useCallback(
+        (typename: string): IColumnInfo[] => {
+            const infos = getControlUnflat(typename);
+            return infos
+                .map((x) => (x.flags.embedded ? getControlFlat(x.objectType ?? '').map((a) => ({ ...a, name: [x.name, a.name].join('.') })) : [x]))
+                .reduce((pv, cv) => [...pv, ...cv], []);
+        },
+        [getControlUnflat]
+    );
     const value = useMemo(
         () => ({
             library,
@@ -54,7 +53,7 @@ export function MetaDataContextProvider(props: { children: Children, reader: Laz
             getInfoFor(typeName: string, colName: string) {
                 function inner(t: string, c: string): IColumnInfo {
                     if (isDotNotation(c)) {
-                        console.log('t', t, 'c', c)
+                        console.log('t', t, 'c', c);
                         const [head, ...tail] = c.split('.');
                         const current = library[t].columnInfos[head];
                         console.log(`current`, current);

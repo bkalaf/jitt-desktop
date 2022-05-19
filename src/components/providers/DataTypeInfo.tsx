@@ -1,18 +1,12 @@
-import { SortDescriptor, UserIdentity } from 'realm';
 import { identity } from '../../common/identity';
 import { padZero } from '../../common/text/padZero';
-import { composeR } from '../../common/composeR';
 import { ObjectId } from 'bson';
-import { createContext, FieldsetHTMLAttributes, HTMLInputTypeAttribute, OlHTMLAttributes, TdHTMLAttributes, useCallback, useRef, useState } from 'react';
+import { FieldsetHTMLAttributes, OlHTMLAttributes, TdHTMLAttributes } from 'react';
 import { IconDefinition } from '@fortawesome/pro-duotone-svg-icons';
-import { Descendant } from './SchemaProvider';
-import { fst } from '../../common/tuple/fst';
-import { icon } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useProvideMetaData } from './useProvideMetaData';
 
 // TODO Extract
-export const toOutput: Record<string, (x: any) => (string)> = {
+export const toOutput: Record<string, (x: any) => string> = {
     objectId: (x: ObjectId) => x.toHexString(),
     string: identity,
     int: (x: number) => x.toFixed(0),
@@ -40,7 +34,7 @@ export const toOutput: Record<string, (x: any) => (string)> = {
                 });
             });
         }
-        return 'junk'
+        return 'junk';
     }
 };
 export const toDB: Record<string, (x: string) => any> = {
@@ -114,12 +108,4 @@ export function IconCell(props: TdHTMLAttributes<HTMLTableCellElement> & { icon:
 }
 export function TableCell(props: TdHTMLAttributes<HTMLTableCellElement>) {
     return <td {...props}></td>;
-}
-
-export const MetaDataContext = createContext<ReturnType<typeof useProvideMetaData> | undefined>(undefined);
-
-export function MetaDataProvider({ children }: { children: Children }) {
-    const value = useProvideMetaData();
-    console.log(value);
-    return <MetaDataContext.Provider value={value}>{children}</MetaDataContext.Provider>;
 }

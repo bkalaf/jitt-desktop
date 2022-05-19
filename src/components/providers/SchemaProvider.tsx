@@ -82,7 +82,6 @@ export const ORM: Record<
     }
 };
 
-
 export type IPropertyInfo = {
     name: string;
     propertyType: 'primitive' | 'local' | 'reference' | 'embedded' | 'collection';
@@ -211,6 +210,6 @@ export function createProps(name: string, v: IPropertyInfo | null) {
     return props;
 }
 export function SchemaProvider({ children }: { children: Children }) {
-    const value = undefined
+    const value = undefined;
     return <SchemaContext.Provider value={value}>{children}</SchemaContext.Provider>;
 }

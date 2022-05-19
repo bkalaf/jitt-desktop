@@ -8,7 +8,6 @@
 
 .font-small-caps {
     font-variant-caps: small-caps;
-    background-color: slategrey
 }
 
 .font-petite-caps {
@@ -38,5 +37,5 @@
 .theme-primary {
     --fa-primary-color: linen;
     --fa-secondary-color: dodgerblue;
-    --fa-secondary-opacity: 1.0;
+    --fa-secondary-opacity: 1;
 }

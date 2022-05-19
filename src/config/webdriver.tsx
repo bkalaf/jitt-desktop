@@ -46,7 +46,7 @@ export const webdriver = {
                 orange: ['testid', 'select-opt-10'] as [string, string],
                 brown: ['testid', 'select-opt-11'] as [string, string],
                 gold: ['testid', 'select-opt-12'] as [string, string],
-                silver: ['testid', 'select-opt-13'] as [string, string],
+                silver: ['testid', 'select-opt-13'] as [string, string]
             },
             zipcode: ['testid', 'ShipsFrom'] as [string, string],
             shipping: ['testid', 'MercariLocalAndShipping'] as [string, string],
@@ -68,7 +68,7 @@ export const webdriver = {
                 // dataset.testid
                 name: '[data-testid="shipping-choice"] > div > div > div > div > p',
                 priceAndTime: '[data-testid="shipping-choice"] > div > div > div > div > p ~ p',
-                splitter: '|',
+                splitter: '|'
                 // trim and remove $
             },
             saveShipping: ['testid', 'SaveButton'] as [string, string],
@@ -83,4 +83,4 @@ export const webdriver = {
             photos: ['testid', 'PhotoUploadBox'] as [string, string]
         }
     }
-}
+};

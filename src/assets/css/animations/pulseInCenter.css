@@ -1,5 +1,4 @@
 @-webkit-keyframes pulseInCenter {
-
     from,
     20%,
     40%,
@@ -45,7 +44,6 @@
 }
 
 @keyframes pulseInCenter {
-
     from,
     20%,
     40%,

@@ -10,7 +10,7 @@ class Fake {
 export function LoginForm() {
     const navigate = useNavigate();
     const [handleSubmit, register, formRef] = useForm<{ email: string; password: string }, Realm.User | null>(
-        (fd) => Promise.resolve(({ email: fd.get('email')?.toString() ?? '', password: fd.get('password')?.toString() ?? '' })),
+        (fd) => Promise.resolve({ email: fd.get('email')?.toString() ?? '', password: fd.get('password')?.toString() ?? '' }),
         () => new Fake()
     );
     const submitter = (credentials: { email: string; password: string }) =>

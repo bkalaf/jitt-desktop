@@ -44,7 +44,7 @@
                 "label": "ID",
                 "name": "_id"
             },
-            { "name": "facility", "option": ["_id", "name"]},
+            { "name": "facility", "option": ["_id", "name"] },
             { "name": "unit" },
             { "name": "size", "embedded": true }
         ]

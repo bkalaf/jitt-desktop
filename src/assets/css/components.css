@@ -2,7 +2,7 @@
 
 @layer components {
     .ui-bar {
-        @apply border-2 py-0.5 space-x-1 w-full flex justify-between flex-row font-bold text-xl font-fira-sans tracking-wider leading-snug shadow-md pb-1 ;
+        @apply border-2 py-0.5 space-x-1 w-full flex justify-between flex-row font-bold text-xl font-fira-sans tracking-wider leading-snug shadow-md pb-1;
     }
     .black-bg {
         @apply text-white bg-black/90 border-white/50 shadow-cyan;
@@ -14,7 +14,7 @@
         @apply black-bg ui-bar;
     }
     .rose-ui-bar {
-        @apply justify-center rose-bg ui-bar ;
+        @apply justify-center rose-bg ui-bar;
     }
     .rounded-b {
         @apply border-b rounded-b-md;
@@ -45,7 +45,7 @@
         @apply text-white trans border-black/80 bg-zinc-dark shadow-white hover:bg-blue-dark hover:text-white-light ring-2 ring-transparent hover:ring-cyan hover:border focus:ring-yellow disabled:bg-neutral/90 disabled:text-black disabled:text-opacity-30;
     }
     .btn-red {
-        @apply btn red-bg ;
+        @apply btn red-bg;
     }
     .btn-zinc {
         @apply btn zinc-bg;
@@ -69,7 +69,7 @@
         @apply px-2.5 py-1.5;
     }
 
-    .btn-group {    
+    .btn-group {
         @apply flex flex-row;
     }
 
@@ -92,7 +92,8 @@
         @apply inline-flex mx-1.5 my-0.5 text-base leading-snug font-bold items-center bg-sky-dark border border-black rounded-lg text-white;
     }
 
-    .toast {}
+    .toast {
+    }
 
     .warning-toast {
         @apply ml-3 text-lg font-bold text-left text-white shadow-md bg-orange-dark shadow-orange;
@@ -112,7 +113,7 @@
         @apply flex w-full ml-2 text-lg font-bold text-center text-white shadow-md bg-emerald-very-dark/80 shadow-black;
     }
     .success-toast-subheader {
-        @apply flex w-full ml-2 text-base font-bold text-center text-white shadow-md bg-green shadow-black; 
+        @apply flex w-full ml-2 text-base font-bold text-center text-white shadow-md bg-green shadow-black;
     }
     .success-toast-body {
         @apply flex flex-grow w-full ml-2 text-base font-bold text-left text-black shadow-md font-fira-sans bg-green-light shadow-black;
@@ -122,7 +123,7 @@
         @apply flex w-full ml-2 text-lg font-bold text-center text-white shadow-md bg-orange-dark shadow-black;
     }
     .warning-toast-subheader {
-        @apply flex w-full ml-2 text-base font-bold text-center text-white shadow-md bg-amber-light shadow-black; 
+        @apply flex w-full ml-2 text-base font-bold text-center text-white shadow-md bg-amber-light shadow-black;
     }
     .warning-toast-body {
         @apply flex flex-grow w-full ml-2 text-base font-bold text-left text-black shadow-md font-fira-sans bg-yellow-light shadow-black;
@@ -132,7 +133,7 @@
         @apply flex w-full ml-2 text-lg font-bold text-center text-white shadow-md bg-red-dark/80 shadow-black;
     }
     .failure-toast-subheader {
-        @apply flex w-full ml-2 text-base font-bold text-center text-white shadow-md bg-rose shadow-black; 
+        @apply flex w-full ml-2 text-base font-bold text-center text-white shadow-md bg-rose shadow-black;
     }
     .failure-toast-body {
         @apply flex flex-grow w-full ml-2 text-base font-bold text-left text-black shadow-md font-fira-sans bg-pink-light shadow-black;
@@ -142,7 +143,7 @@
         @apply flex w-full ml-2 text-lg font-bold text-center text-white shadow-md bg-indigo-dark/80 shadow-black;
     }
     .error-toast-subheader {
-        @apply flex w-full ml-2 text-base font-bold text-center text-white shadow-md bg-violet shadow-black; 
+        @apply flex w-full ml-2 text-base font-bold text-center text-white shadow-md bg-violet shadow-black;
     }
     .error-toast-body {
         @apply flex flex-grow w-full ml-2 text-base font-bold text-left text-black shadow-md font-fira-sans bg-magenta-light shadow-black;
@@ -159,7 +160,6 @@
     .toast-body {
         @apply mx-1.5 my-1 text-base tracking-tight font-semibold text-black font-fira-sans leading-snug;
     }
-
 
     .sidebar-anchor-top {
         @apply flex flex-col w-full h-12 justify-self-start font-fira-sans;

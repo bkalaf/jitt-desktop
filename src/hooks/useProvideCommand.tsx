@@ -1,7 +1,7 @@
 import { ReactiveVar, useReactiveVar } from '@apollo/client';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ignore } from '../common/ignore';
-import { useForceUpdate } from "./useForceUpdate";
+import { useForceUpdate } from './useForceUpdate';
 import { ICommand } from '../types/ui/ICommand';
 
 export function useProvideCommand<TArgs extends any[]>(

@@ -18,7 +18,7 @@ export const mimeTypes = {
 };
 
 export function invertObject(obj: Record<string, string>) {
-    return Object.fromEntries(Object.entries(obj).map(([k, v]) => [v, k]))
+    return Object.fromEntries(Object.entries(obj).map(([k, v]) => [v, k]));
 }
 
 export const invertMimeTypes: Record<string, MimeTypes> = invertObject(mimeTypes) as any;

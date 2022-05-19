@@ -7,6 +7,7 @@ import { lengths, pluralize } from './enums/lengthUOM';
 import { AuctionSites } from './enums/auctionSite';
 import { MimeTypes } from './enums/mimeTypes';
 import { not } from '../common';
+import { now } from '../aggregator';
 
 export const primitives = {
     objectId: 'objectId',
@@ -19,17 +20,6 @@ export const primitives = {
     data: 'data',
     uuid: 'uuid',
     bool: 'bool'
-};
-export const dt = {
-    ...primitives,
-    optional: {
-        ...objectMap((x) => `${x}?`)(primitives)
-    },
-    linkingObjects: 'linkingObjects',
-    object: 'object',
-    list: 'list',
-    dictionary: 'dictionary',
-    set: 'set'
 };
 export const mongo = {
     selfStorage: 'self-storage',
@@ -44,8 +34,29 @@ export const mongo = {
     fsItem: 'fs-item',
     fileKind: 'file-kind',
     company: 'company',
-    brand: 'brand'
+    brand: 'brand',
+    category: 'category',
+    taxonomy: 'taxonomy',
+    itemtype: 'item-type',
+    verifiedBrand: 'verified-brand',
+    activity: 'activity'
 };
+export const dt = {
+    ...primitives,
+    optional: {
+        ...objectMap((x) => `${x}?`)(primitives)
+    },
+    listOf: {
+        ...objectMap((x) => `${x}[]`)(primitives),
+        ...objectMap((x) => `${x}[]`)(mongo)
+    },
+    linkingObjects: 'linkingObjects',
+    object: 'object',
+    list: 'list',
+    dictionary: 'dictionary',
+    set: 'set'
+};
+console.log(dt);
 
 export class SelfStorage {
     static schema: ObjectSchema = {
@@ -128,7 +139,9 @@ export class Facility {
         this.units = [];
     }
     get name() {
-        return [this.selfStorage?.name ?? '', [this.address.city, this.address.state].join(', '), this.address.street?.split(' ').slice(1).join(' ')].join(' - ');
+        return [this.selfStorage?.name ?? '', [this.address.city, this.address.state].join(', '), this.address.street?.split(' ').slice(1).join(' ')].join(
+            ' - '
+        );
     }
 }
 export class Length {
@@ -200,15 +213,6 @@ export class RentalUnit {
     }
 }
 
-export class Company {
-    static schema: ObjectSchema = {
-        name: 'company',
-        primaryKey: '_id',
-        properties: {
-            _id: dt.objectId
-        }
-    }
-}
 export class Cost {
     static schema: ObjectSchema = {
         name: mongo.cost,
@@ -219,7 +223,7 @@ export class Cost {
             taxExempt: { type: dt.bool, default: false },
             premiumPercent: { type: dt.optional.double, default: 0 }
         }
-    }
+    };
     bid: number;
     taxPercent: number;
     taxExempt: boolean;
@@ -254,7 +258,7 @@ export class Purchase {
             invoice: mongo.fsItem,
             rentalUnit: mongo.rentalUnit
         }
-    }
+    };
     _id: ObjectId;
     cost: Cost;
     closeDate: Date;
@@ -277,7 +281,6 @@ export class FileItem {
     static DOC_REGEX = /^\/products\/(\d*\/)?docs\//;
     static RECEIPT_REGEX = /^\/(auctions|products)\/(\d*\/)?receipts\//;
 
-    
     static schema: ObjectSchema = {
         name: mongo.fsItem,
         primaryKey: '_id',
@@ -300,7 +303,7 @@ export class FileItem {
             // TODO add photo
             // TODO add receipt
         }
-    }
+    };
     _id: ObjectId;
     fsAlloc: FileAlloc[];
     data?: ArrayBuffer;
@@ -321,27 +324,26 @@ export class FileItem {
         // const arr2 = Object.entries(this.fsAlloc[0]);
         // console.log('ARR2', arr2);
         // console.log('ARR', arr);
-        console.log('NEW NAME', this.fsAlloc[0])
+        console.log('NEW NAME', this.fsAlloc[0]);
         return this.fsAlloc[0].name;
     }
     get isAssigned() {
         return (this.invoice[0] != null).toString();
     }
     get isInvoice() {
-        return (FileItem.INVOICE_REGEX.test(this.fsAlloc[0]?.path ?? '/')).toString();
+        return FileItem.INVOICE_REGEX.test(this.fsAlloc[0]?.path ?? '/').toString();
     }
     get isPhoto() {
-        return (FileItem.PHOTO_REGEX.test(this.fsAlloc[0]?.path ?? '/')).toString();
+        return FileItem.PHOTO_REGEX.test(this.fsAlloc[0]?.path ?? '/').toString();
     }
     get isReceipt() {
-        return (FileItem.RECEIPT_REGEX.test(this.fsAlloc[0]?.path ?? '/')).toString();
+        return FileItem.RECEIPT_REGEX.test(this.fsAlloc[0]?.path ?? '/').toString();
     }
     get isDoc() {
-        return (FileItem.DOC_REGEX.test(this.fsAlloc[0]?.path ?? '/')).toString();
+        return FileItem.DOC_REGEX.test(this.fsAlloc[0]?.path ?? '/').toString();
     }
 }
 export class FileAlloc {
-    
     static schema: ObjectSchema = {
         name: mongo.fsAlloc,
         primaryKey: '_id',
@@ -359,7 +361,7 @@ export class FileAlloc {
             fsItem: mongo.fsItem,
             fileCreation: dt.optional.date
         }
-    }
+    };
     _id: ObjectId;
     name: string;
     originalName: string;
@@ -388,7 +390,7 @@ export class FileAlloc {
         return this.content.length;
     }
     get size(): number {
-        return this.content.map(s => s.size).reduce((x, y) => x + y, 0);
+        return this.content.map((s) => s.size).reduce((x, y) => x + y, 0);
     }
     get type(): string {
         if (this.fsItem == null) return 'folder';
@@ -399,15 +401,180 @@ export class FileAlloc {
         return 'unknown';
     }
 }
-export const schema = [SelfStorage, Facility, Address, RentalUnit, Length, SquareFootage, FileAlloc, FileItem, Purchase, Cost];
 
+export class Company {
+    static schema: ObjectSchema = {
+        name: mongo.company,
+        primaryKey: '_id',
+        properties: {
+            _id: dt.objectId,
+            name: dt.string,
+            parent: mongo.company,
+            descendants: {
+                type: dt.linkingObjects,
+                objectType: mongo.company,
+                property: 'parent'
+            },
+            aliases: {
+                type: dt.list,
+                objectType: dt.string
+            },
+            rns: {
+                type: dt.list,
+                objectType: dt.int
+            },
+            country: {
+                type: dt.list,
+                objectType: dt.string
+            },
+            brands: {
+                type: dt.linkingObjects,
+                objectType: mongo.brand,
+                property: 'company'
+            }
+        }
+    };
+}
+
+export class VerifiedBrand {
+    static schema: ObjectSchema = {
+        name: mongo.verifiedBrand,
+        primaryKey: '_id',
+        properties: {
+            _id: dt.objectId,
+            name: dt.string
+        }
+    };
+    _id: ObjectId;
+    name: string;
+    constructor() {
+        this._id = new ObjectId();
+        this.name = '';
+    }
+}
+export class Brand {
+    static schema: ObjectSchema = {
+        name: mongo.brand,
+        primaryKey: '_id',
+        properties: {
+            _id: dt.objectId,
+            name: dt.string,
+            alias: dt.listOf.string,
+            productLines: dt.listOf.string,
+            company: mongo.company,
+            verifiedBrand: mongo.verifiedBrand
+        }
+    };
+    _id: ObjectId;
+    name: string;
+    alias: string[];
+    productLines: string[];
+    company?: Company;
+    verifiedBrand?: VerifiedBrand;
+    constructor() {
+        this._id = new ObjectId();
+        this.name = '';
+        this.alias = [];
+        this.productLines = [];
+    }
+}
+export class Category {
+    static schema: ObjectSchema = {
+        name: mongo.category,
+        primaryKey: '_id',
+        properties: {
+            _id: dt.objectId,
+            id: dt.string,
+            label: dt.string,
+            node: dt.int
+        }
+    };
+}
+export class Taxonomy {
+    static schema: ObjectSchema = {
+        name: mongo.taxonomy,
+        primaryKey: '_id',
+        properties: {
+            _id: dt.objectId,
+            category: mongo.category,
+            subCategory: mongo.category,
+            subSubCategory: mongo.category,
+            materializedPath: dt.string,
+            selectors: dt.listOf.string,
+            itemType: mongo.itemtype
+        }
+    };
+}
+export class ItemType {
+    static schema: ObjectSchema = {
+        name: mongo.itemtype,
+        primaryKey: '_id',
+        properties: {
+            _id: dt.objectId,
+            taxonomy: mongo.taxonomy,
+            name: dt.string
+        }
+    };
+}
+
+export type ActivityAction = 'scrape' | 'import';
+
+export type ActivityScope = 'brands' | 'categories' | 'taxonomy';
+
+export class Activity {
+    static schema : ObjectSchema = {
+        name: mongo.activity,
+        primaryKey: '_id',
+        properties: {
+            _id: dt.objectId,
+            action: dt.string,
+            scope: dt.string,
+            when: dt.date,
+            isComplete: dt.bool,
+            isScheduled: dt.bool
+        }
+    };
+    _id: ObjectId;
+    action: ActivityAction;
+    scope: ActivityScope;
+    when: Date;
+    isComplete: boolean;
+    isScheduled: boolean;
+    constructor() {
+        this._id = new ObjectId();
+        this.action = 'scrape';
+        this.scope = 'brands';
+        this.when = now();
+        this.isComplete = false;
+        this.isScheduled = true;
+    }
+}
+export const schema = [
+    SelfStorage,
+    Facility,
+    Address,
+    RentalUnit,
+    Length,
+    SquareFootage,
+    FileAlloc,
+    FileItem,
+    Purchase,
+    Cost,
+    Company,
+    Brand,
+    Category,
+    Taxonomy,
+    VerifiedBrand,
+    ItemType,
+    Activity
+];
 
 export function createFileAlloc(realm: Realm, name: string, parentName: string, child: string) {
     const parent = realm.objects<FileAlloc>(mongo.fsAlloc).filtered(`materializedPath == '/${parentName}'`)[0];
     const obj = {
         _id: new Realm.BSON.ObjectId(),
         name,
-        originalName: name, 
+        originalName: name,
         materializedPath: [parent.materializedPath, name].join('/'),
         parent
     };

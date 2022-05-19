@@ -1,5 +1,5 @@
 import { process as electronProcess } from '@electron/remote';
-import { cloneElement, useCallback, useEffect, useRef, useState, useTransition } from 'react';
+import { cloneElement, useCallback, useEffect, useMemo, useRef, useState, useTransition } from 'react';
 import { createFrom } from '../../common/array/createFrom';
 import { identity } from '../../common/identity';
 import { ignore } from '../../common/ignore';
@@ -11,6 +11,7 @@ import { DAL } from './DAL';
 import { toOutput } from './DataTypeInfo';
 import { echo } from '../../common/echo';
 import { ITypeInfo } from '../../types/metadata/ITypeInfo';
+import * as fs from 'graceful-fs';
 import { ofProperties } from './ofProperties';
 import { embeddedFieldsByType } from './embeddedFieldsByType';
 import { getProperty } from '../../common';
@@ -34,12 +35,13 @@ import { useToggle } from '../../hooks/useToggle';
 import { ModalContainer } from '../ModalContainer';
 import { FilePreview } from '../MainRouter';
 import { MimeTypes } from '../../data/enums/mimeTypes';
+import { getFullPath } from '../../common/fs/getFullPath';
 
 export function DataCell({ result, icon, x, mimeType }: { result: ArrayBuffer; icon: IconDefinition; x: string; mimeType: MimeTypes }) {
     const [showImage, toggleImage] = useToggle(false);
     const [src, setSrc] = useState<undefined | string>(undefined);
     const reader = useRef(new FileReader());
-    const cb = useCallback((ev: ProgressEvent<FileReader>) => setSrc(ev.target!.result as string), [])
+    const cb = useCallback((ev: ProgressEvent<FileReader>) => setSrc(ev.target!.result as string), []);
     useEffect(() => {
         const r = reader.current;
         r.addEventListener('loadend', cb);
@@ -49,7 +51,7 @@ export function DataCell({ result, icon, x, mimeType }: { result: ArrayBuffer; i
         if (src == null && reader.current.readyState === reader.current.EMPTY) {
             reader.current.readAsDataURL(new Blob([result], { type: 'application/pdf' }));
         }
-        return () => src != null ? URL.revokeObjectURL(src) : ignore();
+        return () => (src != null ? URL.revokeObjectURL(src) : ignore());
     }, [result, src]);
     return (
         <TableCell key={x}>
@@ -64,7 +66,11 @@ export function DataCell({ result, icon, x, mimeType }: { result: ArrayBuffer; i
                             size='2x'
                             className='absolute top-0 right-0 mt-2 mr-2'
                             onClick={toggleImage}></DuotoneButton>
-                        {mimeType === 'pdf' ? <iframe src={`${src}#zoom-75`} className='flex object-scale-down w-full h-full' /> : <img src={src} className='flex object-scale-down w-full h-full' />}
+                        {mimeType === 'pdf' ? (
+                            <iframe src={`${src}#zoom-75`} className='flex object-scale-down w-full h-full' />
+                        ) : (
+                            <img src={src} className='flex object-scale-down w-full h-full' />
+                        )}
                     </div>
                 </ModalContainer>
             )}
@@ -72,8 +78,11 @@ export function DataCell({ result, icon, x, mimeType }: { result: ArrayBuffer; i
     );
 }
 export function useLog() {
+    // const logFile = useMemo(() => getFullPath('jitt.log', 'logs', 'jitt-desktop'), []);
     const log = useCallback((name: any, ...args: string[]) => {
-        electronProcess.stdout.write([typeof name !== 'string' ? JSON.stringify(name) : name, ...args].join(' :: ').concat('\n'));
+        const line = [typeof name !== 'string' ? JSON.stringify(name) : name, ...args].join(' :: ').concat('\n');
+        // fs.appendFileSync(logFile, line);
+        electronProcess.stdout.write(line);
         console.log(name, ...args);
     }, []);
     return log;
@@ -290,6 +299,8 @@ export function buildLibrary(realm: Realm) {
                                             />
                                         </TableCell>
                                     );
+                                } else if (datatype === 'linkingObjects') {
+                                    func = (y: any) => value[0][optionMap?.label ?? ''] ?? 'n/a';
                                 } else if (asDisplay) {
                                     func = (x: any) => x.displayAs;
                                 } else if (datatype === 'object') {

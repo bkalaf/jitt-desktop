@@ -1,5 +1,4 @@
-import { ToastType } from "./ToastType";
-
+import { ToastType } from './ToastType';
 
 export type IToasterContext = {
     toasts: () => JSX.Element[];

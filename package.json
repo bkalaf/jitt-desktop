@@ -78,7 +78,8 @@
         "build": "NODE_ENV=development webpack-cli -c ./webpack.config.ts",
         "start": "ELECTRON_NO_ATTACH_CONSOLE=true ./node_modules/.bin/electron public/app.js",
         "dev": "./node_modules/.bin/webpack --watch",
-        "app": "ELECTRON_NO_ATTACH_CONSOLE=true ./node_modules/.bin/electron public/app.js",
-        "start-linux": "yarn build && yarn start"
+        "app": "./node_modules/.bin/electron public/app.js",
+        "start-linux": "yarn build && yarn start",
+        "prettier": "./node_modules/.bin/prettier ./src/**/* --write"
     }
 }

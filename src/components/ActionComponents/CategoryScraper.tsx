@@ -2,14 +2,16 @@ import { useEffect } from 'react';
 import React from 'react';
 import * as Webdriver from 'webdriverio';
 import { DataOrModifiedFn } from 'use-async-resource';
-import { webdriver } from '../config/webdriver';
-import { files } from '../config';
-import { useLog } from './providers/buildLibrary';
-import { click, ifNotExistDo, clickById, MercariLogIn } from './MainWindow';
-import { writeFile } from "./writeFile";
+import { webdriver } from '../../config/webdriver';
+import { files } from '../../config';
+import { useLog } from '../providers/buildLibrary';
+import { clickById } from "../clickById";
+import { click } from "../../automation/click";
+import { MercariLogIn } from "../MercariLogIn";
+import { ifNotExistDo } from "../ifNotExistDo";
+import { writeFile } from '../../common/fs/writeFile';
 
-
-export function CategoryScraper({ reader }: { reader: DataOrModifiedFn<Webdriver.Browser<'async'>>; }) {
+export function TaxonomyScraper({ reader }: { reader: DataOrModifiedFn<Webdriver.Browser<'async'>> }) {
     const browser = reader();
     const log = useLog();
     useEffect(() => {
@@ -46,9 +48,8 @@ export function CategoryScraper({ reader }: { reader: DataOrModifiedFn<Webdriver
                 return arr.push({ category: id, label });
             };
         }
-        async function handleSubCategories(subcats: { category: string; subcategory: string; }[], accum = [] as any[]): Promise<any[]> {
-            if (subcats.length === 0)
-                return accum;
+        async function handleSubCategories(subcats: { category: string; subcategory: string }[], accum = [] as any[]): Promise<any[]> {
+            if (subcats.length === 0) return accum;
             const [{ category, subcategory }, ...tail] = subcats;
             if (!(await browser.$('ul#categoryId').isExisting())) {
                 log(`ul#categoryId-not exist`);
@@ -74,9 +75,8 @@ export function CategoryScraper({ reader }: { reader: DataOrModifiedFn<Webdriver
             await click(browser)(webdriver.selectors.listingForm.subSubCategory);
             return await handleSubCategories(tail, accum);
         }
-        async function handleCategory(cats: { category: string; }[], accum = [] as any[]): Promise<any[]> {
-            if (cats.length === 0)
-                return accum;
+        async function handleCategory(cats: { category: string }[], accum = [] as any[]): Promise<any[]> {
+            if (cats.length === 0) return accum;
             const [head, ...tail] = cats;
             if (!(await browser.$('ul#categoryId').isExisting())) {
                 log(`ul#categoryId-not exist`);
@@ -103,7 +103,7 @@ export function CategoryScraper({ reader }: { reader: DataOrModifiedFn<Webdriver
             await click(browser)(webdriver.selectors.listingForm.category);
             const els = await browser.$$(webdriver.selectors.listingForm.categoryList);
             console.log(els);
-            const categories: { category: string; label: string; }[] = [];
+            const categories: { category: string; label: string }[] = [];
             await Promise.all(els.map(handle(categories)));
 
             await click(browser)(webdriver.selectors.listingForm.category);

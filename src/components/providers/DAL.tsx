@@ -9,7 +9,7 @@ import { Fieldset } from '../forms/elements/Fieldset';
 import { FormElement, Input } from '../forms/elements/Input';
 import { Output } from '../forms/elements/Output';
 import { Select } from '../forms/elements/Select';
-import { IFieldInfo } from "../../types/metadata/IFieldInfo";
+import { IFieldInfo } from '../../types/metadata/IFieldInfo';
 import { auctionSites } from '../../data/enums/auctionSite';
 import { mimeTypes } from '../../data/enums/mimeTypes';
 
@@ -69,7 +69,7 @@ export const DAL: Record<
         ]
     },
     [mongo.length]: {
-        columns: [ 'value', 'uom'],
+        columns: ['value', 'uom'],
         sorted: [],
         fields: [
             { el: Input, name: 'value', required: true, min: 0, defaultValue: '0', type: 'text' },
@@ -103,13 +103,13 @@ export const DAL: Record<
         sorted: [['bid', false]],
         columns: ['bid', 'taxPercent', 'taxDollar', 'taxExempt', 'premiumPercent', 'premiumDollar', 'totalDollar'],
         fields: [
-            { el: Input, name: 'bid', min: 0, type: 'number',   required: true, step: 0.01, placeholder: '$10.00' },
+            { el: Input, name: 'bid', min: 0, type: 'number', required: true, step: 0.01, placeholder: '$10.00' },
             { el: Input, name: 'taxPercent', min: 0, max: 100, step: 0.01, type: 'number', required: true, placeholder: '5.00%' },
             { el: Input, name: 'taxExempt', type: 'checkbox' },
             { el: Input, name: 'premiumPercent', min: 0, max: 100, step: 0.01, placeholder: '5.00%', type: 'number', required: true },
             { el: Output, name: 'taxDollar' },
             { el: Output, name: 'premiumDollar' },
-            { el: Output, name: 'totalDollar' },
+            { el: Output, name: 'totalDollar' }
         ]
     },
     [mongo.purchase]: {
@@ -122,7 +122,7 @@ export const DAL: Record<
             { el: Select, name: 'auctionSite', enumMap: auctionSites, required: true },
             { el: Input, name: 'auctionId', type: 'text' },
             { el: Input, name: 'invoiceId', type: 'text' },
-            { el: Select, name: 'invoice', optionMap: { value: '_id', label: 'name' }, to: mongo.fsItem },
+            { el: Select, name: 'invoice', optionMap: { value: '_id', label: 'data' }, to: mongo.fsItem },
             { el: Fieldset, name: 'cost' }
         ]
     },
@@ -131,11 +131,11 @@ export const DAL: Record<
         columns: ['_id', 'fsAlloc', 'data', 'size', 'mimeType', 'invoice', 'name', 'isAssigned', 'isInvoice'],
         fields: [
             { el: Input, name: '_id', readOnly: true, required: true, type: 'text', icon: faKey, label: 'ID', hideOnInsert: true },
-            { el: Select, name: 'fsAlloc', hideOnInsert: true },
+            { el: Select, name: 'fsAlloc', hideOnInsert: true, optionMap: { value: '_id', label: 'materializedPath' } },
             { el: Input, name: 'data', type: 'image', icon: faBinoculars },
             { el: Input, name: 'size', type: 'number', required: true },
             { el: Select, name: 'mimeType', enumMap: mimeTypes },
-            { el: Select, name: 'invoice', hideOnInsert: true },
+            { el: Select, name: 'invoice', hideOnInsert: true, optionMap: { value: '_id', label: 'invoiceId' } },
             { el: Output, name: 'name' },
             { el: Output, name: 'isAssigned', iconTrue: faSquareCheck, iconFalse: faSquare },
             { el: Output, name: 'isInvoice', iconTrue: faSquareCheck, iconFalse: faSquare }
@@ -146,19 +146,70 @@ export const DAL: Record<
         columns: ['_id', 'name', 'originalName', 'parent', 'materializedPath', 'fsItem', 'type', 'fileCreation', 'count', 'path', 'isFolder', 'isFile', 'size'],
         fields: [
             { el: Input, name: '_id', readOnly: true, required: true, type: 'text', icon: faKey, label: 'ID', hideOnInsert: true },
-            { el: Input, name: 'name', type: 'text', required: true},
+            { el: Input, name: 'name', type: 'text', required: true },
             { el: Input, name: 'originalName', type: 'text', readOnly: true, required: true },
-            { el: Select, name: 'parent', to: mongo.fsAlloc, optionMap: { value: '_id', label: 'materializedPath' }  },
+            { el: Select, name: 'parent', to: mongo.fsAlloc, optionMap: { value: '_id', label: 'materializedPath' } },
             { el: Input, name: 'materializedPath', readOnly: true },
-            { el: Select, name: 'fsItem', to: mongo.fsItem, optionMap: {
-                value: '_id', label: 'isAssigned'
-            }},
+            {
+                el: Select,
+                name: 'fsItem',
+                to: mongo.fsItem,
+                optionMap: {
+                    value: '_id',
+                    label: 'isAssigned'
+                }
+            },
             { el: Output, name: 'type' },
             { el: Input, name: 'fileCreation', type: 'date' },
-            { el: Input, name: 'count', type:'number'},
+            { el: Input, name: 'count', type: 'number' },
             { el: Output, name: 'path' },
             { el: Output, name: 'isFile' },
-            { el: Output, name: 'isFolder'}
+            { el: Output, name: 'isFolder' }
         ]
+    },
+    [mongo.company]: {
+        columns: [],
+        sorted: [],
+        fields: []
+    },
+    [mongo.brand]: {
+        columns: [],
+        sorted: [],
+        fields: []
+    },
+    [mongo.verifiedBrand]: {
+        columns: ['_id', 'name'],
+        sorted: [['name', false]],
+        fields: [
+            { el: Input, name: '_id', readOnly: true, required: true, type: 'text', icon: faKey, label: 'ID', hideOnInsert: true },
+            { el: Input, name: 'name', type: 'text', readOnly: true, required: true }
+        ]
+    },
+    [mongo.activity]: {
+        columns: ['_id', 'action', 'scope', 'when', 'isComplete', 'isScheduled'],
+        sorted: [['isScheduled', false], ['action', false], ['when', false]],
+        fields: [
+             { el: Input, name: '_id', readOnly: true, required: true, type: 'text', icon: faKey, label: 'ID', hideOnInsert: true },
+             { el: Select, name: 'action', enumMap: { scrape: 'web-scraping', import: 'import-json' } },
+             { el: Select, name: 'scope', enumMap: { brands: 'Verified Brands', categories: 'Categories', taxonomy: 'Taxonomy' }},
+             { el: Input, name: 'when', type: 'datetime' },
+             { el: Input, name: 'isComplete', type: 'checkbox' },
+             { el: Input, name: 'isScheduled', type: 'checkbox' }
+        ]
+    },
+    [mongo.category]: {
+        columns: ['_id', 'id', 'label', 'node'],
+        sorted: [],
+        fields: []
+    },
+    [mongo.taxonomy]: {
+        columns: [],
+        sorted: [],
+        fields: []
+    },
+    [mongo.itemtype]: {
+        columns: [],
+        sorted: [],
+        fields: []
     }
 };

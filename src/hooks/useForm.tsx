@@ -46,8 +46,12 @@ export function useForm<TFormData, TSubmitResult = undefined>(
             const formData = new FormData(formRef.current);
             const fd = convertFromFormData((getFormPayload(collection) as any)(), getInfoFor, collection, realm)(formData);
             console.log('formData', formData, 'fd', fd);
-            ;
-            const revisedText = `${funcText?.replace(`get ${name}`, `document.getElementById(${formRef.current.id}).elements.namedItem(${name}).value = function get${name}`)}.bind(convertFromFormData((getFormPayload(collection) as any)(), getInfoFor, collection, realm)(new FormData(document.getElementById(${formRef.current.id}))}))()`;
+            const revisedText = `${funcText?.replace(
+                `get ${name}`,
+                `document.getElementById(${formRef.current.id}).elements.namedItem(${name}).value = function get${name}`
+            )}.bind(convertFromFormData((getFormPayload(collection) as any)(), getInfoFor, collection, realm)(new FormData(document.getElementById(${
+                formRef.current.id
+            }))}))()`;
             console.log(`revistedText`, revisedText);
             appendLocal(revisedText);
             console.groupEnd();

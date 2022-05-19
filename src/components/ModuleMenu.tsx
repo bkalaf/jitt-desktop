@@ -1,12 +1,14 @@
 import React from 'react';
-import { NavLinkListItem } from './NavLinkListItem';
+import { Route, Routes } from 'react-router-dom';
+import { MainMenu } from './MainMenu';
 
 export function ModuleMenu() {
     return (
-        <ol className='flex flex-row p-3 space-x-1.5'>
-            {['api', 'data', 'files', 'queues'].map((x, index) => (
-                <NavLinkListItem className='px-3 nav-button' key={index} to={x} />
-            ))}
-        </ol>
+        <Routes>
+            <Route path='/*' element={<MainMenu />}></Route>
+        </Routes>
     );
 }
+
+
+

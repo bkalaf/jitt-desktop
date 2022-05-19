@@ -11,5 +11,3 @@ export function Toaster() {
 export function useMetaDataContext<T extends { _id: Realm.BSON.ObjectId }>() {
     return useProvidedContext<IMetaDataContext<T>>('MetaDataContext', MetaDataContext as any as Context<IMetaDataContext<T>>) as IMetaDataContext<T>;
 }
-
-

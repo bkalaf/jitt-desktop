@@ -7,9 +7,9 @@ import { useLocalRealm } from '../hooks/useLocalRealm';
 import { useRoutedCollection } from '../hooks/useRoutedCollection';
 import { useToast } from '../hooks/useToast';
 import { QueryStatus } from './index';
-import { useGetDefaultSort } from "./useGetDefaultSort";
+import { useGetDefaultSort } from './useGetDefaultSort';
 
-export function useRealmQuery<T extends { _id: Realm.BSON.ObjectId; }, U = T>(
+export function useRealmQuery<T extends { _id: Realm.BSON.ObjectId }, U = T>(
     key: string,
     $collection?: string,
     $sorted: SortDescriptor[] = [],
@@ -27,7 +27,10 @@ export function useRealmQuery<T extends { _id: Realm.BSON.ObjectId; }, U = T>(
         [key, collection],
         () => {
             try {
-                const result = isNotNil(routedId) && routedId !== 'new' ? realm.objectForPrimaryKey<T>(collection, new Realm.BSON.ObjectId(routedId)) : realm.objects<T>(collection).sorted(sorted);
+                const result =
+                    isNotNil(routedId) && routedId !== 'new'
+                        ? realm.objectForPrimaryKey<T>(collection, new Realm.BSON.ObjectId(routedId))
+                        : realm.objects<T>(collection).sorted(sorted);
                 return Promise.resolve(result);
             } catch (error) {
                 log(error);
@@ -43,7 +46,7 @@ export function useRealmQuery<T extends { _id: Realm.BSON.ObjectId; }, U = T>(
                 errorToast(err.message, 'ERROR!', err.name);
             },
             staleTime: 300000,
-            select: (x: Realm.Results<T & Realm.Object> | (T & Realm.Object) | undefined) => select ? select(x) : (x as any as U)
+            select: (x: Realm.Results<T & Realm.Object> | (T & Realm.Object) | undefined) => (select ? select(x) : (x as any as U))
         }
     );
     const update = useCallback(() => {

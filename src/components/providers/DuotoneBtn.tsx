@@ -30,6 +30,9 @@ export function DuotoneButton(props: IDuotoneBtnProps) {
         </button>
     );
 }
+/**
+ * @deprecated
+ */
 export function DuotoneBtn(props: IDuotoneBtnProps) {
     useWhyDidYou(DuotoneBtn.name, props);
     const { onClick, initState, title, className, icon, primary, secondary, primaryOpacity, secondaryOpacity, bg, size } = props;
@@ -48,14 +51,3 @@ export function DuotoneBtn(props: IDuotoneBtnProps) {
         </Btn>
     );
 }
-
-// <Btn
-//     onClick={() => {
-//         deleteRows([props.rowData._id.toHexString()]);
-//     }}
-//     initState={false}
-//     title='Delete this row'
-//     className='shadow-inner shadow-black'
-//     toEnable={checkSelectedToDisable(isSelected)}>
-//     <DuotoneIcon icon={faTrashCan} primary='mediumseagreen' secondary='lawngreen' secondaryOpacity={0.7} bg='bg-slate-very-dark' size='lg' />
-// </Btn>;

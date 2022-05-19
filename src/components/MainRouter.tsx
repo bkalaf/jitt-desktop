@@ -13,6 +13,8 @@ import { ignore } from '../common';
 import { useLocalRealm } from '../hooks/useLocalRealm';
 import { useMutation } from 'react-query';
 import { uploadFile } from '../queries/insertMutation';
+import { AdminMenu } from './AdminMenu';
+import * as Webdriver from 'webdriverio';
 
 export type RealmTypes =
     | 'objectId'
@@ -115,7 +117,7 @@ export function FileTools({ children }: { children: Children }) {
     }, []);
     return <>{children}</>;
 }
-export function MainRouter() {
+export function MainRouter({ reader }: { reader: DataOrModifiedFn<Webdriver.Browser<'async'>> }) {
     return (
         <Routes>
             <Route path='/'>
@@ -150,6 +152,12 @@ export function MainRouter() {
                                 }
                             />
                         </Route>
+                    </Route>
+                    <Route index element={<Navigate to='v1' />} />
+                </Route>
+                <Route path='admin'>
+                    <Route path='v1'>
+                        <Route index element={<AdminMenu reader={reader} />} />
                     </Route>
                     <Route index element={<Navigate to='v1' />} />
                 </Route>

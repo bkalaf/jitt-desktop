@@ -31,11 +31,13 @@ export function EnumSelect(
     return (
         <select {...props}>
             <option key='default' value={undefined} label='Please choose...' />
-            {Object.entries(enumMap).sort((a, b) => {
-                return a[1] < b[1] ? -1 : a[1] === b[1] ? 0 : 1;
-            }).map(([k, v]) => (
-                <option key={k} value={k} label={v} />
-            ))}
+            {Object.entries(enumMap)
+                .sort((a, b) => {
+                    return a[1] < b[1] ? -1 : a[1] === b[1] ? 0 : 1;
+                })
+                .map(([k, v]) => (
+                    <option key={k} value={k} label={v} />
+                ))}
         </select>
     );
 }

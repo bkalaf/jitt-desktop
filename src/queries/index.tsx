@@ -29,12 +29,11 @@ export const Mutation = {
 };
 
 export function invalidateRefetch(queryClient: QueryClient) {
-    return function (key: string, collection: string) {
-        queryClient.invalidateQueries([key, collection]);
-        queryClient.refetchQueries([key, collection]);
+    return function (...args: string[]) {
+        queryClient.invalidateQueries([...args]);
+        queryClient.refetchQueries([...args]);
     };
 }
 
 export type MutationState = 'paused' | 'success' | 'error' | 'idle' | 'loading';
 export type QueryStatus = 'loading' | 'idle' | 'error' | 'success';
-
