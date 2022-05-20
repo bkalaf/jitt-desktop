@@ -10,14 +10,21 @@ import { IGridViewContext } from './ViewProvider';
 export type IDuotoneBtnProps = Omit<DuotoneIconProps & IBtnProps, 'toEnable'>;
 
 export function DuotoneButton(props: IDuotoneBtnProps) {
-    const { onClick, initState, title, icon, primary, secondary, primaryOpacity, secondaryOpacity, bg, size, ...remain } = props;
+    const { onClick, initState, title, icon, primary, secondary, primaryOpacity, secondaryOpacity, bg, size, border, shadow, disabled, ...remain } = props;
     const { className } = $cn(
         remain,
-        {},
-        'transform transition-all duration-1000 delay-150 ease-in-out flex items-center justify-center px-2 py-0.5 align-middle text-center bg-amber-light border rounded-md border-cyan/70 shadow-lg shadow-sky m-auto w-auto disabled:opacity-30 disabled:hover:opacity-30 disabled:focus:opacity-30 focus:ring focus:ring-red/70 hover:ring hover:ring-red/70'
+        {
+            'shadow-sky': shadow == null,
+            'bg-amber-light': bg == null,
+            'border-cyan/70': border == null,
+            [bg ?? '']: bg != null,
+            [border ?? '']: border != null,
+            [shadow ?? '']: shadow != null
+        },
+        'transform transition-all duration-1000 delay-150 ease-in-out flex items-center justify-center px-2 py-0.5 align-middle text-center  border rounded-md  shadow-lg m-auto w-auto disabled:opacity-30 disabled:hover:opacity-30 disabled:focus:opacity-30 focus:ring focus:ring-red/70 hover:ring hover:ring-red/70'
     );
     return (
-        <button type='button' onClick={onClick} className={className}>
+        <button type='button' onClick={onClick} className={className} disabled={disabled}>
             <DuotoneIcon
                 icon={icon}
                 size={size}

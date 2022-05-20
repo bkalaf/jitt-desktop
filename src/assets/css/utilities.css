@@ -8,6 +8,12 @@
     [role='tooltip'] {
         position: absolute;
     }
+
+    .text-upright {
+        text-orientation: upright;
+        writing-mode: vertical-rl;
+    }
+
     /* .hoverable {
         @apply trans hover:bg-white hover:shadow-lg hover:border-yellow hover:text-red hover:scale-105;
     }

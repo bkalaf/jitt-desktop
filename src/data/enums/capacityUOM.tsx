@@ -1,4 +1,4 @@
-export const capacity = {
+export const capacityUOMS = {
     bytes: 'bytes',
     kb: 'kiobytes',
     mb: 'megabytes',
@@ -6,4 +6,4 @@ export const capacity = {
     tb: 'terabytes'
 };
 
-export type CapacityUOM = keyof typeof capacity;
+export type CapacityUOMS = keyof typeof capacityUOMS;

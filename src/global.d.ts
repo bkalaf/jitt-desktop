@@ -2,8 +2,8 @@ import Realm from 'realm';
 import { ObjectId } from 'bson';
 import { Country } from './data/enums/country';
 import { Provinces } from './data/enums/province';
-import { LengthUOM } from './data/enums/lengthUOM';
-import { CapacityUOM } from './data/enums/capacityUOM';
+import { LengthUOMS } from './data/enums/lengthUOM';
+import { CapacityUOMS } from './data/enums/capacityUOM';
 
 declare global {
     export type IEventPublisher = {
@@ -51,7 +51,7 @@ declare global {
     }
     export interface ILength {
         value: number;
-        uom: LengthUOM;
+        uom: LengthUOMS;
         readonly displayAs: string;
     }
     export interface ISquareFootage {
@@ -67,7 +67,7 @@ declare global {
     }
     export interface ICapacity {
         value: number;
-        uom: CapacityUOM;
+        uom: CapacityUOMS;
     }
     export interface IFileEntry {
         _id: ObjectId;

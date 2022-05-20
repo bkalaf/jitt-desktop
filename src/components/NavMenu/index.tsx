@@ -4,9 +4,15 @@ import { NavMenuItem } from './NavMenuItem';
 export function NavMenu() {
     return (
         <ol className='flex flex-col text-white space-y-0.5'>
-            <NavMenu.Item to={mongo.selfStorage} />
-            <NavMenu.Item to={mongo.facility} />
-            <NavMenu.Item to={mongo.rentalUnit} />
+            <li className='flex flex-row'>
+                <div className='flex text-upright'>Storage</div>
+                <ol className='flex flex-grow'>
+                    <NavMenu.Item to={mongo.selfStorage} />
+                    <NavMenu.Item to={mongo.facility} />
+                    <NavMenu.Item to={mongo.rentalUnit} />
+                </ol>
+            </li>
+
             <NavMenu.Item to={mongo.purchase} />
             <NavMenu.Item to={mongo.company} />
             <NavMenu.Item to={mongo.brand} />

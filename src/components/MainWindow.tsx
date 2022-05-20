@@ -169,7 +169,7 @@ export function MainWindow({ realmReader }: { realmReader: LazyDataOrModifiedFn<
 
             <main className='flex flex-grow w-full px-2 text-white'>
                 <LeftSidebar />
-                <section className='flex w-full h-full p-3 overflow-x-auto border-2 border-double shadow-md border-cyan shadow-cyan'>
+                <section className='flex w-full h-full p-0.5 overflow-auto border-2 border-double shadow-inner border-cyan rounded-xl mx-1 my-0.5 shadow-cyan'>
                     <MainRouter reader={reader} />
                 </section>
             </main>

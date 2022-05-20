@@ -3,7 +3,7 @@ import { createContext, HTMLInputTypeAttribute } from 'react';
 import { ObjectSchemaProperty } from 'realm';
 import { isIn } from '../../common/array/isIn';
 import { countries } from '../../data/enums/country';
-import { lengths } from '../../data/enums/lengthUOM';
+import { lengthUOMS } from '../../data/enums/lengthUOM';
 import { provinces } from '../../data/enums/province';
 import { IEmbedded, IPrimitive, IRealmType, IType } from './IType';
 import { fromKebabToCamelCase } from '../../common/text/fromKebabToCamelCase';
@@ -45,7 +45,7 @@ export const ORM: Record<
     length: {
         columns: [
             { name: 'value', min: 0 },
-            { name: 'uom', enum: lengths }
+            { name: 'uom', enum: lengthUOMS }
         ],
         displayAs: true
     },

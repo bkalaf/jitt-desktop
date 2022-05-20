@@ -26,6 +26,8 @@
     @apply bg-lime;
 }
 
+
+
 .network-offline {
     @apply bg-red;
 }

@@ -1,7 +1,7 @@
 import { isIn } from '../../common/array/isIn';
 import { isNotIn } from '../../common/array/isNotIn';
 
-export const lengths = {
+export const lengthUOMS = {
     in: 'inches',
     ft: 'feet',
     cm: 'centimeters',
@@ -12,7 +12,7 @@ export const lengths = {
     km: 'kilometers'
 };
 
-export type LengthUOM = keyof typeof lengths;
+export type LengthUOMS = keyof typeof lengthUOMS;
 
 export function endsWith(s: string) {
     return function (ending: string) {

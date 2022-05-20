@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActivityAction } from '../data';
+import { ActivityAction } from "../ActivityAction";
 import { $cn } from '../util/$cn';
 
 export function GroupingHeader({ children, action }: { children: Children; action?: ActivityAction }) {

@@ -3,7 +3,7 @@ import { HTMLInputTypeAttribute } from 'react';
 import { ObjectClass, SortDescriptor } from 'realm';
 import { Address, Facility, mongo, SelfStorage } from '../../data';
 import { countries } from '../../data/enums/country';
-import { lengths } from '../../data/enums/lengthUOM';
+import { lengthUOMS } from '../../data/enums/lengthUOM';
 import { provinces } from '../../data/enums/province';
 import { Fieldset } from '../forms/elements/Fieldset';
 import { FormElement, Input } from '../forms/elements/Input';
@@ -73,7 +73,7 @@ export const DAL: Record<
         sorted: [],
         fields: [
             { el: Input, name: 'value', required: true, min: 0, defaultValue: '0', type: 'text' },
-            { el: Select, name: 'uom', defaultValue: 'in', enumMap: lengths, required: true, label: 'Unit of Measure' }
+            { el: Select, name: 'uom', defaultValue: 'in', enumMap: lengthUOMS, required: true, label: 'Unit of Measure' }
         ]
     },
     [mongo.squareFootage]: {
@@ -168,14 +168,18 @@ export const DAL: Record<
         ]
     },
     [mongo.company]: {
-        columns: [],
+        columns: ['_id', 'name', 'parent', 'descendants', 'aliases', 'rns', 'country', 'brands'],
         sorted: [],
-        fields: []
+        fields: [
+            { el: Input, name: '_id', readOnly: true, required: true, type: 'text', icon: faKey, label: 'ID', hideOnInsert: true },
+        ]
     },
     [mongo.brand]: {
-        columns: [],
+        columns: ['_id', 'name', 'alias', 'productLines', 'company', 'verifiedBrand'],
         sorted: [],
-        fields: []
+        fields: [
+            { el: Input, name: '_id', readOnly: true, required: true, type: 'text', icon: faKey, label: 'ID', hideOnInsert: true },
+        ]
     },
     [mongo.verifiedBrand]: {
         columns: ['_id', 'name'],
@@ -199,17 +203,23 @@ export const DAL: Record<
     },
     [mongo.category]: {
         columns: ['_id', 'id', 'label', 'node'],
-        sorted: [],
-        fields: []
+        sorted: [['id', false], ['label', false]],
+        fields: [
+            { el: Input, name: '_id', readOnly: true, required: true, type: 'text', icon: faKey, label: 'ID', hideOnInsert: true },
+        ]
     },
     [mongo.taxonomy]: {
-        columns: [],
-        sorted: [],
-        fields: []
+        columns: ['_id', 'category', 'subCategory', 'subSubCategory', 'materializedPath', 'selectors', 'itemType'],
+        sorted: [['materializedPath', false]],
+        fields: [
+            { el: Input, name: '_id', readOnly: true, required: true, type: 'text', icon: faKey, label: 'ID', hideOnInsert: true },
+        ]
     },
     [mongo.itemtype]: {
         columns: [],
         sorted: [],
-        fields: []
+        fields: [
+            { el: Input, name: '_id', readOnly: true, required: true, type: 'text', icon: faKey, label: 'ID', hideOnInsert: true },
+        ]
     }
 };

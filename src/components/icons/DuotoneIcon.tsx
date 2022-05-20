@@ -2,6 +2,7 @@ import { SizeProp } from '@fortawesome/fontawesome-svg-core';
 import { IconDefinition } from '@fortawesome/pro-duotone-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useMemo } from 'react';
+import { $cn } from '../../util/$cn';
 
 export interface DuotoneIconProps {
     icon: IconDefinition;
@@ -12,9 +13,13 @@ export interface DuotoneIconProps {
     secondaryOpacity?: number;
     size?: SizeProp;
     className?: string;
+    title?: string;
+    noBlock?: boolean;
+    border?: string;
+    shadow?: string;
 }
 export function DuotoneIcon(props: DuotoneIconProps) {
-    const { icon, bg, primary, className, size, secondary, primaryOpacity, secondaryOpacity } = props;
+    const { icon, bg, primary, className, size, secondary, primaryOpacity, secondaryOpacity, title, noBlock } = props;
     const style = useMemo(
         () => ({
             '--fa-primary-color': primary,
@@ -24,9 +29,12 @@ export function DuotoneIcon(props: DuotoneIconProps) {
         }),
         [primary, primaryOpacity, secondary, secondaryOpacity]
     );
+    const spread = $cn({ className }, {
+        block: !(noBlock ?? false)
+    }, 'w-full m-auto group');
     return (
-        <span className='w-full m-auto'>
-            <FontAwesomeIcon icon={icon} size={size} style={style as any} className={`${bg} ${className} block p-0.5`} />
+        <span title={title} {...spread}>
+            <FontAwesomeIcon icon={icon} size={size} style={style as any} {...spread} className='p-0.5 block'/>
         </span>
     );
 }

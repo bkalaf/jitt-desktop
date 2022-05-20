@@ -14,7 +14,11 @@ import { months } from '../data/enums/months';
 import { ActivityEntry } from './ActivityEntry';
 import EventEmitter from 'events';
 import { useEventListener } from '../hooks/useEventListener';
-import { ActivityComponent, ImportActivity } from './ImportActivity';
+import { ImportActivity } from './ImportActivity';
+import { ActivityComponent } from "./ActivityComponent";
+import { importTaxonomy } from "./importTaxonomy";
+import { importCategories } from "./importCategories";
+import { importBrands } from "./importBrands";
 import { ImportVerifiedBrands, IntegrityCheckBrands } from './ImportVerifiedBrands';
 import { useLocalStorageKey } from './useLocalStorageKey';
 import { useToggle } from '../hooks/useToggle';
@@ -26,6 +30,7 @@ import { useQuery } from 'react-query';
 import { Activity, mongo } from '../data';
 import { GroupingHeader } from './GroupingHeader';
 import { MenuGrouping } from './MenuGrouping';
+import { ignore } from '../common';
 
 
 export function MenuSection({ children }: { children: Children }) {
@@ -58,19 +63,20 @@ export function AdminMenu({ reader }: { reader: DataOrModifiedFn<Webdriver.Brows
                         <ActivityEntry keySegment={$activityKeys.selectorCheck} repeatInDays={-7} ActivityEl={Dummy} reader={reader} />
                     </ActivityEnvelope> */}
                     <MenuGrouping>
-                        <ActivityComponent action='scrape' scope='brands' activity={activity} />
-                        <ActivityComponent action='scrape' scope='categories' activity={activity} />
-                        <ActivityComponent action='scrape' scope='taxonomy' activity={activity} />
+                        <ActivityComponent action='scrape' scope='brands' activity={activity} mutationFunc={ignore as any}/>
+                        <ActivityComponent action='scrape' scope='categories' activity={activity} mutationFunc={ignore as any}/>
+                        <ActivityComponent action='scrape' scope='taxonomy' activity={activity} mutationFunc={ignore as any}/>
                     </MenuGrouping>
                     
                 </MenuSection>
                 <MenuSection>
                     <GroupingHeader action='import'>IMPORT JSON</GroupingHeader>
                     <MenuGrouping>
-                        <ActivityComponent action='import' scope='brands' activity={activity} />
-                        <ActivityComponent action='import' scope='categories' activity={activity} />
-                        <ActivityComponent action='import' scope='taxonomy' activity={activity} />
+                        <ActivityComponent action='import' scope='brands' activity={activity} mutationFunc={importBrands}/>
+                        <ActivityComponent action='import' scope='categories' activity={activity} mutationFunc={importCategories} />
+                        <ActivityComponent action='import' scope='taxonomy' activity={activity} mutationFunc={importTaxonomy} />
                     </MenuGrouping>
+
                     <GroupingHeader>INTEGRITY</GroupingHeader>
                     <MenuGrouping>
                         {/* <IntegrityActivity keySegment='verifiedBrands-dedupe' ActionComponent={IntegrityCheckBrands} /> */}
