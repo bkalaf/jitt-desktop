@@ -10,5 +10,5 @@ export const measuresOf = {
     D: 'diameter',
     G: 'voltage',
     A: 'amperage'
-}
+};
 export type MeasuresOf = keyof typeof measuresOf;

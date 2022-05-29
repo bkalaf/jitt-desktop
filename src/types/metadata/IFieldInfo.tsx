@@ -12,17 +12,20 @@ export interface IFieldInfo {
     type?: HTMLInputTypeAttribute;
     placeholder?: string;
     icon?: IconDefinition;
+    isList?: boolean;
     label?: string;
     minLength?: number;
     enumMap?: Record<string, string>;
     defaultValue?: string;
     pattern?: string;
+    concat?: boolean;
     to?: string;
     optionMap?: OptionElementFields;
     hideOnInsert?: boolean;
+    isBarcode?: boolean;
     min?: number;
     max?: number;
-
+    getLength?: boolean;
     asDisplay?: boolean;
     iconTrue?: IconDefinition;
     iconFalse?: IconDefinition;

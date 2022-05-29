@@ -1,6 +1,6 @@
 import * as fs from 'graceful-fs';
 
 export function readFile(filename: string) {
-    console.log(`readFile(filename): ${filename}`)
+    console.log(`readFile(filename): ${filename}`);
     return fs.readFileSync(filename).toString();
 }

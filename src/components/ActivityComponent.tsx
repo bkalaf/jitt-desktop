@@ -1,29 +1,30 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 import { ignore, toTitleCase } from '../common';
-import { Activity, mongo } from '../data';
-import { ActivityScope } from "../ActivityScope";
-import { ActivityAction } from "../ActivityAction";
+import { Admin } from '../data';
 import { $cn } from '../util/$cn';
 import { useLocalRealm } from '../hooks/useLocalRealm';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
-import { useLog } from './providers/buildLibrary';
+import { useLog } from '../hooks/useLog';
 import { now } from '../aggregator';
 import { invalidateRefetch } from '../queries';
+import { ActivityActions, ActivityScopes } from '../data/enums';
+import { $ } from '../data/$';
 
 export function ActivityComponent(props: {
-    activity?: Realm.Results<Activity>;
-    action: ActivityAction;
-    scope: ActivityScope;
+    activity?: Realm.Results<Admin.Activity>;
+    action: ActivityActions;
+    scope: ActivityScopes;
     mutationFunc: (props: {
         onDemand: boolean;
         realm: Realm;
         log: any;
-        scheduledItem: Activity | undefined;
-        action: ActivityAction;
-        scope: ActivityScope;
+        scheduledItem: Admin.Activity | undefined;
+        action: ActivityActions;
+        scope: ActivityScopes;
     }) => Promise<void>;
+    doNotRun?: boolean;
 }) {
-    const { activity, action, scope, mutationFunc } = props;
+    const { doNotRun, activity, action, scope, mutationFunc } = props;
     const filteredActivities = activity?.filtered('action == $0 && scope == $1', action, scope);
 
     const { data: scheduledItem } = useQuery([action, scope, 'scheduledItem'], () => filteredActivities?.filtered('isScheduled == $0', true)[0], {
@@ -64,19 +65,21 @@ export function ActivityComponent(props: {
         {
             onSuccess: () => {
                 const cata = invalidateRefetch(queryClient);
-                cata(mongo.activity);
+                cata($.activity);
                 cata(action, scope);
             }
         }
     );
 
     useEffect(() => {
-        const timeoutMs = scheduledItem != null ? scheduledItem.when.valueOf() - now().valueOf() : 10000000;
-        token.current = setTimeout(() => {
-            console.log('SCHEDULED ACTION: ');
-            mutation.mutate({ onDemand: false });
-        }, timeoutMs);
-        return () => (token.current != null ? clearTimeout(token.current) : ignore());
+        if (!doNotRun) {
+            const timeoutMs = scheduledItem != null ? scheduledItem.when.valueOf() - now().valueOf() : 10000000;
+            token.current = setTimeout(() => {
+                console.log('SCHEDULED ACTION: ');
+                mutation.mutate({ onDemand: false });
+            }, timeoutMs);
+            return () => (token.current != null ? clearTimeout(token.current) : ignore());
+        }
     }, [mutation, scheduledItem]);
     const liSpread = $cn(
         {},

@@ -24,7 +24,7 @@ export type IControlProps<TAttributes extends React.HTMLAttributes<DataElement |
 export function Control<TAttributes extends React.HTMLAttributes<DataElement | HTMLOutputElement>>(props: IControlProps<TAttributes>) {
     console.group('Control');
     const { name, label, feedback, showFeedback, tag, El, ...remain } = props;
-    const controlID = `${props.name}-control`;
+    const controlID = `${props.name.split('.').reverse()[0]}-control`;
     const labelID = `${controlID}-label`;
     const feedbackID = `${controlID}-feedback`;
     const register = useRegister();
@@ -36,7 +36,7 @@ export function Control<TAttributes extends React.HTMLAttributes<DataElement | H
                 {label}
             </label>
             <IndicatorGroup tag={tag} />
-            <El id={controlID} {...(register(name, remain as any) as TAttributes)} />
+            <El {...(register(name, remain as any))} />
             <small id={feedbackID} className='hidden text-base peer'>
                 {feedback}
             </small>

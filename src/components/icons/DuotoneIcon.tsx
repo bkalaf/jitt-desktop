@@ -31,10 +31,10 @@ export function DuotoneIcon(props: DuotoneIconProps) {
     );
     const spread = $cn({ className }, {
         block: !(noBlock ?? false)
-    }, 'w-full m-auto group');
+    }, 'block   ');
     return (
         <span title={title} {...spread}>
-            <FontAwesomeIcon icon={icon} size={size} style={style as any} {...spread} className='p-0.5 block'/>
+            <FontAwesomeIcon icon={icon} size={size} style={style as any} {...spread} />
         </span>
     );
 }

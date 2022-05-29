@@ -1,9 +1,10 @@
 import { createContext } from 'react';
 import { ControlOpts } from '../../hooks/useForm';
+import { RegisterFunction } from '../../hooks/useRegister';
 import { useProvidedContext } from './OverlayProvider';
 
 export type IFormContext = {
-    register: (name: string, opts?: ControlOpts) => React.HTMLAttributes<DataElement>;
+    register: RegisterFunction;
 };
 export const FormContext = createContext<IFormContext | undefined>(undefined);
 
@@ -12,7 +13,7 @@ export function FormProvider({
     register
 }: {
     children?: Children;
-    register: (name: string, opts?: ControlOpts) => React.HTMLAttributes<DataElement>;
+    register: RegisterFunction;
 }) {
     return <FormContext.Provider value={{ register }}>{children}</FormContext.Provider>;
 }

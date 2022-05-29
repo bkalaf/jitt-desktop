@@ -1,10 +1,10 @@
-import { Activity, Category, mongo, Taxonomy } from '../data';
-import { ActivityScope } from "../ActivityScope";
-import { ActivityAction } from "../ActivityAction";
+import { Admin, Scrapes } from '../data';
 import { files } from '../config';
 import { readFile } from '../common/fs/readFile';
 import { now } from '../aggregator';
 import { getOffsetDate } from "./getOffsetDate";
+import { ActivityActions, ActivityScopes } from '../data/enums';
+import { $ } from '../data/$';
 
 export function importTaxonomy({
     onDemand = false, realm, log, scheduledItem, action, scope
@@ -12,18 +12,18 @@ export function importTaxonomy({
     onDemand: boolean;
     realm: Realm;
     log: any;
-    scheduledItem: Activity | undefined;
-    action: ActivityAction;
-    scope: ActivityScope;
+    scheduledItem: Admin.Activity | undefined;
+    action: ActivityActions;
+    scope: ActivityScopes;
 }) {
     const data: Array<{ label: string; category: string; subcategory?: string; subsubcategory?: string; }> = JSON.parse(
         readFile(files.taxonomyListings)
     ).categories;
     log(`data.length: ${data.length}`);
 
-    const categorySet = realm.objects<Category>(mongo.category);
+    const categorySet = realm.objects<Scrapes.Category>($.category);
     log(`categorySet.length: ${categorySet.length}`);
-    const taxonomy = realm.objects<Taxonomy>(mongo.taxonomy);
+    const taxonomy = realm.objects<{ materializedPath: string }>($.taxonomy);
     log(`taxonomy.length: ${taxonomy.length}`);
 
     const inserts = data.map((x) => {
@@ -70,7 +70,7 @@ export function importTaxonomy({
         notInList.forEach((item) => {
             log(`handling: ${JSON.stringify(item)}`);
             realm.write(() => {
-                realm.create(mongo.taxonomy, item);
+                realm.create($.taxonomy, item);
             });
         });
     } catch (error) {
@@ -82,53 +82,53 @@ export function importTaxonomy({
             realm.write(() => {
                 scheduledItem.isComplete = true;
                 scheduledItem.isScheduled = false;
-                realm.create<Activity>(mongo.activity, {
+                realm.create<Admin.Activity>($.activity, {
                     _id: new Realm.BSON.ObjectId(),
                     action,
                     scope,
                     when: getOffsetDate(14),
                     isComplete: false,
                     isScheduled: true
-                });
+                } as any);
             });
         } else {
             realm.write(() => {
-                realm.create<Activity>(mongo.activity, {
+                realm.create<Admin.Activity>($.activity, {
                     _id: new Realm.BSON.ObjectId(),
                     action,
                     scope,
                     when: now(),
                     isComplete: true,
                     isScheduled: false
-                });
-                realm.create<Activity>(mongo.activity, {
+                }  as any);
+                realm.create<Admin.Activity>($.activity, {
                     _id: new Realm.BSON.ObjectId(),
                     action,
                     scope,
                     when: getOffsetDate(14),
                     isComplete: false,
                     isScheduled: true
-                });
+                } as any);
             });
         }
     } else {
         realm.write(() => {
-            realm.create<Activity>(mongo.activity, {
+            realm.create<Admin.Activity>($.activity, {
                 _id: new Realm.BSON.ObjectId(),
                 action,
                 scope,
                 when: now(),
                 isComplete: true,
                 isScheduled: false
-            });
-            realm.create<Activity>(mongo.activity, {
+            }  as any);
+            realm.create<Admin.Activity>($.activity, {
                 _id: new Realm.BSON.ObjectId(),
                 action,
                 scope,
                 when: getOffsetDate(14),
                 isComplete: false,
                 isScheduled: true
-            });
+            }  as any);
         });
     }
 

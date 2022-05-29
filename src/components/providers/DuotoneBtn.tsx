@@ -10,7 +10,7 @@ import { IGridViewContext } from './ViewProvider';
 export type IDuotoneBtnProps = Omit<DuotoneIconProps & IBtnProps, 'toEnable'>;
 
 export function DuotoneButton(props: IDuotoneBtnProps) {
-    const { onClick, initState, title, icon, primary, secondary, primaryOpacity, secondaryOpacity, bg, size, border, shadow, disabled, ...remain } = props;
+    const { onClick, initState, title, icon, primary, secondary, primaryOpacity, secondaryOpacity, bg, size, border, shadow, disabled, className: cn, ...remain } = props;
     const { className } = $cn(
         remain,
         {
@@ -33,6 +33,7 @@ export function DuotoneButton(props: IDuotoneBtnProps) {
                 secondary={secondary}
                 primaryOpacity={primaryOpacity}
                 secondaryOpacity={secondaryOpacity}
+                className={cn}
             />
         </button>
     );

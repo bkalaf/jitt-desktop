@@ -3,7 +3,7 @@ import { getCaptureGroups } from '../common/regex/getCaptureGroups';
 
 const COLLECTION_REGEX = /\/\w*\/v1\/?([\w-]*)\/?([\w-]*)/;
 
-export function useRoutedCollection(reqNotNull = false): [collection: string, id: string] {
+export function useRoutedCollection(reqNotNull = false): [collection: string, id?: string] {
     const location = useLocation();
     const [collectionName, id] = getCaptureGroups(COLLECTION_REGEX, 1, 3)(location.pathname);
     console.log('collectionName', collectionName);

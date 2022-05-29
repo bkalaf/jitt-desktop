@@ -11,5 +11,5 @@ export const stageTypes = {
     1: 'compressed',
     2: 'editted',
     3: 'backgroundRemoved'
-}
+};
 export type StageTypes = keyof typeof stageTypes;

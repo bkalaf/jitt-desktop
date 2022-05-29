@@ -1,7 +1,7 @@
 import React, { createContext, useCallback, useEffect, useMemo, useState } from 'react';
 import { DataOrModifiedFn } from 'use-async-resource';
 import { toTitleCase } from '../common';
-import { useLog } from './providers/buildLibrary';
+import { useLog } from "../hooks/useLog";
 import { useActivity } from './useActivity';
 import * as Webdriver from 'webdriverio';
 import { useProvidedContext } from './providers/OverlayProvider';

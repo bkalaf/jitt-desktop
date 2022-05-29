@@ -1,7 +1,7 @@
 import Realm from 'realm';
 import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache, makeVar, useReactiveVar } from '@apollo/client';
 import { HashRouter } from 'react-router-dom';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClient, QueryClientProvider, useQueries } from 'react-query';
 import React from 'react';
 import { UI } from './UI';
 import { MainWindow } from './MainWindow';
@@ -10,11 +10,14 @@ import { app } from '@electron/remote';
 import { schema } from '../data';
 import { $currentUser, $realm } from './globals';
 import { IAppCommand, ICommand } from '../types/ui/ICommand';
-import { buildLibrary, useLog } from './providers/buildLibrary';
+import { useLog } from "../hooks/useLog";
 import { MetaDataContextProvider } from './providers/MetaDataProvider';
 import { getAccessToken } from '../util/getAccessToken';
 import { Boundary } from './grid/Boundary';
-import { useAsyncResource } from 'use-async-resource';
+import { DataOrModifiedFn, useAsyncResource } from 'use-async-resource';
+import { useRealm } from '../hooks/useRealm';
+import { Registrar } from '../reflection/Registrar';
+import { $ } from './../data/$';
 
 export const $insertCommand = makeVar<IAppCommand<never[]>>({
     execute: ignore,
@@ -56,7 +59,9 @@ export const apolloClient = new ApolloClient({
     cache: new InMemoryCache()
 });
 export const queryClient = new QueryClient();
+
 async function openRealm(cu: Realm.User | null | undefined) {
+    console.log(`$: ${$}`, $);
     if (!cu) return;
     const x = await Realm.open({
         schema: schema,
@@ -67,8 +72,16 @@ async function openRealm(cu: Realm.User | null | undefined) {
         }
     });
     $realm(x);
-    buildLibrary(x);
+    // buildLibrary(x);
     return x;
+}
+
+export function useProvideReflection(reader: DataOrModifiedFn<Realm>) {
+    const realm = reader();
+    const results = useQueries([
+        { queryKey: ['type-data'], queryFn: () => Promise.resolve(realm.objects('type-data')) },
+        { queryKey: ['field-data'], queryFn: () => Promise.resolve(realm.objects('field-data'))}
+    ]);
 }
 export function App() {
     const log = useLog();

@@ -3,7 +3,7 @@ import { toTitleCase } from '../common';
 import { useToggle } from '../hooks/useToggle';
 import { DataOrModifiedFn } from 'use-async-resource';
 import * as Webdriver from 'webdriverio';
-import { useLog } from './providers/buildLibrary';
+import { useLog } from "../hooks/useLog";
 
 export function RunActivityButton({
     keySegment,

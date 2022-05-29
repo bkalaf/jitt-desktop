@@ -1,9 +1,10 @@
 import path from 'path';
 import { checkDirectory } from '../common/fs/checkDirectory';
 import { APP_CONFIG } from '../config';
-import { FileAlloc, FileItem, mongo } from '../data';
 import { invertMimeTypes } from '../data/enums/mimeTypes';
 import * as fs from 'graceful-fs';
+import { Files } from '../data/index';
+import { $ } from '../data/$';
 
 export function insertMutation<T extends Record<string, any>>(realm: Realm, collectionName: string) {
     return function (fd: T): Promise<T & Realm.Object> {
@@ -21,7 +22,7 @@ export function insertMutation<T extends Record<string, any>>(realm: Realm, coll
 
 export function updateFile(realm: Realm, collection: string) {
     return async function ({ id, data }: { id: string; data: Record<string, any> }) {
-        const obj = realm.objectForPrimaryKey<FileAlloc>(collection, new Realm.BSON.ObjectId(id));
+        const obj = realm.objectForPrimaryKey<Files.FileAlloc>(collection, new Realm.BSON.ObjectId(id));
         if (obj == null) throw new Error('null obj');
 
         const orig = obj.path;
@@ -52,7 +53,7 @@ export function uploadFile(realm: Realm) {
 
             console.log(`alloc`, alloc);
             realm.write(() => {
-                const result = realm.create<FileAlloc>(mongo.fsAlloc, alloc, Realm.UpdateMode.All);
+                const result: any = realm.create<Files.FileAlloc>($.fsAlloc, alloc, Realm.UpdateMode.All);
                 const source = result.originalName;
                 const destination = [APP_CONFIG.fs.path, result.name].join('/');
                 checkDirectory(path.dirname(destination));

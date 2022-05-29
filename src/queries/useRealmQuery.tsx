@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { useQuery } from 'react-query';
 import { SortDescriptor } from 'realm';
 import { isNotNil } from '../common/isNotNull';
-import { useLog } from '../components/providers/buildLibrary';
+import { useLog } from "../hooks/useLog";
 import { useLocalRealm } from '../hooks/useLocalRealm';
 import { useRoutedCollection } from '../hooks/useRoutedCollection';
 import { useToast } from '../hooks/useToast';

@@ -9,7 +9,7 @@ export function Boundary({ children }: { children: Children }) {
                 fallbackRender={({ error }) => (
                     <div className='text-white'>
                         <div className='text-white'>Error happened.</div>
-                        <div className='text-white'>{error.message}</div>
+                        <div className='text-white whitespace-pre'>{error.message}</div>
                     </div>
                 )}>
                 {children}

@@ -4,7 +4,7 @@ import * as Webdriver from 'webdriverio';
 import { DataOrModifiedFn } from 'use-async-resource';
 import { webdriver } from '../../config/webdriver';
 import { files } from '../../config';
-import { useLog } from '../providers/buildLibrary';
+import { useLog } from "../../hooks/useLog";
 import { clickById } from "../clickById";
 import { click } from "../../automation/click";
 import { MercariLogIn } from "../MercariLogIn";

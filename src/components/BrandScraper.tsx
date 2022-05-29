@@ -3,7 +3,7 @@ import React from 'react';
 import * as Webdriver from 'webdriverio';
 import { DataOrModifiedFn } from 'use-async-resource';
 import { webdriver } from '../config/webdriver';
-import { useLog } from './providers/buildLibrary';
+import { useLog } from "../hooks/useLog";
 import { writeBrands, startBrands, finishBrands } from './MainWindow';
 import { MercariLogIn } from "./MercariLogIn";
 

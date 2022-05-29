@@ -1,4 +1,4 @@
-export const fabricTypes = {
+export const materialTypes = {
     OC: 'organic cotton',
     C: 'cotton',
     L: 'leather',
@@ -13,7 +13,10 @@ export const fabricTypes = {
     I: 'linen',
     X: 'spandex',
     T: 'acetate',
-    J: 'jute'
-}
+    J: 'jute',
+    AG: 'gold',
+    AU: 'silver',
+    PT: 'platinum'
+};
 
-export type FabricTypes = keyof typeof fabricTypes;
+export type MaterialTypes = keyof typeof materialTypes;

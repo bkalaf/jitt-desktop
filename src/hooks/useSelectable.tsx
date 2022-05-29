@@ -1,9 +1,10 @@
 import { useCallback, useMemo, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useNavigateAndDrill } from './useNavigateAndDrill';
-import { attemptToGetOID } from '../util';
+import { attemptToGetID, attemptToGetOID } from '../util';
+import { distinct } from '../common';
 
-export function useSelectable(): [string[], (item: string) => boolean, (ev: React.MouseEvent<HTMLElement>) => void] {
+export function useSelectable(): [string[], (item: string) => boolean, (ev: React.MouseEvent<HTMLElement>) => void, (items: string[]) => void] {
     const [searchParams, setSearchParams] = useSearchParams();
     const modifySearchParams = useCallback(
         (key: string, value: string | string[]) => {
@@ -29,12 +30,22 @@ export function useSelectable(): [string[], (item: string) => boolean, (ev: Reac
         },
         [modifySearchParams, selected]
     );
+    const toggleMany = useCallback((items: string[]) => {
+        if (selected.includes(items[0])) {
+            return modifySearchParams(
+                    'selected',
+                    selected.filter((x) => !items.includes(x))
+                );
+        }
+        return modifySearchParams('selected', distinct([...selected, ...items]));
+    }, [modifySearchParams, selected]);
     const cb = useRef<NodeJS.Timeout | null>(null);
     const navDrill = useNavigateAndDrill();
     const onClick = useCallback(
         (ev: React.MouseEvent<HTMLElement>) => {
             console.log('onClick', ev);
             const oid = attemptToGetOID(ev.target as HTMLElement) ?? 'n/a';
+            const id = attemptToGetID(ev.target as HTMLElement) ?? 'n/a';
 
             if (ev.detail > 2) return;
             if (ev.detail === 2) {
@@ -43,14 +54,14 @@ export function useSelectable(): [string[], (item: string) => boolean, (ev: Reac
             }
             const action = () => {
                 if (ev.ctrlKey || ev.shiftKey) {
-                    toggleSelected(oid);
+                    toggleSelected(id);
                     return Promise.resolve();
                 }
-                if (selected.includes(oid)) {
+                if (selected.includes(id)) {
                     modifySearchParams('selected', []);
                     return Promise.resolve();
                 }
-                modifySearchParams('selected', [oid]);
+                modifySearchParams('selected', [id]);
                 return Promise.resolve();
             };
             cb.current = setTimeout(() => action().then(() => (cb.current = null)), 450);
@@ -64,5 +75,5 @@ export function useSelectable(): [string[], (item: string) => boolean, (ev: Reac
         [selected]
     );
 
-    return [selected, isSelected, onClick];
+    return [selected, isSelected, onClick, toggleMany];
 }

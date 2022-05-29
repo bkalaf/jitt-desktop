@@ -1,26 +1,31 @@
-import { Activity, Category, mongo } from '../data';
-import { ActivityScope } from "../ActivityScope";
-import { ActivityAction } from "../ActivityAction";
+import {  Admin, Scrapes } from '../data';
 import { files } from '../config';
 import { readFile } from '../common/fs/readFile';
 import { now } from '../aggregator';
-import { getOffsetDate } from "./getOffsetDate";
+import { getOffsetDate } from './getOffsetDate';
+import { ActivityActions, ActivityScopes } from '../data/enums';
+import { $ } from '../data/$';
 
 export function importCategories({
-    onDemand = false, realm, log, scheduledItem, action, scope
+    onDemand = false,
+    realm,
+    log,
+    scheduledItem,
+    action,
+    scope
 }: {
     onDemand: boolean;
     realm: Realm;
     log: any;
-    scheduledItem: Activity | undefined;
-    action: ActivityAction;
-    scope: ActivityScope;
+    scheduledItem: Admin.Activity | undefined;
+    action: ActivityActions;
+    scope: ActivityScopes;
 }) {
-    const data: Array<{ label: string; category: string; subcategory?: string; subsubcategory?: string; id: string; }> = JSON.parse(
+    const data: Array<{ label: string; category: string; subcategory?: string; subsubcategory?: string; id: string }> = JSON.parse(
         readFile(files.categoryListings)
     ).categories;
 
-    const dbCategories = realm.objects<Category>(mongo.category);
+    const dbCategories = realm.objects<Scrapes.Category>($.category);
     const inserts = data.map((x) => {
         const id = x.subsubcategory ?? x.subcategory ?? x.category;
         const label = x.label;
@@ -37,7 +42,7 @@ export function importCategories({
     notInRealm.forEach((i) => {
         realm.write(() => {
             log(`handling: ${JSON.stringify(i)}`);
-            realm.create(mongo.category, i);
+            realm.create($.category, i);
         });
     });
 
@@ -46,53 +51,53 @@ export function importCategories({
             realm.write(() => {
                 scheduledItem.isComplete = true;
                 scheduledItem.isScheduled = false;
-                realm.create<Activity>(mongo.activity, {
+                realm.create<Admin.Activity>($.activity, {
                     _id: new Realm.BSON.ObjectId(),
                     action,
                     scope,
                     when: getOffsetDate(14),
                     isComplete: false,
                     isScheduled: true
-                });
+                } as any);
             });
         } else {
             realm.write(() => {
-                realm.create<Activity>(mongo.activity, {
+                realm.create<Admin.Activity>($.activity, {
                     _id: new Realm.BSON.ObjectId(),
                     action,
                     scope,
                     when: now(),
                     isComplete: true,
                     isScheduled: false
-                });
-                realm.create<Activity>(mongo.activity, {
+                } as any);
+                realm.create<Admin.Activity>($.activity, {
                     _id: new Realm.BSON.ObjectId(),
                     action,
                     scope,
                     when: getOffsetDate(14),
                     isComplete: false,
                     isScheduled: true
-                });
+                } as any);
             });
         }
     } else {
         realm.write(() => {
-            realm.create<Activity>(mongo.activity, {
+            realm.create<Admin.Activity>($.activity, {
                 _id: new Realm.BSON.ObjectId(),
                 action,
                 scope,
                 when: now(),
                 isComplete: true,
                 isScheduled: false
-            });
-            realm.create<Activity>(mongo.activity, {
+            } as any);
+            realm.create<Admin.Activity>($.activity, {
                 _id: new Realm.BSON.ObjectId(),
                 action,
                 scope,
                 when: getOffsetDate(14),
                 isComplete: false,
                 isScheduled: true
-            });
+            } as any);
         });
     }
 

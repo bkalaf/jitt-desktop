@@ -6,8 +6,8 @@ import { IPropertyInfo } from '../../types/metadata/IPropertyInfo';
 
 export function ofProperties(embeddedTypes: string[], typeName: string, pTypes: Realm.PropertiesTypes) {
     const locals = DAL[typeName].columns
-        .filter((x) => !Object.keys(pTypes).includes(x))
-        .map((x) => [
+        .filter((x: any) => !Object.keys(pTypes).includes(x))
+        .map((x: any) => [
             x,
             {
                 name: x,
@@ -50,7 +50,7 @@ export function ofProperties(embeddedTypes: string[], typeName: string, pTypes: 
     ]) as [string, IPropertyInfo][];
     const columns = [...merged, ...locals].map(([k, v]) => [
         k,
-        { ...v, ...DAL[typeName].fields.find((x) => x.name === k), label: DAL[typeName].fields.find((x) => x.name === k)?.label ?? toTitleCase(k) }
+        { ...v, ...DAL[typeName].fields.find((x: any) => x.name === k), label: DAL[typeName].fields.find((x: any) => x.name === k)?.label ?? toTitleCase(k) }
     ]) as [string, IColumnInfo][];
     return Object.fromEntries(columns);
 }

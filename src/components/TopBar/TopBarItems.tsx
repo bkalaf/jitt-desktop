@@ -10,7 +10,7 @@ const logo = require('./../../assets/logos/resized-logo.png');
 export const TopBarItems = {
     AuthButtons: {
         Login: React.memo(
-            () => <NavMenuItem className='px-3 nav-button auth-button' to='/login' label='Log-In' />,
+            () => <NavMenuItem className='px-3 nav-button auth-button' to='login' prefix='' label='Log-In' />,
             () => true
         )
     },

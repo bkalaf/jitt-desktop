@@ -3,3 +3,5 @@ yarn-error.log
 mongodb-realm/
 public/
 bin/
+
+.fake

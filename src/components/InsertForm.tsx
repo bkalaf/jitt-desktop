@@ -1,29 +1,25 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { FormProvider } from './providers/FormProvider';
-import { useForm } from '../hooks/useForm';
-import { useMutation, useQueryClient } from 'react-query';
-import { useToast } from '../hooks/useToast';
+import { useUncontrolledForm } from '../hooks/useForm';
 import { setReferenceField } from '../util/convertFormData';
-import { insertMutation } from '../queries/insertMutation';
 import { useRoutedCollection } from '../hooks/useRoutedCollection';
 import { useLocalRealm } from '../hooks/useLocalRealm';
 import { useMetaDataContext } from './Toaster';
 import { convertFromFormData } from './convertFromFormData';
 import { determineGridSize } from './determineGridSize';
-import { createFileAlloc, FileAlloc, mongo, Purchase } from '../data';
-import { useChangeFileParent } from "./useChangeFileParent";
+import { createFileAlloc } from '../data';
+import { useChangeFileParent } from './useChangeFileParent';
 import { useRealmMutation } from '../queries/useRealmMutation';
 import { Mutation } from '../queries';
+import { DefinedType, InsertFormControls } from '../data/definitions';
+import { Spinner } from './Indicators/Spinner';
 
-export function InsertForm<T extends Record<string, any>>() {
+export function InsertForm<T extends Record<string, any>>({ Controls, initialData, convert }: { Controls: DefinedType; initialData: T; convert: any }) {
     console.group('InsertForm');
     const [collection] = useRoutedCollection();
     const realm = useLocalRealm();
-    const { getFormPayload, getInputControls, getInfoFor, getType } = useMetaDataContext();
-    const Controls = useMemo(() => getInputControls(collection), [collection, getInputControls]);
-    const Payload = useMemo(() => getFormPayload(collection), [collection, getFormPayload]);
-    const convert = useMemo(() => convertFromFormData(Payload as any, getInfoFor, collection, realm), [Payload, collection, getInfoFor, realm]);
-    const [handleSubmit, register, formRef, onInput] = useForm<T, undefined>(convert, Payload as any);
+
+    const [handleSubmit, register, onInput, isFeedbacking, getFeedback] = useUncontrolledForm(convert, { _id: new Realm.BSON.ObjectId(), ...initialData });
     // const insertQuery = useMemo(() => insertMutation<T>(realm!, collection), [collection, realm]);
     // const successToast = useToast('success');
     // const failureToast = useToast('failure');
@@ -31,7 +27,7 @@ export function InsertForm<T extends Record<string, any>>() {
     const [isLoading, moveFile] = useChangeFileParent();
     const [state, loading, execute] = useRealmMutation(Mutation.insert, (record) => {
         if ('auctionId' in record) {
-            const parent = createFileAlloc(realm, (record as any).auctionId, 'auctions', 'invoices');
+            const parent: any = createFileAlloc(realm, (record as any).auctionId, 'auctions', 'invoices');
             if (parent?.materializedPath?.length ?? 0 > 0) {
                 moveFile(parent?.materializedPath ?? '', (record as any)._id.toHexString());
             }
@@ -53,22 +49,29 @@ export function InsertForm<T extends Record<string, any>>() {
     const onSubmit = useMemo(
         () =>
             handleSubmit((x) => {
-                setReferenceField('_id')(x)(new Realm.BSON.ObjectId());
                 execute(x);
-                return Promise.resolve(undefined);
+                return undefined;
             }),
         [execute, handleSubmit]
     );
+
     console.groupEnd();
     return (
         <FormProvider register={register}>
-            <form ref={formRef} className='flex flex-col' onInput={onInput} onSubmit={onSubmit}>
-                <section className={determineGridSize(getType(collection).flatColumns.length)[0]}>
-                    <Controls />
+            <form className='flex flex-col' onInput={onInput} onSubmit={onSubmit}>
+                <section className='grid grid-cols-4'>
+                    <InsertFormControls Definition={Controls} isFeedbacking={isFeedbacking} getFeedback={getFeedback} />
                 </section>
-                <footer className='flex justify-center w-full'>
+                <footer className='flex flex-row justify-center w-full'>
+                    {loading && <Spinner />}
+                    {!loading && (
+                        <input
+                            type='submit'
+                            className='inline-flex items-center justify-center text-lg font-bold leading-loose tracking-wide text-white transition duration-1000 ease-in-out delay-200 transform bg-black rounded-md appearance-none font-fira-sans hover:bg-rose outline outline-transparent ring ring-transparent focus:outline-amber-dark focus:ring-red hover:scale-105'
+                        />
+                    )}
                     <input
-                        type='submit'
+                        type='reset'
                         className='inline-flex items-center justify-center text-lg font-bold leading-loose tracking-wide text-white transition duration-1000 ease-in-out delay-200 transform bg-black rounded-md appearance-none font-fira-sans hover:bg-rose outline outline-transparent ring ring-transparent focus:outline-amber-dark focus:ring-red hover:scale-105'
                     />
                 </footer>

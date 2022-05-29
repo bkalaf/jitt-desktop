@@ -1,29 +1,37 @@
-import { mongo } from '../../data';
 import { NavMenuItem } from './NavMenuItem';
+import { $ } from './../../data/$';
+import { NavMenuSection } from './NavMenuSection';
 
 export function NavMenu() {
     return (
         <ol className='flex flex-col text-white space-y-0.5'>
-            <li className='flex flex-row'>
-                <div className='flex text-upright'>Storage</div>
-                <ol className='flex flex-grow'>
-                    <NavMenu.Item to={mongo.selfStorage} />
-                    <NavMenu.Item to={mongo.facility} />
-                    <NavMenu.Item to={mongo.rentalUnit} />
-                </ol>
-            </li>
-
-            <NavMenu.Item to={mongo.purchase} />
-            <NavMenu.Item to={mongo.company} />
-            <NavMenu.Item to={mongo.brand} />
-            <NavMenu.Item to={mongo.verifiedBrand} />
-            <NavMenu.Item to={mongo.category} />
-            <NavMenu.Item to={mongo.taxonomy} />
-            <NavMenu.Item to={mongo.itemtype} />
-
-            <NavMenu.Item to={mongo.fsAlloc} module='fs' />
-            <NavMenu.Item to={mongo.fsItem} module='fs' />
+            <NavMenu.Section label='Storage'>
+                <NavMenu.Item prefix='/data/v1' to={$.selfStorage} module='storage' />
+                <NavMenu.Item prefix='/data/v1' to={$.facility} module='storage' />
+                <NavMenu.Item prefix='/data/v1' to={$.rentalUnit} module='storage' />
+                <NavMenu.Item prefix='/data/v1' to={$.purchase} module='storage' />
+            </NavMenu.Section>
+            {/* <NavMenu.Section label='Auctions'></NavMenu.Section> */}
+            <NavMenu.Section label='Products'>
+                <NavMenu.Item prefix='/data/v1' to={$.company} module='products' />
+                <NavMenu.Item prefix='/data/v1' to={$.brand} module='products' />
+                <NavMenu.Item prefix='/data/v1' to={$.itemType} module='products' />
+            </NavMenu.Section>
+            <NavMenu.Section label='Inventory'>
+                <NavMenu.Item prefix='/data/v1' to={'barcode'} module='inventory' />
+            </NavMenu.Section>
+            <NavMenu.Section label='Scrapes'>
+                <NavMenu.Item prefix='/data/v1' to={$.verifiedBrand} module='scrapes' />
+                <NavMenu.Item prefix='/data/v1' to={$.category} module='scrapes' />
+                <NavMenu.Item prefix='/data/v1' to={$.taxonomy} module='scrapes' />
+            </NavMenu.Section>
+            <NavMenu.Section label='Files'>
+                <NavMenu.Item prefix='/fs/v1' to={$.fsAlloc} module='fs' />
+                <NavMenu.Item prefix='/fs/v1' to={$.fsItem} module='fs' />
+            </NavMenu.Section>
         </ol>
     );
 }
+
 NavMenu.Item = NavMenuItem;
+NavMenu.Section = NavMenuSection;

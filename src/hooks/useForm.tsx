@@ -1,129 +1,351 @@
 import { useCallback, useRef, useState } from 'react';
 import React from 'react';
 import { ignore } from '../common/ignore';
-import { useArray } from './useArray';
-import { useMetaDataContext } from '../components/Toaster';
-import { useRoutedCollection } from './useRoutedCollection';
-import { convertFromFormData } from '../components/convertFromFormData';
 import { useLocalRealm } from './useLocalRealm';
+import { getProps, IDefinitionProps, ValidationFunction } from '../data/definitions';
+import { RegisterFunction } from './useRegister';
+import { getProperty, setProperty } from '../common';
+import { isString } from '../common/array/is';
+import { useToggle } from './useToggle';
+import { $currentUser } from '../components/globals';
 
 export type ControlOpts = {
     validators?: string[];
     local?: boolean;
 };
-export function useForm<TFormData, TSubmitResult = undefined>(
-    convert: (fd: FormData) => Promise<any>,
-    objectClass: () => any
-): [
-    handleSubmit: (
-        onSubmit: (fd: TFormData) => Promise<TSubmitResult>,
-        onSuccess?: (result?: TSubmitResult) => void,
-        onFailure?: (result?: Error) => void
-    ) => (ev: React.FormEvent) => void,
-    register: (name: string, opts?: ControlOpts) => React.HTMLAttributes<HTMLElement>,
-    formRef: React.RefObject<HTMLFormElement>,
-    onInput: (ev: React.FormEvent<HTMLFormElement>) => void
-] {
-    const { arr: locals, append: appendLocal, remove: deleteLocal } = useArray<string>([]);
-    const formRef = useRef<HTMLFormElement | null>(null);
-    const controls = useRef<Map<string, ControlOpts & { validators: string[] }>>(new Map());
-    const unregister = useCallback((key: string) => {
-        controls.current?.delete(key);
+
+export function useMap<T>(
+    initial: Record<string, T> = {}
+): [getter: (key: string) => T | undefined, subscribe: (key: string, value: T) => () => void, getMap: () => Record<string, T>] {
+    const state = useRef<Record<string, T>>(initial);
+    const setItem = useCallback((key: string, value: T) => {
+        state.current[key] = value;
     }, []);
-    const { getFormPayload, getInfoFor } = useMetaDataContext();
-    const [collection] = useRoutedCollection();
-    const realm = useLocalRealm();
-    const addLocal = useCallback(
-        (name: string) => {
-            console.group('addLocal');
-            const proto = Object.getPrototypeOf((getFormPayload(collection) as any)());
-            console.log('proto', proto);
-            const descriptor = Object.getOwnPropertyDescriptor(proto, name);
-            console.log('descriptor', descriptor);
-            const funcText = descriptor?.get?.toString();
-            console.log('funcText', funcText);
-            if (!formRef.current) throw Error('bad ref');
-            const formData = new FormData(formRef.current);
-            const fd = convertFromFormData((getFormPayload(collection) as any)(), getInfoFor, collection, realm)(formData);
-            console.log('formData', formData, 'fd', fd);
-            const revisedText = `${funcText?.replace(
-                `get ${name}`,
-                `document.getElementById(${formRef.current.id}).elements.namedItem(${name}).value = function get${name}`
-            )}.bind(convertFromFormData((getFormPayload(collection) as any)(), getInfoFor, collection, realm)(new FormData(document.getElementById(${
-                formRef.current.id
-            }))}))()`;
-            console.log(`revistedText`, revisedText);
-            appendLocal(revisedText);
-            console.groupEnd();
-        },
-        [appendLocal, collection, getFormPayload, getInfoFor, objectClass, realm]
-    );
+    const unsetItem = useCallback((key: string) => {
+        return () => delete state.current[key];
+    }, []);
     const register = useCallback(
-        (name: string, opts?: ControlOpts) => {
-            console.log('register', name, opts);
-            if (opts?.local) {
-                console.log('register oninput');
-                // const onInput = (fd: any) => Object.getOwnPropertyDescriptor(Object.getPrototypeOf(fd), name)?.get?.toString().replace('get', 'function').concat(`; ${name}.value = ${name}.bind(new FormData())();`) ?? '';
-
-                addLocal(name);
-            }
-            const newOpts = { ...(opts ?? {}), validators: opts?.validators ?? [] };
-            controls.current.set(name, newOpts);
-            return { ...opts, name, id: name };
+        (key: string, value: T) => {
+            setItem(key, value);
+            return unsetItem(key);
         },
-        [addLocal]
+        [setItem, unsetItem]
     );
-    const validate = useCallback(() => {
-        if (formRef.current == null) throw new Error('formref not set');
-        if (controls.current == null) throw new Error('controls not set');
-
-        const getElement = (name: string) => formRef.current!.elements.namedItem(name) as DataElement;
-        Array.from(controls.current.keys()).map((key) => {
-            const { validators } = controls.current.get(key)!;
-            const el = getElement(key);
-            const result = validators.map((str) => eval(str)(el.value));
-            const msgs = result.filter((x) => typeof x === 'string');
-            const message = msgs.join('\n');
-            el.setCustomValidity(message);
-        });
-        return formRef.current.reportValidity();
+    const getter = useCallback((name: string) => {
+        return state.current[name];
     }, []);
-    const handleSubmit = useCallback(
+    const map = useCallback(() => {
+        const result = state.current;
+        console.log(`getMap`, result);
+        return result;
+    }, []);
+    return [getter, register, map];
+}
+export function runOutputFunction(form: React.RefObject<HTMLFormElement>, [name, func]: [name: string, func: (fd: FormData) => any]) {
+    if (form.current == null) throw new Error('no form ref');
+    const element = form.current.elements.namedItem(name);
+    if (element == null) throw new Error(`bad name: ${name}`);
+    (element as DataElement).value = func(new FormData(form.current));
+}
+export function runOutputFolder(form: React.RefObject<HTMLFormElement>) {
+    return function (pv: null, cv: [string, (fd: FormData) => any]) {
+        runOutputFunction(form, cv);
+        return null;
+    };
+}
+export function convertFromFDFolder(form: React.RefObject<HTMLFormElement>) {
+    return function (pv: Record<string, any>, [name, func]: [string, (x: any) => any]) {
+        if (form.current == null) throw new Error('no form ref');
+        const formdata = new FormData(form.current);
+        console.log(`formdata`, formdata);
+        console.log(Array.from(formdata.entries()));
+        const current = formdata.get(name);
+        return setProperty(name)(func(current))(pv);
+    };
+}
+export function convertToFDFolder(form: React.RefObject<HTMLFormElement>) {
+    return function (pv: Record<string, any>, [name, func]: [string, (x: any) => any]) {
+        if (form.current == null) throw new Error('no form ref');
+        const element = form.current.elements.namedItem(name);
+        if (element == null) throw new Error(`bad name: ${name}`);
+        const current = getProperty(name)(pv);
+        (element as DataElement).value = func(current);
+        return pv;
+    };
+}
+export function runValidators(realm: Realm, form: React.RefObject<HTMLFormElement>) {
+    return function (err: React.RefObject<Record<string, string[]>>, [name, validators]: [string, ValidationFunction[]]) {
+        if (err.current == null) throw new Error('bad error object');
+        if (form.current == null) throw new Error('no form ref');
+        const element: DataElement | null = form.current.elements.namedItem(name) as DataElement | null;
+        if (element == null) throw new Error(`bad name: ${name}`);
+        const formdata = new FormData(form.current);
+        const value = formdata.get(name);
+        const results = validators.map((f) => f(value, realm));
+        const msgs = results.filter(isString);
+        element.setCustomValidity(msgs.length > 0 ? msgs.join('\n') : '');
+        if (!element.validity.valid && !element.validity.customError) {
+            msgs.push(element.validationMessage);
+        }
+        err.current[name] = msgs;
+        return err;
+    };
+}
+
+export function useElementRef<T>() {
+    return useRef<T | null>(null);
+}
+export function useUncontrolledForm<TFormData, TSubmitResult = void>(
+    convertFromFormData: (fd: any) => TFormData,
+    initialData?: Record<string, any>
+): [handleSubmit: (onSubmit: (fd: any) => void) => (ev: React.FormEvent) => void, register: RegisterFunction, onInput: (ev: React.FormEvent) => void, isFeedbacking: boolean, getFeedback: (name: string) => () => string] {
+    const formRef = useElementRef<HTMLFormElement>();
+    const realm = useLocalRealm();
+
+    const [getValidator, subValidator, validators] = useMap<ValidationFunction[]>({});
+    const [getOutput, subOutput, outputs] = useMap<(x: any) => any>({});
+
+    const feedback = useRef<Record<string, string>>({});
+    const [isFeedbacking, setFeedbacking, showFeedback, hideFeedback] = useToggle(false);
+    const register = useCallback(
         (
-            onSubmit: (fd: TFormData) => Promise<TSubmitResult>
-            // onSuccess: (result?: TSubmitResult) => void = ignore,
-            // onFailure: (result?: Error) => void = ignore
-        ) => {
+            name: string,
+            opts: Omit<IDefinitionProps, 'children' | 'name'>
+        ): Omit<IDefinitionProps, 'children' | 'validators' | 'convertFromFD' | 'convertToFD' | 'toOutput' | 'pattern'> & { id: string; pattern?: string } => {
+            console.log('register', name, opts);
+            const { validators, convertFromFD, convertToFD, toOutput, pattern, ...remain } = opts;
+            subValidator(name, validators ?? []);
+            if (toOutput) {
+                subOutput(name, toOutput);
+            }
+            return { ...remain, pattern: pattern?.toString(), name, id: `${name.split('.').reverse()[0]}-control` };
+        },
+        [subOutput, subValidator]
+    );
+    const validate = useCallback((ev: React.FormEvent) => {
+        hideFeedback();
+        const errs: Record<string, string> = {};
+        const target = ev.target as HTMLFormElement;
+        const temp1 = new FormData(target as any);
+        const temp2 = temp1.entries();
+        const temp3 = Array.from(temp2);
+        const formData: Record<string, any> = {};
+        temp3.forEach(([n, v]) => {
+            if (getProps(formData).includes(n)) {
+                const curv = formData[n];
+                formData[n] = Array.isArray(curv) ? [...curv, v] : [curv, v];
+            } else {
+                formData[n] = v;
+            }
+        });
+        Object.entries(validators()).forEach(([name, validators]) => {
+            const element = target.elements.namedItem(name) as DataElement;
+            const value = formData[name];
+            const msgs = validators.map((f) => f(value, realm)).filter(isString);
+            element.setCustomValidity(msgs.join('\n'));
+            if (!element.validity.valid) errs[name] = element.validationMessage;
+        });
+        if (getProps(errs).length > 0) showFeedback();
+        feedback.current = errs;
+        return getProps(errs).length === 0;
+    }, [hideFeedback, realm, showFeedback, validators]);
+    const handleSubmit = useCallback(
+        (onSubmit: (fd: any) => void) => {
             return function (ev: React.FormEvent) {
-                console.log('submit event', ev);
                 ev.preventDefault();
                 ev.stopPropagation();
+                const target = ev.target as DataElement;
+                const form = target.form as HTMLFormElement;
+                const temp1 = new FormData(target as any);
+                const temp2 = temp1.entries();
+                const temp3 = Array.from(temp2);
+                const formData: Record<string, any> = {};
+                console.log(`owner`, $currentUser()?.profile.email);
+                formData.owner = $currentUser()?.profile.email;
+                temp3.forEach(([n, v]) => {
+                    if (getProps(formData).includes(n)) {
+                        const curv = formData[n];
+                        formData[n] = Array.isArray(curv) ? [...curv, v] : [curv, v];
+                    } else {
+                        formData[n] = v;
+                    }
+                });
+                console.log(temp2);
+                console.log(temp3);
+                console.log(formData);
+                console.log(`formData`, formData);
+                const isValid = validate(ev);
+                if (!isValid) return;
+                const fd: any = convertFromFormData(formData);
+                fd.owner = $currentUser()?.profile.email;
                 try {
-                    if (formRef.current == null) throw new Error('formref not set');
-                    const formData = new FormData(formRef.current);
-                    console.log('fd', Array.from(formData.entries()));
-                    if (!validate()) throw new Error('Did not pass validation');
-                    const result = convert(formData).then(onSubmit);
-                    return result;
-                    // result.then(onSuccess).catch(onFailure);
+                    onSubmit(fd);
                 } catch (error) {
-                    console.error((error as any).message);
-                    process.stdout.write((error as any).message);
+                    console.error(error);
+                    alert(error);
                     throw error;
                 }
             };
         },
-        [convert, validate]
+        [convertFromFormData, validate]
     );
     const onInput = useCallback(
-        (ev: React.FormEvent<HTMLFormElement>) => {
-            // return eval(locals.map(f => f(convert(new FormData(ev.target as HTMLFormElement)))).join('\n'));
-            locals.map(eval);
+        (ev: React.FormEvent) => {
+            const target = ev.target as DataElement;
+            const form = target.form as HTMLFormElement;
+            if (form == null) return;
+            const formData = Object.fromEntries(Object.entries(new FormData(form)));
+            console.log(`formData`, formData);
+            Object.entries(outputs()).forEach(([n, o]) => {
+                (form.elements as any)[n].value = o(formData);
+            });
         },
-        [locals]
+        [outputs]
     );
-    return [handleSubmit, register, formRef, onInput];
+    const getFeedback = useCallback((name: string) => {
+        return () => feedback.current[name] ?? ''
+    }, []);
+    return [handleSubmit, register, onInput, isFeedbacking, getFeedback];
 }
+// export function useForm<TFormData, TSubmitResult = undefined>(): [
+//     handleSubmit: (onSubmit: (fd: TFormData) => TSubmitResult) => (ev: React.FormEvent) => void,
+//     register: RegisterFunction,
+//     onInput: (ev: React.FormEvent) => void,
+//     formRef: React.RefObject<HTMLFormElement>,
+//     convertToFormData: (initialValue: Record<string, any>) => void
+// ] {
+//     const formRef = useRef<HTMLFormElement | null>(null);
+//     const realm = useLocalRealm();
+
+//     const [getValidators, subscribeValidators, validators] = useMap<ValidationFunction[]>({});
+//     const [getOutput, subscribeOutput, output] = useMap<(x: any) => any>({});
+//     const [getConvertToFormData, subscribeConvertToFD, convertToFD] = useMap<(x: any, r: Realm) => any>({});
+//     const [getConvertFromFormData, subscribeConvertFromFD, convertFromFD] = useMap<(x: any, r: Realm) => any>({});
+//     const validate = useCallback(
+//         (ev: React.FormEvent) => {
+//             const form = ev.target as HTMLFormElement;
+//             const errors: Record<string, string[]> = {};
+//             console.log(`validate`, validators());
+//             validators().forEach((v, n) => {
+//                 console.log(`validating: ${n}`);
+//                 const value = form.elements.namedItem(n);
+//                 if (value == null) throw new Error('element not found');
+//                 const element = value as DataElement;
+//                 const current = element.value;
+//                 element.setCustomValidity('');
+//                 const valid = element.validity.valid;
+//                 const msg = element.validationMessage;
+//                 const msgs = valid ? v.map((f) => f(current, realm)).filter(isString) : [msg, ...v.map((f) => f(current, realm)).filter(isString)];
+//                 if (msgs.length > 0) errors[n] = msgs;
+//                 if (msgs.length > 0) element.setCustomValidity(msgs.join('\n'));
+//             });
+//             return errors;
+//         },
+//         [realm, validators]
+//     );
+//     const onInput = useCallback(
+//         (ev: React.FormEvent) => {
+//             const form = ev.target as HTMLFormElement;
+//             console.log('oninput', output());
+//             output().forEach((func, n) => {
+//                 const element = form.elements.namedItem(n) as HTMLOutputElement;
+//                 const formData = Object.fromEntries(new FormData(form).entries());
+//                 console.log(`formdata`, formData);
+//                 const newValue = (func as any).bind(formData)();
+//                 console.log(`newValue`, newValue);
+//                 element.value = newValue;
+//             });
+//         },
+//         [output]
+//     );
+//     const convertTo = useCallback(
+//         (value: Record<string, any>) => {
+//             const map = convertToFD();
+//             if (formRef.current == null) {
+//                 console.log('cannot convert');
+//                 return;
+//             }
+//             const form = formRef.current;
+//             map.forEach((func, n) => {
+//                 const element = form.elements.namedItem(n) as DataElement;
+//                 element.value = func(getProperty(n)(value), realm);
+//             });
+//         },
+//         [convertToFD, realm]
+//     );
+//     const convertFrom = useCallback(
+//         (ev: React.FormEvent) => {
+//             const result: Record<string, any> = {};
+//             const form = ev.target as HTMLFormElement;
+//             console.log(`converting`, convertFromFD());
+//             convertFromFD().forEach((func, n) => {
+//                 const element = form.elements.namedItem(n) as DataElement;
+//                 const value = func(element.value, realm);
+//                 setProperty(n)(value)(result);
+//             });
+//             console.log(`result`, result);
+//             return result;
+//         },
+//         [convertFromFD, realm]
+//     );
+
+//     const register = useCallback(
+//         (
+//             name: string,
+//             opts: Omit<IDefinitionProps, 'children' | 'name'>
+//         ): Omit<IDefinitionProps, 'children' | 'validators' | 'convertFromFD' | 'convertToFD' | 'toOutput' | 'pattern'> & { id: string; pattern?: string } => {
+//             console.log('register', name, opts);
+//             const { validators, convertFromFD, convertToFD, toOutput, pattern, ...remain } = opts;
+//             const subs = [];
+//             subscribeValidators(name, validators ?? []);
+//             subscribeConvertFromFD(name, convertFromFD ?? ((x: any, r: Realm) => x));
+//             subscribeConvertToFD(name, convertToFD ?? ((x: any, r: Realm) => x));
+//             if (toOutput) {
+//                 subscribeOutput(name, toOutput);
+//             }
+//             return { ...remain, pattern: pattern?.toString(), name, id: `${name.split('.').reverse()[0]}-control` };
+//         },
+//         [subscribeConvertFromFD, subscribeConvertToFD, subscribeOutput, subscribeValidators]
+//     );
+
+//     const handleSubmit = useCallback(
+//         (
+//             onSubmit: (fd: TFormData) => TSubmitResult
+//             // onSuccess: (result?: TSubmitResult) => void = ignore,
+//             // onFailure: (result?: Error) => void = ignore
+//         ) => {
+//             return function (ev: React.FormEvent) {
+//                 console.log('submit event', ev);
+//                 ev.preventDefault();
+//                 ev.stopPropagation();
+//                 try {
+//                     if (formRef.current == null) throw new Error('formref not set');
+//                     const errs = validate(ev);
+//                     console.log(`errs`, errs);
+//                     const isvalid = Object.getOwnPropertyNames(errs).length === 0;
+//                     console.log(`isvalid`, isvalid);
+//                     if (!isvalid) {
+//                         console.log('did not pass validation');
+//                         return;
+//                     }
+//                     const data = convertFrom(ev) as TFormData;
+//                     console.log(`data`, data);
+//                     const result = onSubmit(data);
+//                     console.log('result', result);
+//                     return result;
+//                     // result.then(onSuccess).catch(onFailure);
+//                 } catch (error) {
+//                     console.error((error as any).message);
+//                     process.stdout.write((error as any).message);
+//                     throw error;
+//                 }
+//             };
+//         },
+//         [convertFrom, validate]
+//     );
+
+//     return [handleSubmit, register, onInput, formRef, convertTo];
+// }
 
 // const str = 'const x = this.address.city + this.selfStorage.name + this.state';
 // const reg = /^this[.]((\w.)+\w*)$/g;

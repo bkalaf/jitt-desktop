@@ -1,7 +1,7 @@
 /* eslint-disable react/boolean-prop-naming */
-import { IconDefinition } from '@fortawesome/pro-duotone-svg-icons';
+import { faKey, IconDefinition } from '@fortawesome/pro-duotone-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useEffect } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { LoginForm } from './forms/LoginForm';
 import { Toaster, useMetaDataContext } from './Toaster';
@@ -20,6 +20,14 @@ import { writeFile } from '../common/fs/writeFile';
 import { makeVar } from '@apollo/client';
 import { ToolBar } from './ToolBar';
 import { TopBar } from './TopBar';
+import { Registrar } from '../reflection/Registrar';
+import { ObjectId } from 'bson';
+import { IField } from '../reflection/IField';
+import { TypeKind } from '../reflection/typeInfo';
+import { Input } from './forms/elements/Input';
+import { provinces, countries } from '../data/enums';
+import { Select } from './forms/elements/Select';
+import { DbDataType } from '../data/DbDataType';
 
 export type IconButtonProps = {
     title: string;
@@ -152,12 +160,91 @@ export const $showFileTools = makeVar<boolean>(false);
 
 export function MainWindow({ realmReader }: { realmReader: LazyDataOrModifiedFn<Realm> }) {
     const realm = realmReader();
+    // const insertType = useCallback(
+    //     (kind: TypeKind, name: string, embedded: boolean, columns: string[], headers: string[], ...fields: any[]) => {
+    //         if (realm == null) throw new Error('oops');
+    //         const result = realm.objects('type-data').filtered('kind == $0 AND name == $1', kind, name);
+
+    //         if ((result?.length ?? 0) === 0) {
+    //             realm.write(() => {
+    //                 realm.create('type-data', {
+    //                     _id: new ObjectId(),
+    //                     kind,
+    //                     name,
+    //                     embedded,
+    //                     fields: [{ name: ['_id'], datatype: 'objectId', displayName: 'ID', required: true, readOnly: true, icon: faKey }, ...fields],
+    //                     headerProps: {
+    //                         columns: JSON.stringify(columns),
+    //                         headers: JSON.stringify(headers)
+    //                     },
+    //                     rowProps: { columns: JSON.stringify(columns) }
+    //                 });
+    //             });
+    //         }
+    //     },
+    //     [realm]
+    // );
+    // useEffect(() => {
+    //     insertType(
+    //         'complex-type',
+    //         'address',
+    //         true,
+    //         ['street', 'suite', 'city', 'state', 'country', 'postalCode'],
+    //         ['Street', 'Suite', 'City', 'State', 'Country', 'Postal Code'],
+    //         {
+    //             name: ['street'],
+    //             type: 'text',
+    //             Control: Input,
+    //             datatype: 'string',
+    //             displayName: 'Street'
+    //         },
+    //         { name: ['suite'], type: 'text', Control: Input, datatype: 'string', displayName: 'Suite' },
+    //         { name: ['city'], type: 'text', required: true, Control: Input, datatype: 'string', displayName: 'City' },
+    //         { name: ['state'], Control: Select, enumMap: provinces, datatype: 'string', displayName: 'State / Province' },
+    //         { name: ['country'], Control: Select, enumMap: countries, datatype: 'string', displayName: 'Country' },
+    //         {
+    //             name: ['postalCode'],
+    //             pattern: /^([0-9]{5}(-?[0-9]{4})?$)|(^[A-Z][0-9][A-Z]-?[0-9][A-Z][0-9]$)/.toString(),
+    //             datatype: 'string',
+    //             displayName: 'Postal Code'
+    //         }
+    //     );
+    // }, [insertType, realm]);
     const location = useLocation();
     const [reader, updateReader] = useAsyncResource<any>(async () => {
         console.log('output');
     }, []);
+
     return (
         <div className='relative flex flex-col w-full h-full py-0.5'>
+            {useMemo(
+                () => (
+                    <datalist id='verified-brand-list'>
+                        <option key='' value='' label='Choose...'></option>
+                        {realm
+                            ?.objects<{ _id: ObjectId; name: string }>('verified-brand')
+                            .sorted([['name', false]])
+                            .map((x) => (
+                                <option key={x._id.toHexString()} value={x._id.toHexString()} label={x.name} />
+                            ))}
+                    </datalist>
+                ),
+                [realm]
+            )}
+            {useMemo(
+                () => (
+                    <datalist id='taxonomy-list'>
+                        <option key='' value='' label='Choose...'></option>
+                        {realm
+                            ?.objects<{ _id: ObjectId; materializedPath: string }>('taxonomy')
+                            .sorted([['materializedPath', false]])
+                            .map((x) => (
+                                <option key={x._id.toHexString()} value={x._id.toHexString()} label={x.materializedPath} />
+                            ))}
+                    </datalist>
+                ),
+                [realm]
+            )}
             <TopBar />
             {/* <CategoryScraper reader={reader} /> */}
             <ToolBar />
@@ -170,7 +257,7 @@ export function MainWindow({ realmReader }: { realmReader: LazyDataOrModifiedFn<
             <main className='flex flex-grow w-full px-2 text-white'>
                 <LeftSidebar />
                 <section className='flex w-full h-full p-0.5 overflow-auto border-2 border-double shadow-inner border-cyan rounded-xl mx-1 my-0.5 shadow-cyan'>
-                    <MainRouter reader={reader} />
+                    <MainRouter realm={realm!} reader={reader} />
                 </section>
             </main>
             <StatusBar />

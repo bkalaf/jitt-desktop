@@ -11,7 +11,6 @@ import { deleteSelected } from '../../queries/deleteById';
 import { Commander } from './CommanderProvider';
 import { IAppCommand } from '../../types/ui/ICommand';
 import { useLocalRealm } from '../../hooks/useLocalRealm';
-import { mongo } from '../../data';
 
 export interface IGridViewContext<T extends { _id: Realm.BSON.ObjectId } = { _id: Realm.BSON.ObjectId }> {
     viewKind: 'grid';

@@ -1,165 +1,46 @@
+/* eslint-disable @typescript-eslint/no-this-alias */
 /* eslint-disable @typescript-eslint/no-namespace */
 import { ObjectSchema } from 'realm';
 import { ObjectId } from 'bson';
-import { objectMap, recordMap } from '../common/obj/objectMap';
 import { Provinces } from './enums/province';
 import { Country } from './enums/country';
-import { LengthUOMS, lengthUOMS, pluralize } from './enums/lengthUOM';
+import { LengthUOMS } from './enums/lengthUOM';
 import { AuctionSites } from './enums/auctionSite';
 import { MimeTypes } from './enums/mimeTypes';
-import { capitalize, isLower, isUpper, not } from '../common';
+import { capitalize, isLower, isUpper } from '../common/text';
 import { now } from '../aggregator';
-import { LinkedObject, LinkingObject, LinkingObjects } from './LinkingObjects';
+import { LinkedObject, LinkingObjects } from './LinkingObjects';
 import { $currentUser } from '../components/globals';
 import { MeasuresOf } from './enums/measuresOf';
-import { BarcodeType, CapacityUOMS, Colors, FabricTypes, SKUTypes, StageTypes, WeightUOMS } from './enums';
-import { ActivityAction } from './ActivityAction';
-import { ActivityScope } from './ActivityScope';
-import { decapitalize } from '../common/text/decapitalize';
+import { ActivityActions, ActivityScopes, BarcodeType, CapacityUOMS, Colors, Conditions, MaterialTypes, StageTypes, WeightUOMS } from './enums';
+import { Select } from '../components/forms/elements/Select';
+import { Input } from '../components/forms/elements/Input';
+import { Fieldset } from '../components/forms/elements/Fieldset';
+import { Output } from '../components/forms/elements/Output';
+import { Product } from 'electron';
+import { MeasurementFor } from './enums/measurementFor';
+import * as fs from 'graceful-fs';
+import * as path from 'path';
+import { Textarea } from '../components/forms/elements/Textarea';
+import { FieldsetHTMLAttributes } from 'react';
+import { $ } from './$';
+import { DbCellInputProps } from './DbCellInputProps';
+import { DbDescriptor } from './DbDescriptor';
+import { IDbTable } from './IDbTable';
+import { DbSort } from './DbSort';
+import { DbTable } from './DbTable';
+import { DbColumn } from './DbColumn';
+import { DbDataType } from './DbDataType';
+import { DbInputProps } from './DbInputProps';
+import { DbSelectProps } from './DbSelectProps';
+import { DbTextAreaProps } from './DbTextAreaProps';
+import { DbFieldSetProps } from './DbFieldSetProps';
+import { DbOutputProps } from './DbOutputProps';
 
-export const primitives = {
-    objectId: 'objectId',
-    string: 'string',
-    int: 'int',
-    float: 'float',
-    double: 'double',
-    decimal128: 'decimal128',
-    date: 'date',
-    data: 'data',
-    uuid: 'uuid',
-    bool: 'bool'
-};
-export const DTO = {
-    ADMIN: {
-        activity: 'activity',
-        user: 'user'
-    },
-    AUCTIONS: {
-        cost: 'cost',
-        purchase: 'purchase'
-    },
-    DETAILS: {},
-    FILES: {
-        expense: 'expense',
-        fsAlloc: 'fs-alloc',
-        fsItem: 'fs-item',
-        imageStage: 'image-stage',
-        photo: 'photo',
-        productDocumentation: 'product-documentation'
-    },
-    INVENTORY: {
-        bin: 'bin',
-        fixture: 'fixture',
-        item: 'item',
-        scan: 'scan',
-        SKU: 'sku'
-    },
-    LISTINGS: {
-        draft: 'draft',
-        sellingPrice: 'selling-price',
-        shippingRate: 'shipping-rate'
-    },
-    MATERIALS: {
-        fabric: 'fabric',
-        fabricSection: 'fabric-section',
-        percentOf: 'percent-of'
-    },
-    PIPELINES: {
-        barcodePipeline: 'barcode-pipeline',
-        draftPipeline: 'draft-pipeline',
-        imagePipeline: 'image-pipeline',
-        promotionPipeline: 'promotion-pipeline',
-        skuPipeline: 'sku-pipeline'
-    },
-    PRODUCTS: {
-        barcode: 'barcode',
-        brand: 'brand',
-        company: 'company',
-        dimension: 'dimension',
-        itemType: 'item-type',
-        measurement: 'measurement',
-        product: 'product',
-        productLine: 'product-line'
-    },
-    SALES: {
-        trackingNumber: 'tracking-number',
-        fullfillment: 'fulfillment'
-    },
-    SCRAPES: {
-        category: 'category',
-        taxonomy: 'taxonomy',
-        verifiedBrand: 'verified-brand'
-    },
-    STORAGES: {
-        address: 'address',
-        facility: 'facility',
-        length: 'length',
-        rentalUnit: 'rental-unit',
-        selfStorage: 'self-storage',
-        squareFootage: 'square-footage'
-    }
-};
+// export const $$ = {
+//     ...objectMap((x: string) => decapitalize(x.split('-').map(capitalize).join('')))(allTypes)
+// };
 
-export const realmObjects: Record<
-    | keyof typeof DTO.ADMIN
-    | keyof typeof DTO.AUCTIONS
-    | keyof typeof DTO.FILES
-    | keyof typeof DTO.INVENTORY
-    | keyof typeof DTO.LISTINGS
-    | keyof typeof DTO.MATERIALS
-    | keyof typeof DTO.PIPELINES
-    | keyof typeof DTO.PRODUCTS
-    | keyof typeof DTO.SCRAPES
-    | keyof typeof DTO.STORAGES
-    | keyof typeof DTO.SALES,
-    string
-> = Object.fromEntries(
-    (
-        [
-            DTO.ADMIN,
-            DTO.AUCTIONS,
-            DTO.DETAILS,
-            DTO.FILES,
-            DTO.INVENTORY,
-            DTO.LISTINGS,
-            DTO.MATERIALS,
-            DTO.PIPELINES,
-            DTO.PRODUCTS,
-            DTO.SALES,
-            DTO.SCRAPES,
-            DTO.STORAGES
-        ] as Record<string, string>[]
-    )
-        .map((x) => Object.entries(x))
-        .reduce((pv, cv) => [...pv, ...cv], [])
-) as any;
-
-const allTypes = { ...primitives, ...realmObjects };
-export const $ = {
-    ...allTypes,
-    optional: {
-        ...objectMap((x) => `${x}?`)(allTypes)
-    },
-    list: 'list',
-    listOf: {
-        ...objectMap((x) => `${x}[]`)(allTypes)
-    },
-    linkingObjects: 'linkingObjects',
-    object: 'object',
-    dictionary: 'dictionary',
-    dictionaryOf: {
-        ...objectMap((x) => `${x}{}`)(allTypes)
-    },
-    set: 'set',
-    setOf: {
-        ...objectMap((x) => `${x}<>`)(allTypes)
-    }
-};
-export const $$ = {
-    ...objectMap((x: string) => decapitalize(x.split('-').map(capitalize).join('')))(allTypes)
-};
-
-console.log(JSON.stringify($$, null, '\t'));
 export class Length {
     static schema: ObjectSchema = {
         name: $.length,
@@ -169,19 +50,12 @@ export class Length {
             uom: { type: $.string, default: 'in' }
         }
     };
-    value: number;
-    uom: 'in' | 'm' | 'ft' | 'cm' | 'mm' | 'yd' | 'mi' | 'km';
-    constructor() {
-        this.value = 0;
-        this.uom = 'in';
-    }
-    get displayAs() {
-        const v = Number.isInteger(this.value) ? this.value.toFixed(0) : this.value.toFixed(1);
-        return `${v} ${this.uom}`;
-    }
 }
 
-namespace Admin {
+function createColumns(obj: any) {
+    return obj.fields.map((x: any) => x.name);
+}
+export namespace Admin {
     /**
      * @description Represents a repeating task, usually for maintenance, either completed or scheduled.
      * @author Robert Kalaf Jr.
@@ -191,6 +65,23 @@ namespace Admin {
      * @see dto
      */
     export class Activity {
+        static async convertFrom(
+            realm: Realm,
+            input: {
+                _id: string;
+                action: string;
+                scope: string;
+                when: string;
+                isComplete: boolean;
+                isScheduled: boolean;
+            }
+        ) {
+            return {
+                ...input,
+                _id: new ObjectId(input._id),
+                when: new Date(Date.parse(input.when))
+            };
+        }
         static schema: ObjectSchema = {
             name: $.activity,
             primaryKey: '_id',
@@ -204,27 +95,27 @@ namespace Admin {
                 brands: {
                     type: $.linkingObjects,
                     objectType: $.brand,
-                    property: $$.activity
+                    property: 'activity'
                 },
                 categories: {
                     type: $.linkingObjects,
                     objectType: $.category,
-                    property: $$.activity
+                    property: 'activity'
                 },
                 taxonomy: {
                     type: $.linkingObjects,
                     objectType: $.taxonomy,
-                    property: $$.activity
+                    property: 'activity'
                 }
             }
         };
         _id: ObjectId;
-        action: ActivityAction;
-        scope: ActivityScope;
+        action: ActivityActions;
+        scope: ActivityScopes;
         when: Date;
         isComplete: boolean;
         isScheduled: boolean;
-        brands: LinkingObjects<Scrapes.VerifiedBrand>;
+        brands: LinkingObjects<Products.Brand>;
         categories: LinkingObjects<Scrapes.Category>;
         taxonomy: LinkingObjects<Scrapes.Taxonomy>;
         constructor() {
@@ -242,7 +133,7 @@ namespace Admin {
     export class User {}
 }
 
-namespace Auctions {
+export namespace Auctions {
     export class Cost {
         static schema: ObjectSchema = {
             name: $.cost,
@@ -275,6 +166,30 @@ namespace Auctions {
         }
     }
     export class Purchase {
+        static async convertFrom(
+            realm: Realm,
+            input: {
+                _id: string;
+                cost: any;
+                closeDate: string;
+                auctionSite: string;
+                auctionId: string;
+                invoiceId: string;
+                invoice: {
+                    _id: string;
+                };
+                rentalUnit: {
+                    _id: string;
+                };
+            }
+        ) {
+            return {
+                ...input,
+                _id: new ObjectId(input._id),
+                invoice: toID(realm, input, 'invoice', 'fs-item'),
+                rentalUnit: toID(realm, input, 'rentalUnit', 'rental-unit')
+            };
+        }
         static schema: ObjectSchema = {
             name: $.purchase,
             primaryKey: '_id',
@@ -306,7 +221,7 @@ namespace Auctions {
     }
 }
 
-namespace Details {
+export namespace Details {
     export class Media {}
 
     export class Apparel {}
@@ -322,7 +237,12 @@ namespace Details {
     export class Electronics {}
     export class Computer extends Electronics {}
 }
-namespace Files {
+function textToBin(text: string) {
+    return Array.from(text)
+        .reduce((acc: any[], char: string) => acc.concat(char.charCodeAt(0).toString(2)), [])
+        .map((bin) => '0'.repeat(8 - bin.length) + bin);
+}
+export namespace Files {
     export class Expense {
         static schema: ObjectSchema = {
             name: $.expense,
@@ -356,6 +276,31 @@ namespace Files {
      * @class FileAlloc
      */
     export class FileAlloc {
+        static async convertFrom(
+            realm: Realm,
+            input: {
+                _id: string;
+                name: string;
+                originalName: string;
+                parent: {
+                    _id: string;
+                };
+                materializedPath: string;
+                fsItem:
+                    | {
+                          _id: string;
+                      }
+                    | undefined;
+                fileCreation?: Date;
+            }
+        ) {
+            return {
+                ...input,
+                _id: new ObjectId(input._id),
+                parent: toID(realm, input, 'parent', 'fs-alloc'),
+                fsItem: toID(realm, input, 'fsItem', 'fs-item')
+            };
+        }
         static schema: ObjectSchema = {
             name: $.fsAlloc,
             primaryKey: '_id',
@@ -374,42 +319,39 @@ namespace Files {
                 fileCreation: $.optional.date
             }
         };
-        _id: ObjectId;
-        name: string;
-        originalName: string;
-        parent?: FileAlloc;
-        content: LinkingObjects<FileAlloc>;
-        materializedPath: string;
-        fsItem?: FileItem;
-        fileCreation?: Date;
-        constructor() {
-            this._id = new ObjectId();
-            this.name = '';
-            this.originalName = '';
-            this.content = [];
-            this.materializedPath = '';
-        }
+
         get path(): string {
-            return [this.parent?.path ?? '', this.name].join('/');
+            const obj: any = this;
+            return [obj.parent?.path ?? '', obj.name].join('/');
         }
         get isFolder(): string {
-            return (this.fsItem == null).toString();
+            const obj: any = this;
+
+            return (obj.fsItem == null).toString();
         }
         get isFile(): string {
-            return (!(this.fsItem == null)).toString();
+            const obj: any = this;
+
+            return (!(obj.fsItem == null)).toString();
         }
         get count(): number {
-            return this.content.length;
+            const obj: any = this;
+
+            return obj.content.length;
         }
         get size(): number {
-            return this.content.map((s) => s.size).reduce((x, y) => x + y, 0);
+            const obj: any = this;
+
+            return obj.content.map((s: any) => s.size).reduce((x: any, y: any) => x + y, 0);
         }
         get type(): string {
-            if (this.fsItem == null) return 'folder';
-            if (this.fsItem.isInvoice === 'true') return 'invoice';
-            if (this.fsItem.isPhoto === 'true') return 'photo';
-            if (this.fsItem.isDoc === 'true') return 'document';
-            if (this.fsItem.isReceipt === 'true') return 'receipt';
+            const obj: any = this;
+
+            if (obj.fsItem == null) return 'folder';
+            if (obj.fsItem.isInvoice === 'true') return 'invoice';
+            if (obj.fsItem.isPhoto === 'true') return 'photo';
+            if (obj.fsItem.isDoc === 'true') return 'document';
+            if (obj.fsItem.isReceipt === 'true') return 'receipt';
             return 'unknown';
         }
     }
@@ -427,6 +369,41 @@ namespace Files {
         static DOC_REGEX = /^\/products\/(\d*\/)?docs\//;
         static RECEIPT_REGEX = /^\/(auctions|products)\/(\d*\/)?receipts\//;
 
+        static convertTo(realm: Realm, file: string) {
+            const data = fs.readFileSync(file).buffer;
+            const size = fs.lstatSync(file).size;
+            const mimeType = path.extname(file);
+            const input = {
+                data,
+                size,
+                mimeType,
+                _id: new ObjectId()
+            };
+            realm.write(() => {
+                realm.create('fs-item', input);
+            });
+        }
+        static async convertFrom(
+            realm: Realm,
+            input: {
+                _id: string;
+                data: string;
+                size: string;
+                mimeType: string;
+            }
+        ) {
+            console.log(`data.length: ${input.data.length} size: ${input.size}`);
+            const fsAlloc: any = realm.objects<FileAlloc>('fs-alloc').filtered('fsItem._id == $0', new ObjectId(input._id))[0];
+            const filename = [`/home/bobby/.config/jitt-desktop/fs`, fsAlloc.materializedPath].join('/');
+            console.log(filename);
+            const buffer = fs.readFileSync(filename);
+            return {
+                ...input,
+                _id: new ObjectId(input._id),
+                data: buffer
+            };
+        }
+
         static schema: ObjectSchema = {
             name: $.fsItem,
             primaryKey: '_id',
@@ -435,7 +412,7 @@ namespace Files {
                 fsAlloc: {
                     type: $.linkingObjects,
                     objectType: $.fsAlloc,
-                    property: $.fsItem
+                    property: 'fsItem'
                 },
                 data: $.optional.data,
                 size: $.int,
@@ -444,56 +421,60 @@ namespace Files {
                     type: $.linkingObjects,
                     objectType: $.purchase,
                     property: 'invoice'
-                },
-                sku: {
-                    type: $.linkingObjects,
-                    objectType: $.SKU,
-                    property: 'images'
                 }
                 // TODO add doc
                 // TODO add photo
                 // TODO add receipt
             }
         };
-        _id: ObjectId;
-        fsAlloc: LinkedObject<FileAlloc>;
-        data?: ArrayBuffer;
-        size: number;
-        mimeType?: MimeTypes;
-        invoice: LinkedObject<Auctions.Purchase>;
-        constructor() {
-            this._id = new ObjectId();
-            this.size = 0;
-            this.mimeType = '';
-            this.fsAlloc = [];
-            this.invoice = [];
-        }
+        
         get name() {
-            // const arr = Object.entries(this.fsAlloc ?? {})[0][1];
-            // const arr1 = this.fsAlloc[0];
+            // const arr = Object.entries(this.fsAlloc ?? {})[0][1],
+            // const arr1 = this.fsAlloc[0],
             // console.log("ARR1", arr1);
             // const arr2 = Object.entries(this.fsAlloc[0]);
             // console.log('ARR2', arr2);
             // console.log('ARR', arr);
-            console.log('NEW NAME', this.fsAlloc[0]);
-            return this.fsAlloc[0].name;
+            const obj: any = this;
+            return obj.fsAlloc[0].name;
         }
         get isAssigned() {
-            return (this.invoice[0] != null).toString();
+            const obj: any = this;
+
+            return (obj.invoice[0] != null).toString();
         }
         get isInvoice() {
-            return FileItem.INVOICE_REGEX.test(this.fsAlloc[0]?.path ?? '/').toString();
+            const obj: any = this;
+
+            return FileItem.INVOICE_REGEX.test(obj.fsAlloc[0]?.path ?? '/').toString();
         }
         get isPhoto() {
-            return FileItem.PHOTO_REGEX.test(this.fsAlloc[0]?.path ?? '/').toString();
+            const obj: any = this;
+
+            return FileItem.PHOTO_REGEX.test(obj.fsAlloc[0]?.path ?? '/').toString();
         }
         get isReceipt() {
-            return FileItem.RECEIPT_REGEX.test(this.fsAlloc[0]?.path ?? '/').toString();
+            const obj: any = this;
+
+            return FileItem.RECEIPT_REGEX.test(obj.fsAlloc[0]?.path ?? '/').toString();
         }
         get isDoc() {
-            return FileItem.DOC_REGEX.test(this.fsAlloc[0]?.path ?? '/').toString();
+            const obj: any = this;
+
+            return FileItem.DOC_REGEX.test(obj.fsAlloc[0]?.path ?? '/').toString();
         }
     }
+    /**
+     * @description
+     * @author Robert Kalaf Jr.
+     * @date 05/20/2022
+     * @export
+     * @class ImageStage
+     * @property {StageTypes} stage
+     * @property {FileAlloc} fsAlloc
+     * @property {boolean} canPublish
+     * @property {string[]} columns
+     */
     export class ImageStage {
         static schema: ObjectSchema = {
             name: $.imageStage,
@@ -501,30 +482,34 @@ namespace Files {
             properties: {
                 stage: { type: $.int, default: 0 },
                 fsAlloc: $.fsAlloc,
-                isApproved: { type: $.bool, default: false }
+                canPublish: { type: $.bool, default: false }
             }
         };
         stage: StageTypes;
         fsAlloc?: FileAlloc;
-        isApproved: boolean;
+        canPublish: boolean;
         constructor() {
             this.stage = 0;
-            this.isApproved = false;
+            this.canPublish = false;
         }
     }
-    export class Photo {
+    export class PhotoPack {
         static schema: ObjectSchema = {
-            name: $.photo,
+            name: $.photoPack,
             primaryKey: '_id',
             properties: {
                 _id: $.objectId,
-                versions: $.listOf.imageStage,
-                item: $.item
+                versions: $.dictionaryOf.imageStage,
+                item: {
+                    type: $.linkingObjects,
+                    objectType: $.item,
+                    property: 'photoPack'
+                }
             }
         };
         _id: ObjectId;
         versions: ImageStage[];
-        item?: Inventory.Item;
+        item?: LinkedObject<Inventory.Item>;
         constructor() {
             this._id = new ObjectId();
             this.versions = [];
@@ -536,67 +521,134 @@ namespace Files {
             primaryKey: '_id',
             properties: {
                 _id: $.objectId,
-                fsItem: $.fsItem,
-                product: $.product
+                fsAlloc: $.fsAlloc,
+                product: {
+                    type: $.linkingObjects,
+                    objectType: $.product,
+                    property: 'productDocumentation'
+                }
             }
         };
         _id: ObjectId;
-        fsItem?: FileItem;
-        product?: Products.Product;
+        fsAlloc?: FileAlloc;
+        product?: LinkedObject<Products.Product>;
         constructor() {
             this._id = new ObjectId();
         }
     }
 }
-namespace Inventory {
-    export class SKU {
+export namespace Inventory {
+    // export class SKU {
+    //     static schema: ObjectSchema = {
+    //         name: $.SKU,
+    //         primaryKey: '_id',
+    //         properties: {
+    //             _id: $.objectId,
+    //             barcode: $.barcode,
+    //             type: $.optional.string,
+    //             fixture: {
+    //                 type: $.linkingObjects,
+    //                 objectType: $.fixture,
+    //                 property: 'sku'
+    //             },
+    //             bin: {
+    //                 type: $.linkingObjects,
+    //                 objectType: $.bin,
+    //                 property: 'sku'
+    //             },
+    //             product: {
+    //                 type: $.linkingObjects,
+    //                 objectType: $.product,
+    //                 property: 'sku'
+    //             },
+    //             photo: {
+    //                 type: $.linkingObjects,
+    //                 objectType: $.photo,
+    //                 property: 'sku'
+    //             },
+    //             images: {
+    //                 type: $.linkingObjects,
+    //                 objectType: $.fsItem,
+    //                 property: 'sku'
+    //             }
+    //         }
+    //     };
+    //     _id: ObjectId;
+    //     barcode?: Products.Barcode;
+    //     fixture: LinkedObject<Fixture>;
+    //     bin: LinkedObject<Bin>;
+    //     product: LinkedObject<Products.Product>;
+    //     constructor() {
+    //         this._id = new ObjectId();
+    //         this.fixture = [],
+    //         this.bin = [],
+    //         this.product = [],
+    //     }
+    //     get type(): SKUTypes | undefined {
+    //         return this.bin.length > 0 ? 'bin' : this.product.length > 0 ? 'product' : this.fixture.length > 0 ? 'fixture' : undefined;
+    //     }
+    // }
+    export class Barcode {
         static schema: ObjectSchema = {
-            name: $.SKU,
+            name: $.barcode,
             primaryKey: '_id',
             properties: {
                 _id: $.objectId,
-                barcode: $.barcode,
+                barcode: $.string,
+                valid: $.bool,
                 type: $.optional.string,
-                fixture: {
-                    type: $.linkingObjects,
-                    objectType: $.fixture,
-                    property: 'sku'
-                },
+                description: $.optional.string,
                 bin: {
                     type: $.linkingObjects,
                     objectType: $.bin,
-                    property: 'sku'
+                    property: 'barcode'
                 },
-                product: {
+                fixture: {
                     type: $.linkingObjects,
-                    objectType: $.product,
-                    property: 'sku'
+                    objectType: $.fixture,
+                    property: 'barcode'
                 },
-                photo: {
+                product: $.product,
+                item: {
                     type: $.linkingObjects,
-                    objectType: $.photo,
-                    property: 'sku'
-                },
-                images: {
-                    type: $.linkingObjects,
-                    objectType: $.fsItem,
-                    property: 'sku'
+                    objectType: $.item,
+                    property: 'barcode'
                 }
             }
         };
-        _id: ObjectId;
-        barcode?: Products.Barcode;
-        fixture: LinkedObject<Fixture>;
-        bin: LinkedObject<Bin>;
-        product: LinkedObject<Products.Product>;
-        constructor() {
-            this._id = new ObjectId();
-            this.fixture = [];
-            this.bin = [];
-            this.product = [];
+        barcode?: string;
+        setBarcode = (barcode: string) => {
+            (this as any).barcode = barcode;
+            (this as any).type = this.classify();
+            const [isValid] = this.calculateCheckDigit() ?? [false];
+            (this as any).valid = isValid;
         }
-        get type(): SKUTypes | undefined {
-            return this.bin.length > 0 ? 'bin' : this.product.length > 0 ? 'product' : this.fixture.length > 0 ? 'fixture' : undefined;
+
+        classify = (): BarcodeType | undefined => {
+            switch ((this as any).barcode.length) {
+                case 8:
+                    return 'UPCA';
+                case 10:
+                    return 'ISBN10';
+                case 12:
+                    return 'UPCE';
+                case 13:
+                    return (this as any).barcode.startsWith('978') || (this as any).barcode.startsWith('979') ? 'ISBN13' : 'EAN13';
+
+                default:
+                    return (this as any).barcode.split('').some((x: string) => isLower(x) || isUpper(x)) ? 'ASIN' : undefined;
+            }
+        }
+        MULTIPLIERS: number[] = [1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3];
+        calculateCheckDigit = (): [passed: boolean, actual: number, expected: number] | undefined => {
+            if ((this as any).type === 'ASIN' || (this as any).type === 'ELID' || (this as any).type == null) return undefined;
+            const [actual, ...remain] = (this as any).barcode.padStart(13, '0').split('').reverse();
+            const head = remain.reverse();
+            const summed = this.MULTIPLIERS.map((x: number, ix: number) => parseInt(head[ix], 10) * x).reduce((pv: number, cv: number) => pv + cv, 0);
+            const modulo = summed % 10;
+            const subtracted = 10 - modulo;
+            const expected = subtracted === 10 ? 0 : subtracted;
+            return [parseInt(actual, 10) === expected, parseInt(actual, 10), expected] as [passed: boolean, actual: number, expected: number];
         }
     }
     export class Fixture {
@@ -606,20 +658,19 @@ namespace Inventory {
             properties: {
                 _id: $.objectId,
                 name: $.string,
-                sku: $.SKU,
-                color: $.listOf.string,
+                barcode: $.barcode,
                 notes: $.optional.string,
                 bins: {
                     type: $.linkingObjects,
                     objectType: $.bin,
-                    property: $$.fixture
+                    property: 'fixture'
                 }
             }
         };
         _id: ObjectId;
         name: string;
-        sku?: SKU;
-        color: Colors[];
+        barcode?: Barcode;
+        colors: Colors[];
         notes: string;
         bins: LinkingObjects<Bin>;
         constructor() {
@@ -627,7 +678,7 @@ namespace Inventory {
             this.name = '';
             this.notes = '';
             this.bins = [];
-            this.color = [];
+            this.colors = [];
         }
     }
     export class Bin {
@@ -637,67 +688,93 @@ namespace Inventory {
             properties: {
                 _id: $.objectId,
                 name: $.string,
-                sku: $.SKU,
-                color: $.optional.string,
+                barcode: $.barcode,
                 notes: $.optional.string,
                 fixture: $.fixture
             }
         };
         _id: ObjectId;
         name: string;
-        sku?: SKU;
-        color: Colors[];
+        barcode?: Barcode;
         notes: string;
         fixture?: Fixture;
         constructor() {
             this._id = new ObjectId();
             this.name = '';
             this.notes = '';
-            this.color = [];
         }
     }
-    export class Scan {
-        static schema: ObjectSchema = {
-            name: $.scan,
-            primaryKey: '_id',
-            properties: {
-                _id: $.objectId,
-                sku: $.sku,
-                bin: $.bin,
-                item: $.item,
-                timestamp: $.int,
-                user: $.string
-            }
-        };
-        _id: ObjectId;
-        sku?: SKU;
-        bin?: Bin;
-        timestamp: number;
-        user: string;
-        constructor() {
-            this._id = new ObjectId();
-            this.timestamp = Date.now();
-            this.user = getCurrentPartitionValue();
-        }
-    }
+    // export class Scan {
+    //     static schema: ObjectSchema = {
+    //         name: $.scan,
+    //         primaryKey: '_id',
+    //         properties: {
+    //             _id: $.objectId,
+    //             sku: $.SKU,
+    //             bin: $.bin,
+    //             item: $.item,
+    //             timestamp: $.int,
+    //             user: $.string
+    //         }
+    //     };
+    //     _id: ObjectId;
+    //     sku?: SKU;
+    //     bin?: Bin;
+    //     timestamp: number;
+    //     user: string;
+    //     constructor() {
+    //         this._id = new ObjectId();
+    //         this.timestamp = Date.now();
+    //         this.user = getCurrentPartitionValue();
+    //     }
+    // }
     export class Item {
         static schema = {
             name: $.item,
             primaryKey: '_id',
             properties: {
                 _id: $.objectId,
+                product: $.product,
+                barcode: $.optional.barcode,
                 colors: $.listOf.string,
                 condition: { type: $.string, default: 'Likenew' },
                 defects: $.listOf.string,
                 features: $.listOf.string,
                 tested: $.optional.date,
-                sku: $.sku
+                draft: $.optional.draft,
+                photoPack: $.photoPack
+            }
+        };
+        _id: ObjectId;
+        product?: Products.Product;
+        colors: string[];
+        condition: Conditions;
+        defects: string[];
+        features: string[];
+        tested?: Date;
+        barcode?: Inventory.Barcode;
+        draft?: Listings.Draft;
+        photoPack?: Files.PhotoPack;
+        constructor() {
+            this._id = new ObjectId();
+            this.colors = [];
+            this.condition = 'Likenew';
+            this.defects = [];
+            this.features = [];
+        }
+    }
+}
+export namespace Listings {
+    export class Draft {
+        static schema: ObjectSchema = {
+            name: $.draft,
+            primaryKey: '_id',
+            properties: {
+                _id: $.objectId,
+                marketplace: { type: $.string, default: 'mercari.com' }
             }
         };
     }
-}
-namespace Listings {
-    export class Draft {}
     export class SellingPrice {
         static schema: ObjectSchema = {
             name: $.bin,
@@ -717,33 +794,33 @@ namespace Listings {
         };
     }
 }
-namespace Materials {
+export namespace Materials {
     export class PercentOf {
         static schema: ObjectSchema = {
             name: $.percentOf,
             embedded: true,
             properties: {
-                fabricType: $.string,
+                materialType: $.string,
                 percent: { type: $.double, default: 100 }
             }
         };
-        fabricType: FabricTypes;
+        materialType: MaterialTypes;
         percent: number;
         constructor() {
             this.percent = 100;
-            this.fabricType = 'C';
+            this.materialType = 'C';
         }
     }
-    export class FabricSection {
+    export class Section {
         static schema: ObjectSchema = {
-            name: $.fabric,
+            name: $.section,
             embedded: true,
             properties: {
-                sectionName: $.optional.string,
+                name: $.optional.string,
                 segments: $.listOf.percentOf
             }
         };
-        sectionName?: string;
+        name?: string;
         segments: PercentOf[];
         constructor() {
             this.segments = [];
@@ -757,173 +834,117 @@ namespace Materials {
      * @class Fabric
      * @see dto
      */
-    export class Fabric {
+    export class Composition {
         static schema: ObjectSchema = {
-            name: DTO.MATERIALS.fabric,
+            name: $.composition,
             embedded: true,
             properties: {
-                sections: $.listOf.fabricSection
+                sections: $.listOf.section
             }
         };
-        sections: FabricSection[];
+        sections: Section[];
         constructor() {
             this.sections = [];
         }
     }
 }
 
-namespace Pipelines {
-    export class BarcodePipeline {
-        static schema: ObjectSchema = {
-            name: $.barcodePipeline,
-            primaryKey: '_id',
-            properties: {
-                _id: $.objectId,
-                barcode: $.barcode,
-                timestamp: $.int,
-                user: $.string
-            }
-        };
-        _id: ObjectId;
-        barcode?: Barcode;
-        timestamp: number;
-        user: string;
-        constructor() {
-            this._id = new ObjectId();
-            this.timestamp = Date.now();
-            this.user = getCurrentPartitionValue();
-        }
-    }
-    /**
-     * @description
-     * @author Robert Kalaf Jr.
-     * @date 05/19/2022
-     * @export
-     * @class DraftPipeline
-     */
-    export class DraftPipeline {}
-    /**
-     * @description
-     * @author Robert Kalaf Jr.
-     * @date 05/19/2022
-     * @export
-     * @class ImagePipeline
-     */
-    export class ImagePipeline {
-        static schema: ObjectSchema = {
-            name: $.imagePipeline,
-            primaryKey: '_id',
-            properties: {
-                _id: $.objectId,
-                photo: $.photo
-            }
-        };
-    }
-    /**
-     * @description
-     * @author Robert Kalaf Jr.
-     * @date 05/19/2022
-     * @export
-     * @class PromotionPipeline
-     */
-    export class PromotionPipeline {}
-    /**
-     * @description
-     * @author Robert Kalaf Jr.
-     * @date 05/19/2022
-     * @export
-     * @class SkuPipeline
-     */
-    export class SkuPipeline {
-        static schema: ObjectSchema = {
-            name: $.skuPipeline,
-            primaryKey: '_id',
-            properties: {
-                _id: $.objectId,
-                sku: $.sku,
-                brandText: $.optional.string,
-                descriptionText: $.optional.string,
-                createdOn: $.optional.date,
-                printedOn: $.optional.date
-            }
-        };
-        _id: ObjectId;
-        sku?: SKU;
-        brandText?: string;
-        descriptionText?: string;
-        createdOn?: Date;
-        printedOn?: Date;
-        constructor() {
-            this.createdOn = now();
-            this._id = new ObjectId();
+// export namespace Pipelines {
+//     export class BarcodePipeline {
+//         static schema: ObjectSchema = {
+//             name: $.barcodePipeline,
+//             primaryKey: '_id',
+//             properties: {
+//                 _id: $.objectId,
+//                 barcode: $.barcode,
+//                 timestamp: $.int,
+//                 user: $.string
+//             }
+//         };
+//         _id: ObjectId;
+//         barcode?: Barcode;
+//         timestamp: number;
+//         user: string;
+//         constructor() {
+//             this._id = new ObjectId();
+//             this.timestamp = Date.now();
+//             this.user = getCurrentPartitionValue();
+//         }
+//     }
+//     /**
+//      * @description
+//      * @author Robert Kalaf Jr.
+//      * @date 05/19/2022
+//      * @export
+//      * @class DraftPipeline
+//      */
+//     export class DraftPipeline {}
+//     /**
+//      * @description
+//      * @author Robert Kalaf Jr.
+//      * @date 05/19/2022
+//      * @export
+//      * @class ImagePipeline
+//      */
+//     export class ImagePipeline {
+//         static schema: ObjectSchema = {
+//             name: $.imagePipeline,
+//             primaryKey: '_id',
+//             properties: {
+//                 _id: $.objectId,
+//                 photo: $.photo
+//             }
+//         };
+//     }
+//     /**
+//      * @description
+//      * @author Robert Kalaf Jr.
+//      * @date 05/19/2022
+//      * @export
+//      * @class PromotionPipeline
+//      */
+//     export class PromotionPipeline {}
+//     /**
+//      * @description
+//      * @author Robert Kalaf Jr.
+//      * @date 05/19/2022
+//      * @export
+//      * @class SkuPipeline
+//      */
+//     export class SkuPipeline {
+//         static schema: ObjectSchema = {
+//             name: $.skuPipeline,
+//             primaryKey: '_id',
+//             properties: {
+//                 _id: $.objectId,
+//                 sku: $.sku,
+//                 brandText: $.optional.string,
+//                 descriptionText: $.optional.string,
+//                 createdOn: $.optional.date,
+//                 printedOn: $.optional.date
+//             }
+//         };
+//         _id: ObjectId;
+//         sku?: SKU;
+//         brandText?: string;
+//         descriptionText?: string;
+//         createdOn?: Date;
+//         printedOn?: Date;
+//         constructor() {
+//             this.createdOn = now();
+//             this._id = new ObjectId();
 
-            // TODO finish up grabbing linked data for label
-            // this.sku?.product.
-        }
+//             // TODO finish up grabbing linked data for label
+//             // this.sku?.product.
+//         }
 
-        markPrinted(): void {
-            this.printedOn = now();
-        }
-    }
-}
+//         markPrinted(): void {
+//             this.printedOn = now();
+//         }
+//     }
+// }
 
-namespace Products {
-    export class Barcode {
-        static schema: ObjectSchema = {
-            name: $.barcode,
-            primaryKey: '_id',
-            properties: {
-                _id: $.objectId,
-                barcode: $.string,
-                parts: $.listOf.string,
-                valid: $.bool,
-                type: $.optional.string,
-                description: $.optional.string
-            }
-        };
-        _id: ObjectId;
-        barcode: string;
-        parts: string[];
-        valid: boolean;
-        type?: BarcodeType;
-        description?: string;
-        get isValid() {
-            const result = this.calculateCheckDigit();
-            return result == null ? false : result[0];
-        }
-        constructor() {
-            this._id = new ObjectId();
-            this.barcode = '';
-            this.parts = [];
-            this.valid = false;
-        }
-        classify(): BarcodeType | undefined {
-            switch (this.barcode.length) {
-                case 8:
-                    return 'UPCA';
-                case 10:
-                    return 'ISBN10';
-                case 12:
-                    return 'UPCE';
-                case 13:
-                    return this.barcode.startsWith('978') || this.barcode.startsWith('979') ? 'ISBN13' : 'EAN13';
-
-                default:
-                    return this.barcode.split('').some((x) => isLower(x) || isUpper(x)) ? 'ASIN' : undefined;
-            }
-        }
-        MULTIPLIERS: number[] = [1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3];
-        calculateCheckDigit(): [passed: boolean, actual: number, expected: number] | undefined {
-            if (this.type === 'ASIN' || this.type === 'ELID' || this.type == null) return undefined;
-            const [actual, ...remain] = this.barcode.padStart(13, '0').split('').reverse();
-            const head = remain.reverse();
-            const summed = this.MULTIPLIERS.map((x, ix) => parseInt(head[ix], 10) * x).reduce((pv, cv) => pv + cv, 0);
-            const modulo = summed % 10;
-            const subtracted = 10 - modulo;
-            const expected = subtracted === 10 ? 0 : subtracted;
-            return [parseInt(actual, 10) === expected, parseInt(actual, 10), expected] as [passed: boolean, actual: number, expected: number];
-        }
-    }
+export namespace Products {
     export class Brand {
         static schema: ObjectSchema = {
             name: $.brand,
@@ -932,25 +953,16 @@ namespace Products {
                 _id: $.objectId,
                 name: $.string,
                 alias: $.listOf.string,
-                productLines: $.listOf.string,
+                productLines: {
+                    type: $.linkingObjects,
+                    objectType: $.productLine,
+                    property: 'brand'
+                },
                 company: $.company,
                 verifiedBrand: $.verifiedBrand,
                 activity: $.activity
             }
         };
-        _id: ObjectId;
-        name: string;
-        alias: string[];
-        productLines: string[];
-        company?: Company;
-        verifiedBrand?: VerifiedBrand;
-        activity?: Activity;
-        constructor() {
-            this._id = new ObjectId();
-            this.name = '';
-            this.alias = [];
-            this.productLines = [];
-        }
     }
     export class Company {
         static schema: ObjectSchema = {
@@ -984,26 +996,8 @@ namespace Products {
                 }
             }
         };
-
-        _id: ObjectId;
-        name: string;
-        parent?: Company;
-        descendants: LinkingObjects<Company>;
-        aliases: string[];
-        rns: number[];
-        country: Country[];
-        brands: LinkingObjects<Brand>;
-        constructor() {
-            this._id = new ObjectId();
-            this.name = '';
-            this.descendants = [];
-            this.aliases = [];
-            this.rns = [];
-            this.country = [];
-            this.brands = [];
-        }
     }
-    export class Dimension<T extends LengthUOMS | WeightUOMS | CapacityUOMS> {
+    export class Dimension {
         static schema: ObjectSchema = {
             name: $.dimension,
             embedded: true,
@@ -1013,17 +1007,10 @@ namespace Products {
                 uom: { type: $.optional.string }
             }
         };
-        measureOf: MeasuresOf;
-        value: number;
-        uom?: T;
-        constructor() {
-            this.measureOf = 'M';
-            this.value = 0.0;
-        }
     }
     export class ItemType {
         static schema: ObjectSchema = {
-            name: $.itemtype,
+            name: $.itemType,
             primaryKey: '_id',
             properties: {
                 _id: $.objectId,
@@ -1032,33 +1019,24 @@ namespace Products {
                     objectType: $.taxonomy,
                     property: 'itemType'
                 },
+                classification: $.taxonomy,
                 name: $.string,
-                details: $.dictionaryOf.string
+                details: $.listOf.string,
+                supertype: $.itemType
             }
         };
-        _id: ObjectId;
-        taxonomy: LinkingObjects<Taxonomy>;
-        name: string;
-        details: Record<string, string>;
-
-        constructor() {
-            this._id = new ObjectId();
-            this.name = '';
-            this.details = {};
-            this.taxonomy = [];
-        }
     }
     export class Measurement {
         static schema: ObjectSchema = {
-            name: $.measurements,
+            name: $.measurement,
             embedded: true,
             properties: {
-                of: { type: $.string, default: 'L' },
+                of: $.listOf.string,
                 measures: $.listOf.string,
                 uoms: $.listOf.string
             }
         };
-        of: MeasuresOf;
+        of: MeasurementFor;
         measures: string[];
         uoms: string[];
         constructor() {
@@ -1074,26 +1052,32 @@ namespace Products {
             properties: {
                 _id: $.objectId,
                 brand: $.brand,
+                shortDescription: $.string,
                 productLine: $.productLine,
                 dims: $.listOf.dimension,
                 measurements: $.listOf.measurement,
-                madeOf: $.madeOf,
+                composition: $.composition,
                 origin: $.optional.string,
-                barcodes: $.listOf.barcode
+                barcodes: {
+                    type: $.linkingObjects,
+                    objectType: $.barcode,
+                    property: $.product
+                },
+                productDocumentation: $.productDocumentation
             }
         };
     }
     export class ProductLine {
         static schema: ObjectSchema = {
-            name: DTO.PRODUCTS.productLine,
+            name: $.productLine,
             primaryKey: '_id',
             properties: {
                 _id: $.objectId,
-                brand: DTO.PRODUCTS.brand,
+                brand: $.brand,
                 name: $.string,
                 products: {
                     type: $.linkingObjects,
-                    objectType: DTO.PRODUCTS.product,
+                    objectType: $.product,
                     property: 'productLine'
                 }
             }
@@ -1109,12 +1093,126 @@ namespace Products {
         }
     }
 }
-namespace Sales {
-    export class TrackingNumber {}
-    export class Fulfillment {}
+// export namespace Sales {
+//     export class Sale {
+//         static schema: ObjectSchema = {
+//             name: $.sale,
+//             embedded: true,
+//             properties: {}
+//         };
+//     }
+
+//     export class ShipmentStatus {
+//         static schema: ObjectSchema = {
+//             name: $.shipmentStatus,
+//             embedded: true,
+//             properties: {
+//                 carrier: $.string,
+//                 trackingNumber: $.string,
+//                 shipmentCreatedOn: $.date,
+//                 shippedOn: $.date,
+//                 eta: $.date
+//             }
+//         };
+//     }
+//     export class Sale {
+//         static schema: ObjectSchema = {
+//             name: $.fullfillment,
+//             primaryKey: '_id',
+//             properties: {
+//                 _id: $.objectId,
+//                 draft: $.draft,
+//                 sellingPrice: $.sellingPrice,
+//                 fulfillment: $.fulfillment
+//             }
+//         };
+//     }
+// }
+
+// export namespace Reflection {
+//     export class TypeData {
+//         static schema: ObjectSchema = {
+//             name: 'type-data',
+//             primaryKey: '_id',
+//             properties: {
+//                 _id: $.objectId,
+//                 kind: $.string,
+//                 name: $.string,
+//                 embedded: $.optional.bool,
+//                 listType: $.optional.string,
+//                 fields: 'field-data[]',
+//                 Header: $.optional.string,
+//                 headerProps: $.dictionaryOf.string,
+//                 MutableRow: $.optional.string,
+//                 ImmutableRow: $.optional.string,
+//                 rowProps: $.dictionaryOf.string
+//             }
+//         };
+//         name = '';
+//     }
+//     export class FieldData {
+//         static schema: ObjectSchema = {
+//             name: 'field-data',
+//             embedded: true,
+//             properties: {
+//                 name: $.listOf.string,
+//                 datatype: $.string,
+//                 owningType: 'type-data',
+//                 readOnly: { type: $.bool, default: false },
+//                 required: { type: $.bool, default: false },
+//                 multiple: { type: $.bool, default: false },
+//                 getLength: { type: $.bool, default: false },
+//                 callToText: { type: $.bool, default: false },
+//                 excludeInsert: { type: $.bool, default: false },
+//                 excludeGrid: { type: $.bool, default: false },
+//                 excludeEdit: { type: $.bool, default: false },
+//                 excludeTabular: { type: $.bool, default: false },
+//                 descriptor: 'mixed',
+//                 displayName: $.string,
+//                 minLength: $.optional.int,
+//                 maxLength: $.optional.int,
+//                 min: $.optional.int,
+//                 max: $.optional.int,
+
+//                 pattern: $.optional.string,
+//                 step: $.optional.double,
+//                 defaultValue: 'mixed',
+//                 placeholder: $.optional.string,
+//                 enumMap: $.dictionaryOf.string,
+//                 lookupMap: $.dictionaryOf.string,
+//                 type: $.optional.string,
+//                 size: $.optional.int,
+//                 icon: 'mixed',
+
+//                 Control: $.optional.string,
+//                 Cell: $.optional.string,
+//                 Label: $.optional.string,
+//                 controlProps: 'mixed',
+//                 cellProps: 'mixed',
+//                 labelProps: 'mixed'
+//             }
+//         };
+//     }
+// }
+
+export function toID(realm: Realm, obj: Record<string, any>, property: string, collection = '') {
+    console.log(`toID`, obj[property]);
+    if (obj[property] == null) return undefined;
+    return realm.objectForPrimaryKey(collection, new ObjectId(obj[property]._id));
 }
-namespace Scrapes {
+export namespace Scrapes {
     export class VerifiedBrand {
+        static async convertFrom(
+            realm: Realm,
+            input: {
+                _id: string;
+            }
+        ) {
+            return {
+                ...input,
+                _id: new ObjectId(input._id)
+            };
+        }
         static schema: ObjectSchema = {
             name: $.verifiedBrand,
             primaryKey: '_id',
@@ -1123,14 +1221,21 @@ namespace Scrapes {
                 name: $.string
             }
         };
-        _id: ObjectId;
-        name: string;
-        constructor() {
-            this._id = new ObjectId();
-            this.name = '';
-        }
     }
     export class Category {
+        static async convertFrom(
+            realm: Realm,
+            input: {
+                _id: string;
+                name: string;
+                website?: string;
+            }
+        ) {
+            return {
+                ...input,
+                _id: new ObjectId(input._id)
+            };
+        }
         static schema: ObjectSchema = {
             name: $.category,
             primaryKey: '_id',
@@ -1146,7 +1251,7 @@ namespace Scrapes {
         id: string;
         label: string;
         node: 0 | 1 | 2 | 3;
-        activity?: Activity;
+        activity?: Admin.Activity;
         constructor() {
             this._id = new ObjectId();
             this.id = '';
@@ -1154,7 +1259,29 @@ namespace Scrapes {
             this.node = 0;
         }
     }
+
     export class Taxonomy {
+        static async convertFrom(
+            realm: Realm,
+            input: {
+                _id: string;
+                category: { _id: string };
+                subCategory: { _id: string };
+                subSubCategory: { _id: string };
+                itemType?: { _id: string };
+                activity?: { _id: string };
+            }
+        ) {
+            return {
+                ...input,
+                _id: new ObjectId(input._id),
+                category: toID(realm, input, 'category', 'category'),
+                subCategory: toID(realm, input, 'subCategory', 'category'),
+                subSubCategory: toID(realm, input, 'subSubCategory', 'category'),
+                itemType: toID(realm, input, 'itemType', 'item-type'),
+                activity: toID(realm, input, 'activity', 'activity')
+            };
+        }
         static schema: ObjectSchema = {
             name: $.taxonomy,
             primaryKey: '_id',
@@ -1165,26 +1292,13 @@ namespace Scrapes {
                 subSubCategory: $.category,
                 materializedPath: $.string,
                 selectors: $.listOf.string,
-                itemType: $.itemtype,
+                itemType: $.itemType,
                 activity: $.activity
             }
         };
-        _id: ObjectId;
-        category?: Category;
-        subCategory?: Category;
-        subSubCategory?: Category;
-        materializedPath: string;
-        selectors: string[];
-        itemType?: ItemType;
-        activity?: Activity;
-        constructor() {
-            this._id = new ObjectId();
-            this.materializedPath = '';
-            this.selectors = [];
-        }
     }
 }
-namespace Supplies {
+export namespace Supplies {
     export class Supplies {
         static schema: ObjectSchema = {
             name: $.bin,
@@ -1195,10 +1309,11 @@ namespace Supplies {
         };
     }
 }
-namespace Storages {
+
+export namespace Storages {
     export class Address {
         static schema: ObjectSchema = {
-            name: 'address',
+            name: $.address,
             embedded: true,
             properties: {
                 street: $.optional.string,
@@ -1209,19 +1324,21 @@ namespace Storages {
                 postalCode: $.optional.string
             }
         };
-        street?: string;
-        suite?: string;
-        city: string;
-        state: Provinces;
-        country: Country;
-        postalCode?: string;
-        constructor() {
-            this.city = '';
-            this.state = 'CA';
-            this.country = 'US';
-        }
     }
     export class SelfStorage {
+        static async convertFrom(
+            realm: Realm,
+            input: {
+                _id: string;
+                name: string;
+                website?: string;
+            }
+        ) {
+            return {
+                ...input,
+                _id: new ObjectId(input._id)
+            };
+        }
         static schema: ObjectSchema = {
             name: $.selfStorage,
             primaryKey: '_id',
@@ -1236,19 +1353,36 @@ namespace Storages {
                 }
             }
         };
-        _id: ObjectId;
-        name: string;
-        website?: string;
-        facilities: Facility[];
-        constructor() {
-            this.name = '';
-            this._id = new ObjectId();
-            this.facilities = [];
-        }
     }
     export class Facility {
+        static async convertFrom(
+            realm: Realm,
+            input: {
+                _id: string;
+                selfStorage: {
+                    _id: string;
+                };
+                address: {
+                    street: string;
+                    suite: string;
+                    city: string;
+                    state: string;
+                    country: string;
+                    postalCode: string;
+                };
+                facilityNumber?: string;
+                email?: string;
+                phone?: string;
+            }
+        ) {
+            return {
+                ...input,
+                _id: new ObjectId(input._id),
+                selfStorage: toID(realm, input, 'selfStorage', 'self-storage')
+            };
+        }
         static schema: ObjectSchema = {
-            name: 'facility',
+            name: $.facility,
             primaryKey: '_id',
             properties: {
                 _id: $.objectId,
@@ -1260,24 +1394,13 @@ namespace Storages {
                 units: {
                     type: $.linkingObjects,
                     objectType: $.rentalUnit,
-                    property: $.facility
+                    property: 'facility'
                 }
             }
         };
-        _id: ObjectId;
-        address: Address;
-        selfStorage?: SelfStorage;
-        facilityNumber?: string;
-        email?: string;
-        phone?: string;
-        units: RentalUnit[];
-        constructor() {
-            this._id = new ObjectId();
-            this.address = new Address();
-            this.units = [];
-        }
         get name() {
-            return [this.selfStorage?.name ?? '', [this.address.city, this.address.state].join(', '), this.address.street?.split(' ').slice(1).join(' ')].join(
+            const obj = this as any;
+            return [obj.selfStorage?.name ?? '', [obj.address.city, obj.address.state].join(', '), obj.address.street?.split(' ').slice(1).join(' ')].join(
                 ' - '
             );
         }
@@ -1291,25 +1414,67 @@ namespace Storages {
                 width: $.length
             }
         };
-        length: Length;
-        width: Length;
-        get displayAs() {
-            return `${this.length.displayAs} x ${this.width.displayAs}`;
-        }
-        constructor() {
-            this.length = new Length();
-            this.width = new Length();
-        }
     }
+
+    // const proto = Object.getPrototypeOf(SquareFootage);
+    // console.log(Object.getPrototypeOf(new SquareFootage()));
+    // console.log(Object.getOwnPropertyNames(SquareFootage));
+    // console.log(SquareFootage.constructor);
+    // console.log(Object.getPrototypeOf(SquareFootage.constructor));
+    // console.log(Object.getOwnPropertyNames(proto));
+    // console.log(Object.getOwnPropertyDescriptor(proto, 'toText'));
+    // console.log(Object.getOwnPropertyDescriptor(SquareFootage, 'toText'));
+
+    // const sq = new Storages.SquareFootage();
+    // console.log(Object.getOwnPropertyNames(sq));
+    // console.log(Object.getOwnPropertyDescriptors(sq));
+    // console.log(Object.getOwnPropertyDescriptors(Object.getPrototypeOf(sq)));
+
+    // console.log(Object.create(SquareFootage));
+    // console.log(Object.getPrototypeOf(Object.create(SquareFootage)));
+    // console.log(Object.getOwnPropertyDescriptors(Object.create(SquareFootage)));
+    // console.log(Object.getOwnPropertyDescriptors(SquareFootage));
+
+    // console.log('*******');
+    // console.log(Object.create(SelfStorage.constructor));
+    // console.log(Object.getPrototypeOf(Object.create(SquareFootage)));
+    // console.log(Object.getOwnPropertyDescriptors(Object.create(SquareFootage)));
+    // console.log(Object.getOwnPropertyDescriptors(SquareFootage));
+    // const descriptor = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(new SquareFootage()), 'toText');
+    // const funcText = descriptor?.get?.toString() ?? '';
+    // const fd = {
+    //     length: { displayAs: '10 ft' },
+    //     width: { displayAs: '50 ft' }
+    // };
+    // const t = '('.concat(funcText.replace('get ', 'function ').concat(`).bind(fd)()`));
+    // console.log(t);
+    // console.log(eval(t));
     export class RentalUnit {
+        static async convertFrom(
+            realm: Realm,
+            input: {
+                _id: string;
+                facility: {
+                    _id: string;
+                };
+                unit: string;
+                size: any;
+            }
+        ) {
+            return {
+                ...input,
+                _id: new ObjectId(input._id),
+                facility: toID(realm, input, 'rentalUnit', 'rental-unit')
+            };
+        }
         static schema: ObjectSchema = {
             name: $.rentalUnit,
             primaryKey: '_id',
             properties: {
                 _id: $.objectId,
-                facility: Facility.schema.name,
+                facility: $.facility,
                 unit: $.string,
-                size: SquareFootage.schema.name,
+                size: $.squareFootage,
                 purchase: {
                     type: $.linkingObjects,
                     objectType: $.purchase,
@@ -1317,17 +1482,15 @@ namespace Storages {
                 }
             }
         };
-        _id: ObjectId;
-        facility?: Facility | undefined;
-        unit: string;
-        size: SquareFootage;
-        constructor() {
-            this._id = new ObjectId();
-            this.size = new SquareFootage();
-            this.unit = '';
-        }
         get name() {
-            return [this.facility?.name, this.unit].join(' - ');
+            const obj = this as any;
+            return [
+                obj.facility?.selfStorage.name,
+                obj.facility?.address.city,
+                obj.facility?.address.state,
+                obj.facility?.address.street?.split(' ').slice(1).join(' '),
+                obj.unit
+            ].join(' - ');
         }
     }
 }
@@ -1361,28 +1524,108 @@ export function getCurrentPartitionValue() {
     return cu?.profile.email ?? 'unknown';
 }
 
+export function List() {
+    return <></>;
+}
+export function Radio() {
+    return <></>;
+}
+export type IFieldsetProps = {
+    label: string;
+} & FieldsetHTMLAttributes<HTMLFieldSetElement>;
+
+export function FieldsetElement(props: IFieldsetProps) {
+    const { label, children, ...remain } = props;
+    return (
+        <fieldset {...remain}>
+            <legend>{label}</legend>
+            {children}
+        </fieldset>
+    );
+}
+export const controlTypes = {
+    Input: Input,
+    Radio: Radio,
+    Select: Select,
+    List: List,
+    Textarea: Textarea,
+    Output: Output,
+    Fieldset: Fieldset
+};
+export function IconCell(props: any) {
+    return <></>;
+}
+export function ValueCell(props: any) {
+    return <></>;
+}
+export function LookupCell(props: any) {
+    return <></>;
+}
+export function SummaryCell(props: any) {
+    return <></>;
+}
+export function ExpandCell(props: any) {
+    return <></>;
+}
+export const cellTypes = {
+    Icon: IconCell,
+    Value: ValueCell,
+    Summary: SummaryCell,
+    Lookup: LookupCell,
+    Expand: ExpandCell
+};
+export type CellType = keyof typeof cellTypes;
+export type ControlType = keyof typeof controlTypes;
+
 export const schema = [
-    SelfStorage,
-    Facility,
-    Address,
-    RentalUnit,
+    DbInputProps,
+    DbSelectProps,
+    DbFieldSetProps,
+    DbOutputProps,
+    DbTextAreaProps,
+    DbCellInputProps,
+    DbDataType,
+    DbColumn,
+    DbTable,
+    DbSort,
+    DbDescriptor,
+    Admin.Activity,
+    Auctions.Cost,
+    Auctions.Purchase,
+    Files.Expense,
+    Files.FileAlloc,
+    Files.FileItem,
+    Files.ImageStage,
+    Files.PhotoPack,
+    Files.ProductDocumentation,
     Length,
-    SquareFootage,
-    FileAlloc,
-    FileItem,
-    Purchase,
-    Cost,
-    Company,
-    Brand,
-    Category,
-    Taxonomy,
-    VerifiedBrand,
-    ItemType,
-    Activity
+    Inventory.Barcode,
+    Inventory.Fixture,
+    Inventory.Bin,
+    Inventory.Item,
+    Listings.Draft,
+    Materials.PercentOf,
+    Materials.Section,
+    Materials.Composition,
+    Products.Brand,
+    Products.Company,
+    Products.Dimension,
+    Products.ItemType,
+    Products.Measurement,
+    Products.Product,
+    Products.ProductLine,
+    Scrapes.Category,
+    Scrapes.Taxonomy,
+    Scrapes.VerifiedBrand,
+    Storages.Address,
+    Storages.Facility,
+    Storages.RentalUnit,
+    Storages.SelfStorage,
+    Storages.SquareFootage
 ];
 
 export function createFileAlloc(realm: Realm, name: string, parentName: string, child: string) {
-    const parent = realm.objects<FileAlloc>($.fsAlloc).filtered(`materializedPath == '/${parentName}'`)[0];
+    const parent: any = realm.objects<Files.FileAlloc>($.fsAlloc).filtered(`materializedPath == '/${parentName}'`)[0];
     const obj = {
         _id: new Realm.BSON.ObjectId(),
         name,
@@ -1397,9 +1640,9 @@ export function createFileAlloc(realm: Realm, name: string, parentName: string, 
         materializedPath: [obj.materializedPath, child].join('/'),
         parent: obj
     };
-    let result: FileAlloc | undefined;
+    let result: Files.FileAlloc | undefined;
     realm.write(() => {
-        result = realm.create<FileAlloc>($.fsAlloc, gpobj as any);
+        result = realm.create<Files.FileAlloc>($.fsAlloc, gpobj as any);
     });
     return result;
 }

@@ -26,7 +26,7 @@ export function ModalContainer({ children }: { children?: Children }) {
         <React.Suspense fallback={<Spinner />}>
             <ModalAnchor>
                 <div {...spread}>
-                    <section className='flex items-center justify-center w-2/3 p-4 text-white border-4 border-black border-double rounded-lg shadow-lg pointer-events-auto h-2/3 shadow-cyan bg-slate-very-dark/70'>
+                    <section className='flex items-center justify-center w-4/5 p-4 text-white border-4 border-black border-double rounded-lg shadow-xl pointer-events-auto h-2/3 shadow-red bg-slate-very-dark/70'>
                         {children}
                     </section>
                 </div>
