@@ -1,6 +1,7 @@
 import { app, BrowserWindow, ipcMain, session } from 'electron';
 import { enable, initialize } from '@electron/remote/main';
 import * as fs from 'graceful-fs';
+import './msgqueue';
 
 let window: BrowserWindow | null = null;
 initialize();

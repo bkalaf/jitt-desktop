@@ -33,6 +33,8 @@ module.exports = {
                 argsIgnorePattern: '^_',
             },
         ],
+        '@typescript-eslint/ban-types': 'off',
+        'react/no-children-prop': 'off',
         '@typescript-eslint/triple-slash-reference': 'off',
         '@typescript-eslint/no-unsafe-member-access': 'off',
         '@typescript-eslint/no-floating-promises': 0,

@@ -7,6 +7,7 @@ import { useNavigateDown } from '../hooks/useNavigateDown.1';
 import { useRoutedCollection } from '../hooks/useRoutedCollection';
 import { useToast } from '../hooks/useToast';
 import { MutationState, invalidateRefetch, $queryKey } from './index';
+import { useLocation } from 'react-router-dom';
 
 export function useRealmMutation<T, TResult = void>(
     asyncFunc: (realm: Realm, collection: string) => (args: T) => Promise<TResult>,
@@ -14,6 +15,7 @@ export function useRealmMutation<T, TResult = void>(
     overrideCollection?: string
 ): [state: MutationState, isLoading: boolean, execute: (arg: T) => void] {
     const realm = useLocalRealm();
+    const location = useLocation();
     const mutationName = toTitleCase(asyncFunc.name);
     const [collection] = useRoutedCollection();
     const queryClient = useQueryClient();
@@ -22,7 +24,7 @@ export function useRealmMutation<T, TResult = void>(
     const failureToast = useToast('failure');
     const log = useLog();
     const errorToast = useToast('error');
-    const navigateDescend = useNavigateDown();
+    const navigateDescend = useNavigateDown(location.state as any);
     const usableCollection = overrideCollection ?? collection;
     const mutation = useMutation(asyncFunc(realm, usableCollection), {
         onSuccess: (data: TResult) => {
@@ -30,6 +32,7 @@ export function useRealmMutation<T, TResult = void>(
             refetch(...$queryKey.selectAll(usableCollection));
             refetch(...$queryKey.dropdown(usableCollection));
             extraWork(data);
+            console.log(`location.state`, location.state);
             navigateDescend();
         },
         onError: (error: any) => {

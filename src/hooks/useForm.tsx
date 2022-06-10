@@ -2,12 +2,14 @@ import { useCallback, useRef, useState } from 'react';
 import React from 'react';
 import { ignore } from '../common/ignore';
 import { useLocalRealm } from './useLocalRealm';
-import { getProps, IDefinitionProps, ValidationFunction } from '../data/definitions';
+import { IDefinitionProps, ValidationFunction } from '../data/definitions';
 import { RegisterFunction } from './useRegister';
-import { getProperty, setProperty } from '../common';
+import { getProperty, setProperty, snd } from '../common';
 import { isString } from '../common/array/is';
 import { useToggle } from './useToggle';
 import { $currentUser } from '../components/globals';
+import { getProps } from '../data/definitions/getProps';
+import { useToast } from './useToast';
 
 export type ControlOpts = {
     validators?: string[];
@@ -106,6 +108,7 @@ export function useUncontrolledForm<TFormData, TSubmitResult = void>(
     const [getOutput, subOutput, outputs] = useMap<(x: any) => any>({});
 
     const feedback = useRef<Record<string, string>>({});
+    const failureToast = useToast('failure');
     const [isFeedbacking, setFeedbacking, showFeedback, hideFeedback] = useToggle(false);
     const register = useCallback(
         (
@@ -140,6 +143,7 @@ export function useUncontrolledForm<TFormData, TSubmitResult = void>(
         });
         Object.entries(validators()).forEach(([name, validators]) => {
             const element = target.elements.namedItem(name) as DataElement;
+            element.setCustomValidity('');
             const value = formData[name];
             const msgs = validators.map((f) => f(value, realm)).filter(isString);
             element.setCustomValidity(msgs.join('\n'));
@@ -175,7 +179,10 @@ export function useUncontrolledForm<TFormData, TSubmitResult = void>(
                 console.log(formData);
                 console.log(`formData`, formData);
                 const isValid = validate(ev);
-                if (!isValid) return;
+                if (!isValid) {
+                    failureToast(Object.entries(feedback.current).map(snd).join('\n'), 'VALIDATION FAILED', `${Object.entries(feedback.current).map(snd).length} validation errors`);
+                    return;
+                };
                 const fd: any = convertFromFormData(formData);
                 fd.owner = $currentUser()?.profile.email;
                 try {

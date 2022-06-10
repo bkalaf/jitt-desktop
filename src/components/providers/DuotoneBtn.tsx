@@ -21,7 +21,7 @@ export function DuotoneButton(props: IDuotoneBtnProps) {
             [border ?? '']: border != null,
             [shadow ?? '']: shadow != null
         },
-        'transform transition-all duration-1000 delay-150 ease-in-out flex items-center justify-center px-2 py-0.5 align-middle text-center  border rounded-md  shadow-lg m-auto w-auto disabled:opacity-30 disabled:hover:opacity-30 disabled:focus:opacity-30 focus:ring focus:ring-red/70 hover:ring hover:ring-red/70'
+        'transform transition-all duration-1000 delay-150 ease-in-out flex items-center justify-center align-middle text-center border rounded-md shadow-lg disabled:opacity-30 p-0.5 disabled:hover:opacity-30 disabled:focus:opacity-30 focus:ring focus:ring-red/70 hover:ring hover:ring-red/70 hover:bg-cyan'
     );
     return (
         <button type='button' onClick={onClick} className={className} disabled={disabled}>

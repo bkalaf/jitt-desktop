@@ -1,38 +1,5 @@
-import { cloneElement, useMemo, useTransition } from 'react';
-import { createFrom } from '../../common/array/createFrom';
-import { identity } from '../../common/identity';
-import { toTitleCase } from '../../common/text/toTitleCase';
-import { schema as ocSchema } from '../../data';
-import { Control } from '../forms/Control';
-import { Output } from '../forms/elements/Output';
-import { DAL } from './DAL';
-import { toOutput } from './DataTypeInfo';
-import { echo } from '../../common/echo';
-import { ITypeInfo } from '../../types/metadata/ITypeInfo';
-import * as fs from 'graceful-fs';
-import { ofProperties } from './ofProperties';
-import { embeddedFieldsByType } from './embeddedFieldsByType';
-import { getProperty } from '../../common';
-import { IconButton } from '../MainWindow';
-import { faPenAlt, faTrashCan, faSquare, faCheckSquare } from '@fortawesome/pro-duotone-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { DuotoneIcon } from '../icons/DuotoneIcon';
 // import { faSquare } from '@fortawesome/pro-regular-svg-icons';
-import { TableRow } from '../Table/Row';
-import { TableCell } from '../Table/Cell';
-import { Btn } from './Btn';
-import { toString } from '../../common/toString';
-import { useViewContext } from '../../hooks/useViewContext';
-import { IGridViewContext } from './ViewProvider';
 import { attemptToGetOID } from '../../util';
-import { deleteSelected } from '../../queries/deleteById';
-import { DuotoneBtn } from './DuotoneBtn';
-import { useMetaDataContext } from '../Toaster';
-import { IColumnInfo } from '../../types';
-import { FilePreview } from '../MainRouter';
-import { getFullPath } from '../../common/fs/getFullPath';
-import {Barcode} from 'react-barcode';
-import { DataCell } from './DataCell';
 
 const testOnClick = () => alert('clicked');
 // export function buildLibrary(realm: Realm) {

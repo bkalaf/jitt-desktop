@@ -1,6 +1,5 @@
 /* eslint-disable react/boolean-prop-naming */
 import { faKey, IconDefinition } from '@fortawesome/pro-duotone-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useCallback, useEffect, useMemo } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { LoginForm } from './forms/LoginForm';
@@ -8,7 +7,6 @@ import { Toaster, useMetaDataContext } from './Toaster';
 import { LeftSidebar } from './LeftSidebar';
 import { MainRouter } from './MainRouter';
 import { useRealm } from '../hooks/useRealm';
-import { $cn } from '../util/$cn';
 import { StatusBar } from './StatusBar';
 import { createWebdriver } from './providers/createWebdriver';
 import { DataOrModifiedFn, LazyDataOrModifiedFn, useAsyncResource } from 'use-async-resource';
@@ -28,38 +26,48 @@ import { Input } from './forms/elements/Input';
 import { provinces, countries } from '../data/enums';
 import { Select } from './forms/elements/Select';
 import { DbDataType } from '../data/DbDataType';
+import { SizeProp } from '@fortawesome/fontawesome-svg-core';
+import { DuotoneButton } from './providers/DuotoneBtn';
+import { $cn } from '../util/$cn';
 
 export type IconButtonProps = {
     title: string;
     icon: IconDefinition;
+    size?: SizeProp;
     onClick: () => void;
     disabled?: boolean;
     className?: string;
     overrideDisabled?: boolean;
 };
-export function IconButton(props: IconButtonProps) {
+
+export function ToolbarDuotoneButton(props: IconButtonProps & { primary: string; secondary: string; primaryOpacity?: number; secondaryOpacity?: number }) {
     const { overrideDisabled, ...remain } = props;
-    const { icon, onClick, title, disabled, className } = $cn(
+    const { icon, onClick, title, size, disabled, className, primary, secondary, primaryOpacity, secondaryOpacity } = $cn(
         remain,
         {
             'disabled:opacity-50': !overrideDisabled,
             'disabled:bg-neutral-dark': !overrideDisabled,
             'hover:disabled:bg-black': overrideDisabled ?? false,
-            'hover:disabledresult4.map(async x => await Promise.all(x)):scale-100': overrideDisabled ?? false
+            'hover:disabled:scale-100': overrideDisabled ?? false
         },
-        'inline-flex items-center justify-center text-lg font-bold leading-loose tracking-wide text-white transition duration-1000 ease-in-out delay-200 transform bg-black rounded-md appearance-none font-fira-sans hover:bg-rose outline outline-transparent ring ring-transparent focus:outline-amber-dark focus:ring-red hover:scale-105 border-blue'
+        'object-fill block bg-transparent'
     );
     return (
-        <li className='inline-flex' title={title}>
-            <button disabled={disabled ?? false} type='button' className={className} onClick={onClick} tabIndex={disabled ? -1 : undefined}>
-                <span className='px-2 py-1 border border-white rounded-md'>
-                    <FontAwesomeIcon icon={icon} size='1x' className='block font-bold' fixedWidth />
-                </span>
-            </button>
+        <li className='inline-flex w-full h-full' title={title}>
+            <DuotoneButton
+                icon={icon}
+                size={size}
+                disabled={disabled}
+                onClick={onClick}
+                className={className}
+                primary={primary}
+                secondary={secondary}
+                primaryOpacity={primaryOpacity}
+                secondaryOpacity={secondaryOpacity}
+            />
         </li>
     );
 }
-
 export function ifExistsDelete(fn: string) {
     if (fs.existsSync(fn)) {
         return fs.rmSync(fn);
@@ -254,9 +262,9 @@ export function MainWindow({ realmReader }: { realmReader: LazyDataOrModifiedFn<
                 </div>
             </div>
 
-            <main className='flex flex-grow w-full px-2 text-white'>
+            <main className='flex flex-grow w-full px-2 overflow-scroll text-white'>
                 <LeftSidebar />
-                <section className='flex w-full h-full p-0.5 overflow-auto border-2 border-double shadow-inner border-cyan rounded-xl mx-1 my-0.5 shadow-cyan'>
+                <section className='flex w-full h-full p-0.5 border-2 border-double shadow-inner border-cyan rounded-xl mx-1 my-0.5 shadow-cyan'>
                     <MainRouter realm={realm!} reader={reader} />
                 </section>
             </main>

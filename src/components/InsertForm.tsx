@@ -14,7 +14,7 @@ import { Mutation } from '../queries';
 import { DefinedType, InsertFormControls } from '../data/definitions';
 import { Spinner } from './Indicators/Spinner';
 
-export function InsertForm<T extends Record<string, any>>({ Controls, initialData, convert }: { Controls: DefinedType; initialData: T; convert: any }) {
+export function InsertForm<T extends Record<string, any>>({ Controls, initialData, convert, postInsert }: { Controls: DefinedType; initialData: T; convert: any; postInsert: <T>(input: T) => void }) {
     console.group('InsertForm');
     const [collection] = useRoutedCollection();
     const realm = useLocalRealm();
@@ -25,14 +25,15 @@ export function InsertForm<T extends Record<string, any>>({ Controls, initialDat
     // const failureToast = useToast('failure');
     // const queryClient = useQueryClient();
     const [isLoading, moveFile] = useChangeFileParent();
-    const [state, loading, execute] = useRealmMutation(Mutation.insert, (record) => {
+    const newLocal = (record: Record<string, any> & Realm.Object): void => {
         if ('auctionId' in record) {
             const parent: any = createFileAlloc(realm, (record as any).auctionId, 'auctions', 'invoices');
             if (parent?.materializedPath?.length ?? 0 > 0) {
                 moveFile(parent?.materializedPath ?? '', (record as any)._id.toHexString());
             }
         }
-    });
+    };
+    const [state, loading, execute] = useRealmMutation(Mutation.insert, postInsert);
     // const mutation = useMutation(insertQuery, {
     //     onSuccess: (record: T & Realm.Object) => {
     //         successToast('You have successfully inserted a record.', 'SUCCESS', (record as any)._id.toHexString());

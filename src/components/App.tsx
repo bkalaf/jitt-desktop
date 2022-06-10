@@ -10,7 +10,7 @@ import { app } from '@electron/remote';
 import { schema } from '../data';
 import { $currentUser, $realm } from './globals';
 import { IAppCommand, ICommand } from '../types/ui/ICommand';
-import { useLog } from "../hooks/useLog";
+import { useLog } from '../hooks/useLog';
 import { MetaDataContextProvider } from './providers/MetaDataProvider';
 import { getAccessToken } from '../util/getAccessToken';
 import { Boundary } from './grid/Boundary';
@@ -80,7 +80,7 @@ export function useProvideReflection(reader: DataOrModifiedFn<Realm>) {
     const realm = reader();
     const results = useQueries([
         { queryKey: ['type-data'], queryFn: () => Promise.resolve(realm.objects('type-data')) },
-        { queryKey: ['field-data'], queryFn: () => Promise.resolve(realm.objects('field-data'))}
+        { queryKey: ['field-data'], queryFn: () => Promise.resolve(realm.objects('field-data')) }
     ]);
 }
 export function App() {
@@ -89,22 +89,20 @@ export function App() {
     log(currentUser);
     const [realmReader, updateReader] = useAsyncResource(() => openRealm(currentUser), []);
     return (
-        <React.StrictMode>
-            <Boundary>
-                <HashRouter>
-                    <QueryClientProvider client={queryClient}>
-                        <ApolloProvider client={apolloClient}>
-                            <MetaDataContextProvider reader={realmReader}>
-                                <UI>
-                                    <React.Suspense fallback='loading'>
-                                        <MainWindow realmReader={realmReader} />
-                                    </React.Suspense>
-                                </UI>
-                            </MetaDataContextProvider>
-                        </ApolloProvider>
-                    </QueryClientProvider>
-                </HashRouter>
-            </Boundary>
-        </React.StrictMode>
+        <Boundary>
+            <HashRouter>
+                <QueryClientProvider client={queryClient}>
+                    <ApolloProvider client={apolloClient}>
+                        <MetaDataContextProvider reader={realmReader}>
+                            <UI>
+                                <React.Suspense fallback='loading'>
+                                    <MainWindow realmReader={realmReader} />
+                                </React.Suspense>
+                            </UI>
+                        </MetaDataContextProvider>
+                    </ApolloProvider>
+                </QueryClientProvider>
+            </HashRouter>
+        </Boundary>
     );
 }

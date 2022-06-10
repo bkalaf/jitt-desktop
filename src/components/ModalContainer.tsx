@@ -15,9 +15,9 @@ export function ModalContainer({ children }: { children?: Children }) {
         { onAnimationEnd: changeVisibility },
         {
             hidden: visibility === 'hidden',
-            flex: visibility !== 'hidden',
-            slideInDown: visibility === 'showing',
-            slideOutDown: visibility === 'hiding'
+            'hidden only:flex last:flex': visibility !== 'hidden',
+            'hidden only:slideInDown last:slideInDown': visibility === 'showing',
+            'hidden only:slideOutDown last:slideOutDown': visibility === 'hiding'
         },
         'absolute z-40 w-screen h-screen items-center justify-center pointer-events-none p-7'
     );

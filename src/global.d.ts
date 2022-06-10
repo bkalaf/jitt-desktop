@@ -102,5 +102,37 @@ declare global {
         size: ICapacity;
         readonly extension: string;
     }
+
+    export interface IItem {
+        _id: ObjectId;
+    }
+    export interface IProduct {
+        _id: ObjectId;
+
+    }
+    export interface IBarcode {
+        _id: ObjectId;
+        barcode: string;
+        valid: boolean;
+        type: BarcodeType;
+        description?: string;
+        bin?: IBin[];
+        fixture?: IFixture[];
+        product?: IProduct;
+        item?: IItem[];
+    }
+    export interface IFixture {
+        _id: ObjectId;
+        name: string;
+        barcode: IBarcode;
+        notes?: string;
+    }
+    export interface IBin {
+        _id: ObjectId;
+        name: string;
+        barcode: IBarcode;
+        notes?: string;
+        fixture?: IFixture;
+    }
 }
 export const i = 1;

@@ -427,7 +427,7 @@ export namespace Files {
                 // TODO add receipt
             }
         };
-        
+
         get name() {
             // const arr = Object.entries(this.fsAlloc ?? {})[0][1],
             // const arr1 = this.fsAlloc[0],
@@ -616,13 +616,12 @@ export namespace Inventory {
                 }
             }
         };
-        barcode?: string;
         setBarcode = (barcode: string) => {
             (this as any).barcode = barcode;
             (this as any).type = this.classify();
             const [isValid] = this.calculateCheckDigit() ?? [false];
             (this as any).valid = isValid;
-        }
+        };
 
         classify = (): BarcodeType | undefined => {
             switch ((this as any).barcode.length) {
@@ -638,19 +637,23 @@ export namespace Inventory {
                 default:
                     return (this as any).barcode.split('').some((x: string) => isLower(x) || isUpper(x)) ? 'ASIN' : undefined;
             }
-        }
+        };
         MULTIPLIERS: number[] = [1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3];
         calculateCheckDigit = (): [passed: boolean, actual: number, expected: number] | undefined => {
             if ((this as any).type === 'ASIN' || (this as any).type === 'ELID' || (this as any).type == null) return undefined;
             const [actual, ...remain] = (this as any).barcode.padStart(13, '0').split('').reverse();
             const head = remain.reverse();
-            const summed = this.MULTIPLIERS.map((x: number, ix: number) => parseInt(head[ix], 10) * x).reduce((pv: number, cv: number) => pv + cv, 0);
+            const summed = [1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3]
+                .map((x: number, ix: number) => parseInt(head[ix], 10) * x)
+                .reduce((pv: number, cv: number) => pv + cv, 0);
             const modulo = summed % 10;
             const subtracted = 10 - modulo;
             const expected = subtracted === 10 ? 0 : subtracted;
             return [parseInt(actual, 10) === expected, parseInt(actual, 10), expected] as [passed: boolean, actual: number, expected: number];
-        }
+        };
     }
+
+    
     export class Fixture {
         static schema: ObjectSchema = {
             name: $.fixture,
@@ -667,19 +670,6 @@ export namespace Inventory {
                 }
             }
         };
-        _id: ObjectId;
-        name: string;
-        barcode?: Barcode;
-        colors: Colors[];
-        notes: string;
-        bins: LinkingObjects<Bin>;
-        constructor() {
-            this._id = new ObjectId();
-            this.name = '';
-            this.notes = '';
-            this.bins = [];
-            this.colors = [];
-        }
     }
     export class Bin {
         static schema: ObjectSchema = {
@@ -693,16 +683,6 @@ export namespace Inventory {
                 fixture: $.fixture
             }
         };
-        _id: ObjectId;
-        name: string;
-        barcode?: Barcode;
-        notes: string;
-        fixture?: Fixture;
-        constructor() {
-            this._id = new ObjectId();
-            this.name = '';
-            this.notes = '';
-        }
     }
     // export class Scan {
     //     static schema: ObjectSchema = {
@@ -845,6 +825,53 @@ export namespace Materials {
         sections: Section[];
         constructor() {
             this.sections = [];
+        }
+    }
+}
+export namespace Pipelines {
+    export function addToLabelPrintQueue(realm: Realm, barcode: IBarcode) {
+        const fixture = realm.objects<IBarcode>('barcode').filtered('@links.fixture.@count === 1');
+        const bin = realm.objects<IBarcode>('barcode').filtered('@links.bin.@count === 1');
+        console.log(`fixture barcodes`, fixture);
+        console.log(`bin barcodes`, bin);
+
+        const _id = new ObjectId();
+        if (fixture.filtered('barcode == $0', barcode.barcode).length > 0) {
+            const item = realm.objects<IFixture>('fixture').filtered('barcode == $0', barcode)[0];
+            realm.write(() => {
+                realm.create('label-print-queue', {
+                    _id,
+                    name: item.name,
+                    barcode,
+                    notes: item.notes,
+                    type: 'fixture'
+                })
+            });
+        }
+        if (bin.filtered('barcode == $0', barcode.barcode).length > 0) {
+            const item = realm.objects<IBin>('bin').filtered('barcode == $0', barcode)[0];
+            realm.write(() => {
+                realm.create('label-print-queue', {
+                    _id,
+                    name: item.name,
+                    barcode,
+                    notes: item.notes,
+                    type: 'bin'
+                })
+            });
+        }
+    }
+    export class LabelPrintQueue {
+        static schema: ObjectSchema = {
+            name: 'label-print-queue',
+            primaryKey: '_id',
+            properties: {
+                _id: $.objectId,
+                barcode: $.barcode,
+                name: $.string,
+                notes: $.string,
+                type: $.string
+            }
         }
     }
 }

@@ -31,10 +31,8 @@ export function DuotoneIcon(props: DuotoneIconProps) {
     );
     const spread = $cn({ className }, {
         block: !(noBlock ?? false)
-    }, 'block   ');
+    }, 'block w-10 h-10 object-fill');
     return (
-        <span title={title} {...spread}>
-            <FontAwesomeIcon icon={icon} size={size} style={style as any} {...spread} />
-        </span>
+        <FontAwesomeIcon icon={icon} size={size} style={style as any} {...spread} title={title} />
     );
 }

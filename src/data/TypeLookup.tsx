@@ -42,7 +42,7 @@ export interface IViewProps<T extends { _id: ObjectId } = { _id: ObjectId }> {
     }>;
     InsertControlsComponent: React.FunctionComponent<{ columnList: string[]; headerList: string[] }>;
     EditControlsComponent: React.FunctionComponent<{ columnList: string[]; headerList: string[] }>;
-    data: Realm.Results<T>;
+    data: () => Realm.Results<T>;
     Definitions: DefinedType;
     columnList: string[];
     sort?: SortDescriptor[];

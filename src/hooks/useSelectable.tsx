@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useNavigateAndDrill } from './useNavigateAndDrill';
-import { attemptToGetID, attemptToGetOID } from '../util';
+import { attemptToGetOID } from '../util';
 import { distinct } from '../common';
 
 export function useSelectable(): [string[], (item: string) => boolean, (ev: React.MouseEvent<HTMLElement>) => void, (items: string[]) => void] {
@@ -45,7 +45,7 @@ export function useSelectable(): [string[], (item: string) => boolean, (ev: Reac
         (ev: React.MouseEvent<HTMLElement>) => {
             console.log('onClick', ev);
             const oid = attemptToGetOID(ev.target as HTMLElement) ?? 'n/a';
-            const id = attemptToGetID(ev.target as HTMLElement) ?? 'n/a';
+            // const id = attemptToGetID(ev.target as HTMLElement) ?? 'n/a';
 
             if (ev.detail > 2) return;
             if (ev.detail === 2) {
@@ -54,14 +54,14 @@ export function useSelectable(): [string[], (item: string) => boolean, (ev: Reac
             }
             const action = () => {
                 if (ev.ctrlKey || ev.shiftKey) {
-                    toggleSelected(id);
+                    toggleSelected(oid);
                     return Promise.resolve();
                 }
-                if (selected.includes(id)) {
+                if (selected.includes(oid)) {
                     modifySearchParams('selected', []);
                     return Promise.resolve();
                 }
-                modifySearchParams('selected', [id]);
+                modifySearchParams('selected', [oid]);
                 return Promise.resolve();
             };
             cb.current = setTimeout(() => action().then(() => (cb.current = null)), 450);

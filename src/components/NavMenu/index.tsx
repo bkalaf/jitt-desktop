@@ -19,6 +19,9 @@ export function NavMenu() {
             </NavMenu.Section>
             <NavMenu.Section label='Inventory'>
                 <NavMenu.Item prefix='/data/v1' to={'barcode'} module='inventory' />
+                <NavMenu.Item prefix='/data/v1' to={'bin'} module='inventory' />
+                <NavMenu.Item prefix='/data/v1' to={'fixture'} module='inventory' />
+                <NavMenu.Item prefix='/data/v1' to={'scan'} module='inventory' />
             </NavMenu.Section>
             <NavMenu.Section label='Scrapes'>
                 <NavMenu.Item prefix='/data/v1' to={$.verifiedBrand} module='scrapes' />

@@ -3,7 +3,7 @@ import React from 'react';
 import { useUncontrolledForm } from '../../hooks/useForm';
 import { useToast } from '../../hooks/useToast';
 import { $currentUser, realmApp } from '../globals';
-import { InputEle } from '../../data/definitions/index';
+import { InputEle } from "../../data/definitions/InputEle";
 import { FormControl } from "../../data/definitions/FormControl";
 
 class Fake {

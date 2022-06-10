@@ -48,7 +48,7 @@ export async function restoreBackup({ realm, log, scope, action }: { realm: Real
                         } catch (error) {
                             log((error as any).message);
                             log(item);
-                            log(todos[ix])
+                            log(todos[ix]);
                             log(collectionName);
                         }
                     });
@@ -57,7 +57,7 @@ export async function restoreBackup({ realm, log, scope, action }: { realm: Real
                     log((error as any).message);
                 }
             });
-            log(`${collectionName} DONE`)
+            log(`${collectionName} DONE`);
         } catch (error) {
             log((error as any).message);
         }
