@@ -79,9 +79,9 @@
     },
     "scripts": {
         "build": "NODE_ENV=development webpack-cli -c ./webpack.config.ts",
-        "start": "ELECTRON_NO_ATTACH_CONSOLE=true ./node_modules/.bin/electron public/app.js",
+        "start": "ELECTRON_NO_ATTACH_CONSOLE=true ./node_modules/.bin/electron public/app.js --enable-speech-dispatcher",
         "dev": "./node_modules/.bin/webpack --watch",
-        "app": "./node_modules/.bin/electron public/app.js",
+        "app": "./node_modules/.bin/electron public/app.js --enable-speech-dispatcher",
         "start-linux": "yarn build && yarn start",
         "prettier": "./node_modules/.bin/prettier ./src/**/* --write",
         "eslint-fix": "./node_modules/.bin/eslint ./src --fix"

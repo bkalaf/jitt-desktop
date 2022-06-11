@@ -3,6 +3,7 @@
 /* eslint-disable react/no-children-prop */
 /* eslint-disable react/boolean-prop-naming */
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import * as fs from 'graceful-fs';
 import React, { useCallback, useEffect, useMemo, useRef, useState, useTransition } from 'react';
 import { $showFileTools } from './MainWindow';
 import { InsertForm } from './InsertForm';
@@ -19,7 +20,7 @@ import { AdminMenu } from './AdminMenu';
 import * as Webdriver from 'webdriverio';
 import { ModernGrid } from '../data/ModernGrid';
 import { Headers } from '../data/Headers';
-import { Inventory, Storages } from '../data';
+import { Inventory, Products, Storages } from '../data';
 import { DefinedType } from '../data/definitions';
 import { SelfStorageDefinition } from '../data/collections/SelfStorageDefinition';
 import { FacilityDefinition } from '../data/collections/FacilityDefinition';
@@ -43,7 +44,10 @@ import { useElementRef } from '../hooks/useForm';
 import { Btn, Button } from './Button';
 import { useSorted } from './useSorted';
 import { ipcRenderer } from 'electron';
-
+import * as path from 'path';
+import { photoRoot } from '../msgqueue/photoRoot';
+import { PhotoUpload } from './PhotoUpload';
+import { PhotoGrid } from './PhotoGrid';
 export type RealmTypes =
     | 'objectId'
     | 'uuid'
@@ -163,20 +167,75 @@ export function SelfStorageRow({ row, columnList }: { row: any; columnList: stri
 function lookupFK(name: string, lookupFrom: string, realm: Realm) {
     return (x: any) => (isNotNil(x[name]) ? realm.objectForPrimaryKey(lookupFrom, new ObjectId(x[name])) : undefined);
 }
-export function addSingleBarcodeToQueue(bc: IBarcode) {
+export function addSingleBarcodeToQueue(bc: any) {
     console.log('barcode', bc);
     console.log('fixtures', bc.fixture);
     console.log('bins', bc.bin);
-    const type = (bc.fixture?.length ?? 0) > 0 ? 'fixture' : (bc.bin?.length ?? 0) > 0 ? 'bin' : undefined;
-    const name = type === 'fixture' ? (bc.fixture ?? [])[0]!.name : (bc.bin ?? [])[0]!.name;
-    const notes = type === 'fixture' ? (bc.fixture ?? [])[0]!.notes : (bc.bin ?? [])[0]!.notes;
-    const barcode = bc.barcode;
-    const description = bc.description;
+    const type =
+        bc instanceof Inventory.Fixture
+            ? 'fixture'
+            : bc instanceof Inventory.Bin
+            ? 'bin'
+            : bc instanceof Products.Product
+            ? 'product'
+            : bc instanceof Inventory.Item
+            ? 'item'
+            : 'unknown';
+    const name = type === 'fixture' ? (bc as IFixture).name : type === 'bin' ? (bc as IBin).name : '';
+    const notes = type === 'fixture' ? (bc as IFixture).notes : type === 'bin' ? (bc as IBin).notes : '';
+    const barcode = bc?.barcode?.barcode ?? '';
+    const description = bc?.barcode?.description ?? '';
     console.log(`sending: add-to-tag-queue`, barcode);
     ipcRenderer.send('add-to-tag-queue', name, barcode, description, type, notes);
 }
+export function enablePhotoPipeline() {
+    console.log('photo-pipeline', 'enable');
+    ipcRenderer.on('photo-continue', (event: Electron.IpcRendererEvent, next: string, folder: string, name: string, barcode: string) => {
+        console.log('photo-continue', { next, folder, name, barcode }, next, folder, name, barcode);
+        ipcRenderer.send('enqueue-photo-pipeline', folder, name, next, barcode);
+    });
+    ipcRenderer.send('enable-photo-pipeline');
+}
+
+export function enqueueAssignedPhoto(folder: string, name: string, barcode: string) {
+    console.log('photo-pipeline', 'enqueue-assigned', folder, name, barcode);
+
+    ipcRenderer.send('enqueue-assigned-photo', folder, name, 'assign', barcode);
+}
+
+export function enablePhotoAssignment(realm: Realm) {
+    ipcRenderer.on('photo-assigned', (event: Electron.IpcRendererEvent, oldName: string, newName: string, barcode: string) => {
+        console.log('photo-assigned', oldName, newName, barcode);
+        const barcodeObj = realm.objects<IBarcode>('barcode').filtered('barcode == $0', barcode)[0];
+        const item = (barcodeObj.item ?? [])[0];
+        const orig = [photoRoot, oldName].join('/');
+        const originalReader = fs.readFileSync(orig);
+        const finalReader = fs.readFileSync(newName);
+        realm.write(() => {
+            realm.create('photo', {
+                _id: new ObjectId(),
+                name: path.basename(newName),
+                original: oldName,
+                materializedPath: newName,
+                item: item,
+                originalData: originalReader.buffer,
+                finalData: finalReader.buffer,
+                useFinal: true,
+                useOriginal: false,
+                caption: '',
+                needsReview: true
+            });
+        });
+    });
+}
 export function MainRouter({ reader, realm }: { reader: DataOrModifiedFn<Webdriver.Browser<'async'>>; realm: Realm }) {
     // const {} = realm.objects('type-info')
+
+    useEffect(() => {
+        console.log('useEffect:run');
+        enablePhotoPipeline();
+        enablePhotoAssignment(realm);
+    }, [realm]);
 
     return (
         <Routes>
@@ -241,6 +300,19 @@ export function MainRouter({ reader, realm }: { reader: DataOrModifiedFn<Webdriv
                 </Route>
                 <Route path='data'>
                     <Route path='v1'>
+                        <Route path='photo'>
+                            <Route path='new'>
+                                <Route
+                                    index
+                                    element={
+                                        <ModalContainer>
+                                            <PhotoUpload />
+                                        </ModalContainer>
+                                    }
+                                />
+                            </Route>
+                            <Route index element={<PhotoGrid />} />
+                        </Route>
                         {CollectionFor({
                             realm: realm,
                             name: 'bin',
@@ -251,8 +323,8 @@ export function MainRouter({ reader, realm }: { reader: DataOrModifiedFn<Webdriv
                                 _id: new ObjectId(x._id),
                                 name: x.name,
                                 notes: x.notes,
-                                barcode: lookupFK('barcode', 'barcode', realm)(x.barcode),
-                                fixture: lookupFK('fixture', 'fixture', realm)(x.fixture)
+                                barcode: lookupFK('barcode', 'barcode', realm)(x),
+                                fixture: lookupFK('fixture', 'fixture', realm)(x)
                             }),
                             ExtendedID: AssignBarcode,
                             postInsert: addSingleBarcodeToQueue as any
@@ -267,7 +339,7 @@ export function MainRouter({ reader, realm }: { reader: DataOrModifiedFn<Webdriv
                                 _id: new ObjectId(x._id),
                                 name: x.name,
                                 notes: x.notes,
-                                barcode: lookupFK('barcode', 'barcode', realm)(x.barcode)
+                                barcode: lookupFK('barcode', 'barcode', realm)(x)
                             }),
                             ExtendedID: AssignBarcode,
                             postInsert: addSingleBarcodeToQueue as any
@@ -613,7 +685,7 @@ export function CollectionFor({
     convert: (x: any) => any;
     sorted: SortDescriptor[];
     colList: string[];
-    InsertComponent?: React.FunctionComponent<{ Controls: DefinedType; initialData: Record<string, any>; convert: any; postInsert: <T>(input: T) => void }>;
+    InsertComponent?: React.FunctionComponent<{ Controls: DefinedType; initialData: Record<string, any>; convert: any; postInsert?: <T>(input: T) => void }>;
     ExtendedID?: React.FunctionComponent;
     postInsert?: <T>(input: T) => void;
 }) {

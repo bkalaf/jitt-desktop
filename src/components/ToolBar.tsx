@@ -1,4 +1,14 @@
-import { faArrowLeft, faBarcodeRead, faBarcodeScan, faFileInvoiceDollar, faHome, faPlusCircle, faPrint, faTags } from '@fortawesome/pro-duotone-svg-icons';
+import {
+    faArrowLeft,
+    faBarcodeRead,
+    faBarcodeScan,
+    faCamera,
+    faFileInvoiceDollar,
+    faHome,
+    faPlusCircle,
+    faPrint,
+    faTags
+} from '@fortawesome/pro-duotone-svg-icons';
 import { useCallback, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { IconLinkButton } from './Buttons/IconLinkButton';
@@ -43,7 +53,7 @@ export function ToolBar() {
     );
     const assignBarcode = useCallback(() => {
         const item = selected[0];
-        const el = document.querySelector(`tr[data-id='${item}']`) as HTMLElement | null;
+        const el = document.querySelector(`tr[data-oid='${item}']`) as HTMLElement | null;
         if (el == null) throw new Error(`bad id: ${id}`);
         navigate([location.pathname, el.dataset.oid, 'assign'].join('/'), { state: el.dataset.oid });
     }, [id, location.pathname, navigate, selected]);
@@ -108,7 +118,9 @@ export function ToolBar() {
         });
     }, []);
     const onMouseMove = useThrottleCallback(_onMouseMove, 500);
-
+    const navigateToPhotoUpload = useCallback(() => {
+        navigate('/data/v1/photo/new');
+    }, [navigate]);
     useEventListener('mousemove', onMouseMove, document);
     return (
         <div className='flex w-full px-2 text-lg font-bold leading-loose tracking-wide text-black transition duration-1000 ease-in-out delay-200 border border-white rounded-lg shadow-lg bg-indigo-dark font-fira-sans mb-0.5 justify-center space-x-4'>
@@ -125,6 +137,15 @@ export function ToolBar() {
                     primary='darkslategray'
                     secondary='red'
                     primaryOpacity={1}
+                    size='2x'
+                />
+                <ToolbarDuotoneButton
+                    icon={faCamera}
+                    title='Upload a photo batch'
+                    onClick={navigateToPhotoUpload}
+                    disabled={false}
+                    primary='black'
+                    secondary='linen'
                     size='2x'
                 />
                 <ToolbarDuotoneButton

@@ -15,7 +15,7 @@ export function NavMenuItem(props: { prefix: string, to: string; module?: NavMen
         'bg-rose-dark': module === 'products'
     }, 'flex px-2 py-0.5 font-fira-sans text-base font-semibold text-white tracking-wider leading-loose mx-2');
     return (    
-        <li {...spread}>
+        <li key={props.label} {...spread}>
             <Link className='flex text-base' to={[prefix, to].join('/')}>
                 {label ?? toTitleCase(to)}
             </Link>

@@ -1,8 +1,9 @@
 import { ObjectSchema } from 'realm';
-import { ObjectId } from 'bson';
 import { $ } from './$';
-import { DbTable } from './DbTable';
 
+/**
+ * @deprecated
+ */
 export class DbColumn {
     static schema: ObjectSchema = {
         name: $.dbColumn,

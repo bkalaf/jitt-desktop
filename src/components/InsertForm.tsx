@@ -13,8 +13,9 @@ import { useRealmMutation } from '../queries/useRealmMutation';
 import { Mutation } from '../queries';
 import { DefinedType, InsertFormControls } from '../data/definitions';
 import { Spinner } from './Indicators/Spinner';
+import { ignore } from '../common';
 
-export function InsertForm<T extends Record<string, any>>({ Controls, initialData, convert, postInsert }: { Controls: DefinedType; initialData: T; convert: any; postInsert: <T>(input: T) => void }) {
+export function InsertForm<T extends Record<string, any>>({ Controls, initialData, convert, postInsert }: { Controls: DefinedType; initialData: T; convert: any; postInsert?: <T>(input: T) => void }) {
     console.group('InsertForm');
     const [collection] = useRoutedCollection();
     const realm = useLocalRealm();
@@ -33,7 +34,7 @@ export function InsertForm<T extends Record<string, any>>({ Controls, initialDat
             }
         }
     };
-    const [state, loading, execute] = useRealmMutation(Mutation.insert, postInsert);
+    const [state, loading, execute] = useRealmMutation(Mutation.insert, postInsert ?? ignore);
     // const mutation = useMutation(insertQuery, {
     //     onSuccess: (record: T & Realm.Object) => {
     //         successToast('You have successfully inserted a record.', 'SUCCESS', (record as any)._id.toHexString());

@@ -1,41 +1,23 @@
+///<reference path="./../global.d.ts" />
 /* eslint-disable @typescript-eslint/no-this-alias */
 /* eslint-disable @typescript-eslint/no-namespace */
 import { ObjectSchema } from 'realm';
 import { ObjectId } from 'bson';
-import { Provinces } from './enums/province';
-import { Country } from './enums/country';
-import { LengthUOMS } from './enums/lengthUOM';
 import { AuctionSites } from './enums/auctionSite';
-import { MimeTypes } from './enums/mimeTypes';
-import { capitalize, isLower, isUpper } from '../common/text';
+import { isLower, isUpper } from '../common/text';
 import { now } from '../aggregator';
 import { LinkedObject, LinkingObjects } from './LinkingObjects';
 import { $currentUser } from '../components/globals';
-import { MeasuresOf } from './enums/measuresOf';
-import { ActivityActions, ActivityScopes, BarcodeType, CapacityUOMS, Colors, Conditions, MaterialTypes, StageTypes, WeightUOMS } from './enums';
+import { ActivityActions, ActivityScopes, BarcodeType, Conditions, MaterialTypes } from './enums';
 import { Select } from '../components/forms/elements/Select';
 import { Input } from '../components/forms/elements/Input';
 import { Fieldset } from '../components/forms/elements/Fieldset';
 import { Output } from '../components/forms/elements/Output';
-import { Product } from 'electron';
-import { MeasurementFor } from './enums/measurementFor';
 import * as fs from 'graceful-fs';
 import * as path from 'path';
 import { Textarea } from '../components/forms/elements/Textarea';
 import { FieldsetHTMLAttributes } from 'react';
 import { $ } from './$';
-import { DbCellInputProps } from './DbCellInputProps';
-import { DbDescriptor } from './DbDescriptor';
-import { IDbTable } from './IDbTable';
-import { DbSort } from './DbSort';
-import { DbTable } from './DbTable';
-import { DbColumn } from './DbColumn';
-import { DbDataType } from './DbDataType';
-import { DbInputProps } from './DbInputProps';
-import { DbSelectProps } from './DbSelectProps';
-import { DbTextAreaProps } from './DbTextAreaProps';
-import { DbFieldSetProps } from './DbFieldSetProps';
-import { DbOutputProps } from './DbOutputProps';
 
 // export const $$ = {
 //     ...objectMap((x: string) => decapitalize(x.split('-').map(capitalize).join('')))(allTypes)
@@ -268,6 +250,26 @@ export namespace Files {
             this.reason = '';
         }
     }
+
+    export class Photo {
+        static schema: ObjectSchema = {
+            name: 'photo',
+            primaryKey: '_id',
+            properties: {
+                _id: $.objectId,
+                name: $.string,
+                original: $.string,
+                materializedPath: $.string,
+                item: $.item,
+                originalData: $.data,
+                finalData: $.optional.data,
+                useFinal: { type: $.bool, default: true },
+                useOriginal: { type: $.bool, default: false },
+                caption: $.optional.string,
+                needsReview: { type: $.bool, default: true }
+            }
+        };
+    }
     /**
      * @description Allocated file or folder piece of the file system.
      * @author Robert Kalaf Jr.
@@ -464,57 +466,7 @@ export namespace Files {
             return FileItem.DOC_REGEX.test(obj.fsAlloc[0]?.path ?? '/').toString();
         }
     }
-    /**
-     * @description
-     * @author Robert Kalaf Jr.
-     * @date 05/20/2022
-     * @export
-     * @class ImageStage
-     * @property {StageTypes} stage
-     * @property {FileAlloc} fsAlloc
-     * @property {boolean} canPublish
-     * @property {string[]} columns
-     */
-    export class ImageStage {
-        static schema: ObjectSchema = {
-            name: $.imageStage,
-            embedded: true,
-            properties: {
-                stage: { type: $.int, default: 0 },
-                fsAlloc: $.fsAlloc,
-                canPublish: { type: $.bool, default: false }
-            }
-        };
-        stage: StageTypes;
-        fsAlloc?: FileAlloc;
-        canPublish: boolean;
-        constructor() {
-            this.stage = 0;
-            this.canPublish = false;
-        }
-    }
-    export class PhotoPack {
-        static schema: ObjectSchema = {
-            name: $.photoPack,
-            primaryKey: '_id',
-            properties: {
-                _id: $.objectId,
-                versions: $.dictionaryOf.imageStage,
-                item: {
-                    type: $.linkingObjects,
-                    objectType: $.item,
-                    property: 'photoPack'
-                }
-            }
-        };
-        _id: ObjectId;
-        versions: ImageStage[];
-        item?: LinkedObject<Inventory.Item>;
-        constructor() {
-            this._id = new ObjectId();
-            this.versions = [];
-        }
-    }
+    
     export class ProductDocumentation {
         static schema: ObjectSchema = {
             name: $.productDocumentation,
@@ -653,7 +605,6 @@ export namespace Inventory {
         };
     }
 
-    
     export class Fixture {
         static schema: ObjectSchema = {
             name: $.fixture,
@@ -722,7 +673,11 @@ export namespace Inventory {
                 features: $.listOf.string,
                 tested: $.optional.date,
                 draft: $.optional.draft,
-                photoPack: $.photoPack
+                photos: {
+                    type: $.linkingObjects,
+                    objectType: 'photo',
+                    property: 'item'
+                }
             }
         };
         _id: ObjectId;
@@ -734,7 +689,6 @@ export namespace Inventory {
         tested?: Date;
         barcode?: Inventory.Barcode;
         draft?: Listings.Draft;
-        photoPack?: Files.PhotoPack;
         constructor() {
             this._id = new ObjectId();
             this.colors = [];
@@ -819,7 +773,7 @@ export namespace Materials {
             name: $.composition,
             embedded: true,
             properties: {
-                sections: $.listOf.section
+                sections: $.dictionaryOf.section
             }
         };
         sections: Section[];
@@ -845,7 +799,7 @@ export namespace Pipelines {
                     barcode,
                     notes: item.notes,
                     type: 'fixture'
-                })
+                });
             });
         }
         if (bin.filtered('barcode == $0', barcode.barcode).length > 0) {
@@ -857,7 +811,7 @@ export namespace Pipelines {
                     barcode,
                     notes: item.notes,
                     type: 'bin'
-                })
+                });
             });
         }
     }
@@ -872,7 +826,7 @@ export namespace Pipelines {
                 notes: $.string,
                 type: $.string
             }
-        }
+        };
     }
 }
 
@@ -1029,9 +983,41 @@ export namespace Products {
             name: $.dimension,
             embedded: true,
             properties: {
-                measureOf: $.string,
                 value: { type: $.double, default: 0 },
-                uom: { type: $.optional.string }
+                uom: { type: $.optional.string },
+                remaining: 'mixed'
+            }
+        };
+    }
+    export function createNewDim<TUOM extends string>(uom: TUOM, value: number, ...additional: [TUOM, number][]): IDimension<TUOM> {
+        const first = additional.length === 0 ? [] : [additional[0][0], additional[0][1]];
+        const dim = {
+            uom,
+            value,
+            remaining: first.length === 0 ? undefined : createNewDim(first[0] as string, first[1] as number, ...additional.slice(1))
+        };
+        return dim;
+    }
+
+    console.log(createNewDim('in', 10));
+    console.log(createNewDim('ft', 2, ['in', 10]));
+    console.log(createNewDim('hr', 1, ['min', 10], ['sec', 10]));
+    export const dims = {
+        length: null,
+        width: null,
+        height: null,
+        weight: null,
+        capacity: null,
+        volume: null,
+        duration: null
+    };
+    export class ProductTemplate {
+        static schema: ObjectSchema = {
+            name: 'productTemplate',
+            primaryKey: '_id',
+            properties: {
+                _id: $.objectId,
+                dims: $.dictionaryOf.dimension
             }
         };
     }
@@ -1063,14 +1049,6 @@ export namespace Products {
                 uoms: $.listOf.string
             }
         };
-        of: MeasurementFor;
-        measures: string[];
-        uoms: string[];
-        constructor() {
-            this.of = 'L';
-            this.measures = [];
-            this.uoms = [];
-        }
     }
     export class Product {
         static schema = {
@@ -1605,25 +1583,12 @@ export type CellType = keyof typeof cellTypes;
 export type ControlType = keyof typeof controlTypes;
 
 export const schema = [
-    DbInputProps,
-    DbSelectProps,
-    DbFieldSetProps,
-    DbOutputProps,
-    DbTextAreaProps,
-    DbCellInputProps,
-    DbDataType,
-    DbColumn,
-    DbTable,
-    DbSort,
-    DbDescriptor,
     Admin.Activity,
     Auctions.Cost,
     Auctions.Purchase,
     Files.Expense,
     Files.FileAlloc,
     Files.FileItem,
-    Files.ImageStage,
-    Files.PhotoPack,
     Files.ProductDocumentation,
     Length,
     Inventory.Barcode,
@@ -1637,6 +1602,7 @@ export const schema = [
     Products.Brand,
     Products.Company,
     Products.Dimension,
+    Products.ProductTemplate,
     Products.ItemType,
     Products.Measurement,
     Products.Product,
@@ -1648,7 +1614,8 @@ export const schema = [
     Storages.Facility,
     Storages.RentalUnit,
     Storages.SelfStorage,
-    Storages.SquareFootage
+    Storages.SquareFootage,
+    Files.Photo
 ];
 
 export function createFileAlloc(realm: Realm, name: string, parentName: string, child: string) {

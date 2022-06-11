@@ -1,4 +1,4 @@
-import { app } from '@electron/remote';
+import { app } from 'electron';
 import path from 'path';
 import { SpecialFolder } from './SpecialFolder';
 

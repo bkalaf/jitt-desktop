@@ -16,11 +16,13 @@ export function NavMenu() {
                 <NavMenu.Item prefix='/data/v1' to={$.company} module='products' />
                 <NavMenu.Item prefix='/data/v1' to={$.brand} module='products' />
                 <NavMenu.Item prefix='/data/v1' to={$.itemType} module='products' />
+                <NavMenu.Item prefix='/data/v1' to={$.productLine} module='products' />
             </NavMenu.Section>
             <NavMenu.Section label='Inventory'>
                 <NavMenu.Item prefix='/data/v1' to={'barcode'} module='inventory' />
                 <NavMenu.Item prefix='/data/v1' to={'bin'} module='inventory' />
                 <NavMenu.Item prefix='/data/v1' to={'fixture'} module='inventory' />
+                <NavMenu.Item prefix='/data/v1' to='photo' module='inventory' />
                 <NavMenu.Item prefix='/data/v1' to={'scan'} module='inventory' />
             </NavMenu.Section>
             <NavMenu.Section label='Scrapes'>

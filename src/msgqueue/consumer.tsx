@@ -1,20 +1,27 @@
 // consumer
 import amqp from 'amqplib';
+export const $$rabbitMQ = 'amqp://localhost';
 import * as fs from 'graceful-fs';
+
 import { ipcMain } from 'electron';
-import { convertCSV } from './cli';
+import { rembg } from './rembg';
+import { mogrifyToPNG } from './mogrifyToPNG';
+import { convertCSV } from './convertCSV';
 import { appSettings } from '../settings';
 import { ignore } from '../common/ignore';
+import { APP_CONFIG } from '../config';
+import { ObjectId } from 'bson';
+import { photoRoot } from './photoRoot';
+import { handlePayload } from './photoPipeline';
 
 export const $$printTagsQueue = 'print-tags';
-export const $$rabbitMQ = 'amqp://localhost';
 
 const log = (x: string) => process.stdout.write(`${x}\n`);
 
 function surround(char: string) {
     return function (str?: string) {
         return [char, str ?? '', char].join('');
-    }
+    };
 }
 async function consumePrintTags() {
     async function convertAndAppend(data: amqp.ConsumeMessage | null) {
@@ -25,7 +32,14 @@ async function consumePrintTags() {
         }
         await fs.promises.appendFile(
             appSettings.files.printLabelsCSV,
-            [surround('"')(payload.barcode), surround('"')(payload.type), surround('"')(payload.name), surround('"')(payload.notes), surround('"')(payload.description), '\n'].join(',')
+            [
+                surround('"')(payload.barcode),
+                surround('"')(payload.type),
+                surround('"')(payload.name),
+                surround('"')(payload.notes),
+                surround('"')(payload.description),
+                '\n'
+            ].join(',')
         );
 
         return data;
@@ -41,11 +55,10 @@ async function consumePrintTags() {
         log('Tags Ready');
     }
     await channel.prefetch(1);
-    log(channel.eventNames().join(';'));
     await channel.consume($$printTagsQueue, (x: amqp.ConsumeMessage | null) =>
         convertAndAppend(x)
             .then((x) => {
-                setTimeout(() => channel.ack(x), 1000);
+                setTimeout(() => channel.ack(x), 400);
                 channel.checkQueue($$printTagsQueue).then((x) => {
                     x.messageCount === 0 ? convertCSV() : ignore();
                 });
@@ -53,5 +66,9 @@ async function consumePrintTags() {
             .catch(console.error)
     );
 }
+
+export type PhotoStage = 'upload' | 'convert' | 'removebg' | 'assign';
+
+const itemRoot = (sku: string) => [APP_CONFIG.fs.path, 'items', sku, 'photos'].join('/');
 
 ipcMain.on('consume-tags', consumePrintTags);

@@ -1,8 +1,5 @@
 import { ObjectId } from 'bson';
 import { LinkedObject } from './LinkingObjects';
-import { DbDataType } from "./DbDataType";
-import { DbColumn } from "./DbColumn";
-import { DbSort } from "./DbSort";
 import { IDbSort } from './IDbSort';
 import { IDbColumn } from './IDbColumn';
 import { IDbDataType } from './IDbDataType';

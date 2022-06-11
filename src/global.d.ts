@@ -105,9 +105,32 @@ declare global {
 
     export interface IItem {
         _id: ObjectId;
+        product: IProduct;
+        photos: IPhoto[];
+        barcode: IBarcode;
+    }
+    export interface IPhoto {
+        _id: ObjectId;
     }
     export interface IProduct {
         _id: ObjectId;
+        brand: IBrand;
+        shortDescription?: string;
+    }
+    export interface ICompany {
+        _id: ObjectId;
+        parent: ICompany;
+        name: string;
+        descendants: ICompany[];
+        aliases: string[]
+
+    }
+    export interface IBrand {
+        _id: ObjectId;
+        name: string;
+        alias: string[];
+        company: ICompany;
+        verifiedBrand: IVerifiedBrand;
 
     }
     export interface IBarcode {
@@ -133,6 +156,11 @@ declare global {
         barcode: IBarcode;
         notes?: string;
         fixture?: IFixture;
+    }
+    export interface IDimension<TUOM> {
+        value: number;
+        uom: TUOM;
+        reamining?: IDimension<TUOM>
     }
 }
 export const i = 1;

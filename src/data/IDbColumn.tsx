@@ -1,5 +1,4 @@
 import { ObjectId } from 'bson';
-import { LinkedObject } from './LinkingObjects';
 import { IDbTable } from './IDbTable';
 import { IDbControlProps, IDbProps } from './IDbControlProps';
 import { IDbDataType } from './IDbDataType';

@@ -2,9 +2,14 @@ import { app, BrowserWindow, ipcMain, session } from 'electron';
 import { enable, initialize } from '@electron/remote/main';
 import * as fs from 'graceful-fs';
 import './msgqueue';
+import amqp from 'amqplib';
+import { log } from 'console';
+import { handlePayload } from './msgqueue/photoPipeline';
+import { rabbitMqHandler } from './msgqueue';
 
 let window: BrowserWindow | null = null;
 initialize();
+export const $$rabbitMQ = 'amqp://localhost';
 
 function createWindow() {
     window = new BrowserWindow({
@@ -38,6 +43,14 @@ function getExtensionPath(extensionID: string) {
     console.log(devToolsPath);
     return devToolsPath;
 }
+const ttsID = 'npdkkcjlmhcnnaoobfdjndibfkkhhdfn';
+function ttsPath() {
+    const platformPaths = process.platform === 'win32' ? `C:/Users/bobby/AppData/Local/Google/Chrome/User Data/Default/Extensions/npdkkcjlmhcnnaoobfdjndibfkkhhdfn` : '/home/bobby/.config/google-chrome/Default/Extensions/npdkkcjlmhcnnaoobfdjndibfkkhhdfn';
+    const versionFolder = fs.readdirSync(platformPaths)[0];
+    const devToolsPath = [platformPaths, versionFolder].join('/');
+    console.log(devToolsPath);
+    return devToolsPath;
+}
 function getDevToolsPath() {
     const platformPaths =
         process.platform === 'win32'
@@ -54,6 +67,7 @@ app.on('ready', function () {
     return session.defaultSession
         .loadExtension(getExtensionPath('fmkadmapgofadopljbjfkapdkoienihi'), { allowFileAccess: true })
         .then(() => session.defaultSession.loadExtension(getExtensionPath('jdkknkkbebbapilgoeccciglkfbmbnfm'), { allowFileAccess: true }))
+        .then(() => session.defaultSession.loadExtension(ttsPath(), { allowFileAccess: true }))
         .then(() => createWindow())
         .then(() => {
             if (window == null) throw new Error('null window');
@@ -62,6 +76,62 @@ app.on('ready', function () {
             window.webContents.on('did-finish-load', () => console.log('finished loading...'));
         });
 });
+
+ipcMain.on('enable-photo-pipeline', (event: Electron.IpcMainEvent) => {
+    async function consume(msg: amqp.ConsumeMessage | null) {
+        if (msg == null) throw new Error('photo-pipeline, empty data');
+        const payload = JSON.parse(msg.content.toString());
+        handlePayload(event, payload);
+        return msg;
+    }
+    async function internal() {
+        const connection = await amqp.connect($$rabbitMQ);
+        const channel = await connection.createChannel();
+        const asserted = await channel.assertQueue('photo-pipeline');
+        log(`photo-pipeline queue: ${asserted.messageCount}`);
+        log(`photo-pipeline consumers: ${asserted.consumerCount}`);
+        await channel.prefetch(1);
+        await channel.consume('photo-pipeline', (data: amqp.ConsumeMessage | null) => {
+            consume(data).then((m) => {
+                setTimeout(() => channel.ack(m), 150);
+                return m;
+            }).catch(console.error);
+        });
+    }
+    console.log(`event`, event);
+    internal().then(() => {
+        console.log('internal:ran:photo-pipeline');
+        log('internal:ran:photo-pipeline');
+    });
+});
+ipcMain.on(
+    'enqueue-photo-pipeline',
+    rabbitMqHandler('photo-pipeline', (...args: string[]) => {
+        console.log('photo-pipeline-msg', args);
+        console.log('photo-pipeline-msg', {
+            folder: args[0],
+            name: args[1],
+            stage: args[2]
+        });
+        return {
+            folder: args[0],
+            name: args[1],
+            stage: args[2]
+        };
+    })
+);
+ipcMain.on(
+    'enqueue-assigned-photo',
+    rabbitMqHandler('photo-pipeline', (...args: string[]) => {
+        return {
+            folder: args[0],
+            name: args[1],
+            stage: args[2],
+            barcode: args[3]
+        };
+    })
+);
+
 // const browser: Promise<WebdriverIO.Browser> = Webdriver.remote({
 //     logLevel: 'trace',
 //     capabilities: {

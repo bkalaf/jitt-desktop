@@ -1,4 +1,5 @@
-import { getFullPath, getFullPathMaintenance } from '../common/fs/getFullPath';
+const getFullPath = (fn: string, _: string, ...args: string[]) => ['/home/bobby/.config', ...args, fn].join('/');
+const getFullPathMaintenance = (fn: string) => getFullPath(fn, '', 'jitt-desktop', 'maintenance');
 
 export const files = {
     brands: getFullPathMaintenance('brands.txt'),

@@ -1,6 +1,9 @@
 import { ObjectSchema } from 'realm';
 import { $ } from './$';
 
+/**
+ * @deprecated
+ */
 export class DbCellInputProps {
     static schema: ObjectSchema = {
         name: $.dbCellInputProps,

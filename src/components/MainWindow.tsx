@@ -1,15 +1,13 @@
 /* eslint-disable react/boolean-prop-naming */
-import { faKey, IconDefinition } from '@fortawesome/pro-duotone-svg-icons';
-import { useCallback, useEffect, useMemo } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { IconDefinition } from '@fortawesome/pro-duotone-svg-icons';
+import { useEffect, useMemo } from 'react';
+import { useLocation } from 'react-router-dom';
 import { LoginForm } from './forms/LoginForm';
-import { Toaster, useMetaDataContext } from './Toaster';
+import { Toaster } from './Toaster';
 import { LeftSidebar } from './LeftSidebar';
 import { MainRouter } from './MainRouter';
-import { useRealm } from '../hooks/useRealm';
 import { StatusBar } from './StatusBar';
-import { createWebdriver } from './providers/createWebdriver';
-import { DataOrModifiedFn, LazyDataOrModifiedFn, useAsyncResource } from 'use-async-resource';
+import { LazyDataOrModifiedFn, useAsyncResource } from 'use-async-resource';
 import * as fs from 'graceful-fs';
 import { charRange } from '../common';
 import { files } from '../config';
@@ -18,17 +16,13 @@ import { writeFile } from '../common/fs/writeFile';
 import { makeVar } from '@apollo/client';
 import { ToolBar } from './ToolBar';
 import { TopBar } from './TopBar';
-import { Registrar } from '../reflection/Registrar';
 import { ObjectId } from 'bson';
-import { IField } from '../reflection/IField';
-import { TypeKind } from '../reflection/typeInfo';
-import { Input } from './forms/elements/Input';
-import { provinces, countries } from '../data/enums';
-import { Select } from './forms/elements/Select';
-import { DbDataType } from '../data/DbDataType';
 import { SizeProp } from '@fortawesome/fontawesome-svg-core';
 import { DuotoneButton } from './providers/DuotoneBtn';
 import { $cn } from '../util/$cn';
+import { useLog } from '../hooks/useLog';
+import { remote } from 'webdriverio';
+import { useReactiveVar } from '@apollo/client';
 
 export type IconButtonProps = {
     title: string;
@@ -166,7 +160,46 @@ export const $selector = {
 
 export const $showFileTools = makeVar<boolean>(false);
 
+export const $voice = makeVar<SpeechSynthesisVoice | undefined>(undefined);
+export function speak(voice: SpeechSynthesisVoice | undefined) {
+    if (voice == null) return;
+    const speechSynth = window.speechSynthesis;
+    const utterance = new SpeechSynthesisUtterance('JITT has been loaded.');
+    utterance.voice = voice;
+    utterance.rate = 1;
+    utterance.volume = 1;
+    console.log(utterance);
+    speechSynth.speak(utterance);
+}
+export async function tryUtter() {
+    const browser = await remote({
+        capabilities: {
+            browserName: 'chrome'
+        }
+    });
+    await browser.execute(`const speechSynth = window.speechSynthesis;
+    const utterance = new SpeechSynthesisUtterance('JITT has been loaded.');
+    const voices = speechSynth.getVoices();
+    voices.forEach((voice) => {
+        console.log(voice);
+    });
+    utterance.voice = speechSynth.getVoices()[0];
+    utterance.rate = 1;
+    utterance.volume = 1;
+    speechSynth.speak(utterance);`);
+}
 export function MainWindow({ realmReader }: { realmReader: LazyDataOrModifiedFn<Realm> }) {
+    useEffect(() => {
+        const v = window.speechSynthesis.getVoices().filter((x) => x.lang === 'en-US')[65];
+        if (v !== null) $voice(v);
+        window.speechSynthesis.onvoiceschanged = function () {
+            console.log('ON VOICES CHANGES');
+            console.log('voices.length', window.speechSynthesis.getVoices().length);
+            const v2 = window.speechSynthesis.getVoices().filter((x) => x.lang === 'en-US')[65];
+            $voice(v2);
+        };
+    }, []);
+    const voice = useReactiveVar($voice);
     const realm = realmReader();
     // const insertType = useCallback(
     //     (kind: TypeKind, name: string, embedded: boolean, columns: string[], headers: string[], ...fields: any[]) => {
@@ -222,7 +255,32 @@ export function MainWindow({ realmReader }: { realmReader: LazyDataOrModifiedFn<
     const [reader, updateReader] = useAsyncResource<any>(async () => {
         console.log('output');
     }, []);
+    const log = useLog();
 
+    useEffect(() => {
+        if (realm) {
+            // realm.write(() => {
+            //     realm.create('productTemplate', { _id: new ObjectId(), dims: { weight: { uom: 'oz', value: 1.0 } } });
+            // });
+            const result = realm.objects('productTemplate');
+            result.forEach((x: any) => {
+                log(JSON.stringify(x));
+                console.log(x);
+                const x2 = x.dims;
+                const x3 = Object.getOwnPropertyNames(x.dims);
+                const d: Record<string, IDimension<any>> = {};
+                x3.forEach((name) => (d[name] = x.dims[name]));
+                console.log(x.dims);
+                console.log(x2);
+                console.log(x3);
+                log(d);
+                console.log(d);
+            });
+        }
+    }, [log, realm]);
+    useEffect(() => {
+        speak(voice);
+    }, [voice]);
     return (
         <div className='relative flex flex-col w-full h-full py-0.5'>
             {useMemo(

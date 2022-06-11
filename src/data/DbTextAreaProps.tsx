@@ -2,6 +2,9 @@ import { ObjectSchema } from 'realm';
 import { $ } from './$';
 
 
+/**
+ * @deprecated
+ */
 export class DbTextAreaProps {
     static schema: ObjectSchema = {
         name: $.dbTextAreaProps,
