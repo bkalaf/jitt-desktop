@@ -18,7 +18,7 @@ export function ActivityComponent(props: {
         onDemand: boolean;
         realm: Realm;
         log: any;
-        scheduledItem: Admin.Activity | undefined;
+        scheduledItem: any;
         action: ActivityActions;
         scope: ActivityScopes;
     }) => Promise<void>;
@@ -73,14 +73,14 @@ export function ActivityComponent(props: {
 
     useEffect(() => {
         if (!doNotRun) {
-            const timeoutMs = scheduledItem != null ? scheduledItem.when.valueOf() - now().valueOf() : 10000000;
+            const timeoutMs = scheduledItem != null ? (scheduledItem as any).when.valueOf() - now().valueOf() : 10000000;
             token.current = setTimeout(() => {
                 console.log('SCHEDULED ACTION: ');
                 mutation.mutate({ onDemand: false });
             }, timeoutMs);
             return () => (token.current != null ? clearTimeout(token.current) : ignore());
         }
-    }, [mutation, scheduledItem]);
+    }, [doNotRun, mutation, scheduledItem]);
     const liSpread = $cn(
         {},
         {

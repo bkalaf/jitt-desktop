@@ -4,6 +4,8 @@ import { Country } from './data/enums/country';
 import { Provinces } from './data/enums/province';
 import { LengthUOMS } from './data/enums/lengthUOM';
 import { CapacityUOMS } from './data/enums/capacityUOM';
+import { BarcodeType, Conditions } from './data/enums';
+import { MovieRatings, VideoGameRatings } from './data/enums/movieRatings';
 
 declare global {
     export type IEventPublisher = {
@@ -102,20 +104,121 @@ declare global {
         size: ICapacity;
         readonly extension: string;
     }
+    export interface IPurchase {
+        _id: ObjectId;
+
+    }
 
     export interface IItem {
         _id: ObjectId;
         product: IProduct;
         photos: IPhoto[];
-        barcode: IBarcode;
+        sku: IBarcode;
+        condition: Conditions;
+        defects?: string[];
+        features?: string[];
+        tested?: Date;
+        draft?: any;
+        acquiredOn?: Date;
+        auction?: IPurchase;
     }
     export interface IPhoto {
         _id: ObjectId;
+        name: string;
+        original: string;
+        materializedPath: string;
+        item: IItem;
+        originalData: ArrayBuffer;
+        finalData: ArrayBuffer;
+        useFinal: boolean;
+        useOriginal: boolean;
+        caption?: string;
+        needsReview: boolean;
+    }
+    export interface IProductLine {
+        _id: ObjectId;
+        brand: IBrand;
+        name: string;
+        products: IProduct[];
+    }
+    export interface ILocation {
+        _id: ObjectId;
+        name: string;
+        notes?: string;
+        fixtures?: IFixture[];
+        address?: IAddress;
     }
     export interface IProduct {
         _id: ObjectId;
-        brand: IBrand;
+        brand?: IBrand;
+        productLine?: IProductLine;
+        dims: Partial<Record<string, IDimension<string>>>;
+        origin?: Country;
+        barcodes: Partial<Record<BarcodeType, IBarcode>>;
         shortDescription?: string;
+        title?: string;
+        model?: string;
+        notes?: string;
+        color?: string;
+        birthYear?: number;
+        details?: IDetails;
+        itemType?: IItemType;
+        keywords?: Set<string>;
+        links?: string[];
+    }
+    export interface IItemType {
+        _id: ObjectId;
+        taxonomy: ITaxonomy[];
+        classification: ITaxonomy;
+        name: string;
+        details: string[];
+        superType: IItemType;
+    }
+    // export interface ICategory {
+
+    // }
+    export interface IMeasurement {
+        of: string;
+        dim: IDimension<string>;
+    }
+    export interface IFlags {
+        isCollectorsEdition: boolean;
+        isDirectorsCut: boolean;
+        hasManual: boolean;
+        hasClothingTags: boolean;
+        hasOriginalPackaging: boolean;
+        isLimitedEdition: boolean;
+        isVintage: boolean;
+        isRare: boolean;
+        isAutographed: boolean;
+        isSpecialEdition: boolean;
+        isDiscontinued: boolean;
+
+    }
+    export interface IDetails { 
+        title?: string;
+        subtitle?: string;
+        authors?: string[];
+        starring?: string[];
+        rating?: MovieRatings | VideoGameRatings;
+        awards?: strings[];
+        copyright?: number;
+        studio?: string;
+        measurements: Record<string, IMeasurement>
+        size?: string;
+        gender?: Gender;
+        flags: IFlags;
+        age?: Age;
+        ageRange?: string;
+        playerCountMin?: number;
+        playerCountMax?: number;
+        consoleType?: ConsoleType;
+        bookType?: BookType;
+        mediaType?: MediaType;
+        discCount?: number;
+        pages?: number;
+        publisher?: string;
+        pattern?: string;
     }
     export interface ICompany {
         _id: ObjectId;
@@ -149,6 +252,7 @@ declare global {
         name: string;
         barcode: IBarcode;
         notes?: string;
+        location: ILocation;
     }
     export interface IBin {
         _id: ObjectId;

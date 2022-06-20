@@ -18,7 +18,7 @@ export function importBrands({
     onDemand: boolean;
     realm: Realm;
     log: any;
-    scheduledItem: Admin.Activity | undefined;
+    scheduledItem: any | undefined;
     action: ActivityActions;
     scope: ActivityScopes;
 }) {
@@ -27,9 +27,9 @@ export function importBrands({
     const verifiedBrands = realm.objects<{ name: string }>($.verifiedBrand).map((x) => x.name);
     const dataNotIn = uniqueData.filter((x) => !verifiedBrands.includes(x));
 
-    log(`potential imports: ${data.length}`)
-    log(`unique imports: ${uniqueData.length}`)
-    log(`data not currently in db: ${dataNotIn.length}`)
+    log(`potential imports: ${data.length}`);
+    log(`unique imports: ${uniqueData.length}`);
+    log(`data not currently in db: ${dataNotIn.length}`);
 
     let counter = 0;
     dataNotIn.forEach((x) => {

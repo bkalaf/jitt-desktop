@@ -1,13 +1,12 @@
-import { faArrowDown, faArrowDownAZ, faArrowUpAZ } from '@fortawesome/pro-duotone-svg-icons';
+import { faArrowDownAZ, faArrowUpAZ } from '@fortawesome/pro-duotone-svg-icons';
 import { Menu } from '@electron/remote';
-import React, { useCallback, useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { DuotoneIcon } from '../../components/icons/DuotoneIcon';
 import { useSorted } from '../../components/useSorted';
 import { appSettings } from '../../settings';
 import { IDefinitionProps } from './index';
 import { useSearchParams } from 'react-router-dom';
 import { filterOps, FilterTuple, OpSymbol, unzip } from '../../components/MainRouter';
-import { MenuItem } from 'electron';
 
 export const readFilter = (sp: URLSearchParams) =>
     sp
@@ -33,21 +32,25 @@ const getFilteredArgs = (sp: URLSearchParams) => {
 export function useFilters(): (x: string) => (x: OpSymbol, pred?: (x: any) => boolean) => boolean {
     const [searchParams, setSearchParams] = useSearchParams();
     const filters = readFilter(searchParams);
-    return useCallback((col: string) => {
-        return function (incop: OpSymbol, pred: (x: any) => boolean = (x: any) => true) {
-            filters
-                .filter((x) => x[0] === col)
-                .filter((x) => {
-                    const op = x[2];
-                    return op === incop;
-                })
-                .filter((x) => {
-                    const value = x[x.length - 1];
-                    return pred(value);
-                }).some(x => x != null);
-            return false;
-        };
-    }, [filters]);
+    return useCallback(
+        (col: string) => {
+            return function (incop: OpSymbol, pred: (x: any) => boolean = (x: any) => true) {
+                filters
+                    .filter((x) => x[0] === col)
+                    .filter((x) => {
+                        const op = x[2];
+                        return op === incop;
+                    })
+                    .filter((x) => {
+                        const value = x[x.length - 1];
+                        return pred(value);
+                    })
+                    .some((x) => x != null);
+                return false;
+            };
+        },
+        [filters]
+    );
 }
 export function TableHeaderCell(props: Omit<IDefinitionProps, 'children'>) {
     const { displayName, name, ...remain } = props;
@@ -76,9 +79,7 @@ export function TableHeaderCell(props: Omit<IDefinitionProps, 'children'>) {
             onClick={onClick}
             onContextMenu={onContextMenu}>
             {displayName}
-            {icon != null && (
-                <DuotoneIcon className='absolute top-0 right-0 w-8 h-8 opacity-70' icon={icon} size='lg' primary='yellowgreen' secondary='black' />
-            )}
+            {icon != null && <DuotoneIcon className='absolute top-0 right-0 w-8 h-8 opacity-70' icon={icon} size='lg' primary='yellowgreen' secondary='black' />}
         </th>
     );
 }

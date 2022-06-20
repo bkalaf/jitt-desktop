@@ -34,7 +34,7 @@ export function mergeDataType(item: IDbDataType , item2: IDbDataType): IDbDataTy
         table: item2.table ?? item.table,
         validatorFunctions: [...item2.validatorFunctions ?? [], ...item.validatorFunctions ?? []],
         textAreaProps: objectMerge(item2.textAreaProps, item.textAreaProps)
-    }   
+    };   
     console.log(`mergeDataType`, item, item2, returnItem);
     return returnItem as IDbDataType;
 }
@@ -64,9 +64,9 @@ export function handleColumn(column: IDbColumn): IDbDataType & {
         lookupTable: effectiveDataType.table,
         name: column.name,
         validatorFunctions: [...column.validatorFunctions ?? [], ...effectiveDataType.validatorFunctions ?? []]
-    }
+    };
     console.log(`effective`, effectiveDataType, effectiveDataType, column);
-    return effectiveProps as IDbDataType
+    return effectiveProps as IDbDataType;
 }
 
 export function solveColumn(column: IDbColumn) {
@@ -87,5 +87,5 @@ export function solveColumn(column: IDbColumn) {
         validatorFunctions,
         ...remain
     } = handleColumn(column);
-    const control = outputProps ? ['Output', 'Summary', outputProps, cellInputProps] : inputProps ? ['Input', 'Value', inputProps, cellInputProps] : fieldSetProps ? ['FieldSet', 'Embedded', fieldSetProps, cellInputProps] : textAreaProps ? ['TextArea', 'Value', textAreaProps, cellInputProps] : selectProps ? lookupTable ? ['Lookup', 'Summary', selectProps, cellInputProps] : selectProps.multiple ? ['MultiSelect', 'Value'] : Object.getOwnPropertyNames(selectProps.enumMap).length > 10 ? ['SingleSelect', 'Value'] : ['Radio', 'Value'] : ['', '']
+    const control = outputProps ? ['Output', 'Summary', outputProps, cellInputProps] : inputProps ? ['Input', 'Value', inputProps, cellInputProps] : fieldSetProps ? ['FieldSet', 'Embedded', fieldSetProps, cellInputProps] : textAreaProps ? ['TextArea', 'Value', textAreaProps, cellInputProps] : selectProps ? lookupTable ? ['Lookup', 'Summary', selectProps, cellInputProps] : selectProps.multiple ? ['MultiSelect', 'Value'] : Object.getOwnPropertyNames(selectProps.enumMap).length > 10 ? ['SingleSelect', 'Value'] : ['Radio', 'Value'] : ['', ''];
 }

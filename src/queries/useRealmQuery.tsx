@@ -14,7 +14,8 @@ export function useRealmQuery<T extends { _id: Realm.BSON.ObjectId }, U = T>(
     $collection?: string,
     $sorted: SortDescriptor[] = [],
     predicate: () => boolean = () => true,
-    select?: (d: Realm.Results<T & Realm.Object> | (T & Realm.Object) | undefined) => U
+    select?: (d: Realm.Results<T & Realm.Object> | (T & Realm.Object) | undefined) => U,
+    filter?: [string, (x: any) => any ],
 ): [status: QueryStatus, refetch: () => void, data: U | undefined] {
     const realm = useLocalRealm();
     const [routedCollection, routedId] = useRoutedCollection();
@@ -30,7 +31,7 @@ export function useRealmQuery<T extends { _id: Realm.BSON.ObjectId }, U = T>(
                 const result =
                     isNotNil(routedId) && routedId !== 'new'
                         ? realm.objectForPrimaryKey<T>(collection, new Realm.BSON.ObjectId(routedId))
-                        : realm.objects<T>(collection).sorted(sorted);
+                        : filter ? realm.objects<T>(collection).filtered(...filter).sorted(sorted) : realm.objects<T>(collection).sorted(sorted);
                 return Promise.resolve(result);
             } catch (error) {
                 log(error);

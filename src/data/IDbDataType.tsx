@@ -1,9 +1,7 @@
 import { ObjectId } from 'bson';
-import { LinkedObject, LinkingObjects } from './LinkingObjects';
+import { LinkingObjects } from './LinkingObjects';
 import { IDbControlProps, IDbProps } from './IDbControlProps';
-import { DbTable } from './DbTable';
 import { IDbTable } from './IDbTable';
-
 
 export type IDbDataType = {
     _id?: ObjectId;
@@ -17,4 +15,5 @@ export type IDbDataType = {
     isOmitGrid?: boolean;
 
     table?: IDbTable;
-} & IDbControlProps & IDbProps;
+} & IDbControlProps &
+    IDbProps;

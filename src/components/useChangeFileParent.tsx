@@ -7,7 +7,7 @@ import { Files } from '../data';
 import { useSelected } from '../hooks/useSelected';
 import { isNotNil } from '../common/isNotNull';
 import { moveFile } from "./moveFile";
-import { $ } from '../data/$'
+import { $ } from '../data/$';
 
 export function useChangeFileParent(): [boolean, (parent: string, id?: string) => void] {
     const realm = useLocalRealm();

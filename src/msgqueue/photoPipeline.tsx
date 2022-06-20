@@ -1,11 +1,9 @@
 import * as fs from 'graceful-fs';
 import { photoRoot } from './photoRoot';
-import { ipcMain } from 'electron';
 import { APP_CONFIG } from '../config';
 import { rembg } from './rembg';
 import { mogrifyToPNG } from './mogrifyToPNG';
-import { checkDirectory } from '../common/fs/checkDirectory';
-import { runCmd, runCmdSync } from './cli';
+import { runCmdSync } from './cli';
 
 const log = (x: string) => process.stdout.write(`${x}\n`);
 

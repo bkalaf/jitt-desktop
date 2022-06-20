@@ -34,9 +34,6 @@ export class Length {
     };
 }
 
-function createColumns(obj: any) {
-    return obj.fields.map((x: any) => x.name);
-}
 export namespace Admin {
     /**
      * @description Represents a repeating task, usually for maintenance, either completed or scheduled.
@@ -91,26 +88,7 @@ export namespace Admin {
                 }
             }
         };
-        _id: ObjectId;
-        action: ActivityActions;
-        scope: ActivityScopes;
-        when: Date;
-        isComplete: boolean;
-        isScheduled: boolean;
-        brands: LinkingObjects<Products.Brand>;
-        categories: LinkingObjects<Scrapes.Category>;
-        taxonomy: LinkingObjects<Scrapes.Taxonomy>;
-        constructor() {
-            this._id = new ObjectId();
-            this.action = 'scrape';
-            this.scope = 'brands';
-            this.when = now();
-            this.isComplete = false;
-            this.isScheduled = true;
-            this.brands = [];
-            this.categories = [];
-            this.taxonomy = [];
-        }
+        
     }
     export class User {}
 }
@@ -219,11 +197,7 @@ export namespace Details {
     export class Electronics {}
     export class Computer extends Electronics {}
 }
-function textToBin(text: string) {
-    return Array.from(text)
-        .reduce((acc: any[], char: string) => acc.concat(char.charCodeAt(0).toString(2)), [])
-        .map((bin) => '0'.repeat(8 - bin.length) + bin);
-}
+
 export namespace Files {
     export class Expense {
         static schema: ObjectSchema = {
@@ -466,19 +440,14 @@ export namespace Files {
             return FileItem.DOC_REGEX.test(obj.fsAlloc[0]?.path ?? '/').toString();
         }
     }
-    
+
     export class ProductDocumentation {
         static schema: ObjectSchema = {
             name: $.productDocumentation,
             primaryKey: '_id',
             properties: {
                 _id: $.objectId,
-                fsAlloc: $.fsAlloc,
-                product: {
-                    type: $.linkingObjects,
-                    objectType: $.product,
-                    property: 'productDocumentation'
-                }
+                fsAlloc: $.fsAlloc
             }
         };
         _id: ObjectId;
@@ -489,6 +458,7 @@ export namespace Files {
         }
     }
 }
+
 export namespace Inventory {
     // export class SKU {
     //     static schema: ObjectSchema = {
@@ -564,7 +534,7 @@ export namespace Inventory {
                 item: {
                     type: $.linkingObjects,
                     objectType: $.item,
-                    property: 'barcode'
+                    property: 'sku'
                 }
             }
         };
@@ -605,6 +575,23 @@ export namespace Inventory {
         };
     }
 
+    export class Location {
+        static schema: ObjectSchema = {
+            name: 'location',
+            primaryKey: '_id',
+            properties: {
+                _id: $.objectId,
+                name: $.string,
+                address: $.address,
+                notes: $.optional.string,
+                fixtures: {
+                    type: $.linkingObjects,
+                    objectType: $.fixture,
+                    property: 'location'
+                }
+            }
+        };
+    }
     export class Fixture {
         static schema: ObjectSchema = {
             name: $.fixture,
@@ -614,6 +601,7 @@ export namespace Inventory {
                 name: $.string,
                 barcode: $.barcode,
                 notes: $.optional.string,
+                location: 'location',   
                 bins: {
                     type: $.linkingObjects,
                     objectType: $.bin,
@@ -666,13 +654,14 @@ export namespace Inventory {
             properties: {
                 _id: $.objectId,
                 product: $.product,
-                barcode: $.optional.barcode,
-                colors: $.listOf.string,
+                sku: $.optional.barcode,
                 condition: { type: $.string, default: 'Likenew' },
                 defects: $.listOf.string,
                 features: $.listOf.string,
                 tested: $.optional.date,
                 draft: $.optional.draft,
+                acquiredOn: $.optional.date,
+                auction: $.purchase,
                 photos: {
                     type: $.linkingObjects,
                     objectType: 'photo',
@@ -698,6 +687,7 @@ export namespace Inventory {
         }
     }
 }
+
 export namespace Listings {
     export class Draft {
         static schema: ObjectSchema = {
@@ -728,60 +718,69 @@ export namespace Listings {
         };
     }
 }
+
 export namespace Materials {
-    export class PercentOf {
+    export class RawMaterial {
         static schema: ObjectSchema = {
-            name: $.percentOf,
+            name: 'raw-material',
             embedded: true,
             properties: {
-                materialType: $.string,
-                percent: { type: $.double, default: 100 }
+                name: $.string,
+                percent: { type: $.double, default: 1.0 }
             }
         };
-        materialType: MaterialTypes;
-        percent: number;
-        constructor() {
-            this.percent = 100;
-            this.materialType = 'C';
-        }
     }
-    export class Section {
+    export class Fabric {
         static schema: ObjectSchema = {
-            name: $.section,
+            name: 'fabric',
             embedded: true,
             properties: {
-                name: $.optional.string,
-                segments: $.listOf.percentOf
+                materials: 'raw-material{}'
             }
         };
-        name?: string;
-        segments: PercentOf[];
-        constructor() {
-            this.segments = [];
-        }
     }
-    /**
-     * @description The underlying composition of materials to create the multi-part combined.
-     * @author Robert Kalaf Jr.
-     * @date 05/19/2022
-     * @export
-     * @class Fabric
-     * @see dto
-     */
-    export class Composition {
+    export class Part {
         static schema: ObjectSchema = {
-            name: $.composition,
+            name: 'part',
             embedded: true,
             properties: {
-                sections: $.dictionaryOf.section
+                sections: 'fabric{}'
             }
         };
-        sections: Section[];
-        constructor() {
-            this.sections = [];
-        }
     }
+    // export class PercentOf {
+    //     static schema: ObjectSchema = {
+    //         name: $.percentOf,
+    //         embedded: true,
+    //         properties: {
+    //             materialType: $.string,
+    //             percent: { type: $.double, default: 100 }
+    //         }
+    //     };
+    //     materialType: MaterialTypes;
+    //     percent: number;
+    //     constructor() {
+    //         this.percent = 100;
+    //         this.materialType = 'C';
+    //     }
+    // }
+    // export class Section {
+    //     static schema: ObjectSchema = {
+    //         name: $.section,
+    //         embedded: true,
+    //         properties: {
+    //             name: $.optional.string,
+    //             segments: $.listOf.percentOf
+    //         }
+    //     };
+    //     name?: string;
+    //     segments: PercentOf[];
+    //     constructor() {
+    //         this.segments = [];
+    //     }
+    // }
 }
+    
 export namespace Pipelines {
     export function addToLabelPrintQueue(realm: Realm, barcode: IBarcode) {
         const fixture = realm.objects<IBarcode>('barcode').filtered('@links.fixture.@count === 1');
@@ -1017,7 +1016,11 @@ export namespace Products {
             primaryKey: '_id',
             properties: {
                 _id: $.objectId,
-                dims: $.dictionaryOf.dimension
+                dims: $.dictionaryOf.dimension,
+                madeof: 'part',
+                brand: 'brand',
+                itemType: 'item-type',
+                shortDescription: $.optional.string
             }
         };
     }
@@ -1045,8 +1048,57 @@ export namespace Products {
             embedded: true,
             properties: {
                 of: $.listOf.string,
-                measures: $.listOf.string,
-                uoms: $.listOf.string
+                dim: $.dimension
+            }
+        };
+    }
+    export class Flags {
+        static schema: ObjectSchema = {
+            name: 'flags',
+            embedded: true,
+            properties: {
+                isCollectorsEdition: { type: $.bool, default: false },
+                isDirectorsCut: { type: $.bool, default: false },
+                hasManual: { type: $.bool, default: false },
+                hasOriginalPackaging: { type: $.bool, default: false },
+                hasClothingTags: { type: $.bool, default: false },
+                isLimitiedEdition: { type: $.bool, default: false },
+                isVintage: { type: $.bool, default: false },
+                isRare: { type: $.bool, default: false },
+                isAutographed: { type: $.bool, default: false },
+                isSpecialEdition: { type: $.bool, default: false },
+                isDiscontinued: { type: $.bool, default: false }
+            }
+        };
+    }
+    export class Details {
+        static schema: ObjectSchema = {
+            name: 'details',
+            embedded: true,
+            properties: {
+                title: $.optional.string,
+                subtitle: $.optional.string,
+                authors: $.listOf.string,
+                starring: $.listOf.string,
+                rating: $.optional.string,
+                awards: $.listOf.string,
+                copyright: $.optional.int,
+                studio: $.optional.string,
+                flags: 'flags',
+                measurements: $.dictionaryOf.measurement,
+                size: $.optional.string,
+                gender: $.optional.string,
+                age: $.optional.string,
+                ageRange: $.optional.string,
+                playerCountMin: $.optional.int,
+                playerCountMax: $.optional.int,
+                consoleType: $.optional.string,
+                bookType: $.optional.string,
+                mediaType: $.optional.string,
+                discCount: $.optional.int,
+                pages: $.optional.int,
+                publisher: $.optional.string,
+                pattern: $.optional.string
             }
         };
     }
@@ -1059,16 +1111,18 @@ export namespace Products {
                 brand: $.brand,
                 shortDescription: $.string,
                 productLine: $.productLine,
-                dims: $.listOf.dimension,
-                measurements: $.listOf.measurement,
-                composition: $.composition,
+                dims: $.dictionaryOf.dimension,
                 origin: $.optional.string,
-                barcodes: {
-                    type: $.linkingObjects,
-                    objectType: $.barcode,
-                    property: $.product
-                },
-                productDocumentation: $.productDocumentation
+                birthYear: $.optional.int,
+                barcodes: $.dictionaryOf.barcode,
+                title: $.optional.string,
+                model: $.optional.string,
+                notes: $.optional.string,
+                details: 'details',
+                color: $.optional.string,
+                keywords: $.setOf.string,
+                itemType: $.itemType,
+                links: $.listOf.string
             }
         };
     }
@@ -1087,15 +1141,6 @@ export namespace Products {
                 }
             }
         };
-        _id: ObjectId;
-        name: string;
-        brand?: Products.Brand;
-        products: LinkingObjects<Product>;
-        constructor() {
-            this._id = new ObjectId();
-            this.name = '';
-            this.products = [];
-        }
     }
 }
 // export namespace Sales {
@@ -1593,12 +1638,16 @@ export const schema = [
     Length,
     Inventory.Barcode,
     Inventory.Fixture,
+    Inventory.Location,
     Inventory.Bin,
     Inventory.Item,
     Listings.Draft,
-    Materials.PercentOf,
-    Materials.Section,
-    Materials.Composition,
+    Materials.Fabric,
+    Materials.Part,
+    Materials.RawMaterial,
+    // Materials.PercentOf,
+    // Materials.Section,
+    // Materials.Composition,
     Products.Brand,
     Products.Company,
     Products.Dimension,
@@ -1607,6 +1656,8 @@ export const schema = [
     Products.Measurement,
     Products.Product,
     Products.ProductLine,
+    Products.Details,
+    Products.Flags,
     Scrapes.Category,
     Scrapes.Taxonomy,
     Scrapes.VerifiedBrand,

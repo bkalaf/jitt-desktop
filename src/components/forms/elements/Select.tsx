@@ -12,6 +12,7 @@ export function Select(
         enumMap?: Record<string, string>;
         objectType?: string;
         optionMap?: OptionElementFields;
+        filter?: [string, (x: any) => any];
     }
 ) {
     useWhyDidYou(Select.name, props);
@@ -23,6 +24,7 @@ export function EnumSelect(
         enumMap?: Record<string, string>;
         objectType?: string;
         optionMap?: OptionElementFields;
+        
     }
 ) {
     const { enumMap, ...remain } = props;
@@ -47,9 +49,10 @@ export function LookupSelect(
         enumMap?: Record<string, string>;
         objectType?: string;
         optionMap?: OptionElementFields;
+        filter?: [string, (x: any) => any];
     }
 ) {
-    const { objectType, optionMap, ...remain } = props;
+    const { filter, objectType, optionMap, ...remain } = props;
     // const realm = useLocalRealm();
     // const { data } = useQuery(['dropdown', objectType], dropdown(realm, objectType ?? '', [optionMap?.value ?? '', optionMap?.label ?? '']), {
     //     suspense: true
@@ -63,7 +66,8 @@ export function LookupSelect(
             if (data == null) return undefined;
             const d = data as any as Realm.Results<{ _id: Realm.BSON.ObjectId } & Realm.Object>;
             return Object.fromEntries(d.map((x) => [(x as any)[optionMap?.value ?? ''], (x as any)[optionMap?.label ?? '']] as [string, string]));
-        }
+        },
+        filter
     );
 
     return (

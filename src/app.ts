@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain, session } from 'electron';
+import { app, BrowserWindow, ipcMain, Menu, MenuItem, session } from 'electron';
 import { enable, initialize } from '@electron/remote/main';
 import * as fs from 'graceful-fs';
 import './msgqueue';
@@ -6,6 +6,8 @@ import amqp from 'amqplib';
 import { log } from 'console';
 import { handlePayload } from './msgqueue/photoPipeline';
 import { rabbitMqHandler } from './msgqueue';
+import { registerMenus } from './menus';
+import { topBar } from './menus/index';
 
 let window: BrowserWindow | null = null;
 initialize();
@@ -63,6 +65,9 @@ function getDevToolsPath() {
     console.log(devToolsPath);
     return devToolsPath;
 }
+const navigate = (to: string) => {
+    ipcMain.emit('request-navigate', to);
+}
 app.on('ready', function () {
     return session.defaultSession
         .loadExtension(getExtensionPath('fmkadmapgofadopljbjfkapdkoienihi'), { allowFileAccess: true })
@@ -74,6 +79,12 @@ app.on('ready', function () {
             window.webContents.openDevTools();
             enable(window.webContents);
             window.webContents.on('did-finish-load', () => console.log('finished loading...'));
+        })
+        .then(() => registerMenus())
+        .then(() => {
+            const template = topBar(navigate as any);
+            const menu = Menu.buildFromTemplate(template ?? {});
+            Menu.setApplicationMenu(menu);
         });
 });
 
@@ -93,7 +104,7 @@ ipcMain.on('enable-photo-pipeline', (event: Electron.IpcMainEvent) => {
         await channel.prefetch(1);
         await channel.consume('photo-pipeline', (data: amqp.ConsumeMessage | null) => {
             consume(data).then((m) => {
-                setTimeout(() => channel.ack(m), 150);
+                setTimeout(() => channel.ack(m), 400);
                 return m;
             }).catch(console.error);
         });

@@ -1,18 +1,14 @@
 /* eslint-disable react/boolean-prop-naming */
 import { IconDefinition } from '@fortawesome/pro-duotone-svg-icons';
 import { useEffect, useMemo } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { LoginForm } from './forms/LoginForm';
 import { Toaster } from './Toaster';
 import { LeftSidebar } from './LeftSidebar';
 import { MainRouter } from './MainRouter';
 import { StatusBar } from './StatusBar';
 import { LazyDataOrModifiedFn, useAsyncResource } from 'use-async-resource';
-import * as fs from 'graceful-fs';
 import { charRange } from '../common';
-import { files } from '../config';
-import { readFile } from '../common/fs/readFile';
-import { writeFile } from '../common/fs/writeFile';
 import { makeVar } from '@apollo/client';
 import { ToolBar } from './ToolBar';
 import { TopBar } from './TopBar';
@@ -20,9 +16,12 @@ import { ObjectId } from 'bson';
 import { SizeProp } from '@fortawesome/fontawesome-svg-core';
 import { DuotoneButton } from './providers/DuotoneBtn';
 import { $cn } from '../util/$cn';
-import { useLog } from '../hooks/useLog';
 import { remote } from 'webdriverio';
-import { useReactiveVar } from '@apollo/client';
+import { topBar } from '../menus/index';
+import * as electron from 'electron/renderer';
+import { Menu, MenuItem } from '@electron/remote';
+
+// import { ipcRenderer, Menu } from 'electron';
 
 export type IconButtonProps = {
     title: string;
@@ -62,95 +61,12 @@ export function ToolbarDuotoneButton(props: IconButtonProps & { primary: string;
         </li>
     );
 }
-export function ifExistsDelete(fn: string) {
-    if (fs.existsSync(fn)) {
-        return fs.rmSync(fn);
-    }
-}
-export function ifNotExistCreate(fn: string) {
-    if (!fs.existsSync(fn)) {
-        return fs.writeFileSync(fn, '');
-    }
-}
-export function joinText(str: string[]) {
-    return str.join('');
-}
-export function startBrands(log: (...args: any[]) => void) {
-    function purgeFiles() {
-        ifExistsDelete(files.brands);
-        ifExistsDelete(files.brandsDone);
-        ifExistsDelete(files.brandsTodo);
-        writeFile(files.brandsTodo)(sequences().map(joinText).join('\n'));
-    }
-    if (fs.existsSync(files.brandsDone)) {
-        const total = characters.length * characters.length * characters.length;
-        const dones = readFile(files.brandsDone).split('\n');
-        const actual = dones.length;
-        log(`EXPECTED TOTAL`, total, actual);
-        if (total === actual) {
-            purgeFiles();
-        } else {
-            ifExistsDelete(files.brandsTodo);
-            fs.writeFileSync(
-                files.brandsTodo,
-                sequences()
-                    .map(joinText)
-                    .filter((x) => !dones.includes(x))
-                    .join('\n')
-            );
-        }
-    } else {
-        purgeFiles();
-    }
-    const result = readFile(files.brandsTodo)
-        .split('\n')
-        .map((x) => x.split('')) as [string, string, string][];
-    log('todo', result.length);
-    return result;
-}
 
-export function writeBrands(entry: string, brands: string[]) {
-    if (brands.length > 0) {
-        fs.appendFileSync(files.brands, `${brands.join('\n')}\n`);
-    }
-    fs.appendFileSync(files.brandsDone, entry);
-}
-
-export function finishBrands(log: (...args: any[]) => void) {
-    log(`output file: ${files.brands}`);
-    const data = readFile(files.brands).split('\n');
-    log('totalBrands', data.length);
-    const uniqueBrands = new Set(data);
-    log('uniqueBrands', uniqueBrands.size);
-    const result = { uniqueBrands: Array.from(uniqueBrands.entries()) };
-    fs.writeFileSync(files.brandListings, JSON.stringify(result));
-    log('output written');
-    localStorage.setItem('brandsLastFetched', new Date(Date.now()).toString());
-}
-
-const characters = [...charRange('a', 'z').map((x) => String.fromCharCode(x)), ...charRange('0', '9').map((x) => String.fromCharCode(x)), ' ', '-', "'"];
+export const characters = [...charRange('a', 'z').map((x) => String.fromCharCode(x)), ...charRange('0', '9').map((x) => String.fromCharCode(x)), ' ', '-', "'"];
 
 function processBrandsScrape() {
     const filename = 0;
 }
-function sequences() {
-    const result: [string, string, string][] = [];
-    for (let i1 = 0; i1 < characters.length; i1++) {
-        const el1 = characters[i1];
-        for (let i2 = 0; i2 < characters.length; i2++) {
-            const el2 = characters[i2];
-            for (let i3 = 0; i3 < characters.length; i3++) {
-                const el3 = characters[i3];
-                // for (let i4 = 0; i4 < characters.length; i4++) {
-                //     const el4 = characters[i4];
-                // }
-                result.push([el1, el2, el3]);
-            }
-        }
-    }
-    return result;
-}
-
 const dataAttribute = ([dataname, value]: [string, string]) => `[data-${dataname}="${value}"]`;
 const idAttribute = (id: string) => `#${id}`;
 export const $selector = {
@@ -188,18 +104,53 @@ export async function tryUtter() {
     utterance.volume = 1;
     speechSynth.speak(utterance);`);
 }
+
+export function sleep(timeInMs = 500) {
+    return new Promise<void>((resolve) => setTimeout(() => resolve(), timeInMs));
+}
+export const $textToSpeech = function (utterance: string) {
+    window.speechSynthesis.addEventListener('voiceschanged', function (ev: Event) {
+        const v2 = window.speechSynthesis.getVoices().filter((x) => x.lang === 'en-US')[45];
+        $voice(v2);
+    });
+    return new Promise<void>((resolve, reject) => {
+        let voice = window.speechSynthesis.getVoices().find((x, ix) => x.lang === 'en-US' && ix === 65);
+        const utter = new window.SpeechSynthesisUtterance(utterance);
+        utter.volume = 1;
+        utter.pitch = 1;
+        utter.rate = 1;
+        let count = 0;
+
+        while (voice == null) {
+            count++;
+            if (count > 21) break;
+            sleep(500).then(() => {
+                voice = window.speechSynthesis.getVoices().find((x, ix) => x.lang === 'en-US' && ix === 45);
+            });
+        }
+        utter.voice = voice!;
+        window.speechSynthesis.speak(utter);
+        return resolve();
+    });
+};
+
 export function MainWindow({ realmReader }: { realmReader: LazyDataOrModifiedFn<Realm> }) {
+    const navigate = useNavigate();
+    const applicationMenuItems = useMemo(() => MenuItem, [navigate]);
     useEffect(() => {
-        const v = window.speechSynthesis.getVoices().filter((x) => x.lang === 'en-US')[65];
-        if (v !== null) $voice(v);
-        window.speechSynthesis.onvoiceschanged = function () {
-            console.log('ON VOICES CHANGES');
-            console.log('voices.length', window.speechSynthesis.getVoices().length);
-            const v2 = window.speechSynthesis.getVoices().filter((x) => x.lang === 'en-US')[65];
-            $voice(v2);
-        };
-    }, []);
-    const voice = useReactiveVar($voice);
+        console.log(`Menu`, Menu);
+        console.log(`applicationMenuItems`);
+        Menu.setApplicationMenu(applicationMenuItems)
+    }, [applicationMenuItems]);
+    // useEffect(() => {
+    //     const v = window.speechSynthesis.getVoices().filter((x) => x.lang === 'en-US')[65];
+    //     if (v !== null) $voice(v);
+    //     window.speechSynthesis.onvoiceschanged = function () {
+    //         console.log('ON VOICES CHANGES');
+    //         console.log('voices.length', window.speechSynthesis.getVoices().length);
+
+    //     };
+    // }, []);
     const realm = realmReader();
     // const insertType = useCallback(
     //     (kind: TypeKind, name: string, embedded: boolean, columns: string[], headers: string[], ...fields: any[]) => {
@@ -255,32 +206,22 @@ export function MainWindow({ realmReader }: { realmReader: LazyDataOrModifiedFn<
     const [reader, updateReader] = useAsyncResource<any>(async () => {
         console.log('output');
     }, []);
-    const log = useLog();
 
     useEffect(() => {
-        if (realm) {
-            // realm.write(() => {
-            //     realm.create('productTemplate', { _id: new ObjectId(), dims: { weight: { uom: 'oz', value: 1.0 } } });
-            // });
-            const result = realm.objects('productTemplate');
-            result.forEach((x: any) => {
-                log(JSON.stringify(x));
-                console.log(x);
-                const x2 = x.dims;
-                const x3 = Object.getOwnPropertyNames(x.dims);
-                const d: Record<string, IDimension<any>> = {};
-                x3.forEach((name) => (d[name] = x.dims[name]));
-                console.log(x.dims);
-                console.log(x2);
-                console.log(x3);
-                log(d);
-                console.log(d);
-            });
-        }
-    }, [log, realm]);
+        console.log('attempting text-to-speech');
+        $textToSpeech('JITT loaded.')
+            .catch((e) => $textToSpeech('JITT Loaded'))
+            .finally(() => console.log('UTTERED'));
+    }, []);
     useEffect(() => {
-        speak(voice);
-    }, [voice]);
+        const handler = function (ev: electron.IpcRendererEvent, to: string) {
+            navigate(to);
+        };
+        electron.ipcRenderer.on('request-navigate', handler);
+        return () => {
+            electron.ipcRenderer.off('request-navigate', handler);
+        };
+    }, [navigate]);
     return (
         <div className='relative flex flex-col w-full h-full py-0.5'>
             {useMemo(
@@ -315,9 +256,7 @@ export function MainWindow({ realmReader }: { realmReader: LazyDataOrModifiedFn<
             {/* <CategoryScraper reader={reader} /> */}
             <ToolBar />
             <div className='flex w-full px-2 text-base font-bold leading-loose tracking-wide text-white transition duration-1000 ease-in-out delay-200 border border-white rounded-lg shadow-lg bg-slate-very-dark font-fira-sans  mb-0.5 flex-row justify-between items-center'>
-                <div className='flex bg-blue text-white font-fira-sans border border-white rounded-lg px-2 my-0.5 tracking-wider leading-loose font-bold duration-1000 ease-in-out delay-200'>
-                    {location.pathname}
-                </div>
+                <div className='flex bg-blue text-white font-fira-sans border border-white rounded-lg px-2 my-0.5 tracking-wider leading-loose font-bold duration-1000 ease-in-out delay-200'>{location.pathname}</div>
             </div>
 
             <main className='flex flex-grow w-full px-2 overflow-scroll text-white'>

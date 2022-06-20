@@ -1,4 +1,3 @@
-import { faBanParking, faBug, faExclamationSquare, faThumbsUp, faTrafficCone, IconDefinition } from '@fortawesome/pro-duotone-svg-icons';
 import { createContext } from 'react';
 import { useProvideToaster } from '../../hooks/useProvideToaster';
 import { IToasterContext } from '../../types/ui/IToasterContext';

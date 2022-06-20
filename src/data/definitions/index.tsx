@@ -17,7 +17,6 @@ import { LookupEle } from './LookupEle';
 import { DatalistEle } from './LookupEle';
 import { ListEle } from './LookupEle';
 import { FormControl } from './FormControl';
-import { Inventory } from '..';
 import { InputEle } from './InputEle';
 
 export type TypeDefinitionFunction<T = {}> = React.FunctionComponent<Omit<IDefinitionProps, 'children'> & T>;
@@ -69,8 +68,7 @@ export type IDefinitionProps = {
 export type DefinedType = React.FunctionComponent<{ row?: any; children: (props: Omit<IDefinitionProps, 'children'>) => JSX.Element }>;
 
 export function uniqueValidator(collection: string, propertyName: string) {
-    return (x: any, realm: Realm) =>
-        realm.objects(collection).filtered(`${propertyName} == $0`, x).length === 0 ? true : `${toTitleCase(propertyName)} must be unique. Received: ${x}.`;
+    return (x: any, realm: Realm) => (realm.objects(collection).filtered(`${propertyName} == $0`, x).length === 0 ? true : `${toTitleCase(propertyName)} must be unique. Received: ${x}.`);
 }
 
 export function NullElement(props: any) {
@@ -80,17 +78,7 @@ export function OutputEle(props: { register: RegisterFunction } & IDefinitionPro
     const { name, register, ...remain } = props;
     return <output {...register(name, remain)} />;
 }
-export function ListInputDef({
-    children,
-    displayName,
-    name,
-    span
-}: {
-    children: TypeDefinitionFunction<{}>;
-    span?: number;
-    displayName?: string;
-    name: string;
-}) {
+export function ListInputDef({ children, displayName, name, span }: { children: TypeDefinitionFunction<{}>; span?: number; displayName?: string; name: string }) {
     const label = displayName ? displayName : toTitleCase(name);
 
     return (
@@ -118,46 +106,17 @@ export function ReferenceDef({
 }) {
     const displayName = $displayName ? $displayName : toTitleCase(name);
     return (
-        <Definition
-            Control={LookupEle}
-            Field={FormControl}
-            name={name}
-            displayName={displayName}
-            lookupTable={lookupTable}
-            optionLabel={label}
-            optionValue='_id'
-            filter={filter}
-            sort={sort ?? []}>
+        <Definition Control={LookupEle} Field={FormControl} name={name} displayName={displayName} lookupTable={lookupTable} optionLabel={label} optionValue='_id' filter={filter} sort={sort ?? []}>
             {children}
         </Definition>
     );
 }
-export function OutputDef({
-    children,
-    name,
-    displayName: $displayName,
-    toSummary
-}: {
-    children: TypeDefinitionFunction;
-    displayName?: string;
-    name: string;
-    toSummary: (x: any) => any;
-}) {
+export function OutputDef({ children, name, displayName: $displayName, toSummary }: { children: TypeDefinitionFunction; displayName?: string; name: string; toSummary: (x: any) => any }) {
     const displayName = $displayName ? $displayName : toTitleCase(name);
 
     return <Definition children={children} Control={OutputEle} Field={FormControl} displayName={displayName} name={name} toSummary={toSummary} />;
 }
-export function LinkingObjDef({
-    toSummary,
-    name,
-    displayName: $displayName,
-    children
-}: {
-    toSummary: (x: any) => any;
-    name: string;
-    displayName?: string;
-    children: TypeDefinitionFunction<{}>;
-}) {
+export function LinkingObjDef({ toSummary, name, displayName: $displayName, children }: { toSummary: (x: any) => any; name: string; displayName?: string; children: TypeDefinitionFunction<{}> }) {
     const displayName = $displayName ? $displayName : toTitleCase(name);
 
     return (
@@ -185,16 +144,7 @@ export function DatalistDef({
 }) {
     const displayName = $displayName ? $displayName : toTitleCase(name);
     return (
-        <Definition
-            Control={DatalistEle}
-            Field={FormControl}
-            name={name}
-            displayName={displayName}
-            lookupTable={lookupTable}
-            optionLabel={label}
-            optionValue='_id'
-            sort={sort ?? []}
-            list={list}>
+        <Definition Control={DatalistEle} Field={FormControl} name={name} displayName={displayName} lookupTable={lookupTable} optionLabel={label} optionValue='_id' sort={sort ?? []} list={list}>
             {children}
         </Definition>
     );
@@ -260,15 +210,7 @@ export type FieldFunctionComponent = TypeDefinitionFunction<{ isFeedbacking: boo
 
 export type SubscriberMap = Map<string, (x: any) => any>;
 
-export function InsertFormControls({
-    Definition,
-    isFeedbacking,
-    getFeedback
-}: {
-    Definition: DefinedType;
-    isFeedbacking: boolean;
-    getFeedback: (name: string) => () => string;
-}) {
+export function InsertFormControls({ Definition, isFeedbacking, getFeedback }: { Definition: DefinedType; isFeedbacking: boolean; getFeedback: (name: string) => () => string }) {
     console.log(Definition);
     return (
         <>

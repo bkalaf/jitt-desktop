@@ -32,6 +32,7 @@ export function FixtureDefinition({ children }: { children: TypeDefinitionFuncti
             </Definition>
             <TextInputDef name='name' children={children} validators={[uniqueValidator('fixture', 'name')]}/>
             <TextAreaDef name='notes' rows={3} children={children} />
+            <ReferenceDef lookupTable='location' label='name' children={children} name='location' sort={[['name', false]]} filter='@links.@count == 0' />
             <ReferenceDef lookupTable='barcode' label='barcode' children={children} name='barcode' sort={[['barcode', false]]} filter='@links.@count == 0' />
         </Definitions>
     );

@@ -9,7 +9,51 @@ import { TextAreaDef, TextInputDef } from '../definitions/TextInputDef';
 import { InputEle } from '../definitions/InputEle';
 import { TypeDefinitionFunction, ReferenceDef, uniqueValidator } from '../definitions/index';
 
-export function BinDefinition({ children }: { children: TypeDefinitionFunction<{}>; }) {
+export function TaxonomyDefinition({ children }: { children: TypeDefinitionFunction<{}> }) {
+    return (
+        <Definitions>
+            <Definition
+                name='_id'
+                displayName='ID'
+                icon={faKey}
+                iconSize='lg'
+                tooltipFunction='x => x.toHexString()'
+                required
+                readOnly
+                convertFromFD={(x: string) => new ObjectId(x)}
+                convertToFD={(x: ObjectId) => x.toHexString()}
+                init={() => new ObjectId()}
+                Control={InputEle}
+                Field={FormControl}>
+                {children}
+            </Definition>
+            <ReferenceDef children={children} displayName='Last Seen' label='when' name='activity' lookupTable='activity' />
+        </Definitions>
+    );
+}
+export function VerifiedBrandsDefinition({ children }: { children: TypeDefinitionFunction<{}> }) {
+    return (
+        <Definitions>
+            <Definition
+                name='_id'
+                displayName='ID'
+                icon={faKey}
+                iconSize='lg'
+                tooltipFunction='x => x.toHexString()'
+                required
+                readOnly
+                convertFromFD={(x: string) => new ObjectId(x)}
+                convertToFD={(x: ObjectId) => x.toHexString()}
+                init={() => new ObjectId()}
+                Control={InputEle}
+                Field={FormControl}>
+                {children}
+            </Definition>
+            <ReferenceDef children={children} displayName='Last Seen' label='when' name='activity' lookupTable='activity' />
+        </Definitions>
+    );
+}
+export function BinDefinition({ children }: { children: TypeDefinitionFunction<{}> }) {
     const realm = useLocalRealm();
     return (
         <Definitions>

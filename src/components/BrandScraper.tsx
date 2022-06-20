@@ -4,7 +4,9 @@ import * as Webdriver from 'webdriverio';
 import { DataOrModifiedFn } from 'use-async-resource';
 import { webdriver } from '../config/webdriver';
 import { useLog } from "../hooks/useLog";
-import { writeBrands, startBrands, finishBrands } from './MainWindow';
+import { startBrands } from "./startBrands";
+import { finishBrands } from "./finishBrands";
+import { writeBrands } from "./writeBrands";
 import { MercariLogIn } from "./MercariLogIn";
 
 export function BrandScraper({ reader }: { reader: DataOrModifiedFn<Webdriver.Browser<'async'>> }) {

@@ -46,24 +46,12 @@ import { useSorted } from './useSorted';
 import { ipcRenderer } from 'electron';
 import * as path from 'path';
 import { photoRoot } from '../msgqueue/photoRoot';
-import { PhotoUpload } from './PhotoUpload';
-import { PhotoGrid } from './PhotoGrid';
-export type RealmTypes =
-    | 'objectId'
-    | 'uuid'
-    | 'string'
-    | 'bool'
-    | 'int'
-    | 'double'
-    | 'float'
-    | 'decimal128'
-    | 'object'
-    | 'list'
-    | 'dictionary'
-    | 'set'
-    | 'date'
-    | 'data'
-    | 'linkingObjects';
+import { PhotoUpload } from './photos/PhotoUpload';
+import { PhotoGrid } from './photos/PhotoGrid';
+import { ProductInsert } from './product';
+import { ProductLineDefinition } from '../data/collections/ProductLineDefinition';
+import { LocationDefinition } from '../data/collections/LocationDefinition';
+export type RealmTypes = 'objectId' | 'uuid' | 'string' | 'bool' | 'int' | 'double' | 'float' | 'decimal128' | 'object' | 'list' | 'dictionary' | 'set' | 'date' | 'data' | 'linkingObjects';
 
 export function FilePreview({ resource, file }: { resource: () => Promise<ArrayBuffer>; file: File }) {
     const [reader, updateReader] = useAsyncResource(resource, []);
@@ -171,16 +159,7 @@ export function addSingleBarcodeToQueue(bc: any) {
     console.log('barcode', bc);
     console.log('fixtures', bc.fixture);
     console.log('bins', bc.bin);
-    const type =
-        bc instanceof Inventory.Fixture
-            ? 'fixture'
-            : bc instanceof Inventory.Bin
-            ? 'bin'
-            : bc instanceof Products.Product
-            ? 'product'
-            : bc instanceof Inventory.Item
-            ? 'item'
-            : 'unknown';
+    const type = bc instanceof Inventory.Fixture ? 'fixture' : bc instanceof Inventory.Bin ? 'bin' : bc instanceof Products.Product ? 'product' : bc instanceof Inventory.Item ? 'item' : 'unknown';
     const name = type === 'fixture' ? (bc as IFixture).name : type === 'bin' ? (bc as IBin).name : '';
     const notes = type === 'fixture' ? (bc as IFixture).notes : type === 'bin' ? (bc as IBin).notes : '';
     const barcode = bc?.barcode?.barcode ?? '';
@@ -260,9 +239,7 @@ export function MainRouter({ reader, realm }: { reader: DataOrModifiedFn<Webdriv
                                 name: x.name,
                                 originalName: x.originalName,
                                 parent: lookupFK('parent', 'fs-alloc', realm)(x),
-                                materializedPath: [(lookupFK('parent', 'fs-alloc', realm)(x) as any)?.materializedPath ?? '', x.name]
-                                    .join('/')
-                                    .replace('//', '/'),
+                                materializedPath: [(lookupFK('parent', 'fs-alloc', realm)(x) as any)?.materializedPath ?? '', x.name].join('/').replace('//', '/'),
                                 fsItem: lookupFK('fsItem', 'fs-item', realm)(x)
                             }),
                             sorted: [['materializedPath', false]],
@@ -300,6 +277,12 @@ export function MainRouter({ reader, realm }: { reader: DataOrModifiedFn<Webdriv
                 </Route>
                 <Route path='data'>
                     <Route path='v1'>
+                        <Route path='product'>
+                            <Route path='new'>
+                                <Route index element={<ProductInsert />} />
+                            </Route>
+                            <Route index element={<></>} />
+                        </Route>
                         <Route path='photo'>
                             <Route path='new'>
                                 <Route
@@ -313,6 +296,43 @@ export function MainRouter({ reader, realm }: { reader: DataOrModifiedFn<Webdriv
                             </Route>
                             <Route index element={<PhotoGrid />} />
                         </Route>
+                        {CollectionFor({
+                            realm: realm,
+                            name: 'location',
+                            colList: ['_id', 'name', 'notes', 'address.street', 'address.suite', 'address.city', 'address.state', 'address.country', 'address.postalCode'],
+                            Defs: LocationDefinition,
+                            sorted: [['name', false]],
+                            convert: (x: any) => {
+                                console.log(`convert`, x);
+                                const result = {
+                                    _id: new ObjectId(x._id),
+                                    name: x.name,
+                                    notes: x.notes,
+                                    address: {
+                                        street: x['address.street'],
+                                        suite: x['address.suite'],
+                                        city: x['address.city'],
+                                        state: x['address.state'],
+                                        country: x['address.country'],
+                                        postalCode: x['address.postalCode']
+                                    }
+                                };
+                                console.log('result', result);
+                                return result;
+                            }
+                        })}
+                        {CollectionFor({
+                            realm: realm,
+                            name: 'product-line',
+                            colList: ['_id', 'name', 'brand'],
+                            Defs: ProductLineDefinition,
+                            sorted: [['name', false]],
+                            convert: (x: any) => ({
+                                _id: new ObjectId(x._id),
+                                name: x.name,
+                                brand: lookupFK('brand', 'brand', realm)(x)
+                            })
+                        })}
                         {CollectionFor({
                             realm: realm,
                             name: 'bin',
@@ -335,11 +355,12 @@ export function MainRouter({ reader, realm }: { reader: DataOrModifiedFn<Webdriv
                             colList: ['_id', 'name', 'notes', 'barcode'],
                             Defs: FixtureDefinition,
                             sorted: [['name', false]],
-                            convert: (x: any) => ({
+                            convert: (x: ILocation) => ({
                                 _id: new ObjectId(x._id),
                                 name: x.name,
                                 notes: x.notes,
-                                barcode: lookupFK('barcode', 'barcode', realm)(x)
+                                barcode: lookupFK('barcode', 'barcode', realm)(x),
+                                location: lookupFK('location', 'location', realm)
                             }),
                             ExtendedID: AssignBarcode,
                             postInsert: addSingleBarcodeToQueue as any
@@ -397,9 +418,7 @@ export function MainRouter({ reader, realm }: { reader: DataOrModifiedFn<Webdriv
                                 _id: new ObjectId(x._id),
                                 name: x.name,
                                 company: isNotNil(x.company) ? realm.objectForPrimaryKey('company', new ObjectId(x.company)) : undefined,
-                                verifiedBrand: isNotNil(x.verifiedBrand)
-                                    ? realm.objectForPrimaryKey('verified-brand', new ObjectId(x.verifiedBrand))
-                                    : undefined,
+                                verifiedBrand: isNotNil(x.verifiedBrand) ? realm.objectForPrimaryKey('verified-brand', new ObjectId(x.verifiedBrand)) : undefined,
                                 alias: []
                             }),
                             Defs: BrandDefinition
@@ -492,11 +511,7 @@ export function MainRouter({ reader, realm }: { reader: DataOrModifiedFn<Webdriv
                                     index
                                     element={
                                         <ModalContainer>
-                                            <InsertForm
-                                                Controls={SelfStorageDefinition}
-                                                initialData={{}}
-                                                convert={(x: any) => ({ _id: new ObjectId(x._id), name: x.name, website: x.website })}
-                                            />
+                                            <InsertForm Controls={SelfStorageDefinition} initialData={{}} convert={(x: any) => ({ _id: new ObjectId(x._id), name: x.name, website: x.website })} />
                                         </ModalContainer>
                                     }
                                 />
@@ -639,15 +654,7 @@ export function AssignBarcodeModal() {
     return (
         <form className='flex flex-col w-2/3' onSubmit={prevent} onReset={prevent}>
             <label>{label}</label>
-            <input
-                type='text'
-                id='assign-barcode-input'
-                value={barcode}
-                className='flex text-lg border border-black rounded-lg font-fira-sans bg-cyan'
-                onChange={onChange}
-                onKeyDown={onKeyPress}
-                ref={inputRef}
-            />
+            <input type='text' id='assign-barcode-input' value={barcode} className='flex text-lg border border-black rounded-lg font-fira-sans bg-cyan' onChange={onChange} onKeyDown={onKeyPress} ref={inputRef} />
             <Btn type='button' className='flex px-2 py-0.5' flags={{}} disabled={bc == null} onClick={onClick}>
                 Submit
             </Btn>
@@ -719,19 +726,7 @@ export function CollectionFor({
         </Route>
     );
 }
-export function GridFor({
-    realm,
-    name,
-    sorted,
-    Defs,
-    colList
-}: {
-    realm: Realm;
-    name: string;
-    sorted: SortDescriptor[];
-    Defs: DefinedType;
-    colList: string[];
-}) {
+export function GridFor({ realm, name, sorted, Defs, colList }: { realm: Realm; name: string; sorted: SortDescriptor[]; Defs: DefinedType; colList: string[] }) {
     const [getDescriptors] = useSorted(sorted);
     const $sorted = getDescriptors();
     return (

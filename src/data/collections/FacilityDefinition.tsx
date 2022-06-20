@@ -81,7 +81,7 @@ export function FacilityDefinition({ children }: { children: TypeDefinitionFunct
                 defaultValue='US'>
                 {children}
             </Definition>
-            <Definition name='address.postalCode' displayName='City' type='text' Control={InputEle} Field={FormControl}>
+            <Definition name='address.postalCode' displayName='Postal Code' type='text' Control={InputEle} Field={FormControl}>
                 {children}
             </Definition>
             <Definition

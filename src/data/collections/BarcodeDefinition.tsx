@@ -6,7 +6,7 @@ import { Definitions } from '../definitions/Definitions';
 import { useLocalRealm } from '../../hooks/useLocalRealm';
 import { barcodeTypes } from '../enums';
 import { FormControl } from '../definitions/FormControl';
-import Barcode from 'react-barcode';
+import { useBarcode } from 'react-barcodes';
 import { checkDigit } from '../definitions/checkDigit';
 import { classifyBarcode } from '../definitions/classifyBarcode';
 import { EnumDef } from '../definitions/EnumDef';
@@ -14,6 +14,17 @@ import { CheckboxDef, TextInputDef } from '../definitions/TextInputDef';
 import { InputEle } from '../definitions/InputEle';
 import { TypeDefinitionFunction, uniqueValidator } from '../definitions/index';
 
+export function UsedBarcode({ barcode }: { barcode: string }) {
+    const { inputRef } = useBarcode({
+        value: barcode,
+        options: {
+            height: 25,
+            width: 1,
+            fontSize: 10
+        }
+    });
+    return <svg ref={inputRef} />;
+}
 export function BarcodeDefinition({ children }: { children: TypeDefinitionFunction<{}> }) {
     const realm = useLocalRealm();
     const onBlur = useCallback((ev: React.FocusEvent<HTMLInputElement>) => {
@@ -45,13 +56,7 @@ export function BarcodeDefinition({ children }: { children: TypeDefinitionFuncti
 
             <TextInputDef name='description' children={children} />
 
-            <TextInputDef
-                name='barcode'
-                validators={[uniqueValidator('barcode', 'barcode')]}
-                children={children}
-                onBlur={onBlur}
-                toSummary={(x) => <Barcode width={1} height={25} fontSize={10} value={x} />}
-            />
+            <TextInputDef name='barcode' validators={[uniqueValidator('barcode', 'barcode')]} children={children} onBlur={onBlur} toSummary={(x) => <UsedBarcode barcode={x} />} />
             <EnumDef name='type' children={children} enumMap={barcodeTypes} />
 
             <CheckboxDef name='valid' children={children} />

@@ -210,7 +210,7 @@ export function useUncontrolledForm<TFormData, TSubmitResult = void>(
         [outputs]
     );
     const getFeedback = useCallback((name: string) => {
-        return () => feedback.current[name] ?? ''
+        return () => feedback.current[name] ?? '';
     }, []);
     return [handleSubmit, register, onInput, isFeedbacking, getFeedback];
 }

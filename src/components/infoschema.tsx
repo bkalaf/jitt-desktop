@@ -263,7 +263,7 @@ const containsOnlyDigit = {
     _id: new ObjectId(),
     name: 'containsOnlyDigit',
     descriptor: 'x => x.split("").every(s => "0".charCodeAt(0) <= s.charCodeAt(0) && "9".charCodeAt(0) >= s.charCodeAt(0))'
-}
+};
 export function runDbEntry(realm: Realm) {
     realm.write(() => {
         realm.create('dbDataType', dbString);

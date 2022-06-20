@@ -17,7 +17,7 @@ export function importCategories({
     onDemand: boolean;
     realm: Realm;
     log: any;
-    scheduledItem: Admin.Activity | undefined;
+    scheduledItem: any | undefined;
     action: ActivityActions;
     scope: ActivityScopes;
 }) {
