@@ -9,3 +9,5 @@ export const barcodeTypes = {
     SKU: 'SKU'
 };
 export type BarcodeType = keyof typeof barcodeTypes;
+
+export const isUPCLike = (x: BarcodeType) => ['UPCA', 'UPCE', 'ISBN10', 'ISBN13', 'EAN13'].includes(x);

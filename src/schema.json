@@ -1,0 +1,236 @@
+{
+  "title": "product",
+  "bsonType": "object",
+  "required": [
+    "_id",
+    "owner",
+    "description"
+  ],
+  "properties": {
+    "_id": {
+      "bsonType": "objectId"
+    },
+    "owner": {
+      "bsonType": "string"
+    },
+    "brand": {
+      "bsonType": "objectId"
+    },
+    "description": {
+      "bsonType": "string"
+    },
+    "productLine": {
+      "bsonType": "objectId"
+    },
+    "origin": {
+      "bsonType": "string"
+    },
+    "productDocumentation": {
+      "bsonType": "objectId"
+    },
+    "composition": {
+      "title": "composition",
+      "bsonType": "object",
+      "required": [],
+      "properties": {
+        "sections": {
+          "bsonType": "object",
+          "additionalProperties": {
+            "title": "section",
+            "bsonType": "object",
+            "required": [],
+            "properties": {
+              "name": {
+                "bsonType": "string"
+              },
+              "segments": {
+                "bsonType": "array",
+                "items": {
+                  "title": "percent-of",
+                  "bsonType": "object",
+                  "required": [
+                    "materialType",
+                    "percent"
+                  ],
+                  "properties": {
+                    "materialType": {
+                      "bsonType": "string"
+                    },
+                    "percent": {
+                      "bsonType": "double"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "header": {
+      "bsonType": "string"
+    },
+    "model": {
+      "bsonType": "string"
+    },
+    "notes": {
+      "bsonType": "string"
+    },
+    "details": {
+      "title": "details",
+      "bsonType": "object",
+      "required": [],
+      "properties": {
+        "title": {
+          "bsonType": "string"
+        },
+        "subtitle": {
+          "bsonType": "string"
+        },
+        "authors": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "string"
+          }
+        },
+        "starring": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "string"
+          }
+        },
+        "rating": {
+          "bsonType": "string"
+        },
+        "awards": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "string"
+          }
+        },
+        "copyright": {
+          "bsonType": "long"
+        },
+        "studio": {
+          "bsonType": "string"
+        },
+        "flags": {
+          "title": "flags",
+          "bsonType": "object",
+          "required": [
+            "isCollectorsEdition",
+            "isDirectorsCut",
+            "hasManual",
+            "hasOriginalPackaging",
+            "hasClothingTags",
+            "isLimitiedEdition",
+            "isVintage",
+            "isRare",
+            "isAutographed",
+            "isSpecialEdition",
+            "isDiscontinued"
+          ],
+          "properties": {
+            "isCollectorsEdition": {
+              "bsonType": "bool"
+            },
+            "isDirectorsCut": {
+              "bsonType": "bool"
+            },
+            "hasManual": {
+              "bsonType": "bool"
+            },
+            "hasOriginalPackaging": {
+              "bsonType": "bool"
+            },
+            "hasClothingTags": {
+              "bsonType": "bool"
+            },
+            "isLimitiedEdition": {
+              "bsonType": "bool"
+            },
+            "isVintage": {
+              "bsonType": "bool"
+            },
+            "isRare": {
+              "bsonType": "bool"
+            },
+            "isAutographed": {
+              "bsonType": "bool"
+            },
+            "isSpecialEdition": {
+              "bsonType": "bool"
+            },
+            "isDiscontinued": {
+              "bsonType": "bool"
+            }
+          }
+        },
+        "measurements": {
+          "bsonType": "object",
+          "additionalProperties": {
+                "title": "dimension",
+                "bsonType": "object",
+                "required": [
+                  "measureOf",
+                  "value"
+                ],
+                "properties": {
+                  "measureOf": {
+                    "bsonType": "string"
+                  },
+                  "value": {
+                    "bsonType": "double"
+                  },
+                  "uom": {
+                    "bsonType": "string"
+                  },
+                  "remaining": {
+                    "bsonType": "mixed"
+                  }
+                }
+              },
+        "size": {
+          "bsonType": "string"
+        },
+        "gender": {
+          "bsonType": "string"
+        },
+        "age": {
+          "bsonType": "string"
+        },
+        "ageRange": {
+          "bsonType": "string"
+        },
+        "players": {
+          "bsonType": "string"
+        },
+        "console": {
+          "bsonType": "string"
+        },
+        "bookType": {
+          "bsonType": "string"
+        },
+        "mediaType": {
+          "bsonType": "string"
+        },
+        "discCount": {
+          "bsonType": "long"
+        },
+        "pages": {
+          "bsonType": "long"
+        },
+        "publisher": {
+          "bsonType": "string"
+        },
+        "pattern": {
+          "bsonType": "string"
+        }
+      }
+    },
+    "color": {
+      "bsonType": "string"
+    }
+  }
+}
+}

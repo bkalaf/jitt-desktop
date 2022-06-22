@@ -14,6 +14,9 @@ export function FormControl(
 ) {
     const { Control, displayName, name, optionLabel, optionValue, isFeedbacking, getFeedback, ...remain } = props;
     const register = useRegister();
+    const controlID = `${props.name.split('.').reverse()[0]}-control`;
+    const labelID = `${controlID}-label`;
+    const feedbackID = `${controlID}-feedback`;
     const feedback = useMemo(() => getFeedback(name)(), [getFeedback, name]);
     return (
         <div className='relative flex flex-col'>

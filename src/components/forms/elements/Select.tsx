@@ -1,10 +1,8 @@
 import React, { SelectHTMLAttributes } from 'react';
 import { useQuery } from 'react-query';
+import { isNotNil } from '../../../common/isNotNull';
 import { useLocalRealm } from '../../../hooks/useLocalRealm';
-import { useRoutedCollection } from '../../../hooks/useRoutedCollection';
 import { useWhyDidYou } from '../../../hooks/useWhyDidYou';
-import { dropdown } from '../../../queries/dropdown';
-import { useRealmQuery } from '../../../queries/useRealmQuery';
 import { OptionElementFields } from '../../../types';
 
 export function Select(
@@ -16,7 +14,8 @@ export function Select(
     }
 ) {
     useWhyDidYou(Select.name, props);
-    return props.enumMap != null ? <EnumSelect {...props} /> : <LookupSelect {...props} />;
+    const { enumMap, ...remain } = props;
+    return enumMap != null ? <EnumSelect {...remain} enumMap={enumMap} /> : <LookupSelect {...remain} />;
 }
 
 export function EnumSelect(
@@ -24,14 +23,13 @@ export function EnumSelect(
         enumMap?: Record<string, string>;
         objectType?: string;
         optionMap?: OptionElementFields;
-        
     }
 ) {
     const { enumMap, ...remain } = props;
     if (enumMap == null) throw new Error('null enumMap');
 
     return (
-        <select {...props}>
+        <select {...remain}>
             <option key='default' value={undefined} label='Please choose...' />
             {Object.entries(enumMap)
                 .sort((a, b) => {
@@ -53,23 +51,36 @@ export function LookupSelect(
     }
 ) {
     const { filter, objectType, optionMap, ...remain } = props;
-    // const realm = useLocalRealm();
-    // const { data } = useQuery(['dropdown', objectType], dropdown(realm, objectType ?? '', [optionMap?.value ?? '', optionMap?.label ?? '']), {
-    //     suspense: true
-    // });
-    const [status, update, data] = useRealmQuery(
-        'dropdown',
-        objectType,
-        [],
-        () => true,
-        (data) => {
-            if (data == null) return undefined;
-            const d = data as any as Realm.Results<{ _id: Realm.BSON.ObjectId } & Realm.Object>;
-            return Object.fromEntries(d.map((x) => [(x as any)[optionMap?.value ?? ''], (x as any)[optionMap?.label ?? '']] as [string, string]));
-        },
-        filter
+    const realm = useLocalRealm();
+    console.log(`objectType, filter, optionMap`, objectType, filter, optionMap);
+    const { data } = useQuery(
+        ['dropdown', objectType],
+        () =>
+            Object.fromEntries(
+                (isNotNil(filter) ? realm.objects(objectType ?? '').filtered(filter[0], filter[1](null)) : realm.objects(objectType ?? '')).map((x: Realm.Object) => {
+                    console.log(`realm.object-x`, x);
+                    return [(x as any)._id.toHexString(), (x as any)[optionMap?.label ?? '']] as [string, string];
+                })
+            ),
+        {
+            suspense: true
+        }
     );
 
+    // useRealmQuery(
+    //     'dropdown',
+    //     objectType,
+    //     [],
+    //     () => true,
+    //     (data) => {
+    //         if (data == null) return undefined;
+    //         const d = data as any as Realm.Results<{ _id: Realm.BSON.ObjectId } & Realm.Object>;
+    //         return Object.fromEntries(d.map((x) => [(x as any)[optionMap?.value ?? ''], (x as any)[optionMap?.label ?? '']] as [string, string]));
+    //     },
+    //     filter
+    // );
+
+    console.log(`data`, data);
     return (
         <React.Suspense fallback={<EnumSelect {...remain} enumMap={{}} />}>
             <EnumSelect {...remain} enumMap={data} />;

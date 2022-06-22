@@ -65,9 +65,7 @@ function getDevToolsPath() {
     console.log(devToolsPath);
     return devToolsPath;
 }
-const navigate = (to: string) => {
-    ipcMain.emit('request-navigate', to);
-}
+
 app.on('ready', function () {
     return session.defaultSession
         .loadExtension(getExtensionPath('fmkadmapgofadopljbjfkapdkoienihi'), { allowFileAccess: true })
@@ -82,9 +80,8 @@ app.on('ready', function () {
         })
         .then(() => registerMenus())
         .then(() => {
-            const template = topBar(navigate as any);
-            const menu = Menu.buildFromTemplate(template ?? {});
-            Menu.setApplicationMenu(menu);
+            const template = Menu.buildFromTemplate(topBar);
+            Menu.setApplicationMenu(template);
         });
 });
 

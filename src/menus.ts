@@ -27,7 +27,7 @@ const menus: Record<string, Menu> = ({
     gallery: galleryContextMenu
 });
 
-export function registerMenus() {
+export function     registerMenus() {
     ipcMain.handle('open-context-menu', async function (event: IpcMainInvokeEvent, key: string) {
         $galleryChoice = new Promise((res, rej) => {
             $resolvers = [res,rej];

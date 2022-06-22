@@ -6,12 +6,14 @@ export function Boundary({ children }: { children: Children }) {
     return (
         <React.Suspense fallback={<Spinner />}>
             <ErrorBoundary
-                fallbackRender={({ error }) => (
-                    <div className='text-white'>
-                        <div className='text-white'>Error happened.</div>
-                        <div className='text-white whitespace-pre'>{error.message}</div>
-                    </div>
-                )}>
+                fallbackRender={({ error }) => {
+                    return (
+                        <div className='text-white'>
+                            <div className='text-white'>Error happened.</div>
+                            <div className='text-white whitespace-pre'>{error.message}</div>
+                        </div>
+                    );
+                }}>
                 {children}
             </ErrorBoundary>
         </React.Suspense>

@@ -148,23 +148,39 @@ declare global {
         fixtures?: IFixture[];
         address?: IAddress;
     }
+    export interface ICustomItem {
+        _id: ObjectId;
+        name: string;
+        idPrefix?: string;
+    }
+    export interface ICustomItemEntry {
+        _id: ObjectId;
+        customItem: ICustomItem;
+        label?: string;
+        key?: string;
+        ordinal?: number;
+        id?: string;
+    }
     export interface IProduct {
         _id: ObjectId;
         brand?: IBrand;
         productLine?: IProductLine;
-        dims: Partial<Record<string, IDimension<string>>>;
-        origin?: Country;
-        barcodes: Partial<Record<BarcodeType, IBarcode>>;
-        shortDescription?: string;
-        title?: string;
+        description?: string;
+        header?: string;
         model?: string;
         notes?: string;
+        origin?: Country;
+        itemType?: IItemType;
         color?: string;
+        
+        dims: Partial<Record<string, IDimension<string>>>;
+        barcodes: Partial<Record<BarcodeType & 'UPC', IBarcode>>;
+        
         birthYear?: number;
         details?: IDetails;
-        itemType?: IItemType;
-        keywords?: Set<string>;
         links?: string[];
+        keywords?: Set<string>;
+
     }
     export interface IItemType {
         _id: ObjectId;
@@ -216,16 +232,23 @@ declare global {
         bookType?: BookType;
         mediaType?: MediaType;
         discCount?: number;
-        pages?: number;
+        pageCount?: number;
         publisher?: string;
         pattern?: string;
+    }
+    export interface ITexttileRn {
+        _id: ObjectId;
+        company: ICompany;
+        rn: number;
+        country: string;
     }
     export interface ICompany {
         _id: ObjectId;
         parent: ICompany;
         name: string;
         descendants: ICompany[];
-        aliases: string[]
+        aliases: string[];
+        rn: ITexttileRn;
 
     }
     export interface IBrand {
@@ -264,7 +287,7 @@ declare global {
     export interface IDimension<TUOM> {
         value: number;
         uom: TUOM;
-        reamining?: IDimension<TUOM>
+        remaining?: IDimension<TUOM>
     }
 }
 export const i = 1;

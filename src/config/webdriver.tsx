@@ -3,11 +3,18 @@ export const webdriver = {
         mercari: 'https://www.mercari.com/'
     },
     selectors: {
+        standardListing: ['testid', 'StandardListingTypeTileButton'] as [string, string],
+        furnitureListing: ['testid', 'FurnitureListingTypeTileButton'] as [string, string],
         logInButton: ['testid', 'LoginButton'] as [string, string],
         emailInput: ['testid', 'EmailInput'] as [string, string],
         passwordInput: ['testid', 'PasswordInput'] as [string, string],
         logInSubmitButton: ['testid', 'LoginSubmitButton'] as [string, string],
         CTA: ['testid', 'SellOnMercariCTA'] as [string, string],
+        metadata: {
+            container: ['testid', 'MetadataContainer'] as [string, string],
+            platform: ['testid', 'CustomItemFieldId-Platform'] as [string, string],
+            platformDropdown: ['testid', 'CustomItemFieldId-PlatformDropdown']
+        },
         listingForm: {
             title: ['testid', 'Title', 80] as [string, string, number],
             description: ['testid', 'Description', 1000] as [string, string, number],

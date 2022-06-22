@@ -20,6 +20,8 @@ import { remote } from 'webdriverio';
 import { topBar } from '../menus/index';
 import * as electron from 'electron/renderer';
 import { Menu, MenuItem } from '@electron/remote';
+import { ipcRenderer } from 'electron';
+import { schema } from '../data';
 
 // import { ipcRenderer, Menu } from 'electron';
 
@@ -134,14 +136,21 @@ export const $textToSpeech = function (utterance: string) {
     });
 };
 
+export function onNavigateTo(navigate: ReturnType<typeof useNavigate>) {
+    return (ev: electron.IpcRendererEvent, to: string) => {
+        navigate(to);
+    };
+}
+
 export function MainWindow({ realmReader }: { realmReader: LazyDataOrModifiedFn<Realm> }) {
     const navigate = useNavigate();
-    const applicationMenuItems = useMemo(() => MenuItem, [navigate]);
+    const onNavigateEvent = useMemo(() => onNavigateTo(navigate), [navigate]);
     useEffect(() => {
-        console.log(`Menu`, Menu);
-        console.log(`applicationMenuItems`);
-        Menu.setApplicationMenu(applicationMenuItems)
-    }, [applicationMenuItems]);
+        ipcRenderer.on('navigate-to', onNavigateEvent);
+        return () => {
+            ipcRenderer.off('navigate-to', onNavigateEvent);
+        };
+    }, [onNavigateEvent]);
     // useEffect(() => {
     //     const v = window.speechSynthesis.getVoices().filter((x) => x.lang === 'en-US')[65];
     //     if (v !== null) $voice(v);
@@ -152,6 +161,9 @@ export function MainWindow({ realmReader }: { realmReader: LazyDataOrModifiedFn<
     //     };
     // }, []);
     const realm = realmReader();
+    // useEffect(() => {
+    //     realm?._updateSchema(schema.map(x => x.schema));
+    // }, [realm]);
     // const insertType = useCallback(
     //     (kind: TypeKind, name: string, embedded: boolean, columns: string[], headers: string[], ...fields: any[]) => {
     //         if (realm == null) throw new Error('oops');

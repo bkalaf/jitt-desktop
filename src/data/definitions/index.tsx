@@ -8,7 +8,6 @@ import { useMemo } from 'react';
 import { getProperty, toTitleCase } from '../../common';
 import { DuotoneIcon } from '../../components/icons/DuotoneIcon';
 import { ObjectId } from 'bson';
-import { RegisterFunction } from '../../hooks/useRegister';
 import { Definition } from './Definition';
 import { Definitions } from './Definitions';
 import { useLocalRealm } from '../../hooks/useLocalRealm';
@@ -18,6 +17,7 @@ import { DatalistEle } from './LookupEle';
 import { ListEle } from './LookupEle';
 import { FormControl } from './FormControl';
 import { InputEle } from './InputEle';
+import { OutputEle } from './OutputEle';
 
 export type TypeDefinitionFunction<T = {}> = React.FunctionComponent<Omit<IDefinitionProps, 'children'> & T>;
 
@@ -38,7 +38,7 @@ export type IDefinitionProps = {
     Control: (props: any) => JSX.Element | null;
     min?: number;
     max?: number;
-    filter?: string;
+    filter?: string[];
     maxLength?: number;
     toSummary?: (x: any) => any;
     minLength?: number;
@@ -74,10 +74,6 @@ export function uniqueValidator(collection: string, propertyName: string) {
 export function NullElement(props: any) {
     return null;
 }
-export function OutputEle(props: { register: RegisterFunction } & IDefinitionProps) {
-    const { name, register, ...remain } = props;
-    return <output {...register(name, remain)} />;
-}
 export function ListInputDef({ children, displayName, name, span }: { children: TypeDefinitionFunction<{}>; span?: number; displayName?: string; name: string }) {
     const label = displayName ? displayName : toTitleCase(name);
 
@@ -106,7 +102,7 @@ export function ReferenceDef({
 }) {
     const displayName = $displayName ? $displayName : toTitleCase(name);
     return (
-        <Definition Control={LookupEle} Field={FormControl} name={name} displayName={displayName} lookupTable={lookupTable} optionLabel={label} optionValue='_id' filter={filter} sort={sort ?? []}>
+        <Definition Control={LookupEle} Field={FormControl} name={name} displayName={displayName} lookupTable={lookupTable} optionLabel={label} optionValue='_id' filter={filter ? [filter] : undefined} sort={sort ?? []}>
             {children}
         </Definition>
     );

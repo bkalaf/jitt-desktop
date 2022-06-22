@@ -23,7 +23,7 @@ import { useRoutedCollection } from '../hooks/useRoutedCollection';
 import { isNotNil } from '../common/isNotNull';
 import { clipboard, dialog } from '@electron/remote';
 import { useLocalRealm } from '../hooks/useLocalRealm';
-import { Inventory, Pipelines } from '../data';
+import { Inventory } from '../data';
 import { appSettings } from '../settings';
 import { calculateFullBarcodeWithCheckDigit } from '../data/definitions/checkDigit';
 import { useDebouncedCallback, useThrottleCallback } from '../data/ModernGrid';

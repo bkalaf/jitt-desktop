@@ -1,16 +1,10 @@
 import * as fs from 'graceful-fs';
 
-import {
-    faBinoculars,
-    faDatabase,
-    faDoorClosed,
-    
-    faWindowClose,
-    IconDefinition
-} from '@fortawesome/pro-duotone-svg-icons';
-import { BrowserWindow, MenuItem, nativeImage } from 'electron';
+import { faBinoculars, faDatabase, faDoorClosed, faWindowClose, IconDefinition } from '@fortawesome/pro-duotone-svg-icons';
+import { BrowserWindow, ipcMain, MenuItem, nativeImage } from 'electron';
 import { NavigateFunction, useNavigate } from 'react-router';
-import { ignore } from '../common';
+import { ignore, toTitleCase } from '../common';
+import { pluralize } from "../data/enums/pluralize";
 
 export function createElectronIcon(iconDef: IconDefinition) {
     console.log(iconDef);
@@ -18,43 +12,88 @@ export function createElectronIcon(iconDef: IconDefinition) {
     return fs.existsSync(fullpath) ? nativeImage.createFromBuffer(fs.readFileSync(fullpath)) : undefined;
 }
 
-export function toClick(navigate: ReturnType<typeof useNavigate>, coll: string, prefix = 'data') {
+export function toClick(coll: string, prefix = 'data') {
     return (_menuItem: MenuItem, _browser: BrowserWindow, ev: Event) => {
-        return navigate(['', prefix, 'v1', coll].join('/'));
+        const to = ['', prefix, 'v1', coll].join('/');
+        BrowserWindow.getAllWindows()[0].webContents.send('navigate-to', to);
     };
 }
-export const topBar: (navigate: ReturnType<typeof useNavigate>) => any = (navigate: NavigateFunction) =>
-    [
-        {
-            type: 'submenu',
-            role: 'fileMenu'
-        },
-        {
-            type: 'submenu',
-            role: 'editMenu'
-        },
-        { type: 'submenu', role: 'viewMenu' },
-        {
-            type: 'submenu',
-            label: 'Data',
-            submenu: [
-                {
-                    type: 'submenu',
-                    label: 'Auctions',
 
-                    submenu: [
-                        { type: 'normal', label: 'Self Storage', click: toClick(navigate, 'self-storage') },
-                        { type: 'normal', label: 'Facility', click: toClick(navigate, 'facility') }
-                    ]
-                }
-            ]
-        },
-        { type: 'submenu', role: 'windowMenu', submenu: [] },
-        { type: 'normal', label: 'Help', role: 'help', click: (a, b, c) =
-         {}  },
-        { type: 'normal', label: 'About', role: 'about', click: (a, b, c) =
-         {} }
-    ] as any[];
+export const leaf = (route: string, label?: string) => ({ type: 'normal', label: label == null ? toTitleCase(pluralize(route)) : toTitleCase(pluralize(label.toLowerCase())), click: toClick(route) });
+
+export const topBar = [
+    {
+        type: 'submenu',
+        role: 'fileMenu'
+    },
+    {
+        type: 'submenu',
+        role: 'editMenu'
+    },
+    { type: 'submenu', role: 'viewMenu' },
+    {
+        type: 'submenu',
+        label: 'Data',
+        submenu: [
+            {
+                type: 'submenu',
+                label: 'Auctions',
+
+                submenu: [
+                    leaf('self-storage'),
+                    leaf('facility'),
+                    leaf('rental-unit'),
+                    leaf('purchase')
+                ]
+            },
+            {
+                type: 'submenu',
+                label: 'Inventory',
+                submenu: [
+                    leaf('barcode'),
+                    leaf('location'),
+                    leaf('fixture'),
+                    leaf('bin'),
+                    leaf('item')
+                ]
+            },
+            {
+                type: 'submenu',
+                label: 'Products',
+                submenu: [
+                    leaf('item-type'),
+                    leaf('company'),
+                    leaf('brand'),
+                    leaf('product-line'),
+                    leaf('product')
+                ]
+            },
+            { 
+                type: 'submenu',
+                label: 'Files',
+                submenu: [
+                    leaf('photo'),
+                    leaf('product-documentation')
+                ]       
+            },
+            {
+                type: 'submenu',
+                label: 'Scrapes',
+                submenu: [
+                    leaf('category'),
+                    leaf('taxonomy'),
+                    leaf('verified-brand'),
+                    leaf('custom-item'),
+                    leaf('custom-item-entry')
+                ]
+            }
+        ]
+    },
+    { type: 'submenu', role: 'windowMenu', submenu: [] },
+    { type: 'normal', label: 'Help', role: 'help', click: ignore },
+    { type: 'normal', label: 'About', role: 'about', click: ignore }
+] as any[];
+
 // const menuIcons = {
 //     undo: addIcon(JITTMenu.)(),
 //     redo: icon(faRedo),

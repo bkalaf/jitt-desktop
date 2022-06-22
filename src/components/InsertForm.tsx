@@ -7,7 +7,6 @@ import { useLocalRealm } from '../hooks/useLocalRealm';
 import { useMetaDataContext } from './Toaster';
 import { convertFromFormData } from './convertFromFormData';
 import { determineGridSize } from './determineGridSize';
-import { createFileAlloc } from '../data';
 import { useChangeFileParent } from './useChangeFileParent';
 import { useRealmMutation } from '../queries/useRealmMutation';
 import { Mutation } from '../queries';
@@ -15,6 +14,7 @@ import { DefinedType, InsertFormControls } from '../data/definitions';
 import { Spinner } from './Indicators/Spinner';
 import { ignore } from '../common';
 
+const createFileAlloc = ignore;
 export function InsertForm<T extends Record<string, any>>({ Controls, initialData, convert, postInsert }: { Controls: DefinedType; initialData: T; convert: any; postInsert?: <T>(input: T) => void }) {
     console.group('InsertForm');
     const [collection] = useRoutedCollection();
@@ -59,7 +59,7 @@ export function InsertForm<T extends Record<string, any>>({ Controls, initialDat
 
     console.groupEnd();
     return (
-        <FormProvider register={register}>
+        <FormProvider register={register} isFeedbacking={isFeedbacking} getFeedback={getFeedback}>
             <form className='flex flex-col' onInput={onInput} onSubmit={onSubmit}>
                 <section className='grid grid-cols-4'>
                     <InsertFormControls Definition={Controls} isFeedbacking={isFeedbacking} getFeedback={getFeedback} />

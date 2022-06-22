@@ -1,6 +1,7 @@
 import { IconDefinition, SizeProp } from '@fortawesome/fontawesome-svg-core';
 import { faBan, faCalculatorAlt, faExclamationCircle, faPenSlash, faShieldXmark } from '@fortawesome/pro-duotone-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { isNotNil } from '../common/isNotNull';
 import { $cn } from '../util/$cn';
 
 export type IProps = {
@@ -13,19 +14,18 @@ export type IIndicatorProps = {
     className: string;
     size: SizeProp;
     title: string;
+    id: string;
     tag: string;
 } & IProps;
 export function Indicator(props: IIndicatorProps) {
-    const { prop, tag, className: $className, ...remain } = props;
+    const { prop, tag, className: $className, id, ...remain } = props;
+    const el = document.getElementById(id) as HTMLInputElement;
+    console.log(`indicator-el`, id, el);
     const { size, icon, ...spread } = $cn(
         remain,
         {
-            'hidden peer-required:flex': prop === 'required',
-            'hidden peer-readonly:flex': prop === 'readOnly',
-            'hidden peer-disabled:flex': prop === 'disabled',
-            'hidden peer-invalid:flex': prop === 'invalid',
-            hidden: prop === 'local' && tag !== 'OUTPUT',
-            flex: prop === 'local' && tag === 'OUTPUT'
+            'hidden': isNotNil(el) ? (prop === 'required' && !el.required) || (prop === 'readOnly' && !el.readOnly) || (prop === 'disabled' && !el.disabled) || (el.tagName !== 'OUTPUT' && prop === 'local') : true,
+            'flex': isNotNil(el) ? (prop === 'required' && el.required) || (prop === 'readOnly' && el.readOnly) || (prop === 'disabled' && el.disabled) || (el.tagName === 'OUTPUT' && prop === 'local') : false     
         },
         $className
     );
@@ -36,43 +36,46 @@ export function Indicator(props: IIndicatorProps) {
     );
 }
 
-export function IndicatorGroup(props: { tag: string }) {
-    const { tag } = props;
+export function IndicatorGroup(props: { tag: string, id: string }) {
+    const { tag,id  } = props;
     return (
-        <>
+        <div className='absolute top-0 right-0'>
             <Indicator
                 prop='required'
                 tag={tag}
                 icon={faExclamationCircle}
                 size='lg'
-                className='absolute top-0 right-0 text-white bg-red'
+                className='text-white bg-red'
                 title='Field is required.'
+                id={id}
             />
             <Indicator
                 prop='readOnly'
                 tag={tag}
                 icon={faPenSlash}
                 size='lg'
-                className='absolute top-0 right-0 text-white bg-orange'
+                className='text-white bg-orange'
                 title='Field is immutable.'
+                id={id}
             />
-            <Indicator prop='disabled' tag={tag} icon={faBan} size='lg' className='absolute top-0 right-0 text-white bg-black' title='Field is disabled.' />
-            <Indicator
+            <Indicator prop='disabled' tag={tag} icon={faBan} size='lg' className='text-white bg-black ' title='Field is disabled.' id={id} />
+            {/* <Indicator
                 prop='invalid'
                 tag={tag}
                 icon={faShieldXmark}
                 size='lg'
                 className='absolute top-0 right-0 text-white bg-magenta'
                 title='Field is not valid.'
-            />
+            /> */}
             <Indicator
                 prop='local'
                 tag={tag}
                 icon={faCalculatorAlt}
                 size='lg'
-                className='absolute top-0 right-0 text-white bg-blue'
+                className='text-white bg-blue'
                 title='Field is calculated.'
+                id={id}
             />
-        </>
+        </div>
     );
 }

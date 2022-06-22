@@ -10,6 +10,8 @@ import { faMessagePlus, faPlusSquare, faTrashCan } from '@fortawesome/pro-duoton
 import { usePreventDefault } from '../../hooks/usePreventDefault';
 import ReactDOM from 'react-dom';
 import { toTitleCase } from '../../common';
+import { isNil } from '../../common/isNotNull';
+import { Results } from 'realm';
 
 export function initialDictionary<TKey extends string, TValue>(keyMap: Record<string, string>, defaultValue?: Record<TKey, TValue | null>) {
     return function () {
@@ -176,30 +178,39 @@ export function DatalistEle(props: { list: string; register: RegisterFunction } 
         </>
     );
 }
+
+export function lookup(realm: Realm, table: string,   optLabel: string, optValue = '_id', format?: (x: any) => any,...filter: string[]) {
+     const objs = isNil(table) ? realm.objects('self-storage').filtered('name == $0', '') : realm.objects(table);
+     const objs2 = filter.length > 0 ? filter.length === 1 ? objs.filtered(filter[0]) : objs.filtered(filter[0], filter[1]) : objs;
+     return format ? objs.map((x: any) => ({ ...x, [optValue]: format(x[optLabel ?? ''])})) as any as Realm.Results<any> : objs;
+}
 export function LookupEle(props: { register: RegisterFunction } & IDefinitionProps) {
     const realm = useLocalRealm();
-    const { name, register, defaultValue, init, lookupTable, optionLabel, optionValue, enumMap, sort, filter, ...remain } = props;
+    const { name, register, defaultValue, init, lookupTable, optionLabel, optionValue, enumMap, sort, filter, toOutput, ...remain } = props;
+    console.log(`LookupEle`, lookupTable, toOutput)
     const $defaultValue = defaultValue ?? (init == null ? null : init());
     const spread = $cn(remain, {}, 'peer');
     console.log(`lookup`, lookupTable, optionValue, optionLabel);
-    const data = useMemo(() => (lookupTable ? realm.objects<Record<string, any>>(lookupTable ?? '').snapshot() : undefined), [lookupTable, realm]);
-    console.log(data);
+    const data = lookup(realm, lookupTable ?? '', optionLabel ?? '', optionValue, toOutput, ...filter ?? []);
+    console.log(`LookupEle`, lookupTable, data, toOutput);
+
+    // console.log(data);
     const map = useMemo(
         () =>
             enumMap && getProps(enumMap).length > 0
                 ? [['', 'Choose from...'], ...Object.entries(enumMap)]
                 : [
                       ['', 'Choose from...'],
-                      ...((filter ? data?.filtered(filter) : data)
-                          ?.map((x) => [x[optionValue ?? ''], x[optionLabel ?? '']] as [string, string])
+                      ...((filter ? filter.length === 1 ? data?.filtered(filter[0]) : filter.length === 0 ? data : data?.filtered(filter[0], filter[1]) : data)
+                          ?.map((x) => [x[optionValue ?? ''], toOutput ? toOutput(x[optionLabel ?? '']) : x[optionLabel ?? '']] as [string, string])
                           ?.sort((a, b) => (a[1] < b[1] ? -1 : a[1] > b[1] ? 1 : 0)) ?? [])
                   ],
-        [data, enumMap, filter, optionLabel, optionValue]
+        [data, enumMap, filter, optionLabel, optionValue, toOutput]
     );
     console.log(`map`, map);
     return (
-        <select autoComplete='' defaultValue={$defaultValue} {...register(name, spread)}>
-            {useMemo(() => map.map(([value, label]) => <option key={value} value={value} label={label} />), [map])}
+        <select defaultValue={$defaultValue} {...register(name, spread)}>
+            {useMemo(() => map.map(([value, label]) => <option key={value} value={value} label={toOutput ? toOutput(label) : label} />), [map, toOutput])}
         </select>
     );
 }

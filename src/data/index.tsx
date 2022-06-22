@@ -1,7 +1,7 @@
 ///<reference path="./../global.d.ts" />
 /* eslint-disable @typescript-eslint/no-this-alias */
 /* eslint-disable @typescript-eslint/no-namespace */
-import { ObjectSchema } from 'realm';
+import { ObjectClass, ObjectSchema } from 'realm';
 import { ObjectId } from 'bson';
 import { AuctionSites } from './enums/auctionSite';
 import { isLower, isUpper } from '../common/text';
@@ -88,7 +88,6 @@ export namespace Admin {
                 }
             }
         };
-        
     }
     export class User {}
 }
@@ -447,15 +446,14 @@ export namespace Files {
             primaryKey: '_id',
             properties: {
                 _id: $.objectId,
-                fsAlloc: $.fsAlloc
+                name: $.string,
+                mimetype: $.optional.string,
+                docType: $.string,
+                data: $.data,
+                pages: $.optional.int,
+                product: $.product
             }
         };
-        _id: ObjectId;
-        fsAlloc?: FileAlloc;
-        product?: LinkedObject<Products.Product>;
-        constructor() {
-            this._id = new ObjectId();
-        }
     }
 }
 
@@ -520,11 +518,7 @@ export namespace Inventory {
                 valid: $.bool,
                 type: $.optional.string,
                 description: $.optional.string,
-                bin: {
-                    type: $.linkingObjects,
-                    objectType: $.bin,
-                    property: 'barcode'
-                },
+                bin: $.bin,
                 fixture: {
                     type: $.linkingObjects,
                     objectType: $.fixture,
@@ -565,9 +559,7 @@ export namespace Inventory {
             if ((this as any).type === 'ASIN' || (this as any).type === 'ELID' || (this as any).type == null) return undefined;
             const [actual, ...remain] = (this as any).barcode.padStart(13, '0').split('').reverse();
             const head = remain.reverse();
-            const summed = [1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3]
-                .map((x: number, ix: number) => parseInt(head[ix], 10) * x)
-                .reduce((pv: number, cv: number) => pv + cv, 0);
+            const summed = [1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3].map((x: number, ix: number) => parseInt(head[ix], 10) * x).reduce((pv: number, cv: number) => pv + cv, 0);
             const modulo = summed % 10;
             const subtracted = 10 - modulo;
             const expected = subtracted === 10 ? 0 : subtracted;
@@ -601,7 +593,7 @@ export namespace Inventory {
                 name: $.string,
                 barcode: $.barcode,
                 notes: $.optional.string,
-                location: 'location',   
+                location: 'location',
                 bins: {
                     type: $.linkingObjects,
                     objectType: $.bin,
@@ -619,7 +611,12 @@ export namespace Inventory {
                 name: $.string,
                 barcode: $.barcode,
                 notes: $.optional.string,
-                fixture: $.fixture
+                fixture: $.fixture,
+                skus: {
+                    type: $.linkingObjects,
+                    objectType: $.barcode,
+                    property: 'bin'
+                }
             }
         };
     }
@@ -666,25 +663,17 @@ export namespace Inventory {
                     type: $.linkingObjects,
                     objectType: 'photo',
                     property: 'item'
-                }
+                },
+                includes: $.listOf.string,
+                linkedWith: $.listOf.product,
+                disposition: $.optional.string,
+                itemWeight: $.optional.double,
+                packagingWeight: $.optional.double,
+                totalWeight: $.optional.double,
+                narrative: $.optional.string,
+                title: $.optional.string
             }
         };
-        _id: ObjectId;
-        product?: Products.Product;
-        colors: string[];
-        condition: Conditions;
-        defects: string[];
-        features: string[];
-        tested?: Date;
-        barcode?: Inventory.Barcode;
-        draft?: Listings.Draft;
-        constructor() {
-            this._id = new ObjectId();
-            this.colors = [];
-            this.condition = 'Likenew';
-            this.defects = [];
-            this.features = [];
-        }
     }
 }
 
@@ -695,25 +684,39 @@ export namespace Listings {
             primaryKey: '_id',
             properties: {
                 _id: $.objectId,
-                marketplace: { type: $.string, default: 'mercari.com' }
+                marketplace: { type: $.string, default: 'mercari.com' },
+                listingId: $.optional.string,
+                item: $.item,
+                drafted: $.date,
+                posted: $.date,
+                priceHistory: $.listOf.sellingPrice,
+                rate: $.shippingRate
             }
         };
     }
     export class SellingPrice {
         static schema: ObjectSchema = {
-            name: $.bin,
+            name: $.sellingPrice,
             primaryKey: '_id',
             properties: {
-                _id: $.objectId
+                _id: $.objectId,
+                effective: $.date,
+                price: $.double,
+                floor: $.optional.double
             }
         };
     }
     export class ShippingRate {
         static schema: ObjectSchema = {
-            name: $.bin,
+            name: $.shippingRate,
             primaryKey: '_id',
             properties: {
-                _id: $.objectId
+                _id: $.objectId,
+                carrier: $.string,
+                serviceType: $.optional.string,
+                price: $.double,
+                shipWeight: $.double,
+                transit: $.optional.string
             }
         };
     }
@@ -726,7 +729,7 @@ export namespace Materials {
             embedded: true,
             properties: {
                 name: $.string,
-                percent: { type: $.double, default: 1.0 }
+                percent: { type: $.double, default: 100 }
             }
         };
     }
@@ -780,149 +783,6 @@ export namespace Materials {
     //     }
     // }
 }
-    
-export namespace Pipelines {
-    export function addToLabelPrintQueue(realm: Realm, barcode: IBarcode) {
-        const fixture = realm.objects<IBarcode>('barcode').filtered('@links.fixture.@count === 1');
-        const bin = realm.objects<IBarcode>('barcode').filtered('@links.bin.@count === 1');
-        console.log(`fixture barcodes`, fixture);
-        console.log(`bin barcodes`, bin);
-
-        const _id = new ObjectId();
-        if (fixture.filtered('barcode == $0', barcode.barcode).length > 0) {
-            const item = realm.objects<IFixture>('fixture').filtered('barcode == $0', barcode)[0];
-            realm.write(() => {
-                realm.create('label-print-queue', {
-                    _id,
-                    name: item.name,
-                    barcode,
-                    notes: item.notes,
-                    type: 'fixture'
-                });
-            });
-        }
-        if (bin.filtered('barcode == $0', barcode.barcode).length > 0) {
-            const item = realm.objects<IBin>('bin').filtered('barcode == $0', barcode)[0];
-            realm.write(() => {
-                realm.create('label-print-queue', {
-                    _id,
-                    name: item.name,
-                    barcode,
-                    notes: item.notes,
-                    type: 'bin'
-                });
-            });
-        }
-    }
-    export class LabelPrintQueue {
-        static schema: ObjectSchema = {
-            name: 'label-print-queue',
-            primaryKey: '_id',
-            properties: {
-                _id: $.objectId,
-                barcode: $.barcode,
-                name: $.string,
-                notes: $.string,
-                type: $.string
-            }
-        };
-    }
-}
-
-// export namespace Pipelines {
-//     export class BarcodePipeline {
-//         static schema: ObjectSchema = {
-//             name: $.barcodePipeline,
-//             primaryKey: '_id',
-//             properties: {
-//                 _id: $.objectId,
-//                 barcode: $.barcode,
-//                 timestamp: $.int,
-//                 user: $.string
-//             }
-//         };
-//         _id: ObjectId;
-//         barcode?: Barcode;
-//         timestamp: number;
-//         user: string;
-//         constructor() {
-//             this._id = new ObjectId();
-//             this.timestamp = Date.now();
-//             this.user = getCurrentPartitionValue();
-//         }
-//     }
-//     /**
-//      * @description
-//      * @author Robert Kalaf Jr.
-//      * @date 05/19/2022
-//      * @export
-//      * @class DraftPipeline
-//      */
-//     export class DraftPipeline {}
-//     /**
-//      * @description
-//      * @author Robert Kalaf Jr.
-//      * @date 05/19/2022
-//      * @export
-//      * @class ImagePipeline
-//      */
-//     export class ImagePipeline {
-//         static schema: ObjectSchema = {
-//             name: $.imagePipeline,
-//             primaryKey: '_id',
-//             properties: {
-//                 _id: $.objectId,
-//                 photo: $.photo
-//             }
-//         };
-//     }
-//     /**
-//      * @description
-//      * @author Robert Kalaf Jr.
-//      * @date 05/19/2022
-//      * @export
-//      * @class PromotionPipeline
-//      */
-//     export class PromotionPipeline {}
-//     /**
-//      * @description
-//      * @author Robert Kalaf Jr.
-//      * @date 05/19/2022
-//      * @export
-//      * @class SkuPipeline
-//      */
-//     export class SkuPipeline {
-//         static schema: ObjectSchema = {
-//             name: $.skuPipeline,
-//             primaryKey: '_id',
-//             properties: {
-//                 _id: $.objectId,
-//                 sku: $.sku,
-//                 brandText: $.optional.string,
-//                 descriptionText: $.optional.string,
-//                 createdOn: $.optional.date,
-//                 printedOn: $.optional.date
-//             }
-//         };
-//         _id: ObjectId;
-//         sku?: SKU;
-//         brandText?: string;
-//         descriptionText?: string;
-//         createdOn?: Date;
-//         printedOn?: Date;
-//         constructor() {
-//             this.createdOn = now();
-//             this._id = new ObjectId();
-
-//             // TODO finish up grabbing linked data for label
-//             // this.sku?.product.
-//         }
-
-//         markPrinted(): void {
-//             this.printedOn = now();
-//         }
-//     }
-// }
 
 export namespace Products {
     export class Brand {
@@ -944,6 +804,18 @@ export namespace Products {
             }
         };
     }
+    export class TextileRn {
+        static schema: ObjectSchema = {
+            name: 'textile-rn',
+            primaryKey: '_id',
+            properties: {
+                _id: $.objectId,
+                company: $.optional.company,
+                rn: $.optional.int,
+                country: $.optional.string
+            }
+        };
+    }
     export class Company {
         static schema: ObjectSchema = {
             name: $.company,
@@ -961,9 +833,10 @@ export namespace Products {
                     type: $.list,
                     objectType: $.string
                 },
-                rns: {
-                    type: $.list,
-                    objectType: $.int
+                rn: {
+                    type: $.linkingObjects,
+                    objectType: 'textile-rn',
+                    property: 'company'
                 },
                 country: {
                     type: $.list,
@@ -993,7 +866,7 @@ export namespace Products {
         const dim = {
             uom,
             value,
-            remaining: first.length === 0 ? undefined : createNewDim(first[0] as string, first[1] as number, ...additional.slice(1))
+            remaining: first.length === 0 ? undefined : (createNewDim(first[0] as string, first[1] as number, ...additional.slice(1)) as IDimension<TUOM>)
         };
         return dim;
     }
@@ -1067,7 +940,9 @@ export namespace Products {
                 isRare: { type: $.bool, default: false },
                 isAutographed: { type: $.bool, default: false },
                 isSpecialEdition: { type: $.bool, default: false },
-                isDiscontinued: { type: $.bool, default: false }
+                isDiscontinued: { type: $.bool, default: false },
+                isCollectible: { type: $.bool, default: false },
+                isMissingCover: { type: $.bool, default: false }
             }
         };
     }
@@ -1085,18 +960,19 @@ export namespace Products {
                 copyright: $.optional.int,
                 studio: $.optional.string,
                 flags: 'flags',
-                measurements: $.dictionaryOf.measurement,
+                $measures: $.dictionaryOf.dimension,
                 size: $.optional.string,
                 gender: $.optional.string,
                 age: $.optional.string,
-                ageRange: $.optional.string,
+                minAgeFor: $.optional.int,
+                maxAgeFor: $.optional.int,
                 playerCountMin: $.optional.int,
                 playerCountMax: $.optional.int,
                 consoleType: $.optional.string,
                 bookType: $.optional.string,
                 mediaType: $.optional.string,
                 discCount: $.optional.int,
-                pages: $.optional.int,
+                pageCount: $.optional.int,
                 publisher: $.optional.string,
                 pattern: $.optional.string
             }
@@ -1109,20 +985,23 @@ export namespace Products {
             properties: {
                 _id: $.objectId,
                 brand: $.brand,
-                shortDescription: $.string,
+                description: $.string,
                 productLine: $.productLine,
                 dims: $.dictionaryOf.dimension,
                 origin: $.optional.string,
                 birthYear: $.optional.int,
                 barcodes: $.dictionaryOf.barcode,
-                title: $.optional.string,
+                header: $.optional.string,
                 model: $.optional.string,
                 notes: $.optional.string,
                 details: 'details',
                 color: $.optional.string,
-                keywords: $.setOf.string,
                 itemType: $.itemType,
-                links: $.listOf.string
+                productDocs: {
+                    type: $.linkingObjects,
+                    objectType: $.productDocumentation,
+                    property: 'product'
+                }
             }
         };
     }
@@ -1251,6 +1130,31 @@ export function toID(realm: Realm, obj: Record<string, any>, property: string, c
     return realm.objectForPrimaryKey(collection, new ObjectId(obj[property]._id));
 }
 export namespace Scrapes {
+    export class CustomItem {
+        static schema: ObjectSchema = {
+            name: 'custom-item',
+            primaryKey: '_id',
+            properties: {
+                _id: $.objectId,
+                name: $.string,
+                idPrefix: $.optional.string
+            }
+        };
+    }
+    export class CustomItemEntry {
+        static schema: ObjectSchema = {
+            name: 'custom-item-entry',
+            primaryKey: '_id',
+            properties: {
+                _id: $.objectId,
+                customItem: 'custom-item',
+                label: $.optional.string,
+                key: $.optional.string,
+                ordinal: $.optional.int,
+                id: $.optional.string
+            }
+        };
+    }
     export class VerifiedBrand {
         static async convertFrom(
             realm: Realm,
@@ -1450,9 +1354,7 @@ export namespace Storages {
         };
         get name() {
             const obj = this as any;
-            return [obj.selfStorage?.name ?? '', [obj.address.city, obj.address.state].join(', '), obj.address.street?.split(' ').slice(1).join(' ')].join(
-                ' - '
-            );
+            return [obj.selfStorage?.name ?? '', [obj.address.city, obj.address.state].join(', '), obj.address.street?.split(' ').slice(1).join(' ')].join(' - ');
         }
     }
     export class SquareFootage {
@@ -1534,13 +1436,7 @@ export namespace Storages {
         };
         get name() {
             const obj = this as any;
-            return [
-                obj.facility?.selfStorage.name,
-                obj.facility?.address.city,
-                obj.facility?.address.state,
-                obj.facility?.address.street?.split(' ').slice(1).join(' '),
-                obj.unit
-            ].join(' - ');
+            return [obj.facility?.selfStorage.name, obj.facility?.address.city, obj.facility?.address.state, obj.facility?.address.street?.split(' ').slice(1).join(' '), obj.unit].join(' - ');
         }
     }
 }
@@ -1584,15 +1480,6 @@ export type IFieldsetProps = {
     label: string;
 } & FieldsetHTMLAttributes<HTMLFieldSetElement>;
 
-export function FieldsetElement(props: IFieldsetProps) {
-    const { label, children, ...remain } = props;
-    return (
-        <fieldset {...remain}>
-            <legend>{label}</legend>
-            {children}
-        </fieldset>
-    );
-}
 export const controlTypes = {
     Input: Input,
     Radio: Radio,
@@ -1627,7 +1514,7 @@ export const cellTypes = {
 export type CellType = keyof typeof cellTypes;
 export type ControlType = keyof typeof controlTypes;
 
-export const schema = [
+export const schema: ObjectClass[] = [
     Admin.Activity,
     Auctions.Cost,
     Auctions.Purchase,
@@ -1642,6 +1529,8 @@ export const schema = [
     Inventory.Bin,
     Inventory.Item,
     Listings.Draft,
+    Listings.SellingPrice,
+    Listings.ShippingRate,
     Materials.Fabric,
     Materials.Part,
     Materials.RawMaterial,
@@ -1649,15 +1538,17 @@ export const schema = [
     // Materials.Section,
     // Materials.Composition,
     Products.Brand,
+    Products.TextileRn,
     Products.Company,
     Products.Dimension,
     Products.ProductTemplate,
     Products.ItemType,
-    Products.Measurement,
     Products.Product,
     Products.ProductLine,
     Products.Details,
     Products.Flags,
+    Scrapes.CustomItem,
+    Scrapes.CustomItemEntry,
     Scrapes.Category,
     Scrapes.Taxonomy,
     Scrapes.VerifiedBrand,

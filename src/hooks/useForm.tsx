@@ -10,6 +10,7 @@ import { useToggle } from './useToggle';
 import { $currentUser } from '../components/globals';
 import { getProps } from '../data/definitions/getProps';
 import { useToast } from './useToast';
+import { isNotNil } from '../common/isNotNull';
 
 export type ControlOpts = {
     validators?: string[];
@@ -166,7 +167,7 @@ export function useUncontrolledForm<TFormData, TSubmitResult = void>(
                 const formData: Record<string, any> = {};
                 console.log(`owner`, $currentUser()?.profile.email);
                 formData.owner = $currentUser()?.profile.email;
-                temp3.forEach(([n, v]) => {
+                temp3.filter(x => isNotNil(x[1])).forEach(([n, v]) => {
                     if (getProps(formData).includes(n)) {
                         const curv = formData[n];
                         formData[n] = Array.isArray(curv) ? [...curv, v] : [curv, v];
@@ -194,7 +195,7 @@ export function useUncontrolledForm<TFormData, TSubmitResult = void>(
                 }
             };
         },
-        [convertFromFormData, validate]
+        [convertFromFormData, failureToast, validate]
     );
     const onInput = useCallback(
         (ev: React.FormEvent) => {
@@ -214,146 +215,3 @@ export function useUncontrolledForm<TFormData, TSubmitResult = void>(
     }, []);
     return [handleSubmit, register, onInput, isFeedbacking, getFeedback];
 }
-// export function useForm<TFormData, TSubmitResult = undefined>(): [
-//     handleSubmit: (onSubmit: (fd: TFormData) => TSubmitResult) => (ev: React.FormEvent) => void,
-//     register: RegisterFunction,
-//     onInput: (ev: React.FormEvent) => void,
-//     formRef: React.RefObject<HTMLFormElement>,
-//     convertToFormData: (initialValue: Record<string, any>) => void
-// ] {
-//     const formRef = useRef<HTMLFormElement | null>(null);
-//     const realm = useLocalRealm();
-
-//     const [getValidators, subscribeValidators, validators] = useMap<ValidationFunction[]>({});
-//     const [getOutput, subscribeOutput, output] = useMap<(x: any) => any>({});
-//     const [getConvertToFormData, subscribeConvertToFD, convertToFD] = useMap<(x: any, r: Realm) => any>({});
-//     const [getConvertFromFormData, subscribeConvertFromFD, convertFromFD] = useMap<(x: any, r: Realm) => any>({});
-//     const validate = useCallback(
-//         (ev: React.FormEvent) => {
-//             const form = ev.target as HTMLFormElement;
-//             const errors: Record<string, string[]> = {};
-//             console.log(`validate`, validators());
-//             validators().forEach((v, n) => {
-//                 console.log(`validating: ${n}`);
-//                 const value = form.elements.namedItem(n);
-//                 if (value == null) throw new Error('element not found');
-//                 const element = value as DataElement;
-//                 const current = element.value;
-//                 element.setCustomValidity('');
-//                 const valid = element.validity.valid;
-//                 const msg = element.validationMessage;
-//                 const msgs = valid ? v.map((f) => f(current, realm)).filter(isString) : [msg, ...v.map((f) => f(current, realm)).filter(isString)];
-//                 if (msgs.length > 0) errors[n] = msgs;
-//                 if (msgs.length > 0) element.setCustomValidity(msgs.join('\n'));
-//             });
-//             return errors;
-//         },
-//         [realm, validators]
-//     );
-//     const onInput = useCallback(
-//         (ev: React.FormEvent) => {
-//             const form = ev.target as HTMLFormElement;
-//             console.log('oninput', output());
-//             output().forEach((func, n) => {
-//                 const element = form.elements.namedItem(n) as HTMLOutputElement;
-//                 const formData = Object.fromEntries(new FormData(form).entries());
-//                 console.log(`formdata`, formData);
-//                 const newValue = (func as any).bind(formData)();
-//                 console.log(`newValue`, newValue);
-//                 element.value = newValue;
-//             });
-//         },
-//         [output]
-//     );
-//     const convertTo = useCallback(
-//         (value: Record<string, any>) => {
-//             const map = convertToFD();
-//             if (formRef.current == null) {
-//                 console.log('cannot convert');
-//                 return;
-//             }
-//             const form = formRef.current;
-//             map.forEach((func, n) => {
-//                 const element = form.elements.namedItem(n) as DataElement;
-//                 element.value = func(getProperty(n)(value), realm);
-//             });
-//         },
-//         [convertToFD, realm]
-//     );
-//     const convertFrom = useCallback(
-//         (ev: React.FormEvent) => {
-//             const result: Record<string, any> = {};
-//             const form = ev.target as HTMLFormElement;
-//             console.log(`converting`, convertFromFD());
-//             convertFromFD().forEach((func, n) => {
-//                 const element = form.elements.namedItem(n) as DataElement;
-//                 const value = func(element.value, realm);
-//                 setProperty(n)(value)(result);
-//             });
-//             console.log(`result`, result);
-//             return result;
-//         },
-//         [convertFromFD, realm]
-//     );
-
-//     const register = useCallback(
-//         (
-//             name: string,
-//             opts: Omit<IDefinitionProps, 'children' | 'name'>
-//         ): Omit<IDefinitionProps, 'children' | 'validators' | 'convertFromFD' | 'convertToFD' | 'toOutput' | 'pattern'> & { id: string; pattern?: string } => {
-//             console.log('register', name, opts);
-//             const { validators, convertFromFD, convertToFD, toOutput, pattern, ...remain } = opts;
-//             const subs = [];
-//             subscribeValidators(name, validators ?? []);
-//             subscribeConvertFromFD(name, convertFromFD ?? ((x: any, r: Realm) => x));
-//             subscribeConvertToFD(name, convertToFD ?? ((x: any, r: Realm) => x));
-//             if (toOutput) {
-//                 subscribeOutput(name, toOutput);
-//             }
-//             return { ...remain, pattern: pattern?.toString(), name, id: `${name.split('.').reverse()[0]}-control` };
-//         },
-//         [subscribeConvertFromFD, subscribeConvertToFD, subscribeOutput, subscribeValidators]
-//     );
-
-//     const handleSubmit = useCallback(
-//         (
-//             onSubmit: (fd: TFormData) => TSubmitResult
-//             // onSuccess: (result?: TSubmitResult) => void = ignore,
-//             // onFailure: (result?: Error) => void = ignore
-//         ) => {
-//             return function (ev: React.FormEvent) {
-//                 console.log('submit event', ev);
-//                 ev.preventDefault();
-//                 ev.stopPropagation();
-//                 try {
-//                     if (formRef.current == null) throw new Error('formref not set');
-//                     const errs = validate(ev);
-//                     console.log(`errs`, errs);
-//                     const isvalid = Object.getOwnPropertyNames(errs).length === 0;
-//                     console.log(`isvalid`, isvalid);
-//                     if (!isvalid) {
-//                         console.log('did not pass validation');
-//                         return;
-//                     }
-//                     const data = convertFrom(ev) as TFormData;
-//                     console.log(`data`, data);
-//                     const result = onSubmit(data);
-//                     console.log('result', result);
-//                     return result;
-//                     // result.then(onSuccess).catch(onFailure);
-//                 } catch (error) {
-//                     console.error((error as any).message);
-//                     process.stdout.write((error as any).message);
-//                     throw error;
-//                 }
-//             };
-//         },
-//         [convertFrom, validate]
-//     );
-
-//     return [handleSubmit, register, onInput, formRef, convertTo];
-// }
-
-// const str = 'const x = this.address.city + this.selfStorage.name + this.state';
-// const reg = /^this[.]((\w.)+\w*)$/g;
-// console.log(str.split(' ').map(x => x.replace(reg, 'dd.$1.value')).join(' '));

@@ -1,3 +1,5 @@
+import { toTitleCase } from '../../common';
+
 export const colors = {
     black: 'select-opt-0',
     grey: 'select-opt-1',
@@ -14,4 +16,6 @@ export const colors = {
     gold: 'select-opt-12',
     silver: 'select-opt-13'
 };
+
+export const colorsSelect = Object.fromEntries(Object.getOwnPropertyNames(colors).map(x => [x, toTitleCase(x)]));
 export type Colors = keyof typeof colors;

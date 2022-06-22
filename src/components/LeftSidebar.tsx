@@ -17,15 +17,15 @@ export function LeftSidebar() {
         'h-full resize-x bg-black/80 text-white rounded-r-lg border border-white left-0 top-0 w-1/4'
     );
     const location = useLocation();
-    useEffect(() => {
-        if (location.pathname.startsWith('/data')) {
-            appendContents(<NavMenu />);
-            return () => popContents();
-        } else {
-            if (contents.length > 0) {
-                popContents();
-            }
-        }
-    }, [appendContents, contents.length, location.pathname, popContents]);
+    // useEffect(() => {
+    //     if (location.pathname.startsWith('/data')) {
+    //         appendContents(<NavMenu />);
+    //         return () => popContents();
+    //     } else {
+    //         if (contents.length > 0) {
+    //             popContents();
+    //         }
+    //     }
+    // }, [appendContents, contents.length, location.pathname, popContents]);
     return <aside {...props}>{contents}</aside>;
 }

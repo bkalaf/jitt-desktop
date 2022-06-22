@@ -8,7 +8,8 @@ import { lengthUOMS } from '../enums';
 import { LookupEle } from '../definitions/LookupEle';
 import { FormControl } from '../definitions/FormControl';
 import { InputEle } from '../definitions/InputEle';
-import { TypeDefinitionFunction, OutputEle } from '../definitions/index';
+import { TypeDefinitionFunction } from '../definitions/index';
+import { OutputEle } from "../definitions/OutputEle";
 
 export function RentalUnitDefinition({ children }: { children: TypeDefinitionFunction<{}>; }) {
     const realm = useLocalRealm();

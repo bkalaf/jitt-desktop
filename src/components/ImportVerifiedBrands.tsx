@@ -1,7 +1,6 @@
 import { useCallback, useEffect } from 'react';
 import { fst } from '../common';
 import { files } from '../config';
-import { Scrapes } from '../data';
 import { useLog } from "../hooks/useLog";
 import { readFile } from '../common/fs/readFile';
 import { useLocalRealm } from '../hooks/useLocalRealm';

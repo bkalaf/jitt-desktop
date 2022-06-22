@@ -76,7 +76,7 @@ export function GalleryPhoto({ deleteMutation, filename }: { deleteMutation: Use
                 <>
                     <option value='' label='Assign to item...' />,
                     {...realm.objects<IItem>('item').map((x) => {
-                        <option key={x._id.toHexString()} value={x._id.toHexString()} label={[x.product.brand?.name, x.product.shortDescription].join(': ')} />;
+                        <option key={x._id.toHexString()} value={x._id.toHexString()} label={[x.product.brand?.name, x.product.description].join(': ')} />;
                     })}
                 </>
             </select>

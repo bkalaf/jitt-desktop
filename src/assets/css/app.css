@@ -26,14 +26,12 @@
     @apply bg-lime;
 }
 
-
-
 .network-offline {
     @apply bg-red;
 }
 
-.navigation-details {
-    list-style: ;
+.disclosure-square {
+    list-style: square;
 }
 
 .theme-primary {

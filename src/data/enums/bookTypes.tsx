@@ -1,8 +1,8 @@
 export const bookTypes = {
-    PB: 'paperback',
-    HB: 'hardback',
-    BB: 'boardbook',
-    TB: 'textbook'
+    PB: 'Paperback',
+    HB: 'Hardback',
+    BB: 'Board-Book',
+    TB: 'Textbook'
 };
 
 export type BookType = keyof typeof bookTypes;

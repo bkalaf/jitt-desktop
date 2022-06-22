@@ -41,29 +41,3 @@ export function infoCtor2(kind: 'complex-type', name: string, embedded: boolean,
 export function infoCtor3(kind: 'list-type', name: string, listType: 'list' | 'set' | 'dictionary' | 'linkingObjects'): IListType {
     return { kind, name, listType };
 }
-console.log(
-    Field.$new('street')
-        .ofString()
-        .$('suite')
-        .ofString()
-        .$('city')
-        .ofString()
-        .asReq()
-        .$('state')
-        .setEnum(provinces)
-        .asReq()
-        .setDefault('CA')
-        .$('country')
-        .setEnum(countries)
-        .asReq()
-        .setDefault('US')
-        .$('postalCode')
-        .ofString(false, /^[0-9]{5}([-]?[0-9]{4})?$|^[A-Za-z][0-9][A-Za-z][-]?[0-9][A-Za-z][0-9]$/)
-        .$$()
-        .map((x) => ({
-            name: x.name,
-            datatype: x.datatype,
-            required: x.required,
-            enumMap: x.enumMap
-        }))
-);

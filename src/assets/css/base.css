@@ -4,8 +4,8 @@
     label {
         @apply text-xl font-bold font-fira-sans before:content-["__"] text-white whitespace-pre flex;
     }
-    input {
-        @apply flex my-1 ml-3 text-lg font-normal rounded-lg shadow-md font-fira-sans shadow-black;
+    input, select, textarea {
+        @apply flex mx-2 my-1 text-lg font-normal rounded-lg shadow-lg font-fira-sans shadow-cyan;
     }
     /* input[type="text"] {
         font-family: "Patrick Hand" !important;
@@ -22,11 +22,17 @@
     }
 
     fieldset {
-        @apply relative bg-amber/75 pb-2 px-1 py-0.5 sm:col-span-2 md:col-span-3 xl:col-span-4 grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3 justify-center min-w-full;
+        @apply border rounded-lg bg-teal-dark;
     }
-
+    
+    fieldset > div > div > label {
+        @apply text-black;
+    }
+    fieldset > fieldset {
+        @apply mt-3 ml-3;
+    }
     legend {
-        @apply min-w-full px-2 text-xl font-bold text-white bg-black shadow-xl rounded-xl font-fira-sans;
+        @apply min-w-full px-2 text-xl font-bold text-white shadow-xl bg-blue-dark rounded-xl shadow-black font-fira-sans;
     }
 
     form > header {
@@ -37,24 +43,24 @@
         @apply grid grid-cols-2 text-black border-2 border-black sm:md:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-2 bg-stone-light/50 font-fira-sans;
     }
 
-    form > div.field,
+    /* form > div.field,
     fieldset > div.field {
         @apply relative flex flex-col-reverse justify-center p-1 pb-4 bg-white/75;
-    }
-
+    } */
+    
     form > footer {
         @apply sm:md:col-span-3 xl:col-span-4;
     }
 
-    div.field > label {
-        @apply font-fira-sans text-xl font-bold ml-4 mb-0.5 min-w-full text-left;
-    }
+    /* div.field > label {
+        @apply font-fira-sans text-xl font-bold ml-4 mb-0.5 text-left;
+    } */
 
-    div.field > input,
+    /* div.field > input,
     select,
     textarea {
-        @apply font-fira-sans font-semibold py-1 px-3 whitespace-pre before:content-["_"] border border-neutral/75 shadow-lg shadow-blue-dark rounded-lg transition-all duration-700 delay-75 ease-in-out hover:ring-2 hover:ring-amber flex min-w-full placeholder:text-pink-light/50 text-blue-dark hover:scale-105 transform;
-    }
+        @apply font-fira-sans font-semibold py-1 px-3 whitespace-pre before:content-["_"] border border-neutral/75 shadow-lg shadow-blue-dark rounded-lg transition-all duration-700 delay-75 ease-in-out hover:ring-2 hover:ring-amber flex placeholder:text-pink-light/50 text-blue-dark hover:scale-105 transform;
+    } */
 
     div.field > input.calculated {
         @apply min-w-full px-3 py-1 font-medium border rounded-lg shadow-lg font-fira-sans border-neutral/75 shadow-sky-very-dark bg-cyan-light;

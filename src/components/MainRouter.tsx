@@ -20,7 +20,7 @@ import { AdminMenu } from './AdminMenu';
 import * as Webdriver from 'webdriverio';
 import { ModernGrid } from '../data/ModernGrid';
 import { Headers } from '../data/Headers';
-import { Inventory, Products, Storages } from '../data';
+import { Inventory, Products } from '../data';
 import { DefinedType } from '../data/definitions';
 import { SelfStorageDefinition } from '../data/collections/SelfStorageDefinition';
 import { FacilityDefinition } from '../data/collections/FacilityDefinition';
@@ -51,6 +51,8 @@ import { PhotoGrid } from './photos/PhotoGrid';
 import { ProductInsert } from './product';
 import { ProductLineDefinition } from '../data/collections/ProductLineDefinition';
 import { LocationDefinition } from '../data/collections/LocationDefinition';
+import { InsertProductForm } from './product/insertForm';
+import { MasterView } from './product/master';
 export type RealmTypes = 'objectId' | 'uuid' | 'string' | 'bool' | 'int' | 'double' | 'float' | 'decimal128' | 'object' | 'list' | 'dictionary' | 'set' | 'date' | 'data' | 'linkingObjects';
 
 export function FilePreview({ resource, file }: { resource: () => Promise<ArrayBuffer>; file: File }) {
@@ -279,9 +281,9 @@ export function MainRouter({ reader, realm }: { reader: DataOrModifiedFn<Webdriv
                     <Route path='v1'>
                         <Route path='product'>
                             <Route path='new'>
-                                <Route index element={<ProductInsert />} />
+                                <Route index element={<MasterView />} />
                             </Route>
-                            <Route index element={<></>} />
+                            <Route index element={<Navigate to='new' />} />
                         </Route>
                         <Route path='photo'>
                             <Route path='new'>
