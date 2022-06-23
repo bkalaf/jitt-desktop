@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { ObjectId } from 'bson';
 import { isNil, isNotNil } from '../../common/isNotNull';
-import { useLocalRealm } from '../../hooks/useLocalRealm';
+import useLocalRealm from '../../hooks/useLocalRealm';
 import { MediaType, mediaTypes } from '../../data/enums/mediaTypes';
 import { UsedBarcode } from '../../data/collections/BarcodeDefinition';
 import { useUncontrolledForm } from '../../hooks/useForm';
@@ -9,51 +9,140 @@ import { identity, setProperty } from '../../common';
 import { FormProvider } from '../providers/FormProvider';
 import { Control } from '../forms/Control';
 import { faKey } from '@fortawesome/pro-duotone-svg-icons';
-import { BSON } from 'realm';
+import { BSON, SortDescriptor } from 'realm';
 import { InputEle } from '../../data/definitions/InputEle';
 import { LookupEle } from '../../data/definitions/LookupEle';
 import { Boundary } from '../grid/Boundary';
 import { countries } from '../../data/enums/country';
 import { colorsSelect } from '../../data/enums/colors';
 import { Grouping } from './Grouping';
+import { weightUOMS, weightUOMSSelect } from '../../data/enums/weightUOMS';
 
-export function convertMaster(fd: FormData) {
+export const tryFD = (formData: FormData, propName: string) => {
+    const result = formData.get(propName);
+    const kind = typeof result;
+    return isNil(result) ? undefined : kind === 'string' ? (result as string) : result.toString();
+};
+export const tryLookupPK = function <TEntity extends { _id: ObjectId }>(realm: Realm, collection: string, id?: string, filterFunc?: string, ...filterVars: any[]) {
+    if (isNil(id)) return undefined;
+    return realm.objectForPrimaryKey<TEntity>(collection, new ObjectId(id));
+};
+
+export const tryLookup = (realm: Realm, collection: string, sortDescriptor: SortDescriptor[], filterFunc: string, ...filterVars: any[]) =>
+    realm
+        .objects(collection)
+        .filtered(filterFunc, ...filterVars)
+        .sorted(sortDescriptor);
+
+export const getInt = (formData: FormData, propName: string) => parseInt(formData.get(propName)?.toString() ?? '0', 10);
+export const getText = (formData: FormData, propName: string) => formData.get(propName)?.toString();
+export function convertMaster(realm: Realm, fd: FormData) {
     return {
         _id: isNil(fd.get('_id')) ? new ObjectId() : new ObjectId(fd.get('_id')?.toString()),
-        header: fd.get('header'),
-        description: fd.get('description'),
-        notes: fd.get('notes')
+        brand: tryLookupPK<IBrand>(realm, 'brand', tryFD(fd, 'brand')),
+        productLine: tryLookupPK<IProductLine>(realm, 'product-line', tryFD(fd, 'productLine')),
+        itemType: tryLookupPK<IItemType>(realm, 'item-type', tryFD(fd, 'itemType')),
+        header: getText(fd, 'header'),
+        description: getText(fd, 'description'),
+        notes: getText(fd, 'notes'),
+        barcodes: {
+            upc: tryLookupPK<IBarcode>(realm, 'barcode', tryFD(fd, 'barcodes.upc')),
+            isbn: tryLookupPK<IBarcode>(realm, 'barcode', tryFD(fd, 'barcodes.isbn')),
+            asin: tryLookupPK<IBarcode>(realm, 'barcode', tryFD(fd, 'barcodes.asin'))
+        },
+        dims: {
+            weight: {
+                value: getInt(fd, 'dims.weight.value'),
+                uom: getText(fd, 'dims.weight.uom'),
+                remaining: {
+                    value: getInt(fd, 'dims.weight.remaining.value'),
+                    uom: getText(fd, 'dims.weight.remaining.uom')
+                }
+            },
+            length: {
+                value: getInt(fd, 'dims.length.value'),
+                uom: getText(fd, 'dims.length.uom'),
+                remaining: {
+                    value: getInt(fd, 'dims.length.remaining.value'),
+                    uom: getText(fd, 'dims.length.remaining.uom')
+                }
+            },
+            width: {
+                value: getInt(fd, 'dims.width.value'),
+                uom: getText(fd, 'dims.width.uom'),
+                remaining: {
+                    value: getInt(fd, 'dims.width.remaining.value'),
+                    uom: getText(fd, 'dims.width.remaining.uom')
+                }
+            },
+            height: {
+                value: getInt(fd, 'dims.height.value'),
+                uom: getText(fd, 'dims.height.uom'),
+                remaining: {
+                    value: getInt(fd, 'dims.height.remaining.value'),
+                    uom: getText(fd, 'dims.height.remaining.uom')
+                }
+            }
+        }
     };
 }
 
 export function _MasterView() {
+    console.group('MasterView');
     const realm = useLocalRealm();
 
-    const [_id, setId] = useState(new ObjectId().toHexString());
+    const [_id, setId] = useState<ObjectId>(new ObjectId());
+    console.log('_id', _id);
+
+    // Base Product Attributes
     const [header, setHeader] = useState('');
     const [description, setDescription] = useState('');
-    const [itemTypeId, setItemTypeId] = useState('');
-    const [itemTypeName, setItemTypeName] = useState('');
     const [origin, setOrigin] = useState('');
     const [color, setColor] = useState('');
+
+    // Foreign Keys
     const [brandId, setBrandId] = useState('');
     const [productLineId, setProductLineId] = useState('');
+    const [itemTypeId, setItemTypeId] = useState('');
+    const [upcId, setUpcId] = useState('');
+    const [asinId, setAsinId] = useState('');
+    const [isbnId, setIsbnId] = useState('');
 
+    // Foreign Key Lookups
+    const [itemTypeName, setItemTypeName] = useState('');
+    const [upcBarcode, setUpcBarcode] = useState('');
+    const [asinBarcode, setAsinBarcode] = useState('');
+    const [isbnBarcode, setIsbnBarcode] = useState('');
+
+    console.log('brandId', brandId, 'productLineId', productLineId, 'itemTypeId', itemTypeId, 'itemTypeName', itemTypeName);
+    console.log('upcId', upcId, 'isbnId', isbnId, 'asinId', asinId);
+    console.log('upc', upcBarcode, 'isbn', isbnBarcode, 'asin', asinBarcode);
+
+    // Details
     const [mediaType, setMediaType] = useState<keyof typeof mediaTypes | undefined>(undefined);
     const [bookType, setBookType] = useState('');
     const [gameType, setGameType] = useState('');
+    console.log('mediaType', mediaType);
 
     const [weight, setWeight] = useState<Partial<IDimension<string>>>({});
     const [length, setLength] = useState<Partial<IDimension<string>>>({});
     const [width, setWidth] = useState<Partial<IDimension<string>>>({});
     const [height, setHeight] = useState<Partial<IDimension<string>>>({});
 
-    const [upcId, setUpcId] = useState('');
-    const [upcBarcode, setUpcBarcode] = useState('');
-    const [asinId, setAsinId] = useState('');
-    const [asinBarcode, setAsinBarcode] = useState('');
-    const [isbnId, setIsbnId] = useState('');
-    const [isbnBarcode, setIsbnBarcode] = useState('');
+    const onDimValueChange = useCallback((ev: React.ChangeEvent<HTMLInputElement>) => {
+        setWeight((prev) => {
+            const el = ev.target as HTMLInputElement;
+            const result = setProperty(el.name)(ev.target.valueAsNumber)(prev);
+            return result;
+        });
+    }, []);
+    const onDimUOMChange = useCallback((ev: React.ChangeEvent<HTMLSelectElement>) => {
+        setWeight((prev) => {
+            const el = ev.target as HTMLSelectElement;
+            const result = setProperty(el.name)(ev.target.value)(prev);
+            return result;
+        });
+    }, []);
     const onUpcChange = useCallback((ev: React.ChangeEvent<HTMLSelectElement>) => {
         setUpcId(ev.target.value);
     }, []);
@@ -64,23 +153,21 @@ export function _MasterView() {
         setIsbnId(ev.target.value);
     }, []);
     useEffect(() => {
+        if (isNil(asinId)) return;
         const barcode = realm.objectForPrimaryKey<IBarcode>('barcode', new ObjectId(asinId));
         setAsinBarcode(barcode?.barcode ?? '');
     }, [asinId, realm]);
     useEffect(() => {
+        if (isNil(upcId)) return;
         const barcode = realm.objectForPrimaryKey<IBarcode>('barcode', new ObjectId(upcId));
         setUpcBarcode(barcode?.barcode ?? '');
     }, [realm, upcId]);
     useEffect(() => {
+        if (isNil(isbnId)) return;
         const barcode = realm.objectForPrimaryKey<IBarcode>('barcode', new ObjectId(isbnId));
-        setUpcBarcode(barcode?.barcode ?? '');
+        setIsbnBarcode(barcode?.barcode ?? '');
     }, [realm, isbnId]);
-    function UPC() {
-        return <UsedBarcode barcode={upcBarcode} />;
-    }
-    function ASIN() {
-        return <UsedBarcode barcode={asinBarcode} />;
-    }
+
     const options = useMemo(
         () => ({
             upc: Array.from(
@@ -119,8 +206,9 @@ export function _MasterView() {
         [brandId, realm]
     );
 
-    const onBrandChange = useCallback(() => {
+    const onBrandChange = useCallback((ev: React.ChangeEvent<HTMLSelectElement>) => {
         setProductLineId('');
+        setBrandId(ev.target.value);
     }, []);
     const checkMediaType = useCallback((newvalue: MediaType | undefined) => {
         setMediaType((prev) => {
@@ -152,22 +240,22 @@ export function _MasterView() {
                     const game = realm.objects<{ _id: ObjectId }>('item-type').filtered('name BEGINSWITH[c] $0', 'Media - Game')[0];
                     switch (mediaType) {
                         case 'cd': {
-                            setItemTypeId(music._id.toHexString());
+                            checkItemType(music._id.toHexString());
                             break;
                         }
                         case 'vhs':
                         case 'dvd':
                         case 'blu':
                         case 'ld': {
-                            setItemTypeId(video._id.toHexString());
+                            checkItemType(video._id.toHexString());
                             break;
                         }
                         case 'book': {
-                            setItemTypeId(book._id.toHexString());
+                            checkItemType(book._id.toHexString());
                             break;
                         }
                         case 'game': {
-                            setItemTypeId(game._id.toHexString());
+                            checkItemType(game._id.toHexString());
                             break;
                         }
 
@@ -187,7 +275,7 @@ export function _MasterView() {
                     break;
             }
         },
-        [checkMediaType, itemTypeName, mediaType, realm]
+        [checkItemType, checkMediaType, itemTypeName, mediaType, realm]
     );
     const onItemTypeChange = useCallback(
         (ev: React.ChangeEvent<HTMLSelectElement>) => {
@@ -228,10 +316,12 @@ export function _MasterView() {
         }
     }, [isbnBarcode, itemTypeId, realm]);
 
+    console.groupEnd();
+
     return (
         <FormProvider register={register} isFeedbacking={isFeedbacking} getFeedback={getFeedback}>
             <form className='grid w-full grid-cols-5 border-2 rounded-lg shadow-lg border-cyan shadow-white'>
-                <div className='flex flex-col'>
+                <Grouping clusterName='Core'>
                     <Control
                         name='_id'
                         label='ID'
@@ -248,23 +338,21 @@ export function _MasterView() {
                     />
                     <Control El={LookupEle} enumMap={countries} name='origin' label='Country of Origin' />
                     <Control El={LookupEle} enumMap={colorsSelect} name='color' label='Color' />
-                </div>
-                <fieldset className='flex flex-col p-1 bg-transparent border-black border-dashed rounded-lg indent-2 space-y-0.5'>
-                    <legend className='p-1 mx-2 text-lg font-bold indent-2 font-fira-sans'>Branding</legend>
-                    <Control name='brand' El={LookupEle} lookupTable='brand' optionLabel='name' label='Brand' optionValue='_id' />
+                </Grouping>
+                <Grouping clusterName='Product Branding'>
+                    <Control name='brand' El={LookupEle} lookupTable='brand' optionLabel='name' label='Brand' optionValue='_id' onChange={onBrandChange} />
                     {isEnabled.productLine && (
                         <Control name='productLine' El={LookupEle} label='Line' lookupTable='product-line' optionLabel='name' optionValue='_id' filter={['brand._id == $0', new ObjectId(brandId) as any]} />
                     )}
                     <Control El={InputEle} type='text' label='Model #' name='model' />
-                </fieldset>
-                <fieldset className='flex flex-col p-1 bg-transparent border-black border-dashed rounded-lg indent-2 space-y-0.5'>
-                    <legend className='p-1 mx-2 text-lg font-bold text-white border border-double rounded-lg indent-2 font-fira-sans bg-rose-dark border-pink'>Identifiers</legend>
-                    {isNotNil(upcBarcode) && (
+                </Grouping>
+                <Grouping clusterName='Identifiers'>
+                    {isNil(upcBarcode) && (
                         <Control
                             name='barcodes.upc'
                             El={LookupEle}
                             lookupTable='barcode'
-                            filter={['type == $0 OR type == $1', 'UPCE', 'EAN']}
+                            filter={['type == $0 OR type == $1', 'UPCE', 'EAN13']}
                             sort={[['barcode', false]]}
                             optionLabel='barcode'
                             optionValue='_id'
@@ -273,7 +361,7 @@ export function _MasterView() {
                         />
                     )}
                     {isNotNil(upcBarcode) && <UsedBarcode barcode={upcBarcode} />}
-                    {isNotNil(isbnBarcode) && (
+                    {isNil(isbnBarcode) && (
                         <Control
                             name='barcodes.isbn'
                             El={LookupEle}
@@ -287,7 +375,7 @@ export function _MasterView() {
                         />
                     )}
                     {isNotNil(isbnBarcode) && <UsedBarcode barcode={isbnBarcode} />}
-                    {isNotNil(asinBarcode) && (
+                    {isNil(asinBarcode) && (
                         <Control
                             name='barcodes.asin'
                             El={LookupEle}
@@ -301,11 +389,22 @@ export function _MasterView() {
                         />
                     )}
                     {isNotNil(asinBarcode) && <UsedBarcode barcode={asinBarcode} />}
-                </fieldset>
-                <fieldset className='flex flex-col p-1 bg-transparent border-black border-dashed rounded-lg indent-2 space-y-0.5'>
-                    <legend className='p-1 mx-2 text-lg font-bold text-white border border-double rounded-lg indent-2 font-fira-sans bg-rose-dark border-pink'>Dimensions</legend>
-                    <div>Group</div>
-                </fieldset>
+                </Grouping>
+                <Grouping clusterName='Product Specs'>
+                    <fieldset className='flex flex-row p-1 bg-transparent border-black border-dashed rounded-lg indent-2 space-y-0.5'>
+                        <legend className='p-1 mx-2 text-xl font-extrabold leading-loose tracking-wider text-white border border-double rounded-lg indent-2 font-fira-sans bg-teal-dark border-lime'>Weight</legend>
+                        <Control El={InputEle} type='number' step={0.1} min={0} name='dims.weight.value' noLabel onChange={onDimValueChange} />
+                        {isEnabled.weightUOM && <Control El={LookupEle} name='dims.weight.uom' enumMap={weightUOMSSelect} onChange={onDimUOMChange} />}
+                        {weight.uom === 'kg' ||
+                            (weight.uom === 'lb' && (
+                                <>
+                                    <Control El={InputEle} type='number' step={0.1} min={0} name='dims.weight.remaining.value' noLabel onChange={onDimValueChange} />
+                                    <Control El={LookupEle} name='dims.weight.remaining.uom' enumMap={weightUOMSSelect} onChange={onDimUOMChange} />
+                                </>
+                            ))}
+                    </fieldset>
+                </Grouping>
+
                 <Grouping clusterName='Media'>
                     <div>Group</div>
                 </Grouping>

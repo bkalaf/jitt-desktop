@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef } from 'react';
 import { ignore, toTitleCase } from '../common';
 import { Admin } from '../data';
 import { $cn } from '../util/$cn';
-import { useLocalRealm } from '../hooks/useLocalRealm';
+import useLocalRealm from '../hooks/useLocalRealm';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { useLog } from '../hooks/useLog';
 import { now } from '../aggregator';

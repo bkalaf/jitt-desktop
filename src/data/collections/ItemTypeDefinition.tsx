@@ -1,7 +1,7 @@
 import { faKey } from '@fortawesome/pro-duotone-svg-icons';
 import React from 'react';
 import { ObjectId } from 'bson';
-import { useLocalRealm } from '../../hooks/useLocalRealm';
+import useLocalRealm from '../../hooks/useLocalRealm';
 import { TypeDefinitionFunction, uniqueValidator, ReferenceDef, ListInputDef, DatalistDef } from '../definitions';
 import { Definition } from '../definitions/Definition';
 import { Definitions } from '../definitions/Definitions';

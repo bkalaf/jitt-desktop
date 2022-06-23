@@ -21,7 +21,7 @@ export function importTaxonomy({
     ).categories;
     log(`data.length: ${data.length}`);
 
-    const categorySet = realm.objects<Scrapes.Category>($.category);
+    const categorySet = realm.objects<ICategory>($.category);
     log(`categorySet.length: ${categorySet.length}`);
     const taxonomy = realm.objects<{ materializedPath: string }>($.taxonomy);
     log(`taxonomy.length: ${taxonomy.length}`);

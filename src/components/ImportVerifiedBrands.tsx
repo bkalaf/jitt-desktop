@@ -3,7 +3,7 @@ import { fst } from '../common';
 import { files } from '../config';
 import { useLog } from "../hooks/useLog";
 import { readFile } from '../common/fs/readFile';
-import { useLocalRealm } from '../hooks/useLocalRealm';
+import useLocalRealm from '../hooks/useLocalRealm';
 import { filterDistinct } from './filterDistinct';
 import { useMutation } from 'react-query';
 import { Spinner } from './Indicators/Spinner';

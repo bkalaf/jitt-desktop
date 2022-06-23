@@ -1,24 +1,7 @@
 /* eslint-disable dot-notation */
-import { faPenAlt, faSquare, faTrashCan } from '@fortawesome/pro-duotone-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useCallback, useMemo } from 'react';
 import { ObjectSchemaProperty } from 'realm';
-import { $cn } from '../util/$cn';
-import { distinct } from '../common/array/distinct';
-import { identity } from '../common/identity';
-import { ignore } from '../common/ignore';
-import { toTitleCase } from '../common/text/toTitleCase';
-import { Control } from '../components/forms/Control';
-import { FormEl } from '../components/forms/elements/Input';
-import { DAL } from '../components/providers/DAL';
 import { toDB, toOutput } from '../components/providers/DataTypeInfo';
-import { getProperty } from '../common/obj/getProperty';
-import { HeaderDef } from '../components/grid/HeaderDef';
-import { objectFilter } from '../common/obj/objectFilter';
-import { PropertyData } from '../components/grid/PropertyData';
-import { useConfigSchema } from './useConfigSchema';
 import React from 'react';
-import { SelectButtonCell } from '../components/grid/SelectButtonCell';
 
 function toField(typeLookup: Map<string, { typeName: string; embedded?: boolean }>, osp: ObjectSchemaProperty) {
     return [

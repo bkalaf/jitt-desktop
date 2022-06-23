@@ -21,5 +21,3 @@ export { type movieRatings, type MovieRatings, gameRatings, type VideoGameRating
 export { type Provinces, provinces } from './province';
 export { type ShipmentStatuses, shipmentStatuses } from './shipmentStatus';
 export { type SKUTypes, skuTypes } from './skuTypes';
-export { type StageTypes, stageTypes, type stageTypesByName } from './stageTypes';
-export { type WeightUOMS, weightUOMS } from './weightUOMS';

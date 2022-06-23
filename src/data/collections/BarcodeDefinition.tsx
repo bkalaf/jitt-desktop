@@ -3,7 +3,7 @@ import React, { useCallback } from 'react';
 import { ObjectId } from 'bson';
 import { Definition } from '../definitions/Definition';
 import { Definitions } from '../definitions/Definitions';
-import { useLocalRealm } from '../../hooks/useLocalRealm';
+import useLocalRealm from '../../hooks/useLocalRealm';
 import { barcodeTypes } from '../enums';
 import { FormControl } from '../definitions/FormControl';
 import { useBarcode } from 'react-barcodes';
@@ -12,7 +12,7 @@ import { classifyBarcode } from '../definitions/classifyBarcode';
 import { EnumDef } from '../definitions/EnumDef';
 import { CheckboxDef, TextInputDef } from '../definitions/TextInputDef';
 import { InputEle } from '../definitions/InputEle';
-import { TypeDefinitionFunction, uniqueValidator } from '../definitions/index';
+import { OutputDef, TypeDefinitionFunction, uniqueValidator } from '../definitions/index';
 
 export function UsedBarcode({ barcode }: { barcode: string }) {
     const { inputRef } = useBarcode({
@@ -60,6 +60,11 @@ export function BarcodeDefinition({ children }: { children: TypeDefinitionFuncti
             <EnumDef name='type' children={children} enumMap={barcodeTypes} />
 
             <CheckboxDef name='valid' children={children} />
+            <OutputDef
+                name='effective'
+                toSummary={(x: IBarcode) => ((x.location ?? []).length > 0 ? 'location' : (x.fixture ?? []).length > 0 ? 'fixture' : (x.bin ?? []).length > 0 ? 'bin' : (x.item ?? []).length > 0 ? 'item' : 'UNASSIGNED')}
+                children={children}
+            />
         </Definitions>
     );
 }

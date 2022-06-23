@@ -13,7 +13,7 @@ import { ModalContainer } from './ModalContainer';
 import { useLog } from '../hooks/useLog';
 import { DataOrModifiedFn, useAsyncResource } from 'use-async-resource';
 import { getProperty, ignore } from '../common';
-import { useLocalRealm } from '../hooks/useLocalRealm';
+import useLocalRealm from '../hooks/useLocalRealm';
 import { useMutation } from 'react-query';
 import { uploadFile } from '../queries/insertMutation';
 import { AdminMenu } from './AdminMenu';
@@ -53,6 +53,7 @@ import { ProductLineDefinition } from '../data/collections/ProductLineDefinition
 import { LocationDefinition } from '../data/collections/LocationDefinition';
 import { InsertProductForm } from './product/insertForm';
 import { MasterView } from './product/master';
+import { useTextToSpeech } from './StatusBar/useTextToSpeech';
 export type RealmTypes = 'objectId' | 'uuid' | 'string' | 'bool' | 'int' | 'double' | 'float' | 'decimal128' | 'object' | 'list' | 'dictionary' | 'set' | 'date' | 'data' | 'linkingObjects';
 
 export function FilePreview({ resource, file }: { resource: () => Promise<ArrayBuffer>; file: File }) {
@@ -184,6 +185,81 @@ export function enqueueAssignedPhoto(folder: string, name: string, barcode: stri
     ipcRenderer.send('enqueue-assigned-photo', folder, name, 'assign', barcode);
 }
 
+export function removeCheckDigit(str: string) {
+    return str.split('').reverse().slice(1).reverse().join('');
+}
+
+export function getBarcodeName(isLocation: boolean, isFixture: boolean, isBin: boolean, isItem: boolean, bc: IBarcode) {
+    if (isLocation) {
+        return (bc.location ?? [])[0].name;
+    } 
+    if (isFixture) {
+        return (bc.fixture ?? [])[0].name;
+    }
+    if (isBin) {
+        return (bc.bin ?? [])[0].name;
+    }
+    if (isItem) {
+        return (bc.item ?? [])[0].product.header;
+    }
+    return 'n/a';
+}
+export function ScanMode() {
+    const realm = useLocalRealm();
+    const scanRef = useElementRef<HTMLInputElement>();
+    const onReset = usePreventDefault();
+    const tts = useTextToSpeech();
+    const onSubmit = useCallback(
+        (ev: React.FormEvent) => {
+            ev.preventDefault();
+            ev.stopPropagation();
+
+            console.log('ev', ev);
+            const form = ev.target as HTMLFormElement;
+            console.log('form', form);
+            const formdata = new FormData(form);
+            const currentScan = formdata.get('scan')?.toString();
+            console.log('formdata', formdata, currentScan);
+
+            const result = realm.objects<IBarcode>('barcode').snapshot().filtered('barcode == $0', removeCheckDigit(currentScan ?? ''));
+            if (result.length === 0) {
+                tts('barcode not found');
+                throw new Error('barcode not found');
+            }
+            const bc = result[0];
+
+            const isLocation = (result[0].location ?? []).length > 0;
+            const isFixture = (result[0].fixture ?? []).length > 0;
+            const isBin = (result[0].bin ?? []).length > 0;
+            const isItem = (result[0].item ?? []).length > 0;
+
+            const kind = isLocation ? 'updating location: ' : isFixture ? 'updating fixture: ' : isBin ? 'updating bin: ' : isItem ? 'updating item: ' : 'error';
+            console.log('identified', `Location: ${isLocation}`, `Fixture: ${isFixture}`, `isBin: ${isBin}`, `isItem: ${isItem}`);
+
+            tts([kind, getBarcodeName(isLocation, isFixture, isBin, isItem, bc)].join(' '));
+            
+            ipcRenderer.send('new-scan', removeCheckDigit(currentScan ?? ''));
+            if (scanRef.current == null) throw new Error('bad ref');
+            scanRef.current.value = '';
+            scanRef.current.focus();
+        },
+        [realm, scanRef, tts]
+    );
+    useEffect(() => {
+        if (scanRef.current == null) {
+            return;
+        }
+        scanRef.current.focus();
+    }, [scanRef]);
+    return (
+        <section className='flex w-full h-full p-3.5 items-center justify-center'>
+            <form className='w-full h-full border border-white rounded-lg' onReset={onReset} onSubmit={onSubmit}>
+                <input className='flex' ref={scanRef} type='text' name='scan' />
+            </form>
+        </section>
+    );
+}
+
 export function enablePhotoAssignment(realm: Realm) {
     ipcRenderer.on('photo-assigned', (event: Electron.IpcRendererEvent, oldName: string, newName: string, barcode: string) => {
         console.log('photo-assigned', oldName, newName, barcode);
@@ -274,6 +350,19 @@ export function MainRouter({ reader, realm }: { reader: DataOrModifiedFn<Webdriv
                 <Route path='admin'>
                     <Route path='v1'>
                         <Route index element={<AdminMenu reader={reader} />} />
+                    </Route>
+                    <Route index element={<Navigate to='v1' />} />
+                </Route>
+                <Route path='scans'>
+                    <Route path='v1'>
+                        <Route
+                            index
+                            element={
+                                <ModalContainer>
+                                    <ScanMode />
+                                </ModalContainer>
+                            }
+                        />
                     </Route>
                     <Route index element={<Navigate to='v1' />} />
                 </Route>

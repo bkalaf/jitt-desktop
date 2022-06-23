@@ -1,5 +1,6 @@
 import {
     faArrowLeft,
+    faBarcodeAlt,
     faBarcodeRead,
     faBarcodeScan,
     faCamera,
@@ -21,8 +22,8 @@ import { IconButton } from './IconButton';
 import { useAssignInvoice } from './useAssignInvoice';
 import { useRoutedCollection } from '../hooks/useRoutedCollection';
 import { isNotNil } from '../common/isNotNull';
-import { clipboard, dialog } from '@electron/remote';
-import { useLocalRealm } from '../hooks/useLocalRealm';
+import { clipboard, dialog, getCurrentWebContents } from '@electron/remote';
+import useLocalRealm from '../hooks/useLocalRealm';
 import { Inventory } from '../data';
 import { appSettings } from '../settings';
 import { calculateFullBarcodeWithCheckDigit } from '../data/definitions/checkDigit';
@@ -30,6 +31,17 @@ import { useDebouncedCallback, useThrottleCallback } from '../data/ModernGrid';
 import { useEventListener } from '../hooks/useEventListener';
 import { ipcRenderer } from 'electron';
 
+
+export const $storageItem = {
+    inventoryControl: 'sku/inventory-control/current',
+    sku: 'sku/item/current'
+}
+export function incrementLocalStorageItem(key: string) {
+    const current = localStorage.getItem(key) ?? '0';
+    const next = (parseInt(current, 10) + 1).toFixed(0);
+    localStorage.setItem(key, next);
+    return next;
+}
 export function ToolBar() {
     const navigate = useNavigate();
     const location = useLocation();
@@ -47,20 +59,26 @@ export function ToolBar() {
         [location.pathname, location.search, navigate]
     );
     const enableInsert = useCallback(() => isNotNil(collection) && !isNotNil(id), [collection, id]);
+    
+    
     const enableAssignBarcode = useCallback(
         () => ['fixture', 'bin', 'product', 'item'].includes(collection) && selected.length === 1,
         [collection, selected.length]
     );
+    
     const assignBarcode = useCallback(() => {
         const item = selected[0];
         const el = document.querySelector(`tr[data-oid='${item}']`) as HTMLElement | null;
         if (el == null) throw new Error(`bad id: ${id}`);
         navigate([location.pathname, el.dataset.oid, 'assign'].join('/'), { state: el.dataset.oid });
     }, [id, location.pathname, navigate, selected]);
+    
     const enableAddToPrint = useCallback(() => {
         return ['barcode'].includes(collection) && selected.length > 0;
     }, [collection, selected.length]);
+    
     const realm = useLocalRealm();
+    
     const addSingleToPrint = useCallback((bc: IBarcode) => {
         console.log('barcode', bc);
         console.log('fixtures', bc.fixture);
@@ -73,15 +91,18 @@ export function ToolBar() {
         console.log(`sending: add-to-tag-queue`, barcode);
         ipcRenderer.send('add-to-tag-queue', name, barcode, description, type, notes);
     }, []);
+    
     const addToPrint = useCallback(() => {
         const selectedBarcodes = (selected.map((oid) => realm.objectForPrimaryKey<IBarcode>('barcode', new Realm.BSON.ObjectId(oid))) ?? []).filter(
             isNotNil
         ) as any as Array<Realm.Object & IBarcode>;
         selectedBarcodes.forEach(addSingleToPrint);
     }, [addSingleToPrint, realm, selected]);
+    
     const enableConsumeBarcode = useCallback(() => {
         return document.activeElement?.tagName === 'INPUT';
     }, []);
+    
     const consumeBarcodeInventoryControl = useCallback(() => {
         console.log('consuming');
         const current = localStorage.getItem('barcode::inventory-control::next') ?? appSettings.skus.inventory;
@@ -97,6 +118,7 @@ export function ToolBar() {
 
         (document.querySelector(`#assign-barcode-input`) as HTMLInputElement).value = nextComplete;
     }, [realm]);
+    
     const consumeBarcodeItem = useCallback(() => {
         const current = localStorage.getItem('barcode::items::next') ?? appSettings.skus.inventory;
         const next = (parseInt(current, 10) + 1).toFixed(0);
@@ -109,7 +131,7 @@ export function ToolBar() {
         (document.activeElement as HTMLInputElement).value = clipboard.readText();
     }, [realm]);
     const printTags = useCallback(() => {
-        ipcRenderer.send('consume-tags');
+        
     }, []);
     const [enableConsume, setEnableConsume] = useState(false);
     const _onMouseMove: (ev: MouseEvent) => void = useCallback((ev: MouseEvent) => {
@@ -122,6 +144,9 @@ export function ToolBar() {
         navigate('/data/v1/photo/new');
     }, [navigate]);
     useEventListener('mousemove', onMouseMove, document);
+    const navigateToScans = useCallback(() => {
+        navigate('/scans/v1');
+    }, [navigate]);
     return (
         <div className='flex w-full px-2 text-lg font-bold leading-loose tracking-wide text-black transition duration-1000 ease-in-out delay-200 border border-white rounded-lg shadow-lg bg-indigo-dark font-fira-sans mb-0.5 justify-center space-x-4'>
             <ul className='flex flex-row justify-center p-1 space-x-1 text-black border border-white rounded-lg bg-slate-dark'>
@@ -167,6 +192,7 @@ export function ToolBar() {
                     onClick={consumeBarcodeInventoryControl}
                 />
                 <ToolbarDuotoneButton icon={faTags} title='Print tags' primary='red' secondary='blue' size='2x' disabled={false} onClick={printTags} />
+                <ToolbarDuotoneButton icon={faBarcodeAlt} title='Enter scan mode...' primary='red' secondary='yellow' size='2x' disabled={false} onClick={navigateToScans} />s
             </ul>
             {showFileTools && (
                 <ul className='flex flex-row justify-center p-1 space-x-1 text-black border border-white rounded-lg bg-slate-dark'>

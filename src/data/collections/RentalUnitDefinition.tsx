@@ -3,7 +3,7 @@ import React from 'react';
 import { ObjectId } from 'bson';
 import { Definition } from '../definitions/Definition';
 import { Definitions } from '../definitions/Definitions';
-import { useLocalRealm } from '../../hooks/useLocalRealm';
+import useLocalRealm from '../../hooks/useLocalRealm';
 import { lengthUOMS } from '../enums';
 import { LookupEle } from '../definitions/LookupEle';
 import { FormControl } from '../definitions/FormControl';

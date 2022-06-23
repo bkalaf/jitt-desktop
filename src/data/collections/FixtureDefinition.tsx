@@ -5,7 +5,7 @@ import React from 'react';
 import { ObjectId } from 'bson';
 import { Definition } from '../definitions/Definition';
 import { Definitions } from '../definitions/Definitions';
-import { useLocalRealm } from '../../hooks/useLocalRealm';
+import useLocalRealm from '../../hooks/useLocalRealm';
 import { FormControl } from '../definitions/FormControl';
 import { TextAreaDef, TextInputDef } from '../definitions/TextInputDef';
 import { InputEle } from '../definitions/InputEle';

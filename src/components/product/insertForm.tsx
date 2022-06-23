@@ -1,7 +1,7 @@
 import { BSON } from 'realm';
 import { isNil, isNotNil } from '../../common/isNotNull';
 import { useElementRef, useUncontrolledForm } from '../../hooks/useForm';
-import { useLocalRealm } from '../../hooks/useLocalRealm';
+import useLocalRealm from '../../hooks/useLocalRealm';
 import { FormProvider } from '../providers/FormProvider';
 import { useCallback, useMemo, useState } from 'react';
 import { ignore } from '../../common';
@@ -10,7 +10,7 @@ import { faCircleEllipsis, faKey, faLayerGroupPlus, faTrashCan } from '@fortawes
 import { InputEle } from '../../data/definitions/InputEle';
 import { LookupEle } from '../../data/definitions/LookupEle';
 import { TextAreaEle } from '../../data/definitions/TextAreaEle';
-import { bookTypes, countries, lengthUOMS, mediaTypes, weightUOMS } from '../../data/enums';
+import { bookTypes, countries, lengthUOMS, mediaTypes } from '../../data/enums';
 import { tryUtter } from '../MainWindow';
 import { colors, colorsSelect } from '../../data/enums/colors';
 import { weightUOMSSelect } from '../../data/enums/weightUOMS';
@@ -18,6 +18,7 @@ import { useToggle } from '../../hooks/useToggle';
 import { DuotoneIcon } from '../icons/DuotoneIcon';
 import { mediaTypeToItemType } from '../../data/enums/mediaTypes';
 import { UsedBarcode } from '../../data/collections/BarcodeDefinition';
+
 export function Disclosure({ summary, details, detailCn, summaryCn }: { summary: string; details: JSX.Element; detailCn: string; summaryCn: string }) {
     return (
         <details className={detailCn}>

@@ -1,0 +1,77 @@
+{
+    "errorMessage": "",
+    "expression": "The Beach",
+    "results": [
+        {
+            "description": "(I) (2000)",
+            "id": "tt0163978",
+            "image": "https://imdb-api.com/images/original/MV5BNTljZTUzYWUtOTI4YS00NmZlLWE5MmQtZjFlZDZhNjg4MjQxXkEyXkFqcGdeQXVyNTc1NTQxODI@._V1_Ratio0.7273_AL_.jpg",
+            "resultType": "Title",
+            "title": "The Beach"
+        },
+        {
+            "description": "(2020) (TV Series)",
+            "id": "tt11603528",
+            "image": "https://imdb-api.com/images/original/MV5BYWVkYzY4NDItYjY4OS00MGI5LTk2MjktZGVmMzJiN2IyN2QzXkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_Ratio0.7727_AL_.jpg",
+            "resultType": "Title",
+            "title": "The Beach"
+        },
+        {
+            "description": "(2019) (Short) aka \"The Beach\"",
+            "id": "tt7532666",
+            "image": "https://imdb-api.com/images/original/MV5BZWZhYWIyYmMtYTg3Mi00OWNhLWFlYzYtMWYzYzAzOTIyODcyXkEyXkFqcGdeQXVyMTYwMDUzODA@._V1_Ratio0.7273_AL_.jpg",
+            "resultType": "Title",
+            "title": "Bad Mother"
+        },
+        {
+            "description": "(2014) aka \"The Beach Boys: Uma História de Sucesso\"",
+            "id": "tt0903657",
+            "image": "https://imdb-api.com/images/original/MV5BMTk1MTkwMzU4Nl5BMl5BanBnXkFtZTgwNjY0MDE1NTE@._V1_Ratio0.7273_AL_.jpg",
+            "resultType": "Title",
+            "title": "Love & Mercy"
+        },
+        {
+            "description": "(2019)",
+            "id": "tt6511932",
+            "image": "https://imdb-api.com/images/original/MV5BMTY3MDUzMTAzOV5BMl5BanBnXkFtZTgwNDk3ODQyNzM@._V1_Ratio0.7273_AL_.jpg",
+            "resultType": "Title",
+            "title": "The Beach Bum"
+        },
+        {
+            "description": "(II) (2019)",
+            "id": "tt10843306",
+            "image": "https://imdb-api.com/images/original/MV5BZmU0ZWI5M2YtYjBkZS00MjRiLThiNDQtNDZlZjE3ZjAxYTY0XkEyXkFqcGdeQXVyMjg0NjcyNA@@._V1_Ratio0.7273_AL_.jpg",
+            "resultType": "Title",
+            "title": "The Beach House"
+        },
+        {
+            "description": "(2018) (TV Movie)",
+            "id": "tt7598968",
+            "image": "https://imdb-api.com/images/original/MV5BYjMxMzQ0YTAtZTM5ZS00MjYwLWE4MDEtYzdlYzUxNmJhNzk2XkEyXkFqcGdeQXVyMjczOTU2NTI@._V1_Ratio0.7273_AL_.jpg",
+            "resultType": "Title",
+            "title": "The Beach House"
+        },
+        {
+            "description": "(2009) aka \"The Beach Where She Left\"",
+            "id": "tt1360860",
+            "image": "https://imdb-api.com/images/original/MV5BMTQ0MzQxODQ0MV5BMl5BanBnXkFtZTgwNTQ0NzY4NDE@._V1_Ratio0.7273_AL_.jpg",
+            "resultType": "Title",
+            "title": "About Elly"
+        },
+        {
+            "description": "(2022) (TV Series)",
+            "id": "tt14452776",
+            "image": "https://imdb-api.com/images/original/MV5BMmZmMjgyOTUtZjljMS00NjhlLTkzMmItM2EyMzY5NzU0NzFiXkEyXkFqcGdeQXVyNjIzMTEyNDk@._V1_Ratio0.7727_AL_.jpg",
+            "resultType": "Title",
+            "title": "The Bear"
+        },
+        {
+            "description": "(1959)",
+            "id": "tt0053137",
+            "image": "https://imdb-api.com/images/original/MV5BNGQ2NjZhMjQtM2EzYS00ZjM5LTgwZTAtM2Y1Mjc0NjQ2ZmQ1XkEyXkFqcGdeQXVyMjUzOTY1NTc@._V1_Ratio0.7273_AL_.jpg",
+            "resultType": "Title",
+            "title": "On the Beach"
+        }
+    ],
+    "searchType": "Title"
+}

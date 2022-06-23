@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useRealm } from './useRealm';
+import useRealm from './useRealm';
 
 export function useConfigSchema() {
     const realm = useRealm();

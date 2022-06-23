@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from 'react';
 import { useMutation } from 'react-query';
 import { ignore } from '../common';
-import { useLocalRealm } from '../hooks/useLocalRealm';
+import useLocalRealm from '../hooks/useLocalRealm';
 import { useNavigateAndDrill } from '../hooks/useNavigateAndDrill';
 import { useRoutedCollection } from '../hooks/useRoutedCollection';
 import { useSelectable } from '../hooks/useSelectable';

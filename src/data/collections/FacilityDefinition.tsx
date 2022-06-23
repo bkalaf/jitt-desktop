@@ -3,7 +3,7 @@ import React from 'react';
 import { ObjectId } from 'bson';
 import { Definition } from '../definitions/Definition';
 import { Definitions } from '../definitions/Definitions';
-import { useLocalRealm } from '../../hooks/useLocalRealm';
+import useLocalRealm from '../../hooks/useLocalRealm';
 import { provinces } from '../enums/province';
 import { countries } from '../enums/country';
 import { isNotNil } from '../../common/isNotNull';

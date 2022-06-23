@@ -1,0 +1,1397 @@
+{
+  "ad_blocks": [
+    {
+      "ad_id": "2754712480501",
+      "advertiser_id": "2754712480501",
+      "brand_logo": "https://m.media-amazon.com/images/S/al-na-9d5791cf-3faf/d6ea642d-1ac5-4119-97e2-5a1addc56efe._CR0,0,2083,870_AC_SX130_SY60_QL70_.png",
+      "campaign_id": "8063201370801",
+      "link": "https://aax-us-iad.amazon.com/x/c/QrDqjmdidOPsm8i1vPy5bZsAAAGBkBL6JQEAAAH2Aex89E0/https://www.amazon.com/stores/page/41EAD167-8D2E-46DC-BB44-58FE25DDBA3D/?_encoding=UTF8&store_ref=SB_A01226212VOTLF8JRG96&pd_rd_plhdr=t&aaxitk=353dbc1455fe698263d351314eaf2596&hsa_cr_id=1209310870201&lp_asins=B07XCKMQ82%2CB08F9HGVNL%2CB09GXTR5X1&lp_query=google%20nest%20audio&lp_slot=auto-sparkle-hsa-tetris&ref_=sbx_be_s_sparkle_ssd_bkgd&pd_rd_w=cTcTI&content-id=amzn1.sym.53aae2ac-0129-49a5-9c09-6530a9e11786%3Aamzn1.sym.53aae2ac-0129-49a5-9c09-6530a9e11786&pf_rd_p=53aae2ac-0129-49a5-9c09-6530a9e11786&pf_rd_r=DSM2W4DTT794C4RNGGYN&pd_rd_wg=ieKqY&pd_rd_r=f1feace1-6b83-47e2-b8dc-055e27db1ad4",
+      "products": [
+        {
+          "asin": "B07XCKMQ82",
+          "image": "https://m.media-amazon.com/images/I/61zBGAtublL._AC_SR180,120_QL70_.jpg",
+          "link": "https://www.amazon.com/dp/B07XCKMQ82",
+          "title": "Arlo"
+        },
+        {
+          "asin": "B08F9HGVNL",
+          "image": "https://m.media-amazon.com/images/I/51Owyzm0vqL._AC_SR180,120_QL70_.jpg",
+          "link": "https://www.amazon.com/dp/B08F9HGVNL",
+          "title": "Ring"
+        },
+        {
+          "asin": "B09GXTR5X1",
+          "image": "https://m.media-amazon.com/images/I/51Bt9lvqi9L._AC_SR180,120_QL70_.jpg",
+          "link": "https://www.amazon.com/dp/B09GXTR5X1",
+          "title": "Made For Google"
+        }
+      ],
+      "store_id": "41EAD167-8D2E-46DC-BB44-58FE25DDBA3D",
+      "store_link": "https://www.amazon.com/stores/page/41EAD167-8D2E-46DC-BB44-58FE25DDBA3D/?_encoding=UTF8&store_ref=SB_A01226212VOTLF8JRG96&pd_rd_plhdr=t&aaxitk=353dbc1455fe698263d351314eaf2596&hsa_cr_id=1209310870201&lp_asins=B07XCKMQ82%2CB08F9HGVNL%2CB09GXTR5X1&lp_query=google%20nest%20audio&lp_slot=auto-sparkle-hsa-tetris&ref_=sbx_be_s_sparkle_ssd_cta&pd_rd_w=cTcTI&content-id=amzn1.sym.53aae2ac-0129-49a5-9c09-6530a9e11786%3Aamzn1.sym.53aae2ac-0129-49a5-9c09-6530a9e11786&pf_rd_p=53aae2ac-0129-49a5-9c09-6530a9e11786&pf_rd_r=DSM2W4DTT794C4RNGGYN&pd_rd_wg=ieKqY&pd_rd_r=f1feace1-6b83-47e2-b8dc-055e27db1ad4",
+      "store_name": "the Wasserstein Store on Amazon",
+      "title": "Shop Wasserstein for premium smart home products"
+    }
+  ],
+  "pagination": {
+    "current_page": 1,
+    "next_page_link": "https://www.amazon.com/s?k=google+nest+audio&page=2&qid=1655979571&ref=sr_pg_2",
+    "total_pages": 20,
+    "total_results": 422
+  },
+  "refinements": {
+    "amazon_certified": [
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&rh=p_n_amazon_certified%3A16741513011&dc&qid=1655979571&rnid=16741512011&ref=sr_nr_p_n_amazon_certified_1&ds=v1%3AZW9wAeleBVDzcIY2j12KTXnAN%2FPC7y0zJq0ZdqZKjwE",
+        "name": "Works with Alexa",
+        "refinement_display_name": "Amazon Certified",
+        "value": "p_n_amazon_certified/16741513011"
+      }
+    ],
+    "availability": [
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&rh=p_n_availability%3A2661601011&dc&qid=1655979571&rnid=2661599011&ref=sr_nr_p_n_availability_2&ds=v1%3AxJw3nLda%2BjeSahJLwtSlL8CKM7ww7AtkDiNWOk5zPgI",
+        "name": "Include Out of Stock",
+        "refinement_display_name": "Availability",
+        "value": "p_n_availability/2661601011"
+      }
+    ],
+    "brand": [
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&rh=n%3A172282%2Cp_89%3AGoogle&dc&qid=1655979571&rnid=2528832011&ref=sr_nr_p_89_1&ds=v1%3AHyRQV2Vqro5jbI%2BpBDmWjsj7t1sEYTk3XD4N7czjjac",
+        "name": "Google",
+        "refinement_display_name": "Brand",
+        "value": "n:172282||p_89/Google"
+      },
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&rh=n%3A172282%2Cp_89%3ASpigen&dc&qid=1655979571&rnid=2528832011&ref=sr_nr_p_89_2&ds=v1%3AdPKUM27F24VMHe4KdB83HBlWI4dAaXKzmV87TI7FU5A",
+        "name": "Spigen",
+        "refinement_display_name": "Brand",
+        "value": "n:172282||p_89/Spigen"
+      },
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&rh=n%3A172282%2Cp_89%3AAmazon&dc&qid=1655979571&rnid=2528832011&ref=sr_nr_p_89_3&ds=v1%3AOXBGLuSHOb7RTyuFV2YaZ16FbQFDQkdOAnX%2F%2FvE9NRk",
+        "name": "Amazon",
+        "refinement_display_name": "Brand",
+        "value": "n:172282||p_89/Amazon"
+      },
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&rh=n%3A172282%2Cp_89%3AIDEALHOUSE&dc&qid=1655979571&rnid=2528832011&ref=sr_nr_p_89_4&ds=v1%3AyGq4AljvwP6zQjyLEdGNDcBUalv281v%2B%2B2l2VgSunl8",
+        "name": "IDEALHOUSE",
+        "refinement_display_name": "Brand",
+        "value": "n:172282||p_89/IDEALHOUSE"
+      },
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&rh=n%3A172282%2Cp_89%3AMolitececool&dc&qid=1655979571&rnid=2528832011&ref=sr_nr_p_89_5&ds=v1%3AUkUysSGYJ9urTMw8UpkqRQaQBwo8ExJVrw2N3oIjQMU",
+        "name": "Molitececool",
+        "refinement_display_name": "Brand",
+        "value": "n:172282||p_89/Molitececool"
+      }
+    ],
+    "certification": [
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&rh=n%3A172282%2Cp_n_special_merchandising_browse-bin%3A544495011&dc&qid=1655979571&rnid=544494011&ref=sr_nr_p_n_special_merchandising_browse-bin_1&ds=v1%3AN21w21Y%2FaJFz1YiOxEdc3ef34hZycg0jq1XJnuHdM8M",
+        "name": "Energy Star",
+        "refinement_display_name": "Certification",
+        "value": "n:172282||p_n_special_merchandising_browse-bin/544495011"
+      }
+    ],
+    "condition": [
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&rh=n%3A172282%2Cp_n_condition-type%3A2224371011&dc&qid=1655979571&rnid=2224369011&ref=sr_nr_p_n_condition-type_1&ds=v1%3A2M%2BxarsDHzP8WQZPdO0wwOqhBlYxOuWLmO05yraagUs",
+        "name": "New",
+        "refinement_display_name": "Condition",
+        "value": "n:172282||p_n_condition-type/2224371011"
+      },
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&rh=n%3A172282%2Cp_n_condition-type%3A2224373011&dc&qid=1655979571&rnid=2224369011&ref=sr_nr_p_n_condition-type_2&ds=v1%3AhYRUcstwmsdjvbF8oYarDzIFiwXyS7%2Bl%2BkOSxeRdAec",
+        "name": "Used",
+        "refinement_display_name": "Condition",
+        "value": "n:172282||p_n_condition-type/2224373011"
+      }
+    ],
+    "connectivity_type": [
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&rh=n%3A17935294011%2Cp_n_feature_four_browse-bin%3A5662320011&dc&qid=1655979571&rnid=5662319011&ref=sr_nr_p_n_feature_four_browse-bin_1&ds=v1%3A0K6ip4Lbmwq35unteJP%2Fcj%2B7gCcho5QFvYqkJ6iFB%2Fw",
+        "name": "Bluetooth",
+        "refinement_display_name": "Connectivity Type",
+        "value": "n:17935294011||p_n_feature_four_browse-bin/5662320011"
+      },
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&rh=n%3A17935294011%2Cp_n_feature_four_browse-bin%3A5662321011&dc&qid=1655979571&rnid=5662319011&ref=sr_nr_p_n_feature_four_browse-bin_2&ds=v1%3AbK%2Fgq1OkC8siMQMb5l3F%2FwJEY9d6LDKonISh8HRHmig",
+        "name": "Ethernet",
+        "refinement_display_name": "Connectivity Type",
+        "value": "n:17935294011||p_n_feature_four_browse-bin/5662321011"
+      },
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&rh=n%3A17935294011%2Cp_n_feature_four_browse-bin%3A5928098011&dc&qid=1655979571&rnid=5662319011&ref=sr_nr_p_n_feature_four_browse-bin_3&ds=v1%3A8Jnxll3o9pg1lvFSro2WNd%2F4N%2FNmuLv0LZO2jvw%2Buz8",
+        "name": "Wireless",
+        "refinement_display_name": "Connectivity Type",
+        "value": "n:17935294011||p_n_feature_four_browse-bin/5928098011"
+      }
+    ],
+    "delivery": [
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&rh=p_90%3A8308921011&dc&qid=1655979571&rnid=8308919011&ref=sr_nr_p_90_1&ds=v1%3AqDLBuWrv4weIrqFRn0xSWKDBIuUIWJhj25p8ta4ZL48",
+        "name": "Get It by Tomorrow",
+        "refinement_display_name": "Delivery",
+        "value": "p_90/8308921011"
+      }
+    ],
+    "departments": [
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&rh=n%3A172282&dc&qid=1655979571&rnid=2941120011&ref=sr_nr_n_1&ds=v1%3AgkNpUmiLvmqDnMs92I8ZyhMiKbEXrEwwM5lubZyOa80",
+        "name": "Electronics",
+        "refinement_display_name": "Departments",
+        "value": "n/172282"
+      },
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&rh=n%3A172282%2Cn%3A7073956011&dc&qid=1655979571&rnid=2941120011&ref=sr_nr_n_2&ds=v1%3A8jDzRZZTFs1AmQ0mojj8mLK7ut1%2BVAs3QkPlIMRVBN8",
+        "name": "Portable Bluetooth Speakers",
+        "refinement_display_name": "Departments",
+        "value": "n/7073956011"
+      },
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&rh=n%3A172282%2Cn%3A290438&dc&qid=1655979571&rnid=2941120011&ref=sr_nr_n_3&ds=v1%3A4gNXLsQAuQp9FHy69MJ%2Fw7sYIzjHoXPp6kR8DtcZjuE",
+        "name": "MP3 & MP4 Player Accessories",
+        "refinement_display_name": "Departments",
+        "value": "n/290438"
+      },
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&rh=n%3A172282%2Cn%3A297859&dc&qid=1655979571&rnid=2941120011&ref=sr_nr_n_4&ds=v1%3AzMFPxMcDtWpzVvm6qWXS%2Fza8cW5OwZXo9OU3%2BBkwyNg",
+        "name": "Speaker Mounts",
+        "refinement_display_name": "Departments",
+        "value": "n/297859"
+      },
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&rh=n%3A172282%2Cn%3A17935294011&dc&qid=1655979571&rnid=2941120011&ref=sr_nr_n_5&ds=v1%3AaHct7aSgYopgINE3ngW04WVguP0YUhlUKT%2BZuVjEQv8",
+        "name": "Whole Home & Mesh Wi-Fi Systems",
+        "refinement_display_name": "Departments",
+        "value": "n/17935294011"
+      },
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&rh=n%3A172282%2Cn%3A760796&dc&qid=1655979571&rnid=2941120011&ref=sr_nr_n_6&ds=v1%3AW%2FUio8rrIceqRszZq8ay6G2pZOEYjJ2FBwIxK5XSNds",
+        "name": "TV Mounts",
+        "refinement_display_name": "Departments",
+        "value": "n/760796"
+      },
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&rh=n%3A509308&dc&qid=1655979571&rnid=2941120011&ref=sr_nr_n_7&ds=v1%3Aru5rdv%2BzdBcoqSoy485jW77YQDgxAEZY3b3b6wRHH7A",
+        "name": "Speaker Stands",
+        "refinement_display_name": "Departments",
+        "value": "n/509308"
+      },
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&rh=n%3A2054378011&dc&qid=1655979571&rnid=2941120011&ref=sr_nr_n_8&ds=v1%3ApwZT0H5xSWYTzfLCS82CscSVaWkMzey45u6xlRUl%2F9s",
+        "name": "Home Programmable Thermostats",
+        "refinement_display_name": "Departments",
+        "value": "n/2054378011"
+      },
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&i=tools&dc&qid=1655979571&ref=sr_nr_i_9&ds=v1%3Ak2x2xA8%2FIEBf4Z3dlSHNFhgSCMvkobWHUTMGqbNsv08",
+        "name": "Tools & Home Improvement",
+        "refinement_display_name": "Departments",
+        "value": "n/228013"
+      },
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&i=garden&dc&qid=1655979571&ref=sr_nr_i_10&ds=v1%3Ax2i1UrL79%2Bak1mSttbN2Wqo7qxamq8ehAafZmQlFvsU",
+        "name": "Home & Kitchen",
+        "refinement_display_name": "Departments",
+        "value": "n/1055398"
+      },
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&i=industrial&dc&qid=1655979571&ref=sr_nr_i_11&ds=v1%3A2B8OceKNK5vcBPTh%2FiYUdSbZ8ezQON286BH9xQWMIcw",
+        "name": "Industrial & Scientific",
+        "refinement_display_name": "Departments",
+        "value": "n/16310091"
+      },
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&i=mobile&dc&qid=1655979571&ref=sr_nr_i_12&ds=v1%3AfFszb6tSohwBx%2B8JxQgIif9ncbOeOYsuJ7NC%2B5Vm2mA",
+        "name": "Cell Phones & Accessories",
+        "refinement_display_name": "Departments",
+        "value": "n/2335752011"
+      }
+    ],
+    "home_audio_and_theater_channels": [
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&rh=n%3A7073956011%2Cp_n_feature_twenty-one_browse-bin%3A1267495011&dc&qid=1655979571&rnid=1267491011&ref=sr_nr_p_n_feature_twenty-one_browse-bin_1&ds=v1%3A5QUgIvTJNdzlITZTdDOWIQq%2FfFc7rhmUbj7eJsKMsaY",
+        "name": "7.1",
+        "refinement_display_name": "Home Audio & Theater Channels",
+        "value": "n:7073956011||p_n_feature_twenty-one_browse-bin/1267495011"
+      }
+    ],
+    "international_shipping": [
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&rh=p_n_shipping_option-bin%3A3242350011&dc&qid=1655979571&rnid=2944662011&ref=sr_nr_p_n_shipping_option-bin_1&ds=v1%3ANEi0nD%2BkKW%2FUrbsEhFUjIbP%2B0%2F9wxwY5xbPQ5zP2HCk",
+        "name": "International Shipping Eligible",
+        "refinement_display_name": "International Shipping",
+        "value": "p_n_shipping_option-bin/3242350011"
+      }
+    ],
+    "new_arrivals": [
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&rh=n%3A172282%2Cp_n_date%3A1249033011&dc&qid=1655979571&rnid=1249031011&ref=sr_nr_p_n_date_1&ds=v1%3At9RwHAx2TE6tBg0tc99gvpFoi1ZCsK8V4%2BZwAyqB33M",
+        "name": "New Arrivals",
+        "refinement_display_name": "New Arrivals",
+        "value": "n:172282||p_n_date/1249033011"
+      }
+    ],
+    "price": [
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&rh=n%3A172282%2Cp_36%3A1253503011&dc&qid=1655979571&rnid=386442011&ref=sr_nr_p_36_1&ds=v1%3ATGP34nJE9perAuMJna0rwOAm7Vt6CFJIM%2FsBCgNDuDk",
+        "name": "Under $25",
+        "refinement_display_name": "Price",
+        "value": "n:172282||p_36/1253503011"
+      },
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&rh=n%3A172282%2Cp_36%3A1253504011&dc&qid=1655979571&rnid=386442011&ref=sr_nr_p_36_2&ds=v1%3Ag9Zk1Fw%2BF3FH9a8U%2BN%2FDkjajZ1Kwye1gttrmFSK7EGY",
+        "name": "$25 to $50",
+        "refinement_display_name": "Price",
+        "value": "n:172282||p_36/1253504011"
+      },
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&rh=n%3A172282%2Cp_36%3A1253505011&dc&qid=1655979571&rnid=386442011&ref=sr_nr_p_36_3&ds=v1%3AnoW8LErUgStouCKHIvWMW1T9FpTdIhRsUJ6tKJeysVE",
+        "name": "$50 to $100",
+        "refinement_display_name": "Price",
+        "value": "n:172282||p_36/1253505011"
+      },
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&rh=n%3A172282%2Cp_36%3A1253506011&dc&qid=1655979571&rnid=386442011&ref=sr_nr_p_36_4&ds=v1%3AXrFKuIXVVXe0qm6WLqrQqZtOEy612W1h4uiEq%2BYqtBM",
+        "name": "$100 to $200",
+        "refinement_display_name": "Price",
+        "value": "n:172282||p_36/1253506011"
+      },
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&rh=n%3A172282%2Cp_36%3A1253507011&dc&qid=1655979571&rnid=386442011&ref=sr_nr_p_36_5&ds=v1%3A%2FkQDrv6S18Xu454y1VqVINf8v5NdQN2%2FRyeUDSEhWVg",
+        "name": "$200 & Above",
+        "refinement_display_name": "Price",
+        "value": "n:172282||p_36/1253507011"
+      },
+      {
+        "name": "$        $            Go",
+        "refinement_display_name": "Price",
+        "value": "p_36/price-range"
+      }
+    ],
+    "prime": [
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&rh=n%3A172282%2Cp_76%3A1249137011&dc&qid=1655979571&rnid=1249135011&ref=sr_nr_p_76_1&ds=v1%3AfZrfmlA5%2FOWAKAHRDYSya4%2F8HZw4BgkUb5QwzSln1Uk",
+        "name": "Free Shipping by Amazon",
+        "refinement_display_name": "Prime",
+        "value": "n:172282||p_76/1249137011"
+      }
+    ],
+    "reviews": [
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&rh=n%3A172282%2Cp_72%3A1248879011&dc&qid=1655979571&rnid=1248877011&ref=sr_nr_p_72_1&ds=v1%3A3yVaxTV44TlEMuGnvXtEUUTL7yjb9MhM4UUK7Bu27A4",
+        "name": "4 Stars & Up",
+        "refinement_display_name": "Reviews",
+        "value": "n:172282||p_72/1248879011"
+      },
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&rh=n%3A172282%2Cp_72%3A1248880011&dc&qid=1655979571&rnid=1248877011&ref=sr_nr_p_72_2&ds=v1%3AfHOUygOhLorT3SLtZ%2FG%2B1dI%2F2SpC9RV7tK%2B%2FHud%2FAng",
+        "name": "3 Stars & Up",
+        "refinement_display_name": "Reviews",
+        "value": "n:172282||p_72/1248880011"
+      },
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&rh=n%3A172282%2Cp_72%3A1248881011&dc&qid=1655979571&rnid=1248877011&ref=sr_nr_p_72_3&ds=v1%3AXjQN1O2LFSY8RNdddnH8ruykowUAsdaCElVGB2Cl%2BQM",
+        "name": "2 Stars & Up",
+        "refinement_display_name": "Reviews",
+        "value": "n:172282||p_72/1248881011"
+      },
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&rh=n%3A172282%2Cp_72%3A1248882011&dc&qid=1655979571&rnid=1248877011&ref=sr_nr_p_72_4&ds=v1%3AeTMr2gZ6WH7%2BPPw3RSD9GHU9CbIUl%2BofDAwELNYSAUc",
+        "name": "1 Star & Up",
+        "refinement_display_name": "Reviews",
+        "value": "n:172282||p_72/1248882011"
+      }
+    ],
+    "smart_home_device_control_method": [
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&rh=n%3A689637011%2Cp_n_feature_thirty-three_browse-bin%3A19366679011&dc&qid=1655979571&rnid=19366678011&ref=sr_nr_p_n_feature_thirty-three_browse-bin_1&ds=v1%3Att79wL4rEdf5CR2nnJiFTfHBM34%2B1mCgw0TD0IJiQQo",
+        "name": "App",
+        "refinement_display_name": "Smart Home Device Control Method",
+        "value": "n:689637011||p_n_feature_thirty-three_browse-bin/19366679011"
+      },
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&rh=n%3A689637011%2Cp_n_feature_thirty-three_browse-bin%3A19366680011&dc&qid=1655979571&rnid=19366678011&ref=sr_nr_p_n_feature_thirty-three_browse-bin_2&ds=v1%3AKaN%2BAALDFCdj%2B%2FB4y6ww9VeuUoG8kjV65sRcBBvNFjA",
+        "name": "Voice",
+        "refinement_display_name": "Smart Home Device Control Method",
+        "value": "n:689637011||p_n_feature_thirty-three_browse-bin/19366680011"
+      }
+    ],
+    "speaker_audio_output_mode": [
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&rh=n%3A7073956011%2Cp_n_feature_nineteen_browse-bin%3A23621708011&dc&qid=1655979571&rnid=23621705011&ref=sr_nr_p_n_feature_nineteen_browse-bin_1&ds=v1%3AskI2oxtKYLex8F7Oo0dch5hn22vbarD%2FvP6STMN7rNM",
+        "name": "Surround",
+        "refinement_display_name": "Speaker Audio Output Mode",
+        "value": "n:7073956011||p_n_feature_nineteen_browse-bin/23621708011"
+      }
+    ],
+    "speaker_connectivity_technology": [
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&rh=n%3A7073956011%2Cp_n_feature_twenty-eight_browse-bin%3A23971596011&dc&qid=1655979571&rnid=23971586011&ref=sr_nr_p_n_feature_twenty-eight_browse-bin_1&ds=v1%3AW0sepzaTLxswVS7aew5iRRrIjdl517%2FtVNI%2FP9Au77E",
+        "name": "Bluetooth",
+        "refinement_display_name": "Speaker Connectivity Technology",
+        "value": "n:7073956011||p_n_feature_twenty-eight_browse-bin/23971596011"
+      },
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&rh=n%3A7073956011%2Cp_n_feature_twenty-eight_browse-bin%3A23971593011&dc&qid=1655979571&rnid=23971586011&ref=sr_nr_p_n_feature_twenty-eight_browse-bin_2&ds=v1%3A8a9thJTf05XMXZD%2BMX3Tv6i3JiGu8zWAu2gkvi%2B%2BOgw",
+        "name": "Wi-Fi",
+        "refinement_display_name": "Speaker Connectivity Technology",
+        "value": "n:7073956011||p_n_feature_twenty-eight_browse-bin/23971593011"
+      }
+    ],
+    "speaker_controller_type": [
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&rh=n%3A7073956011%2Cp_n_feature_twenty-six_browse-bin%3A23948089011&dc&qid=1655979571&rnid=23948037011&ref=sr_nr_p_n_feature_twenty-six_browse-bin_1&ds=v1%3AgjCyHBqEH%2F9ZByaoCj1gx0DKfErTvGgadUY73usar80",
+        "name": "App Control",
+        "refinement_display_name": "Speaker Controller Type",
+        "value": "n:7073956011||p_n_feature_twenty-six_browse-bin/23948089011"
+      },
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&rh=n%3A7073956011%2Cp_n_feature_twenty-six_browse-bin%3A23948084011&dc&qid=1655979571&rnid=23948037011&ref=sr_nr_p_n_feature_twenty-six_browse-bin_2&ds=v1%3AkiJVNQMPneO6swjKNm9dc%2BV7PRR%2BBx5CDdXI%2BONrmKA",
+        "name": "Button Control",
+        "refinement_display_name": "Speaker Controller Type",
+        "value": "n:7073956011||p_n_feature_twenty-six_browse-bin/23948084011"
+      },
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&rh=n%3A7073956011%2Cp_n_feature_twenty-six_browse-bin%3A23948087011&dc&qid=1655979571&rnid=23948037011&ref=sr_nr_p_n_feature_twenty-six_browse-bin_3&ds=v1%3ALhs75ErekrkLby7ioV9cHZheDLIVN5ty8HeueONasvA",
+        "name": "Voice Control",
+        "refinement_display_name": "Speaker Controller Type",
+        "value": "n:7073956011||p_n_feature_twenty-six_browse-bin/23948087011"
+      }
+    ],
+    "speaker_maximum_power_output": [
+      {
+        "name": "Up to 19.9 W",
+        "refinement_display_name": "Speaker Maximum Power Output",
+        "value": "p_n_feature_seven_browse-bin/18238294011"
+      },
+      {
+        "name": "20 to 99.9 W",
+        "refinement_display_name": "Speaker Maximum Power Output",
+        "value": "p_n_feature_seven_browse-bin/18238295011"
+      },
+      {
+        "name": "100 to 199.9 W",
+        "refinement_display_name": "Speaker Maximum Power Output",
+        "value": "p_n_feature_seven_browse-bin/18238296011"
+      },
+      {
+        "name": "200 to 399.9 W",
+        "refinement_display_name": "Speaker Maximum Power Output",
+        "value": "p_n_feature_seven_browse-bin/18238297011"
+      },
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&rh=n%3A7073956011%2Cp_n_feature_seven_browse-bin%3A18238298011&dc&qid=1655979571&rnid=18238293011&ref=sr_nr_p_n_feature_seven_browse-bin_5&ds=v1%3A8fl4BDrjV0VmpsPZrM0Oi0lnMzFgAikbgaqFRUhusZQ",
+        "name": "400 to 599.9 W",
+        "refinement_display_name": "Speaker Maximum Power Output",
+        "value": "n:7073956011||p_n_feature_seven_browse-bin/18238298011"
+      },
+      {
+        "name": "600 W & Above",
+        "refinement_display_name": "Speaker Maximum Power Output",
+        "value": "p_n_feature_seven_browse-bin/18238299011"
+      }
+    ],
+    "speaker_mounting_type": [
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&rh=n%3A7073956011%2Cp_n_feature_twenty-nine_browse-bin%3A23971702011&dc&qid=1655979571&rnid=23971699011&ref=sr_nr_p_n_feature_twenty-nine_browse-bin_1&ds=v1%3A634jJIJzAzg%2FIHufkQAKGmd%2FTTrwEhm38F44OH0b37o",
+        "name": "Wall Mount",
+        "refinement_display_name": "Speaker Mounting Type",
+        "value": "n:7073956011||p_n_feature_twenty-nine_browse-bin/23971702011"
+      }
+    ],
+    "speaker_wireless_communication_technology": [
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&rh=n%3A7073956011%2Cp_n_feature_twenty-two_browse-bin%3A23696243011&dc&qid=1655979571&rnid=23696241011&ref=sr_nr_p_n_feature_twenty-two_browse-bin_1&ds=v1%3At3ZDvC5%2BLYgy20GPTWJK%2FliOhDBXM1oi1YGj6GiUIJw",
+        "name": "Bluetooth",
+        "refinement_display_name": "Speaker Wireless Communication Technology",
+        "value": "n:7073956011||p_n_feature_twenty-two_browse-bin/23696243011"
+      },
+      {
+        "link": "https://www.amazon.com/s?k=google+nest+audio&rh=n%3A7073956011%2Cp_n_feature_twenty-two_browse-bin%3A23696245011&dc&qid=1655979571&rnid=23696241011&ref=sr_nr_p_n_feature_twenty-two_browse-bin_2&ds=v1%3A5pV%2F9KyOIGkwfOLcoaMF8RbMvlO%2B6Av77T91rQcpRJM",
+        "name": "Wi-Fi",
+        "refinement_display_name": "Speaker Wireless Communication Technology",
+        "value": "n:7073956011||p_n_feature_twenty-two_browse-bin/23696245011"
+      }
+    ]
+  },
+  "request_info": {
+    "credits_remaining": 99,
+    "credits_used": 1,
+    "credits_used_this_request": 1,
+    "success": true
+  },
+  "request_metadata": {
+    "amazon_url": "https://www.amazon.com/s/?k=google+nest+audio&ref=nb_sb_noss_2",
+    "created_at": "2022-06-23T10:19:31.314Z",
+    "processed_at": "2022-06-23T10:19:33.509Z",
+    "total_time_taken": 2.19
+  },
+  "request_parameters": {
+    "amazon_domain": "amazon.com",
+    "search_term": "google nest audio",
+    "type": "search"
+  },
+  "search_results": [
+    {
+      "asin": "B08LFZ6H4Y",
+      "categories": [
+        {
+          "id": "aps",
+          "name": "All Departments"
+        }
+      ],
+      "delivery": {
+        "price": {
+          "currency": "USD",
+          "is_free": true,
+          "raw": "FREE Shipping on orders over $25 shipped by Amazon",
+          "symbol": "$",
+          "value": 0
+        },
+        "tagline": "Get it as soon as Mon, Jun 27"
+      },
+      "image": "https://m.media-amazon.com/images/I/91jkEDBLrZL._AC_UY218_.jpg",
+      "is_prime": true,
+      "is_small_business": true,
+      "link": "https://www.amazon.com/gp/slredirect/picassoRedirect.html/ref=pa_sp_atf_aps_sr_pg1_1?ie=UTF8&adId=A02211121U7S7O2230NLU&url=%2FMount-Genie-Affordable-Essentials-Hanger%2Fdp%2FB08LFZ6H4Y%2Fref%3Dsr_1_1_sspa%3Fkeywords%3Dgoogle%2Bnest%2Baudio%26qid%3D1655979571%26sr%3D8-1-spons%26psc%3D1%26smid%3DA1E0JORIPU1OBX&qualifier=1655979571&id=1468876730285558&widgetName=sp_atf",
+      "position": 1,
+      "price": {
+        "asin": "B08LFZ6H4Y",
+        "currency": "USD",
+        "link": "https://www.amazon.com/gp/slredirect/picassoRedirect.html/ref=pa_sp_atf_aps_sr_pg1_1?ie=UTF8&adId=A02211121U7S7O2230NLU&url=%2FMount-Genie-Affordable-Essentials-Hanger%2Fdp%2FB08LFZ6H4Y%2Fref%3Dsr_1_1_sspa%3Fkeywords%3Dgoogle%2Bnest%2Baudio%26qid%3D1655979571%26sr%3D8-1-spons%26psc%3D1%26smid%3DA1E0JORIPU1OBX&qualifier=1655979571&id=1468876730285558&widgetName=sp_atf",
+        "raw": "$11.99",
+        "symbol": "$",
+        "value": 11.99
+      },
+      "prices": [
+        {
+          "asin": "B08LFZ6H4Y",
+          "currency": "USD",
+          "link": "https://www.amazon.com/gp/slredirect/picassoRedirect.html/ref=pa_sp_atf_aps_sr_pg1_1?ie=UTF8&adId=A02211121U7S7O2230NLU&url=%2FMount-Genie-Affordable-Essentials-Hanger%2Fdp%2FB08LFZ6H4Y%2Fref%3Dsr_1_1_sspa%3Fkeywords%3Dgoogle%2Bnest%2Baudio%26qid%3D1655979571%26sr%3D8-1-spons%26psc%3D1%26smid%3DA1E0JORIPU1OBX&qualifier=1655979571&id=1468876730285558&widgetName=sp_atf",
+          "raw": "$11.99",
+          "symbol": "$",
+          "value": 11.99
+        }
+      ],
+      "rating": 4.3,
+      "ratings_total": 65,
+      "sponsored": true,
+      "title": "Mount Genie Affordable Essentials Wall Mount Hanger Stand for Nest Audio (White, 1-Pack): Screw and Screwless Install Options, The Slimmest Low-Profile Mount Available"
+    },
+    {
+      "asin": "B0B1W8WTJ2",
+      "categories": [
+        {
+          "id": "aps",
+          "name": "All Departments"
+        }
+      ],
+      "delivery": {
+        "price": {
+          "currency": "USD",
+          "is_free": true,
+          "raw": "FREE Shipping by Amazon",
+          "symbol": "$",
+          "value": 0
+        }
+      },
+      "image": "https://m.media-amazon.com/images/I/61ZpCkVvP4L._AC_UY218_.jpg",
+      "link": "https://www.amazon.com/Google-Nest-Doorbell-Wired-Streaming/dp/B0B1W8WTJ2/ref=sr_1_2?keywords=google+nest+audio&qid=1655979571&sr=8-2",
+      "position": 2,
+      "price": {
+        "currency": "USD",
+        "is_primary": true,
+        "name": "Primary",
+        "raw": "$169.99",
+        "symbol": "$",
+        "value": 169.99
+      },
+      "prices": [
+        {
+          "currency": "USD",
+          "is_primary": true,
+          "name": "Primary",
+          "raw": "$169.99",
+          "symbol": "$",
+          "value": 169.99
+        },
+        {
+          "currency": "USD",
+          "is_rrp": true,
+          "name": "Original",
+          "raw": "$229.00",
+          "symbol": "$",
+          "value": 229
+        }
+      ],
+      "rating": 3,
+      "ratings_total": 2,
+      "title": "Google Nest Doorbell (Wired) - Formerly Nest Hello - Video Doorbell with 24/7 Streaming - Smart Doorbell Camera for Home with HDR Video, HD Talk and Listen, Night Vision, and Person Alerts"
+    },
+    {
+      "asin": "B08GG9CMLR",
+      "categories": [
+        {
+          "id": "aps",
+          "name": "All Departments"
+        }
+      ],
+      "delivery": {
+        "price": {
+          "currency": "USD",
+          "is_free": true,
+          "raw": "FREE Shipping by Amazon",
+          "symbol": "$",
+          "value": 0
+        }
+      },
+      "image": "https://m.media-amazon.com/images/I/41K+qYuMSTL._AC_UY218_.jpg",
+      "link": "https://www.amazon.com/Google-Wifi-System-Router-Replacement/dp/B08GG9CMLR/ref=sr_1_3?keywords=google+nest+audio&qid=1655979571&sr=8-3",
+      "position": 3,
+      "price": {
+        "currency": "USD",
+        "is_primary": true,
+        "name": "Primary",
+        "raw": "$182.88",
+        "symbol": "$",
+        "value": 182.88
+      },
+      "prices": [
+        {
+          "currency": "USD",
+          "is_primary": true,
+          "name": "Primary",
+          "raw": "$182.88",
+          "symbol": "$",
+          "value": 182.88
+        },
+        {
+          "currency": "USD",
+          "is_rrp": true,
+          "name": "Original",
+          "raw": "$199.99",
+          "symbol": "$",
+          "value": 199.99
+        }
+      ],
+      "rating": 4.6,
+      "ratings_total": 10718,
+      "title": "Google Wifi - AC1200 - Mesh WiFi System - Wifi Router - 4500 Sq Ft Coverage - 3 pack"
+    },
+    {
+      "asin": "B08RYZDQ2Q",
+      "categories": [
+        {
+          "id": "aps",
+          "name": "All Departments"
+        }
+      ],
+      "delivery": {
+        "price": {
+          "currency": "USD",
+          "is_free": true,
+          "raw": "FREE Shipping on orders over $25 shipped by Amazon",
+          "symbol": "$",
+          "value": 0
+        },
+        "tagline": "Get it as soon as Mon, Jun 27"
+      },
+      "image": "https://m.media-amazon.com/images/I/71miHekfBXL._AC_UY218_.jpg",
+      "is_prime": true,
+      "link": "https://www.amazon.com/Compatible-Speaker-Management-Accessories-Space-Saving/dp/B08RYZDQ2Q/ref=sr_1_4?keywords=google+nest+audio&qid=1655979571&sr=8-4",
+      "position": 4,
+      "price": {
+        "asin": "B08RYZDQ2Q",
+        "currency": "USD",
+        "link": "https://www.amazon.com/Compatible-Speaker-Management-Accessories-Space-Saving/dp/B08RYZDQ2Q/ref=sr_1_4?keywords=google+nest+audio&qid=1655979571&sr=8-4",
+        "raw": "$19.97",
+        "symbol": "$",
+        "value": 19.97
+      },
+      "prices": [
+        {
+          "asin": "B08RYZDQ2Q",
+          "currency": "USD",
+          "link": "https://www.amazon.com/Compatible-Speaker-Management-Accessories-Space-Saving/dp/B08RYZDQ2Q/ref=sr_1_4?keywords=google+nest+audio&qid=1655979571&sr=8-4",
+          "raw": "$19.97",
+          "symbol": "$",
+          "value": 19.97
+        }
+      ],
+      "rating": 4.8,
+      "ratings_total": 14,
+      "title": "2 Pack Wall Mount Compatible with Google Nest Audio Speaker,Built in Cord Management Easy Install,Stable Stand Google Nest Audio Smart Speaker Holder Accessories for Space-Saving"
+    },
+    {
+      "asin": "B01I3I9L8M",
+      "bestseller": {
+        "category": "Complete Surveillance Systems",
+        "link": "https://www.amazon.com/gp/bestsellers/electronics/898406/ref=sr_bs_4_898406_1"
+      },
+      "categories": [
+        {
+          "id": "aps",
+          "name": "All Departments"
+        }
+      ],
+      "delivery": {
+        "price": {
+          "currency": "USD",
+          "is_free": true,
+          "raw": "FREE Shipping by Amazon",
+          "symbol": "$",
+          "value": 0
+        },
+        "tagline": "Get it as soon as Mon, Jun 27"
+      },
+      "image": "https://m.media-amazon.com/images/I/71fEASFx55L._AC_UY218_.jpg",
+      "is_prime": true,
+      "link": "https://www.amazon.com/Nest-Security-Matters-Anywhere-Outdoor/dp/B01I3I9L8M/ref=sr_1_5?keywords=google+nest+audio&qid=1655979571&sr=8-5",
+      "position": 5,
+      "price": {
+        "asin": "B01I3I9L8M",
+        "currency": "USD",
+        "link": "https://www.amazon.com/Nest-Security-Matters-Anywhere-Outdoor/dp/B01I3I9L8M/ref=sr_1_5?keywords=google+nest+audio&qid=1655979571&sr=8-5",
+        "raw": "$199.00",
+        "symbol": "$",
+        "value": 199
+      },
+      "prices": [
+        {
+          "asin": "B01I3I9L8M",
+          "currency": "USD",
+          "link": "https://www.amazon.com/Nest-Security-Matters-Anywhere-Outdoor/dp/B01I3I9L8M/ref=sr_1_5?keywords=google+nest+audio&qid=1655979571&sr=8-5",
+          "raw": "$199.00",
+          "symbol": "$",
+          "value": 199
+        }
+      ],
+      "rating": 4.5,
+      "ratings_total": 6241,
+      "title": "Google Nest Cam Outdoor - 1st Generation - Weatherproof Outdoor Camera - Surveillance Camera with Night Vision - Control with Your Phone"
+    },
+    {
+      "asin": "B08Q38FBX9",
+      "categories": [
+        {
+          "id": "aps",
+          "name": "All Departments"
+        }
+      ],
+      "delivery": {
+        "price": {
+          "currency": "USD",
+          "is_free": true,
+          "raw": "FREE Shipping on orders over $25 shipped by Amazon",
+          "symbol": "$",
+          "value": 0
+        },
+        "tagline": "Get it as soon as Mon, Jun 27"
+      },
+      "image": "https://m.media-amazon.com/images/I/61ralvI8MBS._AC_UY218_.jpg",
+      "is_prime": true,
+      "link": "https://www.amazon.com/Spigen-Silicone-Designed-Google-Audio/dp/B08Q38FBX9/ref=sr_1_6?keywords=google+nest+audio&qid=1655979571&sr=8-6",
+      "position": 6,
+      "price": {
+        "asin": "B08Q38FBX9",
+        "currency": "USD",
+        "link": "https://www.amazon.com/Spigen-Silicone-Designed-Google-Audio/dp/B08Q38FBX9/ref=sr_1_6?keywords=google+nest+audio&qid=1655979571&sr=8-6",
+        "raw": "$6.99",
+        "symbol": "$",
+        "value": 6.99
+      },
+      "prices": [
+        {
+          "asin": "B08Q38FBX9",
+          "currency": "USD",
+          "link": "https://www.amazon.com/Spigen-Silicone-Designed-Google-Audio/dp/B08Q38FBX9/ref=sr_1_6?keywords=google+nest+audio&qid=1655979571&sr=8-6",
+          "raw": "$6.99",
+          "symbol": "$",
+          "value": 6.99
+        }
+      ],
+      "rating": 4.6,
+      "ratings_total": 41,
+      "title": "Spigen Silicone Fit Designed for Google Nest Audio Stand - Charcoal Gray"
+    },
+    {
+      "asin": "B08R8K9ZQ5",
+      "categories": [
+        {
+          "id": "aps",
+          "name": "All Departments"
+        }
+      ],
+      "delivery": {
+        "price": {
+          "currency": "USD",
+          "is_free": true,
+          "raw": "FREE Shipping on orders over $25 shipped by Amazon",
+          "symbol": "$",
+          "value": 0
+        },
+        "tagline": "Get it as soon as Mon, Jun 27"
+      },
+      "image": "https://m.media-amazon.com/images/I/7175PwC+sWL._AC_UY218_.jpg",
+      "is_prime": true,
+      "link": "https://www.amazon.com/Compatible-Accessories-Installation-Drilling-Constructions/dp/B08R8K9ZQ5/ref=sr_1_7?keywords=google+nest+audio&qid=1655979571&sr=8-7",
+      "position": 7,
+      "price": {
+        "asin": "B08R8K9ZQ5",
+        "currency": "USD",
+        "link": "https://www.amazon.com/Compatible-Accessories-Installation-Drilling-Constructions/dp/B08R8K9ZQ5/ref=sr_1_7?keywords=google+nest+audio&qid=1655979571&sr=8-7",
+        "raw": "$10.99",
+        "symbol": "$",
+        "value": 10.99
+      },
+      "prices": [
+        {
+          "asin": "B08R8K9ZQ5",
+          "currency": "USD",
+          "link": "https://www.amazon.com/Compatible-Accessories-Installation-Drilling-Constructions/dp/B08R8K9ZQ5/ref=sr_1_7?keywords=google+nest+audio&qid=1655979571&sr=8-7",
+          "raw": "$10.99",
+          "symbol": "$",
+          "value": 10.99
+        }
+      ],
+      "rating": 4.6,
+      "ratings_total": 55,
+      "title": "Speaker Wall Mount Shelf Compatible with Google Nest Audio, Wall Stand Accessories, Quick and Easy Installation, Space Saving, No Drilling Holes, Fully ABS Constructions White"
+    },
+    {
+      "asin": "B07FZ8S74R",
+      "categories": [
+        {
+          "id": "aps",
+          "name": "All Departments"
+        }
+      ],
+      "delivery": {
+        "price": {
+          "currency": "USD",
+          "is_free": true,
+          "raw": "FREE Shipping by Amazon",
+          "symbol": "$",
+          "value": 0
+        },
+        "tagline": "Get it as soon as Tomorrow, Jun 24"
+      },
+      "image": "https://m.media-amazon.com/images/I/6182S7MYC2L._AC_UY218_.jpg",
+      "is_prime": true,
+      "link": "https://www.amazon.com/Echo-Dot/dp/B07FZ8S74R/ref=sr_1_8?keywords=google+nest+audio&qid=1655979571&sr=8-8",
+      "position": 8,
+      "price": {
+        "currency": "USD",
+        "is_primary": true,
+        "name": "Primary",
+        "raw": "$29.99",
+        "symbol": "$",
+        "value": 29.99
+      },
+      "prices": [
+        {
+          "currency": "USD",
+          "is_primary": true,
+          "name": "Primary",
+          "raw": "$29.99",
+          "symbol": "$",
+          "value": 29.99
+        },
+        {
+          "currency": "USD",
+          "is_rrp": true,
+          "name": "Original",
+          "raw": "$39.99",
+          "symbol": "$",
+          "value": 39.99
+        }
+      ],
+      "rating": 4.7,
+      "ratings_total": 918990,
+      "title": "Echo Dot (3rd Gen, 2018 release) - Smart speaker with Alexa - Charcoal"
+    },
+    {
+      "asin": "B00WBJGUA2",
+      "availability": {
+        "raw": "Only 1 left in stock - order soon."
+      },
+      "categories": [
+        {
+          "id": "aps",
+          "name": "All Departments"
+        }
+      ],
+      "delivery": {
+        "price": {
+          "currency": "USD",
+          "is_free": true,
+          "raw": "FREE Shipping",
+          "symbol": "$",
+          "value": 0
+        },
+        "tagline": "Get it Mon, Jun 27 - Tue, Jun 28"
+      },
+      "image": "https://m.media-amazon.com/images/I/71CB6UiirBL._AC_UY218_.jpg",
+      "link": "https://www.amazon.com/Nest-Cam-Indoor-Wired-Security-Camera/dp/B00WBJGUA2/ref=sr_1_9_mod_primary_new?keywords=google+nest+audio&qid=1655979571&sbo=RZvfv%2F%2FHxDF%2BO5021pAnSA%3D%3D&sr=8-9",
+      "position": 9,
+      "price": {
+        "asin": "B00WBJGUA2",
+        "currency": "USD",
+        "link": "https://www.amazon.com/Nest-Cam-Indoor-Wired-Security-Camera/dp/B00WBJGUA2/ref=sr_1_9_mod_primary_new?keywords=google+nest+audio&qid=1655979571&sbo=RZvfv%2F%2FHxDF%2BO5021pAnSA%3D%3D&sr=8-9",
+        "raw": "$146.00",
+        "symbol": "$",
+        "value": 146
+      },
+      "prices": [
+        {
+          "asin": "B00WBJGUA2",
+          "currency": "USD",
+          "link": "https://www.amazon.com/Nest-Cam-Indoor-Wired-Security-Camera/dp/B00WBJGUA2/ref=sr_1_9_mod_primary_new?keywords=google+nest+audio&qid=1655979571&sbo=RZvfv%2F%2FHxDF%2BO5021pAnSA%3D%3D&sr=8-9",
+          "raw": "$146.00",
+          "symbol": "$",
+          "value": 146
+        }
+      ],
+      "rating": 4.6,
+      "ratings_total": 14378,
+      "title": "Google Nest Cam Indoor - 1st Generation - Wired Indoor Camera - Control with Your Phone and Get Mobile Alerts - Surveillance Camera with 24/7 Live Video and Night Vision"
+    },
+    {
+      "asin": "B08RYZ49B8",
+      "categories": [
+        {
+          "id": "aps",
+          "name": "All Departments"
+        }
+      ],
+      "delivery": {
+        "price": {
+          "currency": "USD",
+          "is_free": true,
+          "raw": "FREE Shipping on orders over $25 shipped by Amazon",
+          "symbol": "$",
+          "value": 0
+        },
+        "tagline": "Get it as soon as Mon, Jun 27"
+      },
+      "image": "https://m.media-amazon.com/images/I/71K9753Ay1L._AC_UY218_.jpg",
+      "is_prime": true,
+      "link": "https://www.amazon.com/gp/slredirect/picassoRedirect.html/ref=pa_sp_mtf_aps_sr_pg1_1?ie=UTF8&adId=A05190831MHNQ86GZRN7W&url=%2FCompatible-Speaker-Management-Accessories-Space-Saving%2Fdp%2FB08RYZ49B8%2Fref%3Dsr_1_10_sspa%3Fkeywords%3Dgoogle%2Bnest%2Baudio%26qid%3D1655979571%26sr%3D8-10-spons%26psc%3D1%26smid%3DAX0233O88AFRG&qualifier=1655979571&id=1468876730285558&widgetName=sp_mtf",
+      "position": 10,
+      "price": {
+        "asin": "B08RYZ49B8",
+        "currency": "USD",
+        "link": "https://www.amazon.com/gp/slredirect/picassoRedirect.html/ref=pa_sp_mtf_aps_sr_pg1_1?ie=UTF8&adId=A05190831MHNQ86GZRN7W&url=%2FCompatible-Speaker-Management-Accessories-Space-Saving%2Fdp%2FB08RYZ49B8%2Fref%3Dsr_1_10_sspa%3Fkeywords%3Dgoogle%2Bnest%2Baudio%26qid%3D1655979571%26sr%3D8-10-spons%26psc%3D1%26smid%3DAX0233O88AFRG&qualifier=1655979571&id=1468876730285558&widgetName=sp_mtf",
+        "raw": "$19.98",
+        "symbol": "$",
+        "value": 19.98
+      },
+      "prices": [
+        {
+          "asin": "B08RYZ49B8",
+          "currency": "USD",
+          "link": "https://www.amazon.com/gp/slredirect/picassoRedirect.html/ref=pa_sp_mtf_aps_sr_pg1_1?ie=UTF8&adId=A05190831MHNQ86GZRN7W&url=%2FCompatible-Speaker-Management-Accessories-Space-Saving%2Fdp%2FB08RYZ49B8%2Fref%3Dsr_1_10_sspa%3Fkeywords%3Dgoogle%2Bnest%2Baudio%26qid%3D1655979571%26sr%3D8-10-spons%26psc%3D1%26smid%3DAX0233O88AFRG&qualifier=1655979571&id=1468876730285558&widgetName=sp_mtf",
+          "raw": "$19.98",
+          "symbol": "$",
+          "value": 19.98
+        }
+      ],
+      "rating": 4.8,
+      "ratings_total": 14,
+      "sponsored": true,
+      "title": "2 Pack Wall Mount Compatible with Google Nest Audio Speaker,Built in Cord Management Easy Install,Stable Stand Google Nest Audio Smart Speaker Holder Accessories for Space-Saving"
+    },
+    {
+      "asin": "B07GNN4T2V",
+      "bestseller": {
+        "category": "Home Thermostat Accessories",
+        "link": "https://www.amazon.com/gp/bestsellers/hi/1296449011/ref=sr_bs_10_1296449011_1"
+      },
+      "categories": [
+        {
+          "id": "aps",
+          "name": "All Departments"
+        }
+      ],
+      "delivery": {
+        "price": {
+          "currency": "USD",
+          "is_free": true,
+          "raw": "FREE Shipping by Amazon",
+          "symbol": "$",
+          "value": 0
+        },
+        "tagline": "Get it as soon as Mon, Jun 27"
+      },
+      "image": "https://m.media-amazon.com/images/I/61HCxzABIgL._AC_UY218_.jpg",
+      "is_prime": true,
+      "link": "https://www.amazon.com/Nest-Labs-T5001SF-Sensor-Thermost/dp/B07GNN4T2V/ref=sr_1_11?keywords=google+nest+audio&qid=1655979571&sr=8-11",
+      "position": 11,
+      "price": {
+        "asin": "B07GNN4T2V",
+        "currency": "USD",
+        "link": "https://www.amazon.com/Nest-Labs-T5001SF-Sensor-Thermost/dp/B07GNN4T2V/ref=sr_1_11?keywords=google+nest+audio&qid=1655979571&sr=8-11",
+        "raw": "$99.00",
+        "symbol": "$",
+        "value": 99
+      },
+      "prices": [
+        {
+          "asin": "B07GNN4T2V",
+          "currency": "USD",
+          "link": "https://www.amazon.com/Nest-Labs-T5001SF-Sensor-Thermost/dp/B07GNN4T2V/ref=sr_1_11?keywords=google+nest+audio&qid=1655979571&sr=8-11",
+          "raw": "$99.00",
+          "symbol": "$",
+          "value": 99
+        }
+      ],
+      "rating": 4.7,
+      "ratings_total": 3869,
+      "title": "Google Nest Temperature Sensor 3 Pack - Nest Thermostat Sensor - Nest Sensor That Works with Nest Learning Thermostat and Nest Thermostat E - Smart Home"
+    },
+    {
+      "asin": "B084J4MZK8",
+      "categories": [
+        {
+          "id": "aps",
+          "name": "All Departments"
+        }
+      ],
+      "delivery": {
+        "price": {
+          "currency": "USD",
+          "is_free": true,
+          "raw": "FREE Shipping by Amazon",
+          "symbol": "$",
+          "value": 0
+        },
+        "tagline": "Get it as soon as Mon, Jun 27"
+      },
+      "image": "https://m.media-amazon.com/images/I/51maMLyRs4L._AC_UY218_.jpg",
+      "is_prime": true,
+      "link": "https://www.amazon.com/Echo-Dot/dp/B084J4MZK8/ref=sr_1_12?keywords=google+nest+audio&qid=1655979571&sr=8-12",
+      "position": 12,
+      "price": {
+        "currency": "USD",
+        "is_primary": true,
+        "name": "Primary",
+        "raw": "$39.99",
+        "symbol": "$",
+        "value": 39.99
+      },
+      "prices": [
+        {
+          "currency": "USD",
+          "is_primary": true,
+          "name": "Primary",
+          "raw": "$39.99",
+          "symbol": "$",
+          "value": 39.99
+        },
+        {
+          "currency": "USD",
+          "is_rrp": true,
+          "name": "Original",
+          "raw": "$49.99",
+          "symbol": "$",
+          "value": 49.99
+        }
+      ],
+      "rating": 4.7,
+      "ratings_total": 462037,
+      "title": "Echo Dot (4th Gen) | Sleek design with full sound, Bluetooth, and Alexa | Twilight Blue"
+    },
+    {
+      "amazons_choice": {
+        "keywords": "google nest audio",
+        "link": "https://www.amazon.com/Google-Compatible-Speaker-Sturdy-Bracket/dp/B094HMLTX2/ref=ice_ac_b_dpb?keywords=google+nest+audio&qid=1655979571&sr=8-13"
+      },
+      "asin": "B094HMLTX2",
+      "categories": [
+        {
+          "id": "aps",
+          "name": "All Departments"
+        }
+      ],
+      "delivery": {
+        "price": {
+          "currency": "USD",
+          "is_free": true,
+          "raw": "FREE Shipping on orders over $25 shipped by Amazon",
+          "symbol": "$",
+          "value": 0
+        },
+        "tagline": "Get it as soon as Mon, Jun 27"
+      },
+      "image": "https://m.media-amazon.com/images/I/71zwNzUhAAS._AC_UY218_.jpg",
+      "is_prime": true,
+      "link": "https://www.amazon.com/Google-Compatible-Speaker-Sturdy-Bracket/dp/B094HMLTX2/ref=sr_1_13?keywords=google+nest+audio&qid=1655979571&sr=8-13",
+      "position": 13,
+      "price": {
+        "asin": "B094HMLTX2",
+        "currency": "USD",
+        "link": "https://www.amazon.com/Google-Compatible-Speaker-Sturdy-Bracket/dp/B094HMLTX2/ref=sr_1_13?keywords=google+nest+audio&qid=1655979571&sr=8-13",
+        "raw": "$11.99",
+        "symbol": "$",
+        "value": 11.99
+      },
+      "prices": [
+        {
+          "asin": "B094HMLTX2",
+          "currency": "USD",
+          "link": "https://www.amazon.com/Google-Compatible-Speaker-Sturdy-Bracket/dp/B094HMLTX2/ref=sr_1_13?keywords=google+nest+audio&qid=1655979571&sr=8-13",
+          "raw": "$11.99",
+          "symbol": "$",
+          "value": 11.99
+        }
+      ],
+      "rating": 4.7,
+      "ratings_total": 22,
+      "title": "Google Nest Audio Wall Mount, Compatible with Google Nest Audio Speaker, Sturdy Metal Made ,Nest Audio Stand Holder Bracket(1Pack)"
+    },
+    {
+      "asin": "B08R8VBBHF",
+      "categories": [
+        {
+          "id": "aps",
+          "name": "All Departments"
+        }
+      ],
+      "delivery": {
+        "price": {
+          "currency": "USD",
+          "is_free": true,
+          "raw": "FREE Shipping on orders over $25 shipped by Amazon",
+          "symbol": "$",
+          "value": 0
+        },
+        "tagline": "Get it as soon as Mon, Jun 27"
+      },
+      "image": "https://m.media-amazon.com/images/I/71EuJ+bwXZL._AC_UY218_.jpg",
+      "is_prime": true,
+      "link": "https://www.amazon.com/Compatible-Hanging-Desktop-Placement-Speaker-Black/dp/B08R8VBBHF/ref=sr_1_14?keywords=google+nest+audio&qid=1655979571&sr=8-14",
+      "position": 14,
+      "price": {
+        "currency": "USD",
+        "is_primary": true,
+        "name": "Save 11%",
+        "raw": "$7.99",
+        "symbol": "$",
+        "value": 7.99
+      },
+      "prices": [
+        {
+          "currency": "USD",
+          "is_primary": true,
+          "name": "Save 11%",
+          "raw": "$7.99",
+          "symbol": "$",
+          "value": 7.99
+        },
+        {
+          "currency": "USD",
+          "is_rrp": true,
+          "name": "Save 11%",
+          "raw": "$8.99",
+          "symbol": "$",
+          "value": 8.99
+        }
+      ],
+      "rating": 4.5,
+      "ratings_total": 33,
+      "title": "Wall Mount Holder Compatible with Google Nest Audio, ABS Wall Mount for Wall Hanging, Clear Desktop Placement Bracket Stand for Home Speaker-Black"
+    },
+    {
+      "asin": "B09J6Y8Y73",
+      "categories": [
+        {
+          "id": "aps",
+          "name": "All Departments"
+        }
+      ],
+      "delivery": {
+        "price": {
+          "currency": "USD",
+          "is_free": true,
+          "raw": "FREE Shipping by Amazon",
+          "symbol": "$",
+          "value": 0
+        },
+        "tagline": "Get it as soon as Mon, Jun 27"
+      },
+      "image": "https://m.media-amazon.com/images/I/51THSnDcj2L._AC_UY218_.jpg",
+      "is_prime": true,
+      "link": "https://www.amazon.com/gp/slredirect/picassoRedirect.html/ref=pa_sp_mtf_aps_sr_pg1_1?ie=UTF8&adId=A03277851TPHITGF5HOZW&url=%2FNest-Cam-Indoor-Wired-Snow%2Fdp%2FB09J6Y8Y73%2Fref%3Dsr_1_15_sspa%3Fkeywords%3Dgoogle%2Bnest%2Baudio%26qid%3D1655979571%26sr%3D8-15-spons%26psc%3D1&qualifier=1655979571&id=1468876730285558&widgetName=sp_mtf",
+      "position": 15,
+      "price": {
+        "currency": "USD",
+        "is_primary": true,
+        "name": "Primary",
+        "raw": "$79.99",
+        "symbol": "$",
+        "value": 79.99
+      },
+      "prices": [
+        {
+          "currency": "USD",
+          "is_primary": true,
+          "name": "Primary",
+          "raw": "$79.99",
+          "symbol": "$",
+          "value": 79.99
+        },
+        {
+          "currency": "USD",
+          "is_rrp": true,
+          "name": "Original",
+          "raw": "$99.99",
+          "symbol": "$",
+          "value": 99.99
+        }
+      ],
+      "rating": 4.6,
+      "ratings_total": 14378,
+      "sponsored": true,
+      "title": "Google Nest Cam (Wired) - 2nd Generation - Snow"
+    },
+    {
+      "asin": "B01M66NWOQ",
+      "availability": {
+        "raw": "Only 1 left in stock - order soon."
+      },
+      "categories": [
+        {
+          "id": "aps",
+          "name": "All Departments"
+        }
+      ],
+      "delivery": {
+        "price": {
+          "currency": "USD",
+          "is_free": true,
+          "raw": "FREE Shipping",
+          "symbol": "$",
+          "value": 0
+        },
+        "tagline": "Get it as soon as Mon, Jun 27"
+      },
+      "image": "https://m.media-amazon.com/images/I/71v6d29bJFL._AC_UY218_.jpg",
+      "link": "https://www.amazon.com/Nest-Outdoor-Security-Camera-Works/dp/B01M66NWOQ/ref=sr_1_16?keywords=google+nest+audio&qid=1655979571&sr=8-16",
+      "position": 16,
+      "price": {
+        "asin": "B01M66NWOQ",
+        "currency": "USD",
+        "link": "https://www.amazon.com/Nest-Outdoor-Security-Camera-Works/dp/B01M66NWOQ/ref=sr_1_16?keywords=google+nest+audio&qid=1655979571&sr=8-16",
+        "raw": "$424.00",
+        "symbol": "$",
+        "value": 424
+      },
+      "prices": [
+        {
+          "asin": "B01M66NWOQ",
+          "currency": "USD",
+          "link": "https://www.amazon.com/Nest-Outdoor-Security-Camera-Works/dp/B01M66NWOQ/ref=sr_1_16?keywords=google+nest+audio&qid=1655979571&sr=8-16",
+          "raw": "$424.00",
+          "symbol": "$",
+          "value": 424
+        }
+      ],
+      "rating": 4.6,
+      "ratings_total": 3209,
+      "title": "Google Nest Cam Outdoor 2-Pack - 1st Generation - Weatherproof Outdoor Camera - Surveillance Camera with Night Vision - Control with Your Phone"
+    },
+    {
+      "asin": "B07YMJ57MB",
+      "categories": [
+        {
+          "id": "aps",
+          "name": "All Departments"
+        }
+      ],
+      "delivery": {
+        "price": {
+          "currency": "USD",
+          "is_free": true,
+          "raw": "FREE Shipping by Amazon",
+          "symbol": "$",
+          "value": 0
+        },
+        "tagline": "Get it as soon as Mon, Jun 27"
+      },
+      "image": "https://m.media-amazon.com/images/I/61nj6CGEoaL._AC_UY218_.jpg",
+      "is_prime": true,
+      "link": "https://www.amazon.com/Google-Nest-Wifi-Router-Generation/dp/B07YMJ57MB/ref=sr_1_17?keywords=google+nest+audio&qid=1655979571&sr=8-17",
+      "position": 17,
+      "price": {
+        "currency": "USD",
+        "is_primary": true,
+        "name": "Primary",
+        "raw": "$200.30",
+        "symbol": "$",
+        "value": 200.3
+      },
+      "prices": [
+        {
+          "currency": "USD",
+          "is_primary": true,
+          "name": "Primary",
+          "raw": "$200.30",
+          "symbol": "$",
+          "value": 200.3
+        },
+        {
+          "currency": "USD",
+          "is_rrp": true,
+          "name": "Original",
+          "raw": "$299.00",
+          "symbol": "$",
+          "value": 299
+        }
+      ],
+      "rating": 4.5,
+      "ratings_total": 10311,
+      "title": "Google Nest Wifi - Home Wi-Fi System - Wi-Fi Extender - Mesh Router for Wireless Internet - 2 Pack"
+    },
+    {
+      "asin": "B015UKRNGS",
+      "categories": [
+        {
+          "id": "aps",
+          "name": "All Departments"
+        }
+      ],
+      "delivery": {
+        "price": {
+          "currency": "USD",
+          "is_free": true,
+          "raw": "FREE Shipping by Amazon",
+          "symbol": "$",
+          "value": 0
+        },
+        "tagline": "Get it as soon as Mon, Jun 27"
+      },
+      "image": "https://m.media-amazon.com/images/I/81rOtfzI0QL._AC_UY218_.jpg",
+      "is_prime": true,
+      "link": "https://www.amazon.com/Google-GA00439-US-Chromecast-3rd-Generation/dp/B015UKRNGS/ref=sr_1_18?keywords=google+nest+audio&qid=1655979571&sr=8-18",
+      "position": 18,
+      "price": {
+        "asin": "B015UKRNGS",
+        "currency": "USD",
+        "link": "https://www.amazon.com/Google-GA00439-US-Chromecast-3rd-Generation/dp/B015UKRNGS/ref=sr_1_18?keywords=google+nest+audio&qid=1655979571&sr=8-18",
+        "raw": "$29.91",
+        "symbol": "$",
+        "value": 29.91
+      },
+      "prices": [
+        {
+          "asin": "B015UKRNGS",
+          "currency": "USD",
+          "link": "https://www.amazon.com/Google-GA00439-US-Chromecast-3rd-Generation/dp/B015UKRNGS/ref=sr_1_18?keywords=google+nest+audio&qid=1655979571&sr=8-18",
+          "raw": "$29.91",
+          "symbol": "$",
+          "value": 29.91
+        }
+      ],
+      "rating": 4.6,
+      "ratings_total": 81378,
+      "title": "Google Chromecast - Streaming Device with HDMI Cable - Stream Shows, Music, Photos, and Sports from Your Phone to Your TV"
+    },
+    {
+      "asin": "B09BTGYR3N",
+      "categories": [
+        {
+          "id": "aps",
+          "name": "All Departments"
+        }
+      ],
+      "delivery": {
+        "price": {
+          "currency": "USD",
+          "is_free": true,
+          "raw": "FREE Shipping on orders over $25 shipped by Amazon",
+          "symbol": "$",
+          "value": 0
+        },
+        "tagline": "Get it as soon as Mon, Jun 27"
+      },
+      "image": "https://m.media-amazon.com/images/I/51HVsQipP0L._AC_UY218_.jpg",
+      "is_prime": true,
+      "link": "https://www.amazon.com/Google-Nest-Power-Cord-Original/dp/B09BTGYR3N/ref=sr_1_19?keywords=google+nest+audio&qid=1655979571&sr=8-19",
+      "position": 19,
+      "price": {
+        "asin": "B09BTGYR3N",
+        "currency": "USD",
+        "link": "https://www.amazon.com/Google-Nest-Power-Cord-Original/dp/B09BTGYR3N/ref=sr_1_19?keywords=google+nest+audio&qid=1655979571&sr=8-19",
+        "raw": "$16.85",
+        "symbol": "$",
+        "value": 16.85
+      },
+      "prices": [
+        {
+          "asin": "B09BTGYR3N",
+          "currency": "USD",
+          "link": "https://www.amazon.com/Google-Nest-Power-Cord-Original/dp/B09BTGYR3N/ref=sr_1_19?keywords=google+nest+audio&qid=1655979571&sr=8-19",
+          "raw": "$16.85",
+          "symbol": "$",
+          "value": 16.85
+        }
+      ],
+      "rating": 4.7,
+      "ratings_total": 189,
+      "title": "Google Nest Power Cord Original - Replacement 15W Charger for Google Nest WiFi AC2200 Router 2nd Gen, Google Nest Hub, GA01423-US GA01426-US GA01425-US W18-015N1A W18-015N1C G1015-US G1028"
+    },
+    {
+      "asin": "B09FCMSJZG",
+      "bestseller": {
+        "category": "Complete Surveillance Systems",
+        "link": "https://www.amazon.com/gp/bestsellers/electronics/898406/ref=sr_bs_19_898406_1"
+      },
+      "categories": [
+        {
+          "id": "aps",
+          "name": "All Departments"
+        }
+      ],
+      "delivery": {
+        "price": {
+          "currency": "USD",
+          "is_free": true,
+          "raw": "FREE Shipping by Amazon",
+          "symbol": "$",
+          "value": 0
+        },
+        "tagline": "Get it as soon as Tue, Jun 28"
+      },
+      "image": "https://m.media-amazon.com/images/I/51NhzaNET6L._AC_UY218_.jpg",
+      "is_prime": true,
+      "link": "https://www.amazon.com/gp/slredirect/picassoRedirect.html/ref=pa_sp_btf_aps_sr_pg1_1?ie=UTF8&adId=A05154751GYIZ4ZQU9Y3Q&url=%2FNest-Cam-Outdoor-Indoor-Battery%2Fdp%2FB09FCMSJZG%2Fref%3Dsr_1_20_sspa%3Fkeywords%3Dgoogle%2Bnest%2Baudio%26qid%3D1655979571%26sr%3D8-20-spons%26psc%3D1&qualifier=1655979571&id=1468876730285558&widgetName=sp_btf",
+      "position": 20,
+      "price": {
+        "asin": "B09FCMSJZG",
+        "currency": "USD",
+        "link": "https://www.amazon.com/gp/slredirect/picassoRedirect.html/ref=pa_sp_btf_aps_sr_pg1_1?ie=UTF8&adId=A05154751GYIZ4ZQU9Y3Q&url=%2FNest-Cam-Outdoor-Indoor-Battery%2Fdp%2FB09FCMSJZG%2Fref%3Dsr_1_20_sspa%3Fkeywords%3Dgoogle%2Bnest%2Baudio%26qid%3D1655979571%26sr%3D8-20-spons%26psc%3D1&qualifier=1655979571&id=1468876730285558&widgetName=sp_btf",
+        "raw": "$176.67",
+        "symbol": "$",
+        "value": 176.67
+      },
+      "prices": [
+        {
+          "asin": "B09FCMSJZG",
+          "currency": "USD",
+          "link": "https://www.amazon.com/gp/slredirect/picassoRedirect.html/ref=pa_sp_btf_aps_sr_pg1_1?ie=UTF8&adId=A05154751GYIZ4ZQU9Y3Q&url=%2FNest-Cam-Outdoor-Indoor-Battery%2Fdp%2FB09FCMSJZG%2Fref%3Dsr_1_20_sspa%3Fkeywords%3Dgoogle%2Bnest%2Baudio%26qid%3D1655979571%26sr%3D8-20-spons%26psc%3D1&qualifier=1655979571&id=1468876730285558&widgetName=sp_btf",
+          "raw": "$176.67",
+          "symbol": "$",
+          "value": 176.67
+        }
+      ],
+      "rating": 4.5,
+      "ratings_total": 6241,
+      "sponsored": true,
+      "title": "Google Nest Cam Outdoor or Indoor, Battery - 2nd Generation - 1 Pack"
+    }
+  ]
+}

@@ -38,7 +38,7 @@ export function Control<TAttributes extends React.HTMLAttributes<DataElement | H
     return (
         <div className='relative flex flex-col'>
             <div className={`${horiz ?? false ? 'flex flex-row' : 'contents'}`}>
-                <label id={labelID} htmlFor={controlID} className='flex text-lg font-bold leading-loose tracking-wider text-left font-fira-sans indent-3'>
+                <label id={labelID} htmlFor={controlID} className='flex text-lg font-bold leading-loose tracking-wider text-left text-white font-fira-sans indent-3'>
                     {noLabel ? undefined : label ?? toTitleCase(name)}
                 </label>
                 {/* <El {...spread} /> */}

@@ -2,7 +2,7 @@
 import React from 'react';
 import { IPropertyInfo } from './providers/SchemaProvider';
 import { useQuery } from 'react-query';
-import { useRealm } from '../hooks/useRealm';
+import useRealm from '../hooks/useRealm';
 import { Control } from './forms/Control';
 import { Select } from './forms/elements/Select';
 import { dropdown } from '../queries/dropdown';

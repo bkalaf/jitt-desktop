@@ -5,6 +5,7 @@ import { BrowserWindow, ipcMain, MenuItem, nativeImage } from 'electron';
 import { NavigateFunction, useNavigate } from 'react-router';
 import { ignore, toTitleCase } from '../common';
 import { pluralize } from "../data/enums/pluralize";
+import { makeVar } from '@apollo/client';
 
 export function createElectronIcon(iconDef: IconDefinition) {
     console.log(iconDef);
@@ -19,9 +20,29 @@ export function toClick(coll: string, prefix = 'data') {
     };
 }
 
+export function navTo(...parts: string[]) {
+    return (_menuItem: MenuItem, _browser: BrowserWindow, ev: Event) => {
+        const to = ['', ...parts].join('/');
+        BrowserWindow.getAllWindows()[0].webContents.send('navigate-to', to);
+    };
+}
+
 export const leaf = (route: string, label?: string) => ({ type: 'normal', label: label == null ? toTitleCase(pluralize(route)) : toTitleCase(pluralize(label.toLowerCase())), click: toClick(route) });
 
-export const topBar = [
+
+export type QueueState = { name: string; running: boolean; paused: boolean }
+export type QueueStates = {
+    skuPrinter: QueueState;
+}
+export const $queues = makeVar<QueueStates>({
+    skuPrinter: {
+        name: 'sku-printer',
+        running: false,
+        paused: false
+    }
+});
+
+export const topBar = ({ skuPrinter }: { skuPrinter: QueueState }) => [
     {
         type: 'submenu',
         role: 'fileMenu'
@@ -89,6 +110,22 @@ export const topBar = [
             }
         ]
     },
+    { type: 'submenu', label: 'Queues', submenu: [
+        { type: 'submenu', label: 'SKU Printer', submenu: [
+            { type: 'normal', label: 'Running', enabled: skuPrinter.running, click: function(_menuItem: MenuItem, _browser: BrowserWindow, ev: Event) {
+                $queues({ ...$queues(), skuPrinter: { ...skuPrinter, running: !skuPrinter.running }});
+            }}
+        ]}
+    ] },
+    { type: 'submenu', label: 'Actions', submenu: [
+        { type: 'normal', label: ''}
+    ]},
+    { type: 'submenu', label: 'Tags', submenu: [
+        { type: 'normal', label: 'Increment-Inventory', click: navTo('api', 'v1', 'new-inventory-tag') },
+        { type: 'normal', label: 'Increment-Item', click: navTo('api', 'v1', 'new-item-tag') },
+        { type: 'separator' },
+        { type: 'normal', label: 'Print Tags', click: navTo('api', 'v1', 'print-tags' )}
+    ] },
     { type: 'submenu', role: 'windowMenu', submenu: [] },
     { type: 'normal', label: 'Help', role: 'help', click: ignore },
     { type: 'normal', label: 'About', role: 'about', click: ignore }

@@ -25,7 +25,7 @@ export function importCategories({
         readFile(files.categoryListings)
     ).categories;
 
-    const dbCategories = realm.objects<Scrapes.Category>($.category);
+    const dbCategories = realm.objects<ICategory>($.category);
     const inserts = data.map((x) => {
         const id = x.subsubcategory ?? x.subcategory ?? x.category;
         const label = x.label;

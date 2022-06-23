@@ -2,7 +2,7 @@ import { faFile, faFolder, faKey } from '@fortawesome/pro-duotone-svg-icons';
 import React from 'react';
 import { DuotoneIcon } from '../../components/icons/DuotoneIcon';
 import { ObjectId } from 'bson';
-import { useLocalRealm } from '../../hooks/useLocalRealm';
+import useLocalRealm from '../../hooks/useLocalRealm';
 import { TypeDefinitionFunction, OutputDef, ReferenceDef } from '../definitions';
 import { Definition } from '../definitions/Definition';
 import { Definitions } from '../definitions/Definitions';

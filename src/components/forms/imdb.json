@@ -1,0 +1,2906 @@
+{
+    "actorList": [
+        {
+            "asCharacter": "Richard",
+            "id": "nm0000138",
+            "image": "https://imdb-api.com/images/original/MV5BMjI0MTg3MzI0M15BMl5BanBnXkFtZTcwMzQyODU2Mw@@._V1_Ratio0.7273_AL_.jpg",
+            "name": "Leonardo DiCaprio"
+        },
+        {
+            "asCharacter": "Sal",
+            "id": "nm0842770",
+            "image": "https://imdb-api.com/images/original/MV5BMTM4NzMzMTkwNV5BMl5BanBnXkFtZTcwMzU4MDg1Mw@@._V1_Ratio0.7727_AL_.jpg",
+            "name": "Tilda Swinton"
+        },
+        {
+            "asCharacter": "Hustler",
+            "id": "nm0948679",
+            "image": "https://imdb-api.com/images/original/MV5BNThlNGUwYzktOTgyZS00ODMzLWI0ZjUtODRjODIzNTVjYzg1XkEyXkFqcGdeQXVyMjIyOTc2OTk@._V1_Ratio0.7273_AL_.jpg",
+            "name": "Daniel York"
+        },
+        {
+            "asCharacter": "Hotel Receptionist",
+            "id": "nm0665265",
+            "image": "https://imdb-api.com/images/original/nopicture.jpg",
+            "name": "Patcharawan Patarakijjanon"
+        },
+        {
+            "asCharacter": "Françoise",
+            "id": "nm0001461",
+            "image": "https://imdb-api.com/images/original/MV5BMjEwMzA4NTY0NF5BMl5BanBnXkFtZTYwMDM5MzU0._V1_Ratio0.7273_AL_.jpg",
+            "name": "Virginie Ledoyen"
+        },
+        {
+            "asCharacter": "Étienne",
+            "id": "nm0133899",
+            "image": "https://imdb-api.com/images/original/MV5BNjM1MTk0NTk4NF5BMl5BanBnXkFtZTcwMDY0NzU0Nw@@._V1_Ratio0.7273_AL_.jpg",
+            "name": "Guillaume Canet"
+        },
+        {
+            "asCharacter": "Daffy",
+            "id": "nm0001015",
+            "image": "https://imdb-api.com/images/original/MV5BMTM2Njc1MjgyOF5BMl5BanBnXkFtZTcwMjY2NTAwNw@@._V1_Ratio0.7273_AL_.jpg",
+            "name": "Robert Carlyle"
+        },
+        {
+            "asCharacter": "Cleaning Woman",
+            "id": "nm0681141",
+            "image": "https://imdb-api.com/images/original/nopicture.jpg",
+            "name": "Somboon Phutaroth"
+        },
+        {
+            "asCharacter": "Detective",
+            "id": "nm0926768",
+            "image": "https://imdb-api.com/images/original/nopicture.jpg",
+            "name": "Weeratham 'Norman' Wichairaksakui"
+        },
+        {
+            "asCharacter": "Travel Agent (as Jak Boon)",
+            "id": "nm0095465",
+            "image": "https://imdb-api.com/images/original/MV5BMjdhODYyN2MtOTVkOC00YTZlLTkwZWQtZDk5YWRjZmM4ODJlXkEyXkFqcGdeQXVyMjI1OTg2MTI@._V1_Ratio0.7273_AL_.jpg",
+            "name": "Sahajak Boonthanakit"
+        },
+        {
+            "asCharacter": "Zeph",
+            "id": "nm0950186",
+            "image": "https://imdb-api.com/images/original/MV5BMTQwODI4MDQ3MF5BMl5BanBnXkFtZTcwNjI0MDQzMQ@@._V1_Ratio0.8182_AL_.jpg",
+            "name": "Peter Youngblood Hills"
+        },
+        {
+            "asCharacter": "Sammy",
+            "id": "nm0842684",
+            "image": "https://imdb-api.com/images/original/nopicture.jpg",
+            "name": "Jerry Swindall"
+        },
+        {
+            "asCharacter": "Woman with Key",
+            "id": "nm0857003",
+            "image": "https://imdb-api.com/images/original/nopicture.jpg",
+            "name": "Krongthong Thampradith"
+        },
+        {
+            "asCharacter": "Senior Farmer (as Abhijati 'Muek' Jusakul)",
+            "id": "nm0433064",
+            "image": "https://imdb-api.com/images/original/nopicture.jpg",
+            "name": "Apichart Chusakul"
+        },
+        {
+            "asCharacter": "Farmer",
+            "id": "nm0156603",
+            "image": "https://imdb-api.com/images/original/nopicture.jpg",
+            "name": "Sanya 'Gai' Cheunjit"
+        },
+        {
+            "asCharacter": "Farmer",
+            "id": "nm0447770",
+            "image": "https://imdb-api.com/images/original/nopicture.jpg",
+            "name": "Kaneung 'Nueng' Kenia"
+        },
+        {
+            "asCharacter": "Farmer",
+            "id": "nm0763504",
+            "image": "https://imdb-api.com/images/original/nopicture.jpg",
+            "name": "Somchai Santitharangkun"
+        },
+        {
+            "asCharacter": "Farmer (as Kawee 'Seng' Sirikanerat)",
+            "id": "nm0442966",
+            "image": "https://imdb-api.com/images/original/nopicture.jpg",
+            "name": "Seng Kawee"
+        },
+        {
+            "asCharacter": "Farmer",
+            "id": "nm0802913",
+            "image": "https://imdb-api.com/images/original/nopicture.jpg",
+            "name": "Somkuan 'Kuan' Siroon"
+        },
+        {
+            "asCharacter": "Keaty",
+            "id": "nm0430667",
+            "image": "https://imdb-api.com/images/original/MV5BMTg4MzE4OTc4OF5BMl5BanBnXkFtZTcwNDI0NDExOA@@._V1_Ratio0.7273_AL_.jpg",
+            "name": "Paterson Joseph"
+        },
+        {
+            "asCharacter": "Sonja",
+            "id": "nm0864046",
+            "image": "https://imdb-api.com/images/original/MV5BODMzNDEzNGMtOTQ0MS00NzBiLWI0ZjgtNWVkNjA4ZGVjOWNmXkEyXkFqcGdeQXVyMjQwMDg0Ng@@._V1_Ratio0.7273_AL_.jpg",
+            "name": "Zelda Tinska"
+        },
+        {
+            "asCharacter": "Weathergirl",
+            "id": "nm0810729",
+            "image": "https://imdb-api.com/images/original/MV5BMTc0NzEyNDE3N15BMl5BanBnXkFtZTgwOTk0MzE2MTI@._V1_Ratio0.7273_AL_.jpg",
+            "name": "Victoria Smurfit"
+        },
+        {
+            "asCharacter": "Unhygenix",
+            "id": "nm0130736",
+            "image": "https://imdb-api.com/images/original/MV5BZDA2N2NhOTktMzQ4ZS00MDJmLWFkNzYtMzM2YjY2ZDZlOWFiXkEyXkFqcGdeQXVyMzI5Mzg5MDU@._V1_Ratio1.3636_AL_.jpg",
+            "name": "Daniel Caltagirone"
+        },
+        {
+            "asCharacter": "Gregorio",
+            "id": "nm0315355",
+            "image": "https://imdb-api.com/images/original/MV5BMTMzOTQxODU5OV5BMl5BanBnXkFtZTcwNDM5ODAzMQ@@._V1_Ratio0.7273_AL_.jpg",
+            "name": "Peter Gevisser"
+        },
+        {
+            "asCharacter": "Bugs (as Lars Arentz Hansen)",
+            "id": "nm0034365",
+            "image": "https://imdb-api.com/images/original/MV5BOTk2ODZiMzItNDI0OC00MTJjLWIzNDQtYTg2ODA1MzdlNmY5XkEyXkFqcGdeQXVyMjQwMDg0Ng@@._V1_Ratio0.8182_AL_.jpg",
+            "name": "Lars Arentz-Hansen"
+        },
+        {
+            "asCharacter": "Mirjana",
+            "id": "nm0958092",
+            "image": "https://imdb-api.com/images/original/nopicture.jpg",
+            "name": "Lidija Zovkic"
+        },
+        {
+            "asCharacter": "Guitarman",
+            "id": "nm0332244",
+            "image": "https://imdb-api.com/images/original/nopicture.jpg",
+            "name": "Samuel Gough"
+        },
+        {
+            "asCharacter": "Christo (as Staffan Kihlbom)",
+            "id": "nm0452742",
+            "image": "https://imdb-api.com/images/original/MV5BZTI0OTdiYzAtZjEwOC00MmFmLWFjZWMtZDljMDkzYTIzOWY5XkEyXkFqcGdeQXVyMjQwMDg0Ng@@._V1_Ratio1.5000_AL_.jpg",
+            "name": "Staffan Kihlbom Thor"
+        },
+        {
+            "asCharacter": "Karl",
+            "id": "nm0385330",
+            "image": "https://imdb-api.com/images/original/nopicture.jpg",
+            "name": "Jukka Hiltunen"
+        },
+        {
+            "asCharacter": "Sten",
+            "id": "nm0511842",
+            "image": "https://imdb-api.com/images/original/nopicture.jpg",
+            "name": "Magnus Lindgren"
+        },
+        {
+            "asCharacter": "Beach Community Member",
+            "id": "nm0009772",
+            "image": "https://imdb-api.com/images/original/MV5BZDIzZDM5YjctNzczMS00MDk0LWFiN2YtMDI1ZjM1ODAzNWM2XkEyXkFqcGdeQXVyMTA0MDgyNjEx._V1_Ratio0.7727_AL_.jpg",
+            "name": "Myriam Acharki"
+        },
+        {
+            "asCharacter": "Beach Community Member",
+            "id": "nm0138418",
+            "image": "https://imdb-api.com/images/original/nopicture.jpg",
+            "name": "Andrew Carmichael"
+        },
+        {
+            "asCharacter": "Beach Community Member",
+            "id": "nm0170620",
+            "image": "https://imdb-api.com/images/original/nopicture.jpg",
+            "name": "Josh Cole"
+        },
+        {
+            "asCharacter": "Beach Community Member",
+            "id": "nm0288271",
+            "image": "https://imdb-api.com/images/original/MV5BMTM4MjMxMTYwOF5BMl5BanBnXkFtZTYwMDk5MDc1._V1_Ratio0.7273_AL_.jpg",
+            "name": "Hélène de Fougerolles"
+        },
+        {
+            "asCharacter": "Beach Community Member",
+            "id": "nm0211869",
+            "image": "https://imdb-api.com/images/original/MV5BOGQyYTg2ZDItOWM1NC00OWUwLThmNGItOTgxNjMyNTAxMjJmXkEyXkFqcGdeQXVyNjkzNTgyOTk@._V1_Ratio1.0000_AL_.jpg",
+            "name": "Bindu De Stoppani"
+        },
+        {
+            "asCharacter": "Beach Community Member",
+            "id": "nm0366525",
+            "image": "https://imdb-api.com/images/original/MV5BMTc4OTc1NTc3MV5BMl5BanBnXkFtZTcwNTY0NzUyMQ@@._V1_Ratio0.7273_AL_.jpg",
+            "name": "Stacy Hart"
+        },
+        {
+            "asCharacter": "Beach Community Member",
+            "id": "nm0415165",
+            "image": "https://imdb-api.com/images/original/nopicture.jpg",
+            "name": "Nina Jacques"
+        },
+        {
+            "asCharacter": "Beach Community Member (as Sheriden Jones)",
+            "id": "nm0429245",
+            "image": "https://imdb-api.com/images/original/nopicture.jpg",
+            "name": "Sheridan Jones"
+        },
+        {
+            "asCharacter": "Beach Community Member",
+            "id": "nm0439565",
+            "image": "https://imdb-api.com/images/original/nopicture.jpg",
+            "name": "Gunilla Karlson"
+        },
+        {
+            "asCharacter": "Beach Community Member",
+            "id": "nm0553067",
+            "image": "https://imdb-api.com/images/original/nopicture.jpg",
+            "name": "Sian Martin"
+        },
+        {
+            "asCharacter": "Beach Community Member",
+            "id": "nm0782290",
+            "image": "https://imdb-api.com/images/original/nopicture.jpg",
+            "name": "Isabella Seibert"
+        },
+        {
+            "asCharacter": "Beach Community Member",
+            "id": "nm3789383",
+            "image": "https://imdb-api.com/images/original/nopicture.jpg",
+            "name": "Elizabeth Thomas"
+        },
+        {
+            "asCharacter": "Beach Community Member",
+            "id": "nm2907799",
+            "image": "https://imdb-api.com/images/original/nopicture.jpg",
+            "name": "Michael Thorpe"
+        },
+        {
+            "asCharacter": "Beach Community Member",
+            "id": "nm0917020",
+            "image": "https://imdb-api.com/images/original/nopicture.jpg",
+            "name": "Timothy Webster"
+        },
+        {
+            "asCharacter": "Beach Community Member",
+            "id": "nm0941183",
+            "image": "https://imdb-api.com/images/original/nopicture.jpg",
+            "name": "Ramon Woolfe"
+        },
+        {
+            "asCharacter": "Hilda",
+            "id": "nm0611731",
+            "image": "https://imdb-api.com/images/original/MV5BMTk5MzYxMzMzMV5BMl5BanBnXkFtZTcwNDUwNTMxOA@@._V1_Ratio0.7727_AL_.jpg",
+            "name": "Saskia Mulder"
+        },
+        {
+            "asCharacter": "Eva",
+            "id": "nm0399406",
+            "image": "https://imdb-api.com/images/original/nopicture.jpg",
+            "name": "Simone Huber"
+        },
+        {
+            "asCharacter": "Sumet",
+            "id": "nm0820250",
+            "image": "https://imdb-api.com/images/original/nopicture.jpg",
+            "name": "Raweeporn 'Non' Srimonju"
+        },
+        {
+            "asCharacter": "Woman in Bar (uncredited)",
+            "id": "nm2638069",
+            "image": "https://imdb-api.com/images/original/nopicture.jpg",
+            "name": "Irmelin DiCaprio"
+        },
+        {
+            "asCharacter": "Tourist (uncredited)",
+            "id": "nm11687355",
+            "image": "https://imdb-api.com/images/original/nopicture.jpg",
+            "name": "Ross Donnelly"
+        },
+        {
+            "asCharacter": "Réceptioniste, serveuse du Cybercafé (uncredited)",
+            "id": "nm0679615",
+            "image": "https://imdb-api.com/images/original/MV5BMTk2MTIzNjMwNF5BMl5BanBnXkFtZTcwMzg2NTcyMQ@@._V1_Ratio0.9091_AL_.jpg",
+            "name": "Espérance Pham Thai Lan"
+        }
+    ],
+    "awards": "Awards, 7 nominations",
+    "boxOffice": {
+        "budget": "$50,000,000 (estimated)",
+        "cumulativeWorldwideGross": "$144,056,873",
+        "grossUSA": "$39,785,027",
+        "openingWeekendUSA": "$15,277,921"
+    },
+    "companies": "Figment Films",
+    "companyList": [
+        {
+            "id": "co0103732",
+            "name": "Figment Films"
+        }
+    ],
+    "contentRating": "R",
+    "countries": "UK, USA",
+    "countryList": [
+        {
+            "key": "UK",
+            "value": "UK"
+        },
+        {
+            "key": "USA",
+            "value": "USA"
+        }
+    ],
+    "directorList": [
+        {
+            "id": "nm0000965",
+            "name": "Danny Boyle"
+        }
+    ],
+    "directors": "Danny Boyle",
+    "errorMessage": null,
+    "fullCast": {
+        "actors": [
+            {
+                "asCharacter": "Richard",
+                "id": "nm0000138",
+                "image": "https://imdb-api.com/images/original/MV5BMjI0MTg3MzI0M15BMl5BanBnXkFtZTcwMzQyODU2Mw@@._V1_Ratio0.7273_AL_.jpg",
+                "name": "Leonardo DiCaprio"
+            },
+            {
+                "asCharacter": "Sal",
+                "id": "nm0842770",
+                "image": "https://imdb-api.com/images/original/MV5BMTM4NzMzMTkwNV5BMl5BanBnXkFtZTcwMzU4MDg1Mw@@._V1_Ratio0.7727_AL_.jpg",
+                "name": "Tilda Swinton"
+            },
+            {
+                "asCharacter": "Hustler",
+                "id": "nm0948679",
+                "image": "https://imdb-api.com/images/original/MV5BNThlNGUwYzktOTgyZS00ODMzLWI0ZjUtODRjODIzNTVjYzg1XkEyXkFqcGdeQXVyMjIyOTc2OTk@._V1_Ratio0.7273_AL_.jpg",
+                "name": "Daniel York"
+            },
+            {
+                "asCharacter": "Hotel Receptionist",
+                "id": "nm0665265",
+                "image": "https://imdb-api.com/images/original/nopicture.jpg",
+                "name": "Patcharawan Patarakijjanon"
+            },
+            {
+                "asCharacter": "Françoise",
+                "id": "nm0001461",
+                "image": "https://imdb-api.com/images/original/MV5BMjEwMzA4NTY0NF5BMl5BanBnXkFtZTYwMDM5MzU0._V1_Ratio0.7273_AL_.jpg",
+                "name": "Virginie Ledoyen"
+            },
+            {
+                "asCharacter": "Étienne",
+                "id": "nm0133899",
+                "image": "https://imdb-api.com/images/original/MV5BNjM1MTk0NTk4NF5BMl5BanBnXkFtZTcwMDY0NzU0Nw@@._V1_Ratio0.7273_AL_.jpg",
+                "name": "Guillaume Canet"
+            },
+            {
+                "asCharacter": "Daffy",
+                "id": "nm0001015",
+                "image": "https://imdb-api.com/images/original/MV5BMTM2Njc1MjgyOF5BMl5BanBnXkFtZTcwMjY2NTAwNw@@._V1_Ratio0.7273_AL_.jpg",
+                "name": "Robert Carlyle"
+            },
+            {
+                "asCharacter": "Cleaning Woman",
+                "id": "nm0681141",
+                "image": "https://imdb-api.com/images/original/nopicture.jpg",
+                "name": "Somboon Phutaroth"
+            },
+            {
+                "asCharacter": "Detective",
+                "id": "nm0926768",
+                "image": "https://imdb-api.com/images/original/nopicture.jpg",
+                "name": "Weeratham 'Norman' Wichairaksakui"
+            },
+            {
+                "asCharacter": "Travel Agent (as Jak Boon)",
+                "id": "nm0095465",
+                "image": "https://imdb-api.com/images/original/MV5BMjdhODYyN2MtOTVkOC00YTZlLTkwZWQtZDk5YWRjZmM4ODJlXkEyXkFqcGdeQXVyMjI1OTg2MTI@._V1_Ratio0.7273_AL_.jpg",
+                "name": "Sahajak Boonthanakit"
+            },
+            {
+                "asCharacter": "Zeph",
+                "id": "nm0950186",
+                "image": "https://imdb-api.com/images/original/MV5BMTQwODI4MDQ3MF5BMl5BanBnXkFtZTcwNjI0MDQzMQ@@._V1_Ratio0.8182_AL_.jpg",
+                "name": "Peter Youngblood Hills"
+            },
+            {
+                "asCharacter": "Sammy",
+                "id": "nm0842684",
+                "image": "https://imdb-api.com/images/original/nopicture.jpg",
+                "name": "Jerry Swindall"
+            },
+            {
+                "asCharacter": "Woman with Key",
+                "id": "nm0857003",
+                "image": "https://imdb-api.com/images/original/nopicture.jpg",
+                "name": "Krongthong Thampradith"
+            },
+            {
+                "asCharacter": "Senior Farmer (as Abhijati 'Muek' Jusakul)",
+                "id": "nm0433064",
+                "image": "https://imdb-api.com/images/original/nopicture.jpg",
+                "name": "Apichart Chusakul"
+            },
+            {
+                "asCharacter": "Farmer",
+                "id": "nm0156603",
+                "image": "https://imdb-api.com/images/original/nopicture.jpg",
+                "name": "Sanya 'Gai' Cheunjit"
+            },
+            {
+                "asCharacter": "Farmer",
+                "id": "nm0447770",
+                "image": "https://imdb-api.com/images/original/nopicture.jpg",
+                "name": "Kaneung 'Nueng' Kenia"
+            },
+            {
+                "asCharacter": "Farmer",
+                "id": "nm0763504",
+                "image": "https://imdb-api.com/images/original/nopicture.jpg",
+                "name": "Somchai Santitharangkun"
+            },
+            {
+                "asCharacter": "Farmer (as Kawee 'Seng' Sirikanerat)",
+                "id": "nm0442966",
+                "image": "https://imdb-api.com/images/original/nopicture.jpg",
+                "name": "Seng Kawee"
+            },
+            {
+                "asCharacter": "Farmer",
+                "id": "nm0802913",
+                "image": "https://imdb-api.com/images/original/nopicture.jpg",
+                "name": "Somkuan 'Kuan' Siroon"
+            },
+            {
+                "asCharacter": "Keaty",
+                "id": "nm0430667",
+                "image": "https://imdb-api.com/images/original/MV5BMTg4MzE4OTc4OF5BMl5BanBnXkFtZTcwNDI0NDExOA@@._V1_Ratio0.7273_AL_.jpg",
+                "name": "Paterson Joseph"
+            },
+            {
+                "asCharacter": "Sonja",
+                "id": "nm0864046",
+                "image": "https://imdb-api.com/images/original/MV5BODMzNDEzNGMtOTQ0MS00NzBiLWI0ZjgtNWVkNjA4ZGVjOWNmXkEyXkFqcGdeQXVyMjQwMDg0Ng@@._V1_Ratio0.7273_AL_.jpg",
+                "name": "Zelda Tinska"
+            },
+            {
+                "asCharacter": "Weathergirl",
+                "id": "nm0810729",
+                "image": "https://imdb-api.com/images/original/MV5BMTc0NzEyNDE3N15BMl5BanBnXkFtZTgwOTk0MzE2MTI@._V1_Ratio0.7273_AL_.jpg",
+                "name": "Victoria Smurfit"
+            },
+            {
+                "asCharacter": "Unhygenix",
+                "id": "nm0130736",
+                "image": "https://imdb-api.com/images/original/MV5BZDA2N2NhOTktMzQ4ZS00MDJmLWFkNzYtMzM2YjY2ZDZlOWFiXkEyXkFqcGdeQXVyMzI5Mzg5MDU@._V1_Ratio1.3636_AL_.jpg",
+                "name": "Daniel Caltagirone"
+            },
+            {
+                "asCharacter": "Gregorio",
+                "id": "nm0315355",
+                "image": "https://imdb-api.com/images/original/MV5BMTMzOTQxODU5OV5BMl5BanBnXkFtZTcwNDM5ODAzMQ@@._V1_Ratio0.7273_AL_.jpg",
+                "name": "Peter Gevisser"
+            },
+            {
+                "asCharacter": "Bugs (as Lars Arentz Hansen)",
+                "id": "nm0034365",
+                "image": "https://imdb-api.com/images/original/MV5BOTk2ODZiMzItNDI0OC00MTJjLWIzNDQtYTg2ODA1MzdlNmY5XkEyXkFqcGdeQXVyMjQwMDg0Ng@@._V1_Ratio0.8182_AL_.jpg",
+                "name": "Lars Arentz-Hansen"
+            },
+            {
+                "asCharacter": "Mirjana",
+                "id": "nm0958092",
+                "image": "https://imdb-api.com/images/original/nopicture.jpg",
+                "name": "Lidija Zovkic"
+            },
+            {
+                "asCharacter": "Guitarman",
+                "id": "nm0332244",
+                "image": "https://imdb-api.com/images/original/nopicture.jpg",
+                "name": "Samuel Gough"
+            },
+            {
+                "asCharacter": "Christo (as Staffan Kihlbom)",
+                "id": "nm0452742",
+                "image": "https://imdb-api.com/images/original/MV5BZTI0OTdiYzAtZjEwOC00MmFmLWFjZWMtZDljMDkzYTIzOWY5XkEyXkFqcGdeQXVyMjQwMDg0Ng@@._V1_Ratio1.5000_AL_.jpg",
+                "name": "Staffan Kihlbom Thor"
+            },
+            {
+                "asCharacter": "Karl",
+                "id": "nm0385330",
+                "image": "https://imdb-api.com/images/original/nopicture.jpg",
+                "name": "Jukka Hiltunen"
+            },
+            {
+                "asCharacter": "Sten",
+                "id": "nm0511842",
+                "image": "https://imdb-api.com/images/original/nopicture.jpg",
+                "name": "Magnus Lindgren"
+            },
+            {
+                "asCharacter": "Beach Community Member",
+                "id": "nm0009772",
+                "image": "https://imdb-api.com/images/original/MV5BZDIzZDM5YjctNzczMS00MDk0LWFiN2YtMDI1ZjM1ODAzNWM2XkEyXkFqcGdeQXVyMTA0MDgyNjEx._V1_Ratio0.7727_AL_.jpg",
+                "name": "Myriam Acharki"
+            },
+            {
+                "asCharacter": "Beach Community Member",
+                "id": "nm0138418",
+                "image": "https://imdb-api.com/images/original/nopicture.jpg",
+                "name": "Andrew Carmichael"
+            },
+            {
+                "asCharacter": "Beach Community Member",
+                "id": "nm0170620",
+                "image": "https://imdb-api.com/images/original/nopicture.jpg",
+                "name": "Josh Cole"
+            },
+            {
+                "asCharacter": "Beach Community Member",
+                "id": "nm0288271",
+                "image": "https://imdb-api.com/images/original/MV5BMTM4MjMxMTYwOF5BMl5BanBnXkFtZTYwMDk5MDc1._V1_Ratio0.7273_AL_.jpg",
+                "name": "Hélène de Fougerolles"
+            },
+            {
+                "asCharacter": "Beach Community Member",
+                "id": "nm0211869",
+                "image": "https://imdb-api.com/images/original/MV5BOGQyYTg2ZDItOWM1NC00OWUwLThmNGItOTgxNjMyNTAxMjJmXkEyXkFqcGdeQXVyNjkzNTgyOTk@._V1_Ratio1.0000_AL_.jpg",
+                "name": "Bindu De Stoppani"
+            },
+            {
+                "asCharacter": "Beach Community Member",
+                "id": "nm0366525",
+                "image": "https://imdb-api.com/images/original/MV5BMTc4OTc1NTc3MV5BMl5BanBnXkFtZTcwNTY0NzUyMQ@@._V1_Ratio0.7273_AL_.jpg",
+                "name": "Stacy Hart"
+            },
+            {
+                "asCharacter": "Beach Community Member",
+                "id": "nm0415165",
+                "image": "https://imdb-api.com/images/original/nopicture.jpg",
+                "name": "Nina Jacques"
+            },
+            {
+                "asCharacter": "Beach Community Member (as Sheriden Jones)",
+                "id": "nm0429245",
+                "image": "https://imdb-api.com/images/original/nopicture.jpg",
+                "name": "Sheridan Jones"
+            },
+            {
+                "asCharacter": "Beach Community Member",
+                "id": "nm0439565",
+                "image": "https://imdb-api.com/images/original/nopicture.jpg",
+                "name": "Gunilla Karlson"
+            },
+            {
+                "asCharacter": "Beach Community Member",
+                "id": "nm0553067",
+                "image": "https://imdb-api.com/images/original/nopicture.jpg",
+                "name": "Sian Martin"
+            },
+            {
+                "asCharacter": "Beach Community Member",
+                "id": "nm0782290",
+                "image": "https://imdb-api.com/images/original/nopicture.jpg",
+                "name": "Isabella Seibert"
+            },
+            {
+                "asCharacter": "Beach Community Member",
+                "id": "nm3789383",
+                "image": "https://imdb-api.com/images/original/nopicture.jpg",
+                "name": "Elizabeth Thomas"
+            },
+            {
+                "asCharacter": "Beach Community Member",
+                "id": "nm2907799",
+                "image": "https://imdb-api.com/images/original/nopicture.jpg",
+                "name": "Michael Thorpe"
+            },
+            {
+                "asCharacter": "Beach Community Member",
+                "id": "nm0917020",
+                "image": "https://imdb-api.com/images/original/nopicture.jpg",
+                "name": "Timothy Webster"
+            },
+            {
+                "asCharacter": "Beach Community Member",
+                "id": "nm0941183",
+                "image": "https://imdb-api.com/images/original/nopicture.jpg",
+                "name": "Ramon Woolfe"
+            },
+            {
+                "asCharacter": "Hilda",
+                "id": "nm0611731",
+                "image": "https://imdb-api.com/images/original/MV5BMTk5MzYxMzMzMV5BMl5BanBnXkFtZTcwNDUwNTMxOA@@._V1_Ratio0.7727_AL_.jpg",
+                "name": "Saskia Mulder"
+            },
+            {
+                "asCharacter": "Eva",
+                "id": "nm0399406",
+                "image": "https://imdb-api.com/images/original/nopicture.jpg",
+                "name": "Simone Huber"
+            },
+            {
+                "asCharacter": "Sumet",
+                "id": "nm0820250",
+                "image": "https://imdb-api.com/images/original/nopicture.jpg",
+                "name": "Raweeporn 'Non' Srimonju"
+            },
+            {
+                "asCharacter": "Woman in Bar (uncredited)",
+                "id": "nm2638069",
+                "image": "https://imdb-api.com/images/original/nopicture.jpg",
+                "name": "Irmelin DiCaprio"
+            },
+            {
+                "asCharacter": "Tourist (uncredited)",
+                "id": "nm11687355",
+                "image": "https://imdb-api.com/images/original/nopicture.jpg",
+                "name": "Ross Donnelly"
+            },
+            {
+                "asCharacter": "Réceptioniste, serveuse du Cybercafé (uncredited)",
+                "id": "nm0679615",
+                "image": "https://imdb-api.com/images/original/MV5BMTk2MTIzNjMwNF5BMl5BanBnXkFtZTcwMzg2NTcyMQ@@._V1_Ratio0.9091_AL_.jpg",
+                "name": "Espérance Pham Thai Lan"
+            }
+        ],
+        "directors": {
+            "items": [
+                {
+                    "description": "",
+                    "id": "nm0000965",
+                    "name": "Danny Boyle"
+                }
+            ],
+            "job": "Director"
+        },
+        "errorMessage": "",
+        "fullTitle": "The Beach (2000)",
+        "imDbId": "tt0163978",
+        "others": [
+            {
+                "items": [
+                    {
+                        "description": "producer",
+                        "id": "nm0531602",
+                        "name": "Andrew Macdonald"
+                    },
+                    {
+                        "description": "co-producer",
+                        "id": "nm0568223",
+                        "name": "Callum McDougall"
+                    }
+                ],
+                "job": "Produced by"
+            },
+            {
+                "items": [
+                    {
+                        "description": "",
+                        "id": "nm0000823",
+                        "name": "Angelo Badalamenti"
+                    }
+                ],
+                "job": "Music by"
+            },
+            {
+                "items": [
+                    {
+                        "description": "",
+                        "id": "nm0451787",
+                        "name": "Darius Khondji"
+                    }
+                ],
+                "job": "Cinematography by"
+            },
+            {
+                "items": [
+                    {
+                        "description": "",
+                        "id": "nm0386227",
+                        "name": "Masahiro Hirakubo"
+                    }
+                ],
+                "job": "Film Editing by"
+            },
+            {
+                "items": [
+                    {
+                        "description": "",
+                        "id": "nm0828412",
+                        "name": "Gail Stevens"
+                    }
+                ],
+                "job": "Casting By"
+            },
+            {
+                "items": [
+                    {
+                        "description": "",
+                        "id": "nm0564028",
+                        "name": "Andrew McAlpine"
+                    }
+                ],
+                "job": "Production Design by"
+            },
+            {
+                "items": [
+                    {
+                        "description": "",
+                        "id": "nm0264245",
+                        "name": "Ricky Eyres"
+                    },
+                    {
+                        "description": "(as Kuladee Suchatanun)",
+                        "id": "nm0474413",
+                        "name": "Suchartanun 'Kai' Kuladee"
+                    },
+                    {
+                        "description": "supervising art director",
+                        "id": "nm0572641",
+                        "name": "Rod McLean"
+                    },
+                    {
+                        "description": "",
+                        "id": "nm0778875",
+                        "name": "Ben Scott"
+                    }
+                ],
+                "job": "Art Direction by"
+            },
+            {
+                "items": [
+                    {
+                        "description": "",
+                        "id": "nm0003519",
+                        "name": "Anna Pinnock"
+                    }
+                ],
+                "job": "Set Decoration by"
+            },
+            {
+                "items": [
+                    {
+                        "description": "",
+                        "id": "nm0281761",
+                        "name": "Rachael Fleming"
+                    }
+                ],
+                "job": "Costume Design by"
+            },
+            {
+                "items": [
+                    {
+                        "description": "assistant makeup artist",
+                        "id": "nm2909534",
+                        "name": "Jutiporn 'Pie' Aranyaputi"
+                    },
+                    {
+                        "description": "hair stylist",
+                        "id": "nm6788517",
+                        "name": "Tiptalee Chanaputtakun"
+                    },
+                    {
+                        "description": "hair stylist: Patterson Joseph",
+                        "id": "nm2901530",
+                        "name": "Glenda Clarke"
+                    },
+                    {
+                        "description": "hair colorist",
+                        "id": "nm1317275",
+                        "name": "Nicola Clarke"
+                    },
+                    {
+                        "description": "prosthetics designer",
+                        "id": "nm0183418",
+                        "name": "Mark Coulier"
+                    },
+                    {
+                        "description": "makeup artist",
+                        "id": "nm0247442",
+                        "name": "Polly Earnshaw"
+                    },
+                    {
+                        "description": "assistant makeup artist (as Wattana 'Keng' Garum)",
+                        "id": "nm1837225",
+                        "name": "Watana Garum"
+                    },
+                    {
+                        "description": "contact lens optician",
+                        "id": "nm0321994",
+                        "name": "Richard Glass"
+                    },
+                    {
+                        "description": "makeup artist: Leonardo DiCaprio",
+                        "id": "nm0341812",
+                        "name": "Sian Grigg"
+                    },
+                    {
+                        "description": "assistant hair stylist",
+                        "id": "nm2907723",
+                        "name": "Jeerapa 'Aoy' Hassachai"
+                    },
+                    {
+                        "description": "prosthetics technician",
+                        "id": "nm0418749",
+                        "name": "Duncan Jarman"
+                    },
+                    {
+                        "description": "chief hair stylist / chief makeup artist",
+                        "id": "nm0419731",
+                        "name": "Sallie Jaye"
+                    },
+                    {
+                        "description": "prosthetics assistant",
+                        "id": "nm1019932",
+                        "name": "Simon Rose"
+                    },
+                    {
+                        "description": "hair stylist",
+                        "id": "nm0758711",
+                        "name": "Tapio Salmi"
+                    },
+                    {
+                        "description": "contact lens technician",
+                        "id": "nm1427373",
+                        "name": "Jemma Scott-Knox-Gore"
+                    },
+                    {
+                        "description": "prosthetics technician",
+                        "id": "nm1016224",
+                        "name": "Matthew Smith"
+                    },
+                    {
+                        "description": "prosthetics supervisor",
+                        "id": "nm0817172",
+                        "name": "Paul Spateri"
+                    },
+                    {
+                        "description": "hair stylist",
+                        "id": "nm0852013",
+                        "name": "Barbara Taylor"
+                    },
+                    {
+                        "description": "prosthetic makeup technician (uncredited)",
+                        "id": "nm0332968",
+                        "name": "Barrie Gower"
+                    }
+                ],
+                "job": "Makeup Department"
+            },
+            {
+                "items": [
+                    {
+                        "description": "unit production manager",
+                        "id": "nm0122251",
+                        "name": "Jo Burn"
+                    },
+                    {
+                        "description": "executive in charge of production",
+                        "id": "nm0408255",
+                        "name": "Thomas A. Imperato"
+                    },
+                    {
+                        "description": "production manager",
+                        "id": "nm0676111",
+                        "name": "Piya Pestonji"
+                    },
+                    {
+                        "description": "production supervisor",
+                        "id": "nm0676113",
+                        "name": "Santa Pestonji"
+                    },
+                    {
+                        "description": "post-production supervisor",
+                        "id": "nm0820627",
+                        "name": "Clare St. John"
+                    }
+                ],
+                "job": "Production Management"
+            },
+            {
+                "items": [
+                    {
+                        "description": "third assistant director (as Usarawadee 'Moo Dang' Eamsakul)",
+                        "id": "nm0247197",
+                        "name": "Ussawadee 'Moo Dang' Eamsakul"
+                    },
+                    {
+                        "description": "first assistant director (as Nick Heckstall Smith)",
+                        "id": "nm0373088",
+                        "name": "Nick Heckstall-Smith"
+                    },
+                    {
+                        "description": "third assistant director (as Tippawan 'Paew' Mamanee)",
+                        "id": "nm0541017",
+                        "name": "Tippawan Mamanee"
+                    },
+                    {
+                        "description": "third assistant director",
+                        "id": "nm1858033",
+                        "name": "Tippawan 'Paew' Mamanee"
+                    },
+                    {
+                        "description": "third assistant director",
+                        "id": "nm0805336",
+                        "name": "Andrea Slater"
+                    },
+                    {
+                        "description": "second assistant director",
+                        "id": "nm0836574",
+                        "name": "Richard Styles"
+                    },
+                    {
+                        "description": "first assistant director: Thailand",
+                        "id": "nm0839318",
+                        "name": "Charlie Sungkawess"
+                    },
+                    {
+                        "description": "assistant director: second unit / second assistant director",
+                        "id": "nm0907751",
+                        "name": "George Walker"
+                    }
+                ],
+                "job": "Second Unit Director or Assistant Director"
+            },
+            {
+                "items": [
+                    {
+                        "description": "property master",
+                        "id": "nm0003220",
+                        "name": "David Balfour"
+                    },
+                    {
+                        "description": "construction manager",
+                        "id": "nm0057255",
+                        "name": "Ray Barrett"
+                    },
+                    {
+                        "description": "sculptor",
+                        "id": "nm10489196",
+                        "name": "Rob Bean"
+                    },
+                    {
+                        "description": "stand-by stagehand",
+                        "id": "nm0115061",
+                        "name": "Peter Browne"
+                    },
+                    {
+                        "description": "props buyer (as Penjan 'Pet' Buranasamut)",
+                        "id": "nm2260098",
+                        "name": "Penchan 'Pet' Buranasamut"
+                    },
+                    {
+                        "description": "hod carpenter",
+                        "id": "nm0149979",
+                        "name": "Stephen Challenor"
+                    },
+                    {
+                        "description": "greens department interpreter",
+                        "id": "nm0152078",
+                        "name": "Suriya Chaowanich"
+                    },
+                    {
+                        "description": "interpreter: props department",
+                        "id": "nm2907981",
+                        "name": "Jesada 'Jest' Chitchaseon"
+                    },
+                    {
+                        "description": "dressing propman",
+                        "id": "nm2907884",
+                        "name": "Sanong 'Nid-Noy' Chomtha"
+                    },
+                    {
+                        "description": "chargehand dressing propman (as Somsak 'Ood' Shuenchooluck)",
+                        "id": "nm2143616",
+                        "name": "Sumsak Chuenchooluck"
+                    },
+                    {
+                        "description": "stand-by propman",
+                        "id": "nm0170685",
+                        "name": "Marlon Cole"
+                    },
+                    {
+                        "description": "stand-by painter",
+                        "id": "nm0183149",
+                        "name": "Charles Cottrell"
+                    },
+                    {
+                        "description": "hod rigger",
+                        "id": "nm2824651",
+                        "name": "Fred Crawford"
+                    },
+                    {
+                        "description": "painter",
+                        "id": "nm0202729",
+                        "name": "John Davey"
+                    },
+                    {
+                        "description": "construction buyer",
+                        "id": "nm0245732",
+                        "name": "Jack Dyer"
+                    },
+                    {
+                        "description": "props storeman",
+                        "id": "nm0280247",
+                        "name": "Gordon Fitzgerald"
+                    },
+                    {
+                        "description": "cartographer",
+                        "id": "nm0307497",
+                        "name": "Alex Garland"
+                    },
+                    {
+                        "description": "model maker",
+                        "id": "nm2484709",
+                        "name": "Louis Glickman"
+                    },
+                    {
+                        "description": "assistant construction manager",
+                        "id": "nm0364953",
+                        "name": "Kevin Harris"
+                    },
+                    {
+                        "description": "painter",
+                        "id": "nm0374530",
+                        "name": "Robin Heinson"
+                    },
+                    {
+                        "description": "dressing propman (as Sipon 'Ni' Hongsithipong)",
+                        "id": "nm2859205",
+                        "name": "Nipol Hongsithipong"
+                    },
+                    {
+                        "description": "construction coordinator (as Vasu 'A' Kantatham)",
+                        "id": "nm1848895",
+                        "name": "Vasu Kantatham"
+                    },
+                    {
+                        "description": "art department assistant (as Suttirat 'Anne' Larlarb)",
+                        "id": "nm1011517",
+                        "name": "Suttirat Anne Larlarb"
+                    },
+                    {
+                        "description": "dressing propman",
+                        "id": "nm2908982",
+                        "name": "Banchong Limtong"
+                    },
+                    {
+                        "description": "carpenter: re-shoot",
+                        "id": "nm1756458",
+                        "name": "Stephen McGregor"
+                    },
+                    {
+                        "description": "hod painter",
+                        "id": "nm0576131",
+                        "name": "David Meeking"
+                    },
+                    {
+                        "description": "chargehand dressing propman (as Pol 'Paul' Muangnum)",
+                        "id": "nm2859305",
+                        "name": "Pol Muangnum"
+                    },
+                    {
+                        "description": "assistant set decorator / buyer",
+                        "id": "nm0658420",
+                        "name": "Phred Palmer"
+                    },
+                    {
+                        "description": "horticulturist",
+                        "id": "nm2901366",
+                        "name": "Ross Palmer"
+                    },
+                    {
+                        "description": "painter",
+                        "id": "nm3212053",
+                        "name": "Boonsong Promjarune"
+                    },
+                    {
+                        "description": "stand-by rigger",
+                        "id": "nm0698808",
+                        "name": "Russell Prosser"
+                    },
+                    {
+                        "description": "supervising stand-by propman",
+                        "id": "nm0700054",
+                        "name": "Mickey Pugh"
+                    },
+                    {
+                        "description": "greensman: island",
+                        "id": "nm0700601",
+                        "name": "Tiwa Punprasert"
+                    },
+                    {
+                        "description": "assistant art director",
+                        "id": "nm0712667",
+                        "name": "Pippa Rawlinson"
+                    },
+                    {
+                        "description": "concept artist",
+                        "id": "nm0723633",
+                        "name": "Denis Rich"
+                    },
+                    {
+                        "description": "stand-by plasterer",
+                        "id": "nm0736517",
+                        "name": "Ray Roffe"
+                    },
+                    {
+                        "description": "dressing propman (as Prapol 'Nong' Sangsai)",
+                        "id": "nm2859335",
+                        "name": "Prapol Sangasai"
+                    },
+                    {
+                        "description": "construction foreman",
+                        "id": "nm2908365",
+                        "name": "Visit Sathirakorn"
+                    },
+                    {
+                        "description": "armoury props",
+                        "id": "nm1629006",
+                        "name": "Toby Shears"
+                    },
+                    {
+                        "description": "storyboard artist",
+                        "id": "nm0822124",
+                        "name": "Jim Stanes"
+                    },
+                    {
+                        "description": "stand-by carpenter (as Will Stickley)",
+                        "id": "nm0830017",
+                        "name": "William Stickley"
+                    },
+                    {
+                        "description": "assistant construction buyer",
+                        "id": "nm2907684",
+                        "name": "Kitiya Subpason"
+                    },
+                    {
+                        "description": "dressing propman",
+                        "id": "nm2909163",
+                        "name": "Narongrit 'Suea' Tangphoncharone"
+                    },
+                    {
+                        "description": "hod plasterer",
+                        "id": "nm0850100",
+                        "name": "Paul Tappin"
+                    },
+                    {
+                        "description": "construction foreman (as Boontawee 'Tor' Taweepasas)",
+                        "id": "nm2120493",
+                        "name": "Boontawee Thor Taweepasas"
+                    },
+                    {
+                        "description": "stand-by propman: second unit",
+                        "id": "nm0854344",
+                        "name": "Gregor Telfer"
+                    },
+                    {
+                        "description": "props supervisor",
+                        "id": "nm0920273",
+                        "name": "John Wells"
+                    },
+                    {
+                        "description": "scenic artist",
+                        "id": "nm2909044",
+                        "name": "Oscar Wilson"
+                    },
+                    {
+                        "description": "stand-by painter (uncredited)",
+                        "id": "nm2604942",
+                        "name": "Paul Couch"
+                    }
+                ],
+                "job": "Art Department"
+            },
+            {
+                "items": [
+                    {
+                        "description": "foley editor",
+                        "id": "nm0010057",
+                        "name": "Christopher Ackland"
+                    },
+                    {
+                        "description": "sound effects editor",
+                        "id": "nm0049792",
+                        "name": "Peter Baldock"
+                    },
+                    {
+                        "description": "foley artist (as Paula Borham)",
+                        "id": "nm0095938",
+                        "name": "Paula Boram"
+                    },
+                    {
+                        "description": "adr mixer",
+                        "id": "nm1244198",
+                        "name": "Sandy Buchanan"
+                    },
+                    {
+                        "description": "adr engineer",
+                        "id": "nm1396449",
+                        "name": "Derek Casari"
+                    },
+                    {
+                        "description": "assistant sound re-recording mixer",
+                        "id": "nm1079624",
+                        "name": "Adam Daniel"
+                    },
+                    {
+                        "description": "re-recording mixer",
+                        "id": "nm0199636",
+                        "name": "Graham Daniel"
+                    },
+                    {
+                        "description": "adr mixer",
+                        "id": "nm0268058",
+                        "name": "Robert Farr"
+                    },
+                    {
+                        "description": "foley artist",
+                        "id": "nm0276511",
+                        "name": "Stan Fiferman"
+                    },
+                    {
+                        "description": "sound maintenance",
+                        "id": "nm2374138",
+                        "name": "Steve Finn"
+                    },
+                    {
+                        "description": "sound designer / supervising sound editor",
+                        "id": "nm0293634",
+                        "name": "Glenn Freemantle"
+                    },
+                    {
+                        "description": "assistant dialogue editor",
+                        "id": "nm0294216",
+                        "name": "Susan French"
+                    },
+                    {
+                        "description": "foley editor",
+                        "id": "nm0367243",
+                        "name": "Nina Hartstone"
+                    },
+                    {
+                        "description": "supervising dialogue editor",
+                        "id": "nm0396030",
+                        "name": "Max Hoskins"
+                    },
+                    {
+                        "description": "sound consultant: dolby",
+                        "id": "nm1871315",
+                        "name": "Alex Hudd"
+                    },
+                    {
+                        "description": "sound recordist",
+                        "id": "nm0512290",
+                        "name": "Peter Lindsay"
+                    },
+                    {
+                        "description": "adr recordist",
+                        "id": "nm0524045",
+                        "name": "David Lucarelli"
+                    },
+                    {
+                        "description": "re-recording mixer",
+                        "id": "nm0581370",
+                        "name": "Ray Merrin"
+                    },
+                    {
+                        "description": "dialogue editor",
+                        "id": "nm0590131",
+                        "name": "Nigel Mills"
+                    },
+                    {
+                        "description": "boom operator",
+                        "id": "nm0741550",
+                        "name": "Malcolm Rose"
+                    },
+                    {
+                        "description": "assistant sound editor",
+                        "id": "nm0768482",
+                        "name": "Tom Sayers"
+                    },
+                    {
+                        "description": "assistant sound re-recording mixer",
+                        "id": "nm0779933",
+                        "name": "Lyle Scott-Darling"
+                    },
+                    {
+                        "description": "foley artist",
+                        "id": "nm0790783",
+                        "name": "Jean Sheffield"
+                    },
+                    {
+                        "description": "adr mixer",
+                        "id": "nm0824555",
+                        "name": "Greg Steele"
+                    },
+                    {
+                        "description": "foley mixer",
+                        "id": "nm0851893",
+                        "name": "Kevin Tayler"
+                    },
+                    {
+                        "description": "adr mixer",
+                        "id": "nm0859854",
+                        "name": "Andy Thompson"
+                    },
+                    {
+                        "description": "sound transfer (uncredited)",
+                        "id": "nm2526634",
+                        "name": "John Soukup"
+                    }
+                ],
+                "job": "Sound Department"
+            },
+            {
+                "items": [
+                    {
+                        "description": "special effects supervisor",
+                        "id": "nm0063885",
+                        "name": "Clive Beard"
+                    },
+                    {
+                        "description": "senior special effects technician",
+                        "id": "nm0191423",
+                        "name": "Steve Cullane"
+                    },
+                    {
+                        "description": "special effects technician",
+                        "id": "nm0220661",
+                        "name": "Ramli Bin Md. Derus"
+                    },
+                    {
+                        "description": "special effects technician",
+                        "id": "nm0284922",
+                        "name": "John Fontana"
+                    },
+                    {
+                        "description": "studio manager: CFC",
+                        "id": "nm0341153",
+                        "name": "Darrel Griffin"
+                    },
+                    {
+                        "description": "special effects technician",
+                        "id": "nm2867587",
+                        "name": "Po Ketkorn"
+                    },
+                    {
+                        "description": "special effects laborer",
+                        "id": "nm2908711",
+                        "name": "Chanin 'Nin' Kitiwongsunti"
+                    },
+                    {
+                        "description": "special effects laborer",
+                        "id": "nm2909601",
+                        "name": "Boonsong 'Song' Neamsaad"
+                    },
+                    {
+                        "description": "computer video playback buyer",
+                        "id": "nm0633266",
+                        "name": "Nigel Nixon"
+                    },
+                    {
+                        "description": "special effects technician",
+                        "id": "nm2908340",
+                        "name": "Wiroj 'Roj' Nu"
+                    },
+                    {
+                        "description": "special effects technician",
+                        "id": "nm2909091",
+                        "name": "Chalermpol 'Pol' Pan"
+                    },
+                    {
+                        "description": "special effects administrator (as Watcharachai 'Samson' Panichsuk)",
+                        "id": "nm2269764",
+                        "name": "Watcharachai Panichsuk"
+                    },
+                    {
+                        "description": "senior technician: shark",
+                        "id": "nm1088897",
+                        "name": "David Payne"
+                    },
+                    {
+                        "description": "technician: shark",
+                        "id": "nm0697225",
+                        "name": "Anton Prickett"
+                    },
+                    {
+                        "description": "special effects laborer",
+                        "id": "nm2907449",
+                        "name": "Sutin 'Porn' Rakhan"
+                    },
+                    {
+                        "description": "special effects technician",
+                        "id": "nm0736582",
+                        "name": "Kevin Rogan"
+                    },
+                    {
+                        "description": "senior character animator",
+                        "id": "nm0741078",
+                        "name": "Carlos M. Rosas"
+                    },
+                    {
+                        "description": "special effects technician",
+                        "id": "nm0860225",
+                        "name": "Ian Thompson"
+                    },
+                    {
+                        "description": "special effects technician",
+                        "id": "nm2908692",
+                        "name": "Prajuab Yasuk"
+                    }
+                ],
+                "job": "Special Effects by"
+            },
+            {
+                "items": [
+                    {
+                        "description": "3D designer: CFC",
+                        "id": "nm0164962",
+                        "name": "Richard Clarke"
+                    },
+                    {
+                        "description": "effects artist: Framestore",
+                        "id": "nm0184553",
+                        "name": "Dayne Cowan"
+                    },
+                    {
+                        "description": "digital effects designer: CFC",
+                        "id": "nm0212370",
+                        "name": "Adrian De Wet"
+                    },
+                    {
+                        "description": "video to film editorial: CFC",
+                        "id": "nm0238576",
+                        "name": "Luke Drummond"
+                    },
+                    {
+                        "description": "3D designer: Framestore",
+                        "id": "nm0239890",
+                        "name": "Richard Ducker"
+                    },
+                    {
+                        "description": "digital effects supervisor: CFC",
+                        "id": "nm0242077",
+                        "name": "Robert Duncan"
+                    },
+                    {
+                        "description": "digital paint artist: CFC",
+                        "id": "nm0271518",
+                        "name": "Ian Fellows"
+                    },
+                    {
+                        "description": "scanning and recording operator: CFC",
+                        "id": "nm0321889",
+                        "name": "Adam Glasman"
+                    },
+                    {
+                        "description": "digital effects designer: CFC",
+                        "id": "nm0321922",
+                        "name": "Dan Glass"
+                    },
+                    {
+                        "description": "3D designer: CFC",
+                        "id": "nm0325302",
+                        "name": "Sally Goldberg"
+                    },
+                    {
+                        "description": "digital effects coordinator: CFC",
+                        "id": "nm0338585",
+                        "name": "Ruth Greenberg"
+                    },
+                    {
+                        "description": "scanning and recording producer: CFC",
+                        "id": "nm0389694",
+                        "name": "Jan Hogevold"
+                    },
+                    {
+                        "description": "3D designer: Framestore",
+                        "id": "nm0394761",
+                        "name": "Daren Horley"
+                    },
+                    {
+                        "description": "digital effects producer: CFC",
+                        "id": "nm0427976",
+                        "name": "Drew Jones"
+                    },
+                    {
+                        "description": "video to film operator: CFC",
+                        "id": "nm0440683",
+                        "name": "Matt Kasmir"
+                    },
+                    {
+                        "description": "senior technical director: Framestore CFC",
+                        "id": "nm0461593",
+                        "name": "Alec Knox"
+                    },
+                    {
+                        "description": "digital paint artist: CFC",
+                        "id": "nm0516335",
+                        "name": "Siobhan Lo"
+                    },
+                    {
+                        "description": "scanning and recording operator: CFC",
+                        "id": "nm0550202",
+                        "name": "Scott Marriott"
+                    },
+                    {
+                        "description": "visual effects: ILM",
+                        "id": "nm0550534",
+                        "name": "David Marsh"
+                    },
+                    {
+                        "description": "3D designer: CFC",
+                        "id": "nm0552594",
+                        "name": "Justin Martin"
+                    },
+                    {
+                        "description": "3D designer: CFC",
+                        "id": "nm0598269",
+                        "name": "Chris Monks"
+                    },
+                    {
+                        "description": "3D designer: CFC",
+                        "id": "nm0614728",
+                        "name": "Stephen Murphy"
+                    },
+                    {
+                        "description": "digital effects designer: CFC",
+                        "id": "nm0626729",
+                        "name": "Mark Nettleton"
+                    },
+                    {
+                        "description": "video compositor: Framestore",
+                        "id": "nm0651750",
+                        "name": "Tim Osborne"
+                    },
+                    {
+                        "description": "head of 3D: CFC",
+                        "id": "nm0662207",
+                        "name": "Dominic Parker"
+                    },
+                    {
+                        "description": "digital paint artist: CFC",
+                        "id": "nm0668229",
+                        "name": "Alex Payman"
+                    },
+                    {
+                        "description": "senior character animator: Framestore",
+                        "id": "nm0741078",
+                        "name": "Carlos M. Rosas"
+                    },
+                    {
+                        "description": "video to film operator: CFC",
+                        "id": "nm0842014",
+                        "name": "Geraldine Swayne"
+                    },
+                    {
+                        "description": "digital effects designer: CFC",
+                        "id": "nm0844331",
+                        "name": "Kat Szuminska"
+                    },
+                    {
+                        "description": "digital effects designer: CFC",
+                        "id": "nm0862039",
+                        "name": "Jon Thum"
+                    },
+                    {
+                        "description": "scanning and recording operator: CFC",
+                        "id": "nm0864638",
+                        "name": "Steve Tizzard"
+                    },
+                    {
+                        "description": "digital effects designer: CFC",
+                        "id": "nm0003310",
+                        "name": "Gavin Toomey"
+                    },
+                    {
+                        "description": "digital artist: Hula Boy Ltd @ CFC (uncredited)",
+                        "id": "nm0139857",
+                        "name": "Simon Carr"
+                    },
+                    {
+                        "description": "research and development (uncredited)",
+                        "id": "nm0416803",
+                        "name": "Oliver James"
+                    },
+                    {
+                        "description": "optical cameraman: Peerless Camera (uncredited)",
+                        "id": "nm0807866",
+                        "name": "David Smith"
+                    },
+                    {
+                        "description": "computer graphic artist (uncredited)",
+                        "id": "nm0836409",
+                        "name": "Ole Dieter Sturm"
+                    }
+                ],
+                "job": "Visual Effects by"
+            },
+            {
+                "items": [
+                    {
+                        "description": "stunts",
+                        "id": "nm0101500",
+                        "name": "Joey Box"
+                    },
+                    {
+                        "description": "stunt coordinator",
+                        "id": "nm0102291",
+                        "name": "Marc Boyle"
+                    },
+                    {
+                        "description": "stunts",
+                        "id": "nm0175224",
+                        "name": "Gary Connery"
+                    },
+                    {
+                        "description": "stunts",
+                        "id": "nm0249276",
+                        "name": "Jamie Edgell"
+                    },
+                    {
+                        "description": "stunts",
+                        "id": "nm0404497",
+                        "name": "Eunice Huthart"
+                    },
+                    {
+                        "description": "stunt performer",
+                        "id": "nm2908080",
+                        "name": "Pitak Janvijit"
+                    },
+                    {
+                        "description": "stunt performer",
+                        "id": "nm1441768",
+                        "name": "Somjal Jonmoontee"
+                    },
+                    {
+                        "description": "stunt coordinator: Thailand (as Kawee 'Seng' Sirikanerat)",
+                        "id": "nm0442966",
+                        "name": "Seng Kawee"
+                    },
+                    {
+                        "description": "stunt performer",
+                        "id": "nm2907588",
+                        "name": "Natapong Pumchang"
+                    }
+                ],
+                "job": "Stunts"
+            },
+            {
+                "items": [
+                    {
+                        "description": "camera assistant: Flying-Cam",
+                        "id": "nm1027872",
+                        "name": "Marc Asmode"
+                    },
+                    {
+                        "description": "video playback operator",
+                        "id": "nm0108716",
+                        "name": "Bob Bridges"
+                    },
+                    {
+                        "description": "video playback assistant",
+                        "id": "nm0108798",
+                        "name": "Stuart Bridges"
+                    },
+                    {
+                        "description": "electrician",
+                        "id": "nm0109111",
+                        "name": "Robin Brigham"
+                    },
+                    {
+                        "description": "rigging gaffer",
+                        "id": "nm0113579",
+                        "name": "Fred Brown"
+                    },
+                    {
+                        "description": "rigging electrician",
+                        "id": "nm2907777",
+                        "name": "Narong 'Jom' Charoensuk"
+                    },
+                    {
+                        "description": "camera trainee",
+                        "id": "nm0155127",
+                        "name": "André Chemetoff"
+                    },
+                    {
+                        "description": "clapper loader",
+                        "id": "nm0168868",
+                        "name": "Ian Coffey"
+                    },
+                    {
+                        "description": "aerial camera operator",
+                        "id": "nm0197637",
+                        "name": "Adam Dale"
+                    },
+                    {
+                        "description": "video assist operator: underwater unit / video playback operator: underwater unit",
+                        "id": "nm2908947",
+                        "name": "Peter Davey"
+                    },
+                    {
+                        "description": "gaffer: second unit",
+                        "id": "nm0205503",
+                        "name": "Steve Davis"
+                    },
+                    {
+                        "description": "focus puller",
+                        "id": "nm0263217",
+                        "name": "Shaun Evans"
+                    },
+                    {
+                        "description": "libra technician",
+                        "id": "nm1013793",
+                        "name": "Dave Freeth"
+                    },
+                    {
+                        "description": "camera assistant: underwater unit",
+                        "id": "nm1348682",
+                        "name": "Christopher Goodwin"
+                    },
+                    {
+                        "description": "camera operator: \"b\" camera / focus puller: \"a\" camera",
+                        "id": "nm0355619",
+                        "name": "Graham Hall"
+                    },
+                    {
+                        "description": "grip",
+                        "id": "nm2907928",
+                        "name": "Kittiwat 'Jack' Hanprab"
+                    },
+                    {
+                        "description": "rigging electrician",
+                        "id": "nm2908307",
+                        "name": "Khanayutt 'Yoi' Ihamihe"
+                    },
+                    {
+                        "description": "practical electrician",
+                        "id": "nm2907432",
+                        "name": "Yothin 'Yo' Jaiboon"
+                    },
+                    {
+                        "description": "practical electrician",
+                        "id": "nm2909174",
+                        "name": "Natta 'Nat' Janyersiri"
+                    },
+                    {
+                        "description": "rigging electrician",
+                        "id": "nm2907235",
+                        "name": "Kris 'A.' Khanchanaphet"
+                    },
+                    {
+                        "description": "grip",
+                        "id": "nm2908958",
+                        "name": "Adun La-ong-orn"
+                    },
+                    {
+                        "description": "focus puller: second unit",
+                        "id": "nm0559949",
+                        "name": "Brett Matthews"
+                    },
+                    {
+                        "description": "camera maintenance",
+                        "id": "nm2908638",
+                        "name": "Andrew Mossman"
+                    },
+                    {
+                        "description": "still photographer",
+                        "id": "nm0609877",
+                        "name": "Peter Mountain"
+                    },
+                    {
+                        "description": "grip",
+                        "id": "nm0615221",
+                        "name": "Phil Murray"
+                    },
+                    {
+                        "description": "camera operator: second unit",
+                        "id": "nm0638365",
+                        "name": "Giles Nuttgens"
+                    },
+                    {
+                        "description": "clapper loader: second unit (as Voranont Paipad)",
+                        "id": "nm0656910",
+                        "name": "Voranon Paipad"
+                    },
+                    {
+                        "description": "rigging electrician (as Stephen Pattenden)",
+                        "id": "nm0666111",
+                        "name": "Steve Pattenden"
+                    },
+                    {
+                        "description": "key grip",
+                        "id": "nm0687903",
+                        "name": "Gary Pocock"
+                    },
+                    {
+                        "description": "camera operator: Flying-Cam",
+                        "id": "nm1032081",
+                        "name": "Louis Prezelin"
+                    },
+                    {
+                        "description": "steadicam operator",
+                        "id": "nm0731989",
+                        "name": "Peter Robertson"
+                    },
+                    {
+                        "description": "electrician (as Sommat 'Aud' Sangsinchai)",
+                        "id": "nm0997909",
+                        "name": "Sommay Saengsinchai"
+                    },
+                    {
+                        "description": "electrician (as Veera Sakronkun)",
+                        "id": "nm0757233",
+                        "name": "Veera Sakornkan"
+                    },
+                    {
+                        "description": "generator operator",
+                        "id": "nm2907645",
+                        "name": "Panya 'Bang Odd' Sangsuay"
+                    },
+                    {
+                        "description": "video playback assistant",
+                        "id": "nm2908100",
+                        "name": "Tid 'Sun' Sarmsaeng"
+                    },
+                    {
+                        "description": "gaffer",
+                        "id": "nm0778812",
+                        "name": "Alex Scott"
+                    },
+                    {
+                        "description": "clapper loader: underwater unit",
+                        "id": "nm1117178",
+                        "name": "James Scott"
+                    },
+                    {
+                        "description": "focus puller: underwater unit",
+                        "id": "nm0782111",
+                        "name": "Gordon Segrove"
+                    },
+                    {
+                        "description": "focus puller: underwater unit",
+                        "id": "nm0787117",
+                        "name": "Robert Shacklady"
+                    },
+                    {
+                        "description": "gaffer: second unit",
+                        "id": "nm0807881",
+                        "name": "David Smith"
+                    },
+                    {
+                        "description": "gaffer: Thailand",
+                        "id": "nm0156171",
+                        "name": "Chesda 'Pop' Smithsuth"
+                    },
+                    {
+                        "description": "electrician",
+                        "id": "nm2907211",
+                        "name": "Charun 'X.' Srisumpun"
+                    },
+                    {
+                        "description": "pilot: Flying-Cam",
+                        "id": "nm1345363",
+                        "name": "David Storey"
+                    },
+                    {
+                        "description": "electrician",
+                        "id": "nm2909599",
+                        "name": "Arkom 'Tom' Tangkhatok"
+                    },
+                    {
+                        "description": "electrician (as Sommbat 'Jime' Tiyasuttiporn)",
+                        "id": "nm0998161",
+                        "name": "Sombat Tiyasutthiporn"
+                    },
+                    {
+                        "description": "underwater director of photography",
+                        "id": "nm0884273",
+                        "name": "Mike Valentine"
+                    },
+                    {
+                        "description": "grip",
+                        "id": "nm0914108",
+                        "name": "Jimmy Waters"
+                    },
+                    {
+                        "description": "camera technician: Wescam",
+                        "id": "nm0935505",
+                        "name": "Steven J. Winslow"
+                    },
+                    {
+                        "description": "electrical rigger",
+                        "id": "nm0942516",
+                        "name": "John Wright"
+                    },
+                    {
+                        "description": "consultant: wireless director assist (uncredited)",
+                        "id": "nm1990290",
+                        "name": "Nathan Spencer"
+                    }
+                ],
+                "job": "Camera and Electrical Department"
+            },
+            {
+                "items": [
+                    {
+                        "description": "casting assistant: UK (as Will Davies)",
+                        "id": "nm1121003",
+                        "name": "William Davies"
+                    },
+                    {
+                        "description": "casting: Paris",
+                        "id": "nm0235675",
+                        "name": "Kate Dowd"
+                    },
+                    {
+                        "description": "casting assistant: UK",
+                        "id": "nm0240400",
+                        "name": "Maureen Duff"
+                    },
+                    {
+                        "description": "adr voice casting",
+                        "id": "nm0255376",
+                        "name": "Louis Elman"
+                    },
+                    {
+                        "description": "casting: Thailand",
+                        "id": "nm0820250",
+                        "name": "Raweeporn 'Non' Srimonju"
+                    },
+                    {
+                        "description": "casting assistant: Thailand",
+                        "id": "nm0857003",
+                        "name": "Krongthong Thampradith"
+                    },
+                    {
+                        "description": "casting assistant (uncredited)",
+                        "id": "nm2657919",
+                        "name": "Jon Nguyen"
+                    }
+                ],
+                "job": "Casting Department"
+            },
+            {
+                "items": [
+                    {
+                        "description": "laundress",
+                        "id": "nm2908247",
+                        "name": "Pateeya Gunsrivieng"
+                    },
+                    {
+                        "description": "costume supervisor",
+                        "id": "nm0633672",
+                        "name": "Steven Noble"
+                    },
+                    {
+                        "description": "cutter/fitter",
+                        "id": "nm2908525",
+                        "name": "Panjaporn 'Imm' Pearkpun"
+                    },
+                    {
+                        "description": "costume assistant (as Supawan 'Toi' Rodkird)",
+                        "id": "nm1575255",
+                        "name": "Supawan Rodkird"
+                    },
+                    {
+                        "description": "costume supervisor (as Mutita 'Air' Na Songkla)",
+                        "id": "nm0814320",
+                        "name": "Mutita Na Songkla"
+                    },
+                    {
+                        "description": "laundress",
+                        "id": "nm2908736",
+                        "name": "Rachanok 'Nok' Sup-Aree"
+                    },
+                    {
+                        "description": "costume assistant",
+                        "id": "nm0870071",
+                        "name": "Kate Towns"
+                    },
+                    {
+                        "description": "costume mistress",
+                        "id": "nm0911758",
+                        "name": "Natalie Ward"
+                    },
+                    {
+                        "description": "costume runner",
+                        "id": "nm2908391",
+                        "name": "Kowit 'Bom' Wises"
+                    },
+                    {
+                        "description": "costume maker",
+                        "id": "nm0949530",
+                        "name": "Esme Young"
+                    }
+                ],
+                "job": "Costume and Wardrobe Department"
+            },
+            {
+                "items": [
+                    {
+                        "description": "second assistant editor",
+                        "id": "nm0113404",
+                        "name": "Denton Brown"
+                    },
+                    {
+                        "description": "post production executive",
+                        "id": "nm0151365",
+                        "name": "Fred Chandler"
+                    },
+                    {
+                        "description": "editor trainee (as Catriona Richardson)",
+                        "id": "nm0724466",
+                        "name": "Catriona Delbridge"
+                    },
+                    {
+                        "description": "post-production consultant",
+                        "id": "nm0366031",
+                        "name": "Steve Harrow"
+                    },
+                    {
+                        "description": "first assistant editor: film",
+                        "id": "nm0461039",
+                        "name": "Paul Knight"
+                    },
+                    {
+                        "description": "color timer",
+                        "id": "nm0524313",
+                        "name": "Yvan Lucas"
+                    },
+                    {
+                        "description": "laboratory contact",
+                        "id": "nm0841720",
+                        "name": "Paul Swann"
+                    },
+                    {
+                        "description": "digital colorist",
+                        "id": "nm2543046",
+                        "name": "Kathy Thomson"
+                    },
+                    {
+                        "description": "color timer",
+                        "id": "nm0905321",
+                        "name": "Mark Waddell"
+                    },
+                    {
+                        "description": "first assistant editor: film",
+                        "id": "nm0931380",
+                        "name": "Neil Williams"
+                    }
+                ],
+                "job": "Editorial Department"
+            },
+            {
+                "items": [
+                    {
+                        "description": "location assistant",
+                        "id": "nm2908402",
+                        "name": "Sujin Chumnina"
+                    },
+                    {
+                        "description": "location manager",
+                        "id": "nm0740380",
+                        "name": "Phillip Roope"
+                    },
+                    {
+                        "description": "location manager",
+                        "id": "nm0763504",
+                        "name": "Somchai Santitharangkun"
+                    },
+                    {
+                        "description": "location runner (as Michael Srisomsap)",
+                        "id": "nm1576122",
+                        "name": "Michael Sarun Srisomsub"
+                    }
+                ],
+                "job": "Location Management"
+            },
+            {
+                "items": [
+                    {
+                        "description": "assistant music editor",
+                        "id": "nm1427452",
+                        "name": "Hugo Adams"
+                    },
+                    {
+                        "description": "composer: additional score",
+                        "id": "nm0011473",
+                        "name": "Barry Adamson"
+                    },
+                    {
+                        "description": "musician: keyboards",
+                        "id": "nm0033575",
+                        "name": "David Arch"
+                    },
+                    {
+                        "description": "orchestrator",
+                        "id": "nm0000823",
+                        "name": "Angelo Badalamenti"
+                    },
+                    {
+                        "description": "musician: violin",
+                        "id": "nm0077444",
+                        "name": "Mark Berrow"
+                    },
+                    {
+                        "description": "musician: French horn",
+                        "id": "nm1179882",
+                        "name": "Richard Bissill"
+                    },
+                    {
+                        "description": "music preparation",
+                        "id": "nm11492285",
+                        "name": "Tom Brown"
+                    },
+                    {
+                        "description": "musician: guitars",
+                        "id": "nm0166336",
+                        "name": "Clem Clempson"
+                    },
+                    {
+                        "description": "musician",
+                        "id": "nm2470225",
+                        "name": "Peter Davies"
+                    },
+                    {
+                        "description": "score mixer / score recordist",
+                        "id": "nm0287816",
+                        "name": "Geoff Foster"
+                    },
+                    {
+                        "description": "score recordist",
+                        "id": "nm0313732",
+                        "name": "Ben Georgiades"
+                    },
+                    {
+                        "description": "score recordist",
+                        "id": "nm0413619",
+                        "name": "Jake Jackson"
+                    },
+                    {
+                        "description": "assistant engineer",
+                        "id": "nm0420993",
+                        "name": "Tom Jenkins"
+                    },
+                    {
+                        "description": "additional programmer",
+                        "id": "nm2817055",
+                        "name": "Will Johnstone"
+                    },
+                    {
+                        "description": "musician",
+                        "id": "nm4565173",
+                        "name": "Kieran Kiely"
+                    },
+                    {
+                        "description": "music executive",
+                        "id": "nm1407018",
+                        "name": "Mike Knobloch"
+                    },
+                    {
+                        "description": "executive in charge of music",
+                        "id": "nm0469234",
+                        "name": "Robert Kraft"
+                    },
+                    {
+                        "description": "conductor / musician: electronics",
+                        "id": "nm0551108",
+                        "name": "Phil Marshall"
+                    },
+                    {
+                        "description": "music editor",
+                        "id": "nm0004216",
+                        "name": "Gerard McCann"
+                    },
+                    {
+                        "description": "musician: violin",
+                        "id": "nm0625362",
+                        "name": "Everton Nelson"
+                    },
+                    {
+                        "description": "choral coordinator",
+                        "id": "nm0641103",
+                        "name": "Jenny O'Grady"
+                    },
+                    {
+                        "description": "score recordist (as Bill Pearson) / score synth programmer (as Bill Pearson)",
+                        "id": "nm0669196",
+                        "name": "William Pearson"
+                    },
+                    {
+                        "description": "musician: percussion",
+                        "id": "nm0725666",
+                        "name": "Frank Ricotti"
+                    },
+                    {
+                        "description": "orchestrator",
+                        "id": "nm0750904",
+                        "name": "Patrick Russ"
+                    },
+                    {
+                        "description": "copyist",
+                        "id": "nm0761651",
+                        "name": "Marni Sanders"
+                    },
+                    {
+                        "description": "music preparation",
+                        "id": "nm2974297",
+                        "name": "Steven L. Smith"
+                    },
+                    {
+                        "description": "music supervisor",
+                        "id": "nm0867256",
+                        "name": "Pete Tong"
+                    },
+                    {
+                        "description": "music recording engineer",
+                        "id": "nm0875932",
+                        "name": "Mark Tucker"
+                    },
+                    {
+                        "description": "musician: double bass",
+                        "id": "nm8377078",
+                        "name": "Allen Walley"
+                    },
+                    {
+                        "description": "music librarian",
+                        "id": "nm1522017",
+                        "name": "Joe Zimmerman"
+                    },
+                    {
+                        "description": "score producer (uncredited)",
+                        "id": "nm0000823",
+                        "name": "Angelo Badalamenti"
+                    },
+                    {
+                        "description": "Music Business & Legal Affairs (uncredited)",
+                        "id": "nm9350097",
+                        "name": "Thomas Cavanaugh"
+                    },
+                    {
+                        "description": "music executive (uncredited)",
+                        "id": "nm2335938",
+                        "name": "Danielle Diego"
+                    },
+                    {
+                        "description": "music clearance (uncredited)",
+                        "id": "nm11127126",
+                        "name": "Ellen Ginsburg"
+                    },
+                    {
+                        "description": "head of music preparation (uncredited)",
+                        "id": "nm0334204",
+                        "name": "Mark Graham"
+                    },
+                    {
+                        "description": "musician: cello (uncredited)",
+                        "id": "nm1179933",
+                        "name": "Paul Kegg"
+                    }
+                ],
+                "job": "Music Department"
+            },
+            {
+                "items": [
+                    {
+                        "description": "script supervisor: second unit",
+                        "id": "nm0605099",
+                        "name": "Zoe Morgan"
+                    },
+                    {
+                        "description": "script supervisor",
+                        "id": "nm0941492",
+                        "name": "Anna Worley"
+                    }
+                ],
+                "job": "Script and Continuity Department"
+            },
+            {
+                "items": [
+                    {
+                        "description": "transportation manager: UK",
+                        "id": "nm0020146",
+                        "name": "Phil Allchin"
+                    },
+                    {
+                        "description": "transportation coordinator",
+                        "id": "nm0242822",
+                        "name": "Arthur Dunne"
+                    },
+                    {
+                        "description": "transportation captain (as Woradet 'Nui' Em-Eam)",
+                        "id": "nm2859459",
+                        "name": "Woradet Em-Eam"
+                    },
+                    {
+                        "description": "transportation captain (as Boriboon 'Boon' Jarurongwatana)",
+                        "id": "nm0419016",
+                        "name": "Boriboon Jarurongkawatana"
+                    },
+                    {
+                        "description": "action vehicle coordinator",
+                        "id": "nm2118948",
+                        "name": "Thanadech 'Ben' Thananorrakarn"
+                    }
+                ],
+                "job": "Transportation Department"
+            },
+            {
+                "items": [
+                    {
+                        "description": "aerial unit",
+                        "id": "nm1424058",
+                        "name": "Jennifer Allen"
+                    },
+                    {
+                        "description": "production assistant",
+                        "id": "nm2908600",
+                        "name": "Janpen 'Jeab' Artayakul"
+                    },
+                    {
+                        "description": "zodiac captain (as Danny Balley)",
+                        "id": "nm0047215",
+                        "name": "Daniel Bailey"
+                    },
+                    {
+                        "description": "safety diver: underwater unit",
+                        "id": "nm2907948",
+                        "name": "Teera Banditwong"
+                    },
+                    {
+                        "description": "zodiac captain",
+                        "id": "nm1345589",
+                        "name": "Rhodes Barton"
+                    },
+                    {
+                        "description": "production runner: UK",
+                        "id": "nm1427195",
+                        "name": "Carey Berlin"
+                    },
+                    {
+                        "description": "production coordinator",
+                        "id": "nm0110132",
+                        "name": "Judy Britten"
+                    },
+                    {
+                        "description": "craft service supervisor",
+                        "id": "nm2142913",
+                        "name": "Charn Chatpatumthong"
+                    },
+                    {
+                        "description": "trainer",
+                        "id": "nm2908699",
+                        "name": "Cornel Chin"
+                    },
+                    {
+                        "description": "production rushes courier",
+                        "id": "nm2907673",
+                        "name": "Orapin 'Tim' Chuenchorn"
+                    },
+                    {
+                        "description": "unit publicist",
+                        "id": "nm0164484",
+                        "name": "Sarah Clark"
+                    },
+                    {
+                        "description": "accounting assistant",
+                        "id": "nm0206121",
+                        "name": "Elaine Dawson"
+                    },
+                    {
+                        "description": "marine logistics: dock & barge master",
+                        "id": "nm0235182",
+                        "name": "Michael Douglas"
+                    },
+                    {
+                        "description": "voice coach",
+                        "id": "nm0245768",
+                        "name": "Penny Dyer"
+                    },
+                    {
+                        "description": "computer playback operator",
+                        "id": "nm0251886",
+                        "name": "Andrew Eio"
+                    },
+                    {
+                        "description": "medical consultant (as Dr. Timothy Evans)",
+                        "id": "nm2909118",
+                        "name": "Timothy Evans"
+                    },
+                    {
+                        "description": "assistant accountant",
+                        "id": "nm0264011",
+                        "name": "Kathy Ewings"
+                    },
+                    {
+                        "description": "health and safety consultant",
+                        "id": "nm0316541",
+                        "name": "Cyril Gibbons"
+                    },
+                    {
+                        "description": "marine administrator",
+                        "id": "nm0322719",
+                        "name": "Bill Glesne"
+                    },
+                    {
+                        "description": "diving supervisor: underwater unit",
+                        "id": "nm1348682",
+                        "name": "Christopher Goodwin"
+                    },
+                    {
+                        "description": "unit doctor (as Dr. Nick Imm)",
+                        "id": "nm2909131",
+                        "name": "Nick Imm"
+                    },
+                    {
+                        "description": "safety diver: underwater unit",
+                        "id": "nm2907556",
+                        "name": "Steve John"
+                    },
+                    {
+                        "description": "financial controller",
+                        "id": "nm0424621",
+                        "name": "Bobbie Johnson"
+                    },
+                    {
+                        "description": "assistant: Andrew Macdonald, UK",
+                        "id": "nm2907262",
+                        "name": "Jenny Jones"
+                    },
+                    {
+                        "description": "assistant marine coordinator",
+                        "id": "nm0991070",
+                        "name": "Hilary Julian"
+                    },
+                    {
+                        "description": "marine coordinator",
+                        "id": "nm0432210",
+                        "name": "Lance Julian"
+                    },
+                    {
+                        "description": "assistant marine coordinator (as Sharian Julian)",
+                        "id": "nm1348716",
+                        "name": "Sharon Julian"
+                    },
+                    {
+                        "description": "shipping coordinator (as Kanokporn 'Keng' Sae Tang)",
+                        "id": "nm0437844",
+                        "name": "Sae Tang 'Keng' Kanokporn"
+                    },
+                    {
+                        "description": "production runner",
+                        "id": "nm2907366",
+                        "name": "Saipin 'Omm' Kitsuban"
+                    },
+                    {
+                        "description": "voice coach",
+                        "id": "nm0407798",
+                        "name": "Vernice Klier"
+                    },
+                    {
+                        "description": "marine engineer (as John C. Merrill)",
+                        "id": "nm1524212",
+                        "name": "J.C. Merrill"
+                    },
+                    {
+                        "description": "assistant production coordinator",
+                        "id": "nm0604853",
+                        "name": "Lulu Morgan"
+                    },
+                    {
+                        "description": "armorer",
+                        "id": "nm1206225",
+                        "name": "John Nixon"
+                    },
+                    {
+                        "description": "zodiac captain",
+                        "id": "nm0674954",
+                        "name": "Al Perry"
+                    },
+                    {
+                        "description": "production assistant: underwater unit",
+                        "id": "nm2908842",
+                        "name": "Tom Pestonji"
+                    },
+                    {
+                        "description": "assistant production coordinator",
+                        "id": "nm2908280",
+                        "name": "Porntipa 'Geng' Phanbai-Ngam"
+                    },
+                    {
+                        "description": "assistant accountant: Thailand (as Chidchanok 'Pam' Plodripu)",
+                        "id": "nm2640444",
+                        "name": "Chidchanok Plodripu"
+                    },
+                    {
+                        "description": "unit nurse (as Chantana 'Pan' Pongrojth)",
+                        "id": "nm2909598",
+                        "name": "Chantana 'Pan' Pongrod"
+                    },
+                    {
+                        "description": "payroll accountant: Thailand (as Panotte 'Pong' Rattanajarn)",
+                        "id": "nm2907435",
+                        "name": "Panotte 'Pong' Rattanajarn"
+                    },
+                    {
+                        "description": "assistant accountant",
+                        "id": "nm0731768",
+                        "name": "Claire Robertson"
+                    },
+                    {
+                        "description": "safety diver: underwater unit",
+                        "id": "nm2908846",
+                        "name": "Boonmee Saisom"
+                    },
+                    {
+                        "description": "assistant production coordinator",
+                        "id": "nm2909433",
+                        "name": "Daraphan 'Aor' Sakornsathien"
+                    },
+                    {
+                        "description": "assistant accountant: Thailand",
+                        "id": "nm2908786",
+                        "name": "Wannapa 'Gai' Sinthunawa"
+                    },
+                    {
+                        "description": "assistant: Andrew Macdonald and Danny Boyle, Thailand (as Siriporn 'Goi' Wongwatawat)",
+                        "id": "nm0802850",
+                        "name": "Wongwatawat 'Goy' Siriporn"
+                    },
+                    {
+                        "description": "marine assistant (as Chaiporn 'James' Songmuang)",
+                        "id": "nm2117670",
+                        "name": "Chaipron Songmuang"
+                    },
+                    {
+                        "description": "marine assistant",
+                        "id": "nm2909436",
+                        "name": "Preecha Songsakul"
+                    },
+                    {
+                        "description": "senior location assistant (as Lek Srisomsap)",
+                        "id": "nm0820275",
+                        "name": "Nitad 'Lek' Srisomsap"
+                    },
+                    {
+                        "description": "cashier",
+                        "id": "nm2908560",
+                        "name": "Caroline 'Caro' Tapia-Ruano"
+                    },
+                    {
+                        "description": "animal coordinator",
+                        "id": "nm2118948",
+                        "name": "Thanadech 'Ben' Thananorrakarn"
+                    },
+                    {
+                        "description": "catering supervisor",
+                        "id": "nm2145376",
+                        "name": "Chan Thananuntasiri"
+                    },
+                    {
+                        "description": "work permit officer",
+                        "id": "nm2908988",
+                        "name": "Pantipa 'Ja' Thiemboonkit"
+                    },
+                    {
+                        "description": "safety diver: underwater unit",
+                        "id": "nm2908297",
+                        "name": "Hadyn Thomas"
+                    },
+                    {
+                        "description": "assistant production coordinator",
+                        "id": "nm2901379",
+                        "name": "Lulu Thorpe"
+                    },
+                    {
+                        "description": "safety diver: underwater unit (as Michael Thorpe)",
+                        "id": "nm2907799",
+                        "name": "Michael Thorpe"
+                    },
+                    {
+                        "description": "underwater communications",
+                        "id": "nm0884228",
+                        "name": "Françoise Valentine"
+                    },
+                    {
+                        "description": "zodiac captain (as Douglas 'Kino' Valenzuala)",
+                        "id": "nm0991192",
+                        "name": "Doug Valenzuela"
+                    },
+                    {
+                        "description": "production assistant (as Veeranand 'Kong' Vanijaka)",
+                        "id": "nm2859440",
+                        "name": "Veeranand Vanijaka"
+                    },
+                    {
+                        "description": "executive: 20th Century",
+                        "id": "nm2690557",
+                        "name": "Daniel Vellucci"
+                    },
+                    {
+                        "description": "safety climber",
+                        "id": "nm1345374",
+                        "name": "Kevin West"
+                    },
+                    {
+                        "description": "production assistant (as Virginia Murray)",
+                        "id": "nm0615317",
+                        "name": "Virginia Whitwell"
+                    },
+                    {
+                        "description": "local crew",
+                        "id": "nm0999139",
+                        "name": "James With"
+                    },
+                    {
+                        "description": "aerial coordinator / pilot",
+                        "id": "nm0938103",
+                        "name": "Marc Wolff"
+                    },
+                    {
+                        "description": "zodiac captain (as Rob Wong)",
+                        "id": "nm0939304",
+                        "name": "Robert Wong"
+                    },
+                    {
+                        "description": "production runner",
+                        "id": "nm2908714",
+                        "name": "Singha 'Eka' Yotha"
+                    },
+                    {
+                        "description": "production liaison (uncredited)",
+                        "id": "nm0164947",
+                        "name": "Phil Clarke"
+                    },
+                    {
+                        "description": "gameboy programmer: \"Rampage World Tour\" (uncredited)",
+                        "id": "nm1016941",
+                        "name": "Matt Schneider"
+                    }
+                ],
+                "job": "Additional Crew"
+            }
+        ],
+        "title": "The Beach",
+        "type": "Movie",
+        "writers": {
+            "items": [
+                {
+                    "description": "(screenplay)",
+                    "id": "nm0388076",
+                    "name": "John Hodge"
+                },
+                {
+                    "description": "(novel)",
+                    "id": "nm0307497",
+                    "name": "Alex Garland"
+                }
+            ],
+            "job": "Writer"
+        },
+        "year": "2000"
+    },
+    "fullTitle": "The Beach (2000)",
+    "genreList": [
+        {
+            "key": "Adventure",
+            "value": "Adventure"
+        },
+        {
+            "key": "Drama",
+            "value": "Drama"
+        },
+        {
+            "key": "Romance",
+            "value": "Romance"
+        }
+    ],
+    "genres": "Adventure, Drama, Romance",
+    "id": "tt0163978",
+    "imDbRating": "6.6",
+    "imDbRatingVotes": "236553",
+    "image": "https://imdb-api.com/images/original/MV5BNTljZTUzYWUtOTI4YS00NmZlLWE5MmQtZjFlZDZhNjg4MjQxXkEyXkFqcGdeQXVyNTc1NTQxODI@._V1_Ratio0.6751_AL_.jpg",
+    "images": null,
+    "keywordList": [
+        "thailand",
+        "paradise",
+        "travel",
+        "beach",
+        "island"
+    ],
+    "keywords": "thailand,paradise,travel,beach,island",
+    "languageList": [
+        {
+            "key": "English",
+            "value": "English"
+        },
+        {
+            "key": "French",
+            "value": "French"
+        },
+        {
+            "key": "Swedish",
+            "value": "Swedish"
+        },
+        {
+            "key": "Thai",
+            "value": "Thai"
+        },
+        {
+            "key": "Serbian",
+            "value": "Serbian"
+        }
+    ],
+    "languages": "English, French, Swedish, Thai, Serbian",
+    "metacriticRating": "43",
+    "originalTitle": "",
+    "plot": "On vacation in Thailand, Richard sets out for an island rumored to be a solitary beach paradise.",
+    "plotLocal": "",
+    "plotLocalIsRtl": false,
+    "posters": null,
+    "ratings": {
+        "errorMessage": "",
+        "filmAffinity": "5.6",
+        "fullTitle": "The Beach (2000)",
+        "imDb": "6.6",
+        "imDbId": "tt0163978",
+        "metacritic": "43",
+        "rottenTomatoes": "21",
+        "theMovieDb": "6.5",
+        "title": "The Beach",
+        "type": "Movie",
+        "year": "2000"
+    },
+    "releaseDate": "2000-02-11",
+    "runtimeMins": "119",
+    "runtimeStr": "1h 59min",
+    "similars": [
+        {
+            "id": "tt0120744",
+            "imDbRating": "6.5",
+            "image": "https://imdb-api.com/images/original/MV5BZjM2YzcxMmQtOTc2Mi00YjdhLWFlZjUtNmFmMDQzYzU2YTk5L2ltYWdlXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_Ratio0.6763_AL_.jpg",
+            "title": "The Man in the Iron Mask"
+        },
+        {
+            "id": "tt0117509",
+            "imDbRating": "6.7",
+            "image": "https://imdb-api.com/images/original/MV5BMGU4YmI1ZGQtZjExYi00M2E0LTgyYTAtNzQ5ZmVlMTk4NzUzXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_Ratio0.6763_AL_.jpg",
+            "title": "Romeo + Juliet"
+        },
+        {
+            "id": "tt0338751",
+            "imDbRating": "7.5",
+            "image": "https://imdb-api.com/images/original/MV5BZTYzMjA2M2EtYmY1OC00ZWMxLThlY2YtZGI3MTQzOWM4YjE3XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_Ratio0.6763_AL_.jpg",
+            "title": "The Aviator"
+        },
+        {
+            "id": "tt0112461",
+            "imDbRating": "7.3",
+            "image": "https://imdb-api.com/images/original/MV5BMjdlNzQxZGUtZTg5YS00ODg2LTkxMzctMDAyNmEwM2YyZjA4XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_Ratio0.6763_AL_.jpg",
+            "title": "The Basketball Diaries"
+        },
+        {
+            "id": "tt0217505",
+            "imDbRating": "7.5",
+            "image": "https://imdb-api.com/images/original/MV5BNDg3MmI1ZDYtMDZjYi00ZWRlLTk4NzEtZjY4Y2U0NjE5YmRiXkEyXkFqcGdeQXVyNzAxMjE1NDg@._V1_Ratio0.6763_AL_.jpg",
+            "title": "Gangs of New York"
+        },
+        {
+            "id": "tt0450259",
+            "imDbRating": "8.0",
+            "image": "https://imdb-api.com/images/original/MV5BZDMxOGZhNWYtMzRlYy00Mzk5LWJjMjEtNmQ4NDU4M2QxM2UzXkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_Ratio0.6763_AL_.jpg",
+            "title": "Blood Diamond"
+        },
+        {
+            "id": "tt0108330",
+            "imDbRating": "7.3",
+            "image": "https://imdb-api.com/images/original/MV5BODA5ZTBjNjktZTc0OS00Yjc5LWJiNzUtYmRhYjVkYTI4MWExL2ltYWdlXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_Ratio0.6763_AL_.jpg",
+            "title": "This Boy's Life"
+        },
+        {
+            "id": "tt1616195",
+            "imDbRating": "6.5",
+            "image": "https://imdb-api.com/images/original/MV5BMTc0NDM4ODU2Nl5BMl5BanBnXkFtZTcwNzQ0NTg4Ng@@._V1_Ratio0.6763_AL_.jpg",
+            "title": "J. Edgar"
+        },
+        {
+            "id": "tt0374273",
+            "imDbRating": "5.2",
+            "image": "https://imdb-api.com/images/original/MV5BMTk5OTAwMjYwMF5BMl5BanBnXkFtZTYwODI4NzU3._V1_Ratio0.6957_AL_.jpg",
+            "title": "The Tesseract"
+        },
+        {
+            "id": "tt0959337",
+            "imDbRating": "7.3",
+            "image": "https://imdb-api.com/images/original/MV5BMTczNDgzMjczOV5BMl5BanBnXkFtZTcwOTU3MzMwMg@@._V1_Ratio0.6763_AL_.jpg",
+            "title": "Revolutionary Road"
+        },
+        {
+            "id": "tt0108550",
+            "imDbRating": "7.7",
+            "image": "https://imdb-api.com/images/original/MV5BY2EyZDlhNjItODYzNi00Mzc3LWJjOWUtMTViODU5MTExZWMyL2ltYWdlXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_Ratio0.6763_AL_.jpg",
+            "title": "What's Eating Gilbert Grape"
+        },
+        {
+            "id": "tt1343092",
+            "imDbRating": "7.2",
+            "image": "https://imdb-api.com/images/original/MV5BMTkxNTk1ODcxNl5BMl5BanBnXkFtZTcwMDI1OTMzOQ@@._V1_Ratio0.6763_AL_.jpg",
+            "title": "The Great Gatsby"
+        }
+    ],
+    "starList": [
+        {
+            "id": "nm0000138",
+            "name": "Leonardo DiCaprio"
+        },
+        {
+            "id": "nm0842770",
+            "name": "Tilda Swinton"
+        },
+        {
+            "id": "nm0948679",
+            "name": "Daniel York"
+        }
+    ],
+    "stars": "Leonardo DiCaprio, Tilda Swinton, Daniel York",
+    "tagline": null,
+    "title": "The Beach",
+    "trailer": {
+        "errorMessage": "",
+        "fullTitle": "The Beach (2000)",
+        "imDbId": "tt0163978",
+        "link": "https://www.imdb.com/video/vi3699966233",
+        "linkEmbed": "https://www.imdb.com/video/imdb/vi3699966233/imdb/embed",
+        "thumbnailUrl": "https://m.media-amazon.com/images/M/MV5BOTQ0NmY3NjYtZmY0OC00OWI2LThhMDktMjlmZGE4OWZjNjMwXkEyXkFqcGdeQXVyNzU1NzE3NTg@._V1_.jpg",
+        "title": "The Beach",
+        "type": "Movie",
+        "uploadDate": null,
+        "videoDescription": "Theatrical Trailer from 20th Century Fox",
+        "videoId": "vi3699966233",
+        "videoTitle": "The Beach",
+        "year": "2000"
+    },
+    "tvEpisodeInfo": null,
+    "tvSeriesInfo": null,
+    "type": "Movie",
+    "wikipedia": {
+        "errorMessage": "",
+        "fullTitle": "The Beach (2000)",
+        "imDbId": "tt0163978",
+        "language": "en",
+        "plotFull": {
+            "html": "<p>The Beach is a 2000 adventure drama film directed by Danny Boyle, from a screenplay by John Hodge, based on the 1996 novel of the same name by Alex Garland. The film stars Leonardo DiCaprio, Tilda Swinton, Virginie Ledoyen, Guillaume Canet, and Robert Carlyle. It was filmed on the Thai island of Ko Phi Phi Le.</p><p>The film was a moderate box office success but received mixed-to-negative reviews from critics. DiCaprio was nominated for the Golden Raspberry Award for Worst Actor (lost to John Travolta as Terl from Battlefield Earth and as Russ Richards in Lucky Numbers).</p><br/><h3>Plot</h3><p>Richard, a young American seeking adventure in Bangkok, stays in a drab travelers' hotel on Khao San Road where he meets a young French couple, Françoise and Étienne. He meets Daffy, who tells him of a pristine, uninhabited island in the Gulf of Thailand with a beautiful hidden beach. Daffy explains that he settled there in secret several years earlier, but difficulties arose and he left. Daffy commits suicide, leaving Richard a map to the island. Richard convinces Françoise and Étienne to accompany him to the island, and the three travel to Ko Samui. Richard meets two American surfers who have heard rumors of the island and gives them a copy of the map.</p><p>En route to the island, Richard becomes infatuated with Françoise. After swimming to the island from a neighboring one, they find a cannabis plantation guarded by armed Thai farmers. Avoiding detection, they make their way across the island and meet Keatey, who brings them to a community of travelers living on the island in secret. Sal, the community's English leader, explains that the farmers allow them to stay so long as they keep to themselves and do not allow any more travelers to come to the island. Richard lies that they have not shown the map to anyone else. The trio become integrated into the community.</p><p>One night, Françoise invites Richard to the beach where she tells him that she is falling in love with him and they make love. Despite hoping to keep it secret, the community finds out. While angry, Étienne says he will not stand in their way if Françoise is happier with Richard.</p><p>Sal selects Richard to accompany her on a supply run to Ko Pha Ngan. They encounter the American surfers who are preparing to search for the island and mention Richard's map. Sal is upset but believes Richard when he says they have no map. In order to ensure that Sal will not tell the rest of the island about the map, Richard has sex with her at her order. On their return to the island, Richard lies to Françoise about having had sex with Sal.</p><p>When the surfers turn up on the neighboring island, Sal orders Richard to send them away and destroy their map. She tells everyone that she and Richard had sex, which leaves Françoise angry and heartbroken, causing her to return to Étienne. Isolated from the group, Richard begins to lose his sanity, imagining that he is conversing with the deceased Daffy.</p><p>The surfers reach the island but are discovered and killed by the farmers. Shocked at witnessing their deaths, Richard gathers Françoise and Étienne to leave the island.</p><p>Richard is captured by the farmers along with Françoise and Étienne. The farmers are furious with the community for breaking their deal to not allow any more newcomers. The lead farmer gives Sal a gun loaded with a single bullet and orders her to make a choice: kill Richard and the group will be allowed to stay, or else they must all leave immediately. Sal pulls the trigger, but the chamber is empty. Shocked by her willingness to commit murder, the other members of the community abandon Sal, leave the island, and go their separate ways.</p><p>Back in the United States, Richard receives an email at an Internet cafe from Françoise with a nostalgic group photograph of the beach community in happier times.</p><br/><h3>Cast</h3><ul><li>Leonardo DiCaprio as Richard, a freelance traveler.</li><li>Tilda Swinton as Sal, the leader of the beach community.</li><li>Virginie Ledoyen as Françoise, the girlfriend of Étienne, and Richard's love interest.</li><li>Guillaume Canet as Étienne, the boyfriend of Françoise.</li><li>Robert Carlyle as Daffy, the eccentric former member of the beach community.</li><li>Paterson Joseph as Keaty, a member of the beach community who loves cricket.</li><li>Lars Arentz-Hansen as Bugs, Sal's South-African boyfriend and the beach community's carpenter.</li><li>Daniel Caltagirone as Unhygienix, the beach community's chef who has an obsession with soap due to having to always prepare the fish for consumption.</li><li>Staffan Kihlbom, Jukka Hiltunen, and Magnus Lindgren as Christo, Karl, and Sten, the beach community's Swedish fishermen.</li><li>Victoria Smurfit as Weathergirl, a member of the beach community whose tightening pelvis has been a sign for rain.</li><li>Zelda Tinska and Lidija Zovkić as Sonja and Mirjana, two beach community members who come from Sarajevo.</li><li>Samuel Gough as Guitarman, the beach community's residential guitarist who is not a good singer.</li><li>Peter Youngblood Hills and Jerry Swindall as Zeph and Sammy, two Americans whom Richard meets in Ko Samui.</li><li>Saskia Mulder and Simone Huber as Hilda and Eva, two women who accompany Zeph and Sammy to the island.</li><li>Peter Gevisser as Gregorio, an Italian member of the beach community.</li><li>Abhijati 'Meuk' Jusakul as the leader of the cannabis farmers.</li></ul><br/><h3>Production</h3><p>Ewan McGregor was cast as the main character before leaving due to disputes with the director. It was speculated that Boyle was offered additional funding under the condition that DiCaprio be cast and his character made American. Whilst promoting T2 Trainspotting on The Graham Norton Show, the dispute was discussed in more depth, with McGregor stating \"It was a mis-handling and a mis-understanding over the film and it's a big regret of mine that it went on for so very long... and it didn't matter about The Beach, it was never about that. It was about our friendship. I felt like Danny's actor and it made me a bit rudderless.\" Boyle stated, \"I handled it very very badly and I have apologised to Ewan for it. I felt a great shame about it and how it was handled.\"</p><p>Members of the cast and crew were involved in a boating accident during production. It was reported that the incident involved both Boyle and DiCaprio. No one was injured.</p><p>The beach seen in the film is not the same as in real life. There is a gap between mountains on the actual beach in Thailand. The special effects crew digitally added some of the surrounding mountains during the post-production phase.</p><p>Boyle has been cited saying that the look of the jungle scenes in the film was inspired by the Nintendo game Banjo-Kazooie.</p><p>The waterfall scene, where DiCaprio and others jump from a high cliff to the water below, was filmed in Khao Yai National Park in central Thailand, at the Haew Suwat Waterfall.</p><p>The map in the film was illustrated by the author of the book that The Beach was based upon, Alex Garland. He received credit for this as the cartographer.</p><p>In 1999, Hélène de Fougerolles auditioned for the film but casting directors immediately told her that she was not mysterious enough for the character as she arrived with blond hair in pigtails. She asked them if she could \"be an extra or serve coffees there, three months in Thailand, it sounds idyllic!\". Although firstly reticent because the actress was already established in the industry, they finally accepted. As journalists were not allowed to come take pictures on set, the only picture the press could have of Guillaume Canet and Virginie Ledoyen before shooting started, was their departure at Paris airport with de Fougerolles. They made it the cover of Studio Magazine from which the international press reported her as officially cast. This eventually lended her lines edited out of the final cut but present in the dvd extras.</p><br/><h3>Release</h3><p>The film opened February 11, 2000 in both the United Kingdom and the United States.</p><p>The budget of the film was US$50 million. The film opened at number 2 at the box office in both the UK and the US, with a weekend gross of $15,277,921 in the United States and Canada behind Scream 3, and a gross of £2,418,321 in the United Kingdom behind Toy Story 2 . Global takings totaled over US$144 million, of which US$39 million was from the United States and Canada.</p><h4>Home video</h4><p>The film has been released on VHS and DVD. It is yet to be released on Blu-ray. The standard DVD release included nine scenes that were deleted from the film, including an alternative opening which to an extent resembles the one in the novel, were later included in a Special Edition DVD release, along with Danny Boyle's commentary on what might have been their purpose. There is also an alternative ending which depicts Sal committing suicide and everyone loading up on a boat from the raft.</p><br/><h3>Soundtrack</h3><table class=\"table table-responsive table-bordered table-hover w-100\"><tbody><tr><th colspan=\"2\" class=\"infobox-above summary album\" style=\"font-style: italic; background-color: gainsboro; font-size: 125%;\">The Beach: Motion Picture Soundtrack</th></tr><tr><th colspan=\"2\" class=\"infobox-header description\" style=\"background-color: gainsboro\"><span>Soundtrack album</span> by <div class=\"contributor\" style=\"display:inline\">various artists</div></th></tr><tr><th scope=\"row\" class=\"infobox-label\">Released</th><td class=\"infobox-data published\">February 21, 2000</td></tr><tr><th scope=\"row\" class=\"infobox-label\"><span>Genre</span></th><td class=\"infobox-data category hlist\"><span>Electronica</span>, <span>ambient</span>, <span>rock</span>, <span>Britpop</span></td></tr><tr><th scope=\"row\" class=\"infobox-label\">Length</th><td class=\"infobox-data\"><span class=\"duration\"><span class=\"min\">76</span>:<span class=\"s\">53</span></span></td></tr><tr><th scope=\"row\" class=\"infobox-label\"><span>Label</span></th><td class=\"infobox-data hlist\"><span>Sire</span></td></tr><tr><th scope=\"row\" class=\"infobox-label\"><span>Producer</span></th><td class=\"infobox-data hlist\"><span>Pete Tong</span></td></tr><tr><th colspan=\"2\" class=\"infobox-header description\" style=\"background-color: gainsboro\"><span>Danny Boyle</span> film soundtrack chronology</th></tr><tr><td colspan=\"2\" class=\"infobox-full-data\"><table style=\"background: transparent; width: 100%; min-width: 100%; border-collapse: collapse; display: inline-table;\"><tbody><tr style=\"line-height: 1.4em;\"><td style=\"width: 33%; text-align: center; vertical-align: top; padding: .2em .1em .2em 0\"><i><span>A Life Less Ordinary</span></i><br>(1997)</td><td style=\"width: 33%; text-align: center; vertical-align: top; padding: .2em .1em\"><i><b>The Beach: Motion Picture Soundtrack</b></i><br>(2000)</td><td style=\"width: 33%; text-align: center; vertical-align: top; padding: .2em 0 .2em .1em\"><i><span>28 Days Later</span></i><br>(2002)</td></tr></tbody></table></td></tr></tbody></table><p>The soundtrack for the film, co-produced by Pete Tong, features the international hits \"Pure Shores\" by All Saints and \"Porcelain\" by Moby, as well as tracks by New Order, Blur, Underworld, Orbital, Faithless, Sugar Ray, and others. Leftfield's contribution to the soundtrack, \"Snakeblood\", was found to have sampled Orchestral Manoeuvres in the Dark's \"Almost\" without permission, leading to a lawsuit; band member Neil Barnes said he forgot to remove the sample from the finished track. The songs \"Synasthasia\" by Junkie XL, \"Out of Control\" by The Chemical Brothers, \"Fiesta Conga\" by Movin' Melodies, \"Redemption Song\" by Bob Marley, \"Neon Reprise\" by Lunatic Calm and \"Smoke Two Joints\" by Chris Kay and Michael Kay were also included in the movie but omitted from the soundtrack. The teaser trailer for the film featured \"Touched\" by VAST.</p><p>The film score was composed by Angelo Badalamenti, and a separate album containing selections of his score was released as well.</p><h4>Track listing</h4><table class=\"table table-responsive table-bordered table-hover w-100\"><tbody><tr><th class=\"tracklist-number-header\" scope=\"col\"><abbr title=\"Number\">No.</abbr></th><th scope=\"col\" style=\"width:40%\">Title</th><th scope=\"col\" style=\"width:30%\">Writer(s)</th><th scope=\"col\" style=\"width:30%\">Performer</th><th class=\"tracklist-length-header\" scope=\"col\">Length</th></tr><tr><th id=\"track1\" scope=\"row\">1.</th><td>\"Snakeblood\"</td><td>Neil Barnes, Paul Daley</td><td><span>Leftfield</span></td><td class=\"tracklist-length\">5:39</td></tr><tr><th id=\"track2\" scope=\"row\">2.</th><td>\"<span>Pure Shores</span>\" (from <i><span>Saints &amp; Sinners</span></i>, 2000)</td><td><span>William Orbit</span>, <span>Shaznay Lewis</span></td><td><span>All Saints</span></td><td class=\"tracklist-length\">4:24</td></tr><tr><th id=\"track3\" scope=\"row\">3.</th><td>\"<span>Porcelain</span>\" (from <i><span>Play</span></i>, 1999)</td><td><span>Moby</span></td><td><span>Moby</span></td><td class=\"tracklist-length\">3:58</td></tr><tr><th id=\"track4\" scope=\"row\">4.</th><td>\"Voices\" (from <i><span>Sunmachine</span></i>, 1998)</td><td>Stephen Spencer, Paul Geoffrey Spencer, Scott Rosser</td><td><span>Dario G</span> featuring <span>Vanessa Quinones</span></td><td class=\"tracklist-length\">5:19</td></tr><tr><th id=\"track5\" scope=\"row\">5.</th><td>\"8 Ball\"</td><td>Rick Smith, Karl Hyde, Darren Emerson</td><td><span>Underworld</span></td><td class=\"tracklist-length\">8:51</td></tr><tr><th id=\"track6\" scope=\"row\">6.</th><td>\"Spinning Away\" (originally performed by <span>Brian Eno</span> and <span>John Cale</span>)</td><td><span>Brian Eno</span>, <span>John Cale</span></td><td><span>Sugar Ray</span></td><td class=\"tracklist-length\">4:24</td></tr><tr><th id=\"track7\" scope=\"row\">7.</th><td>\"Return of Django\" (originally performed by <span>The Upsetters</span>)</td><td><span>Lee \"Scratch\" Perry</span></td><td><span>Asian Dub Foundation</span> featuring <span>Harry Beckett</span> and <span>Simon de Souza</span></td><td class=\"tracklist-length\">4:17</td></tr><tr><th id=\"track8\" scope=\"row\">8.</th><td>\"<span>On Your Own</span>\" (Crouch End Broadway mix)</td><td><span>Damon Albarn</span>, <span>Graham Coxon</span>, <span>Alex James</span>, <span>Dave Rowntree</span></td><td><span>Blur</span></td><td class=\"tracklist-length\">3:32</td></tr><tr><th id=\"track9\" scope=\"row\">9.</th><td>\"<span>Yé ké yé ké</span>\" (<span>Hardfloor</span> edit)</td><td><span class=\"mw-redirect\">Mory Kante</span></td><td><span class=\"mw-redirect\">Mory Kante</span></td><td class=\"tracklist-length\">3:55</td></tr><tr><th id=\"track10\" scope=\"row\">10.</th><td>\"Woozy\"</td><td><span>Sister Bliss</span>, <span>Maxi Jazz</span>, <span>Rollo Armstrong</span></td><td><span>Faithless</span></td><td class=\"tracklist-length\">7:53</td></tr><tr><th id=\"track11\" scope=\"row\">11.</th><td>\"Richard, It's Business as Usual\"</td><td><span>Barry Adamson</span></td><td><span>Barry Adamson</span></td><td class=\"tracklist-length\">4:17</td></tr><tr><th id=\"track12\" scope=\"row\">12.</th><td>\"Brutal\"</td><td><span>Bernard Sumner</span>, <span>Peter Hook</span>, <span>Stephen Morris</span>, <span>Gillian Gilbert</span></td><td><span>New Order</span></td><td class=\"tracklist-length\">4:49</td></tr><tr><th id=\"track13\" scope=\"row\">13.</th><td>\"Lonely Soul\" (from <i><span>Psyence Fiction</span></i>, 1998)</td><td><span>Richard Ashcroft</span>, Wil Malone, <span>DJ Shadow</span></td><td><span>Unkle</span> featuring <span>Richard Ashcroft</span></td><td class=\"tracklist-length\">8:53</td></tr><tr><th id=\"track14\" scope=\"row\">14.</th><td>\"Beached\"</td><td><span>Angelo Badalamenti</span></td><td><span>Orbital</span> and <span>Angelo Badalamenti</span></td><td class=\"tracklist-length\">6:45</td></tr><tr class=\"tracklist-total-length\"><th colspan=\"4\" scope=\"row\"><span>Total length:</span></th><td>76:53</td></tr></tbody></table><h4>Year-end charts</h4><table class=\"table table-responsive table-bordered table-hover w-100\"><tbody><tr><th>Chart (2000)</th><th>Position</th></tr><tr><th scope=\"row\">Canadian Albums (Nielsen Soundscan)</th><td>145</td></tr></tbody></table><h4>Certifications</h4><table class=\"table table-responsive table-bordered table-hover w-100\"><caption></caption><tbody><tr><th scope=\"col\">Region</th><th scope=\"col\">Certification</th><th scope=\"col\" data-sort-type=\"number\"><span>Certified units</span>/sales</th></tr><tr><th scope=\"row\">Australia (<span>ARIA</span>)</th><td>Gold</td><td>35,000<sup>^</sup></td></tr><tr><th scope=\"row\">New Zealand (<span>RMNZ</span>)</th><td>Gold</td><td>7,500<sup>^</sup></td></tr><tr class=\"sortbottom\" style=\"text-align: center;\"><td colspan=\"3\"><p><small><sup>^</sup> Shipments figures based on certification alone.</small></p></td></tr></tbody></table><br/><h3>Reception</h3><p>On Rotten Tomatoes the film holds an approval rating of 20% based on 119 reviews, and an average rating of 4.4/10. The website's critical consensus reads, \"The Beach is unfocused and muddled, a shallow adaptation of the novel it is based on. Points go to the gorgeous cinematography, though.\" On Metacritic, the film has a weighted average score of 43 out of 100, based on 34 critics, indicating \"mixed or average reviews\".</p><p>Critics suggested that DiCaprio's fame post-Titanic might have contributed to the financial success of this film, which came out less than three years after the James Cameron blockbuster. CNN's Paul Clinton said \"Leonardo DiCaprio's main fan base of screaming adolescent girls won't be disappointed with The Beach. The majority of the film displays the titanic-sized young heartthrob sans his shirt in this story about the pseudo-angst and alienation of a young man from the United States escaping civilization and his computer-obsessed generation.\" He agreed with most others that The Beach was \"nothing to write home about\". DiCaprio was nominated for a Razzie Award for Worst Actor for his work on the film.</p><br/><h3>Controversies</h3><h4>Damage to filming location</h4><p>Controversy arose during the making of the film due to 20th Century Fox's bulldozing and landscaping of the natural beach setting of Ko Phi Phi Le to make it more \"paradise-like\". The production altered some sand dunes and cleared some coconut trees and grass to widen the beach. Fox set aside a fund to reconstruct and return the beach to its natural state; however, lawsuits were filed by environmentalists who believed the damage to the ecosystem was permanent and restoration attempts had failed. Following shooting of the film, there was a clear flat area at one end of the beach that was created artificially with an odd layout of trees which was never rectified, and the entire area remained damaged from the original state until the tsunami of 2004.</p><p>The lawsuits dragged on for years. In 2006, Thailand's Supreme Court upheld an appellate court ruling that the filming had harmed the environment and ordered that damage assessments be made. Defendants in the case included 20th Century Fox and some Thai government officials.</p><p>The large increase in tourist traffic to the beach as a result of the film resulted in environmental damage to the bay and the nearby coral reefs, prompting Thai authorities to close the beach.</p><p>The restoration period for the bay was lengthened due to travel restrictions during the COVID pandemic. Blacktip sharks began breeding there again. In 2022, the bay reopened to tourists, under strict protocols of no boats, no swimming and no more than a one hour visit per person for a limited number of visitors at a time.</p><h4>Portrayal of Thailand</h4><p>After the film premiered in Thailand in 2000, some Thai politicians were upset at the way Thailand was depicted in the film and called for it to be banned. The depiction of the drug culture was said to give Thailand a bad image and having a statue of Buddha in a bar was cited as \"blasphemous\".</p><br/><h3>Possible spin-off</h3><p>In a 2019 interview with The Independent, Danny Boyle revealed that a television series based on his film has been written by Amy Seimetz. The proposed series is set to take place before the events from the 1996 novel, although it will be updated to occur 20 years later, in 2016.</p><br/>",
+            "plainText": "The Beach is a 2000 adventure drama film directed by Danny Boyle, from a screenplay by John Hodge, based on the 1996 novel of the same name by Alex Garland. The film stars Leonardo DiCaprio, Tilda Swinton, Virginie Ledoyen, Guillaume Canet, and Robert Carlyle. It was filmed on the Thai island of Ko Phi Phi Le.\r\nThe film was a moderate box office success but received mixed-to-negative reviews from critics. DiCaprio was nominated for the Golden Raspberry Award for Worst Actor (lost to John Travolta as Terl from Battlefield Earth and as Russ Richards in Lucky Numbers).\r\nPlot\r\nRichard, a young American seeking adventure in Bangkok, stays in a drab travelers' hotel on Khao San Road where he meets a young French couple, Françoise and Étienne. He meets Daffy, who tells him of a pristine, uninhabited island in the Gulf of Thailand with a beautiful hidden beach. Daffy explains that he settled there in secret several years earlier, but difficulties arose and he left. Daffy commits suicide, leaving Richard a map to the island. Richard convinces Françoise and Étienne to accompany him to the island, and the three travel to Ko Samui. Richard meets two American surfers who have heard rumors of the island and gives them a copy of the map.\r\nEn route to the island, Richard becomes infatuated with Françoise. After swimming to the island from a neighboring one, they find a cannabis plantation guarded by armed Thai farmers. Avoiding detection, they make their way across the island and meet Keatey, who brings them to a community of travelers living on the island in secret. Sal, the community's English leader, explains that the farmers allow them to stay so long as they keep to themselves and do not allow any more travelers to come to the island. Richard lies that they have not shown the map to anyone else. The trio become integrated into the community.\r\nOne night, Françoise invites Richard to the beach where she tells him that she is falling in love with him and they make love. Despite hoping to keep it secret, the community finds out. While angry, Étienne says he will not stand in their way if Françoise is happier with Richard.\r\nSal selects Richard to accompany her on a supply run to Ko Pha Ngan. They encounter the American surfers who are preparing to search for the island and mention Richard's map. Sal is upset but believes Richard when he says they have no map. In order to ensure that Sal will not tell the rest of the island about the map, Richard has sex with her at her order. On their return to the island, Richard lies to Françoise about having had sex with Sal.\r\nWhen the surfers turn up on the neighboring island, Sal orders Richard to send them away and destroy their map. She tells everyone that she and Richard had sex, which leaves Françoise angry and heartbroken, causing her to return to Étienne. Isolated from the group, Richard begins to lose his sanity, imagining that he is conversing with the deceased Daffy.\r\nThe surfers reach the island but are discovered and killed by the farmers. Shocked at witnessing their deaths, Richard gathers Françoise and Étienne to leave the island.\r\nRichard is captured by the farmers along with Françoise and Étienne. The farmers are furious with the community for breaking their deal to not allow any more newcomers. The lead farmer gives Sal a gun loaded with a single bullet and orders her to make a choice: kill Richard and the group will be allowed to stay, or else they must all leave immediately. Sal pulls the trigger, but the chamber is empty. Shocked by her willingness to commit murder, the other members of the community abandon Sal, leave the island, and go their separate ways.\r\nBack in the United States, Richard receives an email at an Internet cafe from Françoise with a nostalgic group photograph of the beach community in happier times.\r\nCast\r\nLeonardo DiCaprio as Richard, a freelance traveler.\r\nTilda Swinton as Sal, the leader of the beach community.\r\nVirginie Ledoyen as Françoise, the girlfriend of Étienne, and Richard's love interest.\r\nGuillaume Canet as Étienne, the boyfriend of Françoise.\r\nRobert Carlyle as Daffy, the eccentric former member of the beach community.\r\nPaterson Joseph as Keaty, a member of the beach community who loves cricket.\r\nLars Arentz-Hansen as Bugs, Sal's South-African boyfriend and the beach community's carpenter.\r\nDaniel Caltagirone as Unhygienix, the beach community's chef who has an obsession with soap due to having to always prepare the fish for consumption.\r\nStaffan Kihlbom, Jukka Hiltunen, and Magnus Lindgren as Christo, Karl, and Sten, the beach community's Swedish fishermen.\r\nVictoria Smurfit as Weathergirl, a member of the beach community whose tightening pelvis has been a sign for rain.\r\nZelda Tinska and Lidija Zovkić as Sonja and Mirjana, two beach community members who come from Sarajevo.\r\nSamuel Gough as Guitarman, the beach community's residential guitarist who is not a good singer.\r\nPeter Youngblood Hills and Jerry Swindall as Zeph and Sammy, two Americans whom Richard meets in Ko Samui.\r\nSaskia Mulder and Simone Huber as Hilda and Eva, two women who accompany Zeph and Sammy to the island.\r\nPeter Gevisser as Gregorio, an Italian member of the beach community.\r\nAbhijati 'Meuk' Jusakul as the leader of the cannabis farmers.\r\nProduction\r\nEwan McGregor was cast as the main character before leaving due to disputes with the director. It was speculated that Boyle was offered additional funding under the condition that DiCaprio be cast and his character made American. Whilst promoting T2 Trainspotting on The Graham Norton Show, the dispute was discussed in more depth, with McGregor stating \"It was a mis-handling and a mis-understanding over the film and it's a big regret of mine that it went on for so very long... and it didn't matter about The Beach, it was never about that. It was about our friendship. I felt like Danny's actor and it made me a bit rudderless.\" Boyle stated, \"I handled it very very badly and I have apologised to Ewan for it. I felt a great shame about it and how it was handled.\"\r\nMembers of the cast and crew were involved in a boating accident during production. It was reported that the incident involved both Boyle and DiCaprio. No one was injured.\r\nThe beach seen in the film is not the same as in real life. There is a gap between mountains on the actual beach in Thailand. The special effects crew digitally added some of the surrounding mountains during the post-production phase.\r\nBoyle has been cited saying that the look of the jungle scenes in the film was inspired by the Nintendo game Banjo-Kazooie.\r\nThe waterfall scene, where DiCaprio and others jump from a high cliff to the water below, was filmed in Khao Yai National Park in central Thailand, at the Haew Suwat Waterfall.\r\nThe map in the film was illustrated by the author of the book that The Beach was based upon, Alex Garland. He received credit for this as the cartographer.\r\nIn 1999, Hélène de Fougerolles auditioned for the film but casting directors immediately told her that she was not mysterious enough for the character as she arrived with blond hair in pigtails. She asked them if she could \"be an extra or serve coffees there, three months in Thailand, it sounds idyllic!\". Although firstly reticent because the actress was already established in the industry, they finally accepted. As journalists were not allowed to come take pictures on set, the only picture the press could have of Guillaume Canet and Virginie Ledoyen before shooting started, was their departure at Paris airport with de Fougerolles. They made it the cover of Studio Magazine from which the international press reported her as officially cast. This eventually lended her lines edited out of the final cut but present in the dvd extras.\r\nRelease\r\nThe film opened February 11, 2000 in both the United Kingdom and the United States.\r\nThe budget of the film was US$50 million. The film opened at number 2 at the box office in both the UK and the US, with a weekend gross of $15,277,921 in the United States and Canada behind Scream 3, and a gross of £2,418,321 in the United Kingdom behind Toy Story 2 . Global takings totaled over US$144 million, of which US$39 million was from the United States and Canada.\r\nHome video\r\nThe film has been released on VHS and DVD. It is yet to be released on Blu-ray. The standard DVD release included nine scenes that were deleted from the film, including an alternative opening which to an extent resembles the one in the novel, were later included in a Special Edition DVD release, along with Danny Boyle's commentary on what might have been their purpose. There is also an alternative ending which depicts Sal committing suicide and everyone loading up on a boat from the raft.\r\nSoundtrack\r\nThe soundtrack for the film, co-produced by Pete Tong, features the international hits \"Pure Shores\" by All Saints and \"Porcelain\" by Moby, as well as tracks by New Order, Blur, Underworld, Orbital, Faithless, Sugar Ray, and others. Leftfield's contribution to the soundtrack, \"Snakeblood\", was found to have sampled Orchestral Manoeuvres in the Dark's \"Almost\" without permission, leading to a lawsuit; band member Neil Barnes said he forgot to remove the sample from the finished track. The songs \"Synasthasia\" by Junkie XL, \"Out of Control\" by The Chemical Brothers, \"Fiesta Conga\" by Movin' Melodies, \"Redemption Song\" by Bob Marley, \"Neon Reprise\" by Lunatic Calm and \"Smoke Two Joints\" by Chris Kay and Michael Kay were also included in the movie but omitted from the soundtrack. The teaser trailer for the film featured \"Touched\" by VAST.\r\nThe film score was composed by Angelo Badalamenti, and a separate album containing selections of his score was released as well.\r\nTrack listing\r\nYear-end charts\r\nCertifications\r\nReception\r\nOn Rotten Tomatoes the film holds an approval rating of 20% based on 119 reviews, and an average rating of 4.4/10. The website's critical consensus reads, \"The Beach is unfocused and muddled, a shallow adaptation of the novel it is based on. Points go to the gorgeous cinematography, though.\" On Metacritic, the film has a weighted average score of 43 out of 100, based on 34 critics, indicating \"mixed or average reviews\".\r\nCritics suggested that DiCaprio's fame post-Titanic might have contributed to the financial success of this film, which came out less than three years after the James Cameron blockbuster. CNN's Paul Clinton said \"Leonardo DiCaprio's main fan base of screaming adolescent girls won't be disappointed with The Beach. The majority of the film displays the titanic-sized young heartthrob sans his shirt in this story about the pseudo-angst and alienation of a young man from the United States escaping civilization and his computer-obsessed generation.\" He agreed with most others that The Beach was \"nothing to write home about\". DiCaprio was nominated for a Razzie Award for Worst Actor for his work on the film.\r\nControversies\r\nDamage to filming location\r\nControversy arose during the making of the film due to 20th Century Fox's bulldozing and landscaping of the natural beach setting of Ko Phi Phi Le to make it more \"paradise-like\". The production altered some sand dunes and cleared some coconut trees and grass to widen the beach. Fox set aside a fund to reconstruct and return the beach to its natural state; however, lawsuits were filed by environmentalists who believed the damage to the ecosystem was permanent and restoration attempts had failed. Following shooting of the film, there was a clear flat area at one end of the beach that was created artificially with an odd layout of trees which was never rectified, and the entire area remained damaged from the original state until the tsunami of 2004.\r\nThe lawsuits dragged on for years. In 2006, Thailand's Supreme Court upheld an appellate court ruling that the filming had harmed the environment and ordered that damage assessments be made. Defendants in the case included 20th Century Fox and some Thai government officials.\r\nThe large increase in tourist traffic to the beach as a result of the film resulted in environmental damage to the bay and the nearby coral reefs, prompting Thai authorities to close the beach.\r\nThe restoration period for the bay was lengthened due to travel restrictions during the COVID pandemic. Blacktip sharks began breeding there again. In 2022, the bay reopened to tourists, under strict protocols of no boats, no swimming and no more than a one hour visit per person for a limited number of visitors at a time.\r\nPortrayal of Thailand\r\nAfter the film premiered in Thailand in 2000, some Thai politicians were upset at the way Thailand was depicted in the film and called for it to be banned. The depiction of the drug culture was said to give Thailand a bad image and having a statue of Buddha in a bar was cited as \"blasphemous\".\r\nPossible spin-off\r\nIn a 2019 interview with The Independent, Danny Boyle revealed that a television series based on his film has been written by Amy Seimetz. The proposed series is set to take place before the events from the 1996 novel, although it will be updated to occur 20 years later, in 2016."
+        },
+        "plotShort": {
+            "html": "<p>The Beach is a 2000 adventure drama film directed by Danny Boyle, from a screenplay by John Hodge, based on the 1996 novel of the same name by Alex Garland. The film stars Leonardo DiCaprio, Tilda Swinton, Virginie Ledoyen, Guillaume Canet, and Robert Carlyle. It was filmed on the Thai island of Ko Phi Phi Le.</p><p>The film was a moderate box office success but received mixed-to-negative reviews from critics. DiCaprio was nominated for the Golden Raspberry Award for Worst Actor (lost to John Travolta as Terl from Battlefield Earth and as Russ Richards in Lucky Numbers).</p>",
+            "plainText": "The Beach is a 2000 adventure drama film directed by Danny Boyle, from a screenplay by John Hodge, based on the 1996 novel of the same name by Alex Garland. The film stars Leonardo DiCaprio, Tilda Swinton, Virginie Ledoyen, Guillaume Canet, and Robert Carlyle. It was filmed on the Thai island of Ko Phi Phi Le.\r\nThe film was a moderate box office success but received mixed-to-negative reviews from critics. DiCaprio was nominated for the Golden Raspberry Award for Worst Actor (lost to John Travolta as Terl from Battlefield Earth and as Russ Richards in Lucky Numbers)."
+        },
+        "title": "The Beach",
+        "titleInLanguage": "The Beach (film)",
+        "type": "Movie",
+        "url": "https://en.wikipedia.org/wiki/The_Beach_(film)",
+        "year": "2000"
+    },
+    "writerList": [
+        {
+            "id": "nm0388076",
+            "name": "John Hodge"
+        },
+        {
+            "id": "nm0307497",
+            "name": "Alex Garland"
+        }
+    ],
+    "writers": "John Hodge, Alex Garland",
+    "year": "2000"
+}

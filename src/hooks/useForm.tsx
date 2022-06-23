@@ -1,7 +1,7 @@
 import { useCallback, useRef, useState } from 'react';
 import React from 'react';
 import { ignore } from '../common/ignore';
-import { useLocalRealm } from './useLocalRealm';
+import useLocalRealm from './useLocalRealm';
 import { IDefinitionProps, ValidationFunction } from '../data/definitions';
 import { RegisterFunction } from './useRegister';
 import { getProperty, setProperty, snd } from '../common';

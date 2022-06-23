@@ -7,7 +7,7 @@ import { toTitleCase } from '../common/text/toTitleCase';
 import { deleteSelected } from '../queries/deleteById';
 import { useRoutedCollection } from './useRoutedCollection';
 import { useProvideCommand } from './useProvideCommand';
-import { useLocalRealm } from './useLocalRealm';
+import useLocalRealm from './useLocalRealm';
 
 export function useProvideDeleteCommand() {
     const [rVar, command, setCommand, unsetCommand] = useProvideCommand($deleteCommand);

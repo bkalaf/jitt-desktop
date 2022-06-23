@@ -8,7 +8,7 @@ import { Select } from '../forms/elements/Select';
 import { isNotNil } from '../../common/isNotNull';
 import { countries } from '../../data/enums';
 import { Btn } from '../providers/Btn';
-import { useLocalRealm } from '../../hooks/useLocalRealm';
+import useLocalRealm from '../../hooks/useLocalRealm';
 import { Indicator, IndicatorGroup } from '../Indicator';
 import { Textarea } from '../forms/elements/Textarea';
 

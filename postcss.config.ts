@@ -1,4 +1,4 @@
-module.exports = {
+export const exp = {
     plugins: [
         require('postcss-import'),
         require('tailwindcss/nesting'),
@@ -9,3 +9,5 @@ module.exports = {
         require('postcss-preset-env')({ stage: 1 })
     ]
 };
+
+export default exp;

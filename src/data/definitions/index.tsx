@@ -10,7 +10,7 @@ import { DuotoneIcon } from '../../components/icons/DuotoneIcon';
 import { ObjectId } from 'bson';
 import { Definition } from './Definition';
 import { Definitions } from './Definitions';
-import { useLocalRealm } from '../../hooks/useLocalRealm';
+import useLocalRealm from '../../hooks/useLocalRealm';
 import { SortDescriptor } from 'realm';
 import { LookupEle } from './LookupEle';
 import { DatalistEle } from './LookupEle';

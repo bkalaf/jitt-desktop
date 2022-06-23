@@ -1,6 +1,6 @@
 import * as fs from 'graceful-fs';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { useLocalRealm } from '../../hooks/useLocalRealm';
+import useLocalRealm from '../../hooks/useLocalRealm';
 import { ObjectId } from 'bson';
 import { ipcRenderer } from 'electron';
 import * as path from 'path';

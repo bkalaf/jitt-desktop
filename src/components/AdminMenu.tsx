@@ -7,7 +7,7 @@ import { ActivityComponent } from './ActivityComponent';
 import { importTaxonomy } from './importTaxonomy';
 import { importCategories } from './importCategories';
 import { importBrands } from './importBrands';
-import { useLocalRealm } from '../hooks/useLocalRealm';
+import useLocalRealm from '../hooks/useLocalRealm';
 import { useQuery } from 'react-query';
 import { Admin } from '../data';
 import { GroupingHeader } from './GroupingHeader';

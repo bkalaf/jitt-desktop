@@ -1,0 +1,1157 @@
+{
+  "brand_store": {
+    "id": "8C0C1BB6-B75A-4447-B068-50D4FE8F070C",
+    "link": "https://www.amazon.com/stores/Fitbit/page/8C0C1BB6-B75A-4447-B068-50D4FE8F070C"
+  },
+  "compare_with_similar": [
+    {
+      "asin": "B08DFPV5Y2",
+      "image": "https://m.media-amazon.com/images/I/61ZXwnqqOuS._AC_SS450_.jpg",
+      "link": "https://www.amazon.com/dp/B08DFPV5Y2",
+      "price": {
+        "currency": "USD",
+        "raw": "$160.00",
+        "symbol": "$",
+        "value": 160
+      },
+      "rating": 4.5,
+      "ratings_total": 37040,
+      "title": "Fitbit Versa 3 Health & Fitness Smartwatch with GPS, 24/7 Heart Rate, Alexa Built-in, 6+ Days Battery, Black/Black, One Size (S & L Bands Included)"
+    },
+    {
+      "asin": "B08FS93XDK",
+      "image": "https://m.media-amazon.com/images/I/61QLle9nTkL._AC_SS450_.jpg",
+      "link": "https://www.amazon.com/dp/B08FS93XDK",
+      "price": {
+        "currency": "USD",
+        "raw": "$194.04",
+        "symbol": "$",
+        "value": 194.04
+      },
+      "rating": 4.5,
+      "ratings_total": 751,
+      "title": "Fitbit Versa 3 Health & Fitness Smartwatch W/ Bluetooth Calls/Texts, Fast Charging, GPS, Heart Rate SpO2, 6+ Days Battery (S & L Bands, 90 Day Premium Included) International Version (Pink/Gold)"
+    },
+    {
+      "asin": "B08DFCWVZ4",
+      "image": "https://m.media-amazon.com/images/I/51MUa0WUSKL._AC_SS450_.jpg",
+      "link": "https://www.amazon.com/dp/B08DFCWVZ4",
+      "price": {
+        "currency": "USD",
+        "raw": "$217.85",
+        "symbol": "$",
+        "value": 217.85
+      },
+      "rating": 4.5,
+      "ratings_total": 34594,
+      "title": "Fitbit Sense Advanced Smartwatch with Tools for Heart Health, Stress Management & Skin Temperature Trends, Carbon/Graphite, One Size (S & L Bands Included)"
+    },
+    {
+      "asin": "B08FS9FJZZ",
+      "image": "https://m.media-amazon.com/images/I/61phYd-jr6L._AC_SS450_.jpg",
+      "link": "https://www.amazon.com/dp/B08FS9FJZZ",
+      "price": {
+        "currency": "USD",
+        "raw": "$274.97",
+        "symbol": "$",
+        "value": 274.97
+      },
+      "rating": 4.5,
+      "ratings_total": 584,
+      "title": "Fitbit Versa 3 Health & Fitness Smartwatch W/ Bluetooth Calls/Texts, Fast Charging, GPS, Heart Rate SpO2, 6+ Days Battery (S & L Bands, 90 Day Premium Included) International Version (Blue/Gold)"
+    },
+    {
+      "asin": "B084CQ41M2",
+      "image": "https://m.media-amazon.com/images/I/71smqRr0pmL._AC_SS450_.jpg",
+      "link": "https://www.amazon.com/dp/B084CQ41M2",
+      "price": {
+        "currency": "USD",
+        "raw": "$109.00",
+        "symbol": "$",
+        "value": 109
+      },
+      "rating": 4.5,
+      "ratings_total": 79570,
+      "title": "Fitbit Charge 4 Fitness and Activity Tracker with Built-in GPS, Heart Rate, Sleep & Swim Tracking, Black/Black, One Size (S &L Bands Included)"
+    }
+  ],
+  "frequently_bought_together": {
+    "products": [
+      {
+        "asin": "B08DFPV5Y2",
+        "image": "https://images-na.ssl-images-amazon.com/images/G/01/3ed00923-88b6-42e0-9eec-ee78f426b346/H0/HQP-75x75-Food_Drink._SS75_CB622833573_.jpg",
+        "link": "https://www.amazon.com/dp/B08DFPV5Y2",
+        "title": "Fitbit Versa 3 Health & Fitness Smartwatch with GPS, 24/7 Heart Rate, Alexa Built-in, 6+ Days Battery, Black/Black, One Size (S & L Bands Included)"
+      },
+      {
+        "asin": "B08G4XGHMR",
+        "image": "https://images-na.ssl-images-amazon.com/images/I/61I+jypm4-L._AC_UL116_SR116,116_.jpg",
+        "link": "https://www.amazon.com/dp/B08G4XGHMR",
+        "price": {
+          "currency": "USD",
+          "raw": "$6.97",
+          "symbol": "$",
+          "value": 6.97
+        },
+        "title": "NANW 4-Pack Screen Protector Case Compatible with Fitbit Sense/Versa 3, Soft TPU Plated Bumper Full Cover Protective Cases fo"
+      },
+      {
+        "asin": "B08HWHQ4C5",
+        "image": "https://images-na.ssl-images-amazon.com/images/I/618REVPEK8L._AC_UL116_SR116,116_.jpg",
+        "link": "https://www.amazon.com/dp/B08HWHQ4C5",
+        "price": {
+          "currency": "USD",
+          "raw": "$9.95",
+          "symbol": "$",
+          "value": 9.95
+        },
+        "title": "ArmorSuit [6 Pack] MilitaryShield Screen Protector Designed For Fibit Versa 3 / Fitbit Sense (2020) Max Coverage Anti-Bubble"
+      }
+    ],
+    "total_price": {
+      "currency": "USD",
+      "raw": "$176.92",
+      "symbol": "$",
+      "value": 176.92
+    }
+  },
+  "newer_model": {
+    "asin": "B08DFGWDZR",
+    "image": "https://m.media-amazon.com/images/I/71s-OXhQNDL._SR75,75_.jpg",
+    "link": "https://www.amazon.com/Fitbit-Fitness-Smartwatch-Battery-Included-dp-B08DFGWDZR/dp/B08DFGWDZR/ref=dp_ob_image_hpc",
+    "price": {
+      "currency": "USD",
+      "raw": "$179.00",
+      "symbol": "$",
+      "value": 179
+    },
+    "rating": 4.5,
+    "ratings_total": 37040,
+    "title": "Fitbit Versa 3 Health & Fitness Smartwatch with GPS, 24/7 Heart Rate, Alexa Built-in, 6+ Days Battery, Pink/Gold, One Size (S & L Bands Included)"
+  },
+  "product": {
+    "a_plus_content": {
+      "has_a_plus_content": true,
+      "has_brand_story": false,
+      "third_party": true
+    },
+    "amazons_choice": {
+      "keywords": "in Activity & Fitness Trackers by Fitbit"
+    },
+    "asin": "B08DFPV5Y2",
+    "attributes": [
+      {
+        "name": "Supported Application",
+        "value": "Weather, Sleep Monitor, Reminders, Voice Assistant, Alexa, Phone, GPS, Heart Rate Monitor"
+      },
+      {
+        "name": "Special Feature",
+        "value": "Time Display, Alarm Clock"
+      },
+      {
+        "name": "Compatible Devices",
+        "value": "Smartphone"
+      },
+      {
+        "name": "Water Resistance Level",
+        "value": "Water Resistant"
+      },
+      {
+        "name": "Connectivity Technology",
+        "value": "GPS"
+      },
+      {
+        "name": "GPS",
+        "value": "True"
+      },
+      {
+        "name": "Water Resistance Depth",
+        "value": "50 Meters"
+      },
+      {
+        "name": "Band Material Type",
+        "value": "Silicone"
+      },
+      {
+        "name": "Human Interface Input",
+        "value": "Microphone"
+      },
+      {
+        "name": "Style",
+        "value": "Modern"
+      }
+    ],
+    "bestsellers_rank": [
+      {
+        "category": "Electronics",
+        "link": "https://www.amazon.com/gp/bestsellers/electronics/ref=pd_zg_ts_electronics",
+        "rank": 48
+      },
+      {
+        "category": "Heart Rate Monitors (Sports & Outdoors)",
+        "link": "https://www.amazon.com/gp/bestsellers/sporting-goods/3407971/ref=pd_zg_hrsr_sporting-goods",
+        "rank": 3
+      },
+      {
+        "category": "Activity & Fitness Trackers",
+        "link": "https://www.amazon.com/gp/bestsellers/sporting-goods/5393958011/ref=pd_zg_hrsr_sporting-goods",
+        "rank": 6
+      },
+      {
+        "category": "Wearable Technology (Electronics)",
+        "link": "https://www.amazon.com/gp/bestsellers/electronics/10048700011/ref=pd_zg_hrsr_electronics",
+        "rank": 18
+      }
+    ],
+    "bestsellers_rank_flat": "Category: Electronics | Rank: 48, Category: Heart Rate Monitors (Sports & Outdoors) | Rank: 3, Category: Activity & Fitness Trackers | Rank: 6, Category: Wearable Technology (Electronics) | Rank: 18",
+    "brand": "Fitbit",
+    "buybox_winner": {
+      "availability": {
+        "dispatch_days": 1,
+        "raw": "Only 9 left in stock - order soon.",
+        "stock_level": 9,
+        "type": "in_stock"
+      },
+      "condition": {
+        "is_new": true
+      },
+      "fulfillment": {
+        "is_fulfilled_by_amazon": true,
+        "is_fulfilled_by_third_party": false,
+        "is_sold_by_amazon": false,
+        "is_sold_by_third_party": true,
+        "standard_delivery": {
+          "date": "Wednesday, June 29",
+          "name": "FREE"
+        },
+        "third_party_seller": {
+          "id": "A169NVUQ8OF7A3",
+          "link": "https://www.amazon.com/gp/help/seller/at-a-glance.html/ref=dp_merchant_link?ie=UTF8&seller=A169NVUQ8OF7A3&isAmazonFulfilled=1",
+          "name": "NY World of Electronics"
+        },
+        "type": "2p"
+      },
+      "is_amazon_fresh": false,
+      "is_prime": true,
+      "new_offers_count": 53,
+      "new_offers_from": {
+        "currency": "USD",
+        "raw": "$159.99& FREE Shipping",
+        "symbol": "$",
+        "value": 159.99
+      },
+      "offer_id": "1psQ6u0EBHztyf+PQiqrZumUWn9Tgq/PbsgBhHsd5HAbqSdZkApfzAyckBuEm1t0XKSj79Yy/Czi26o6uzrIcJE74rG1O5soO8c4FGyXeS248PIEhEepf8jbTkY2OzNyrCIylslzzEX6KHBLNo7vCoTw+1eLrZ2dF72gyQyYRi8DJqwrPNzkwUS2AFMGY7pl",
+      "price": {
+        "currency": "USD",
+        "raw": "$160.00",
+        "symbol": "$",
+        "value": 160
+      },
+      "rrp": {
+        "currency": "USD",
+        "raw": "$229.95",
+        "symbol": "$",
+        "value": 229.95
+      },
+      "shipping": {
+        "raw": "FREE"
+      }
+    },
+    "categories": [
+      {
+        "name": "Health, Household & Baby Care"
+      },
+      {
+        "category_id": "3375251",
+        "link": "https://www.amazon.com/sports-outdoors/b/ref=dp_bc_aui_C_1?ie=UTF8&node=3375251",
+        "name": "Sports & Outdoors"
+      },
+      {
+        "category_id": "3407731",
+        "link": "https://www.amazon.com/Exercise-Equipment-Gym-Equipment/b/ref=dp_bc_aui_C_2?ie=UTF8&node=3407731",
+        "name": "Exercise & Fitness"
+      },
+      {
+        "category_id": "5393952011",
+        "link": "https://www.amazon.com/fitness-tracker-fit-tech/b/ref=dp_bc_aui_C_3?ie=UTF8&node=5393952011",
+        "name": "Fitness Technology"
+      },
+      {
+        "category_id": "5393958011",
+        "link": "https://www.amazon.com/fitness-tracker/b/ref=dp_bc_aui_C_4?ie=UTF8&node=5393958011",
+        "name": "Activity & Fitness Trackers"
+      }
+    ],
+    "description": " Meet Fitbit Versa 3 the smartwatch with everything you need to just go. Track your pace & distance and leave your phone at home with built-in GPS. You can also get call, text and app notifications, use Google Assistant or Amazon Alexa Built-in, control Spotify, Deezer and Pandora and use the built-in mic and speaker to take Bluetooth calls hands-free when your phone is nearby. Plus with Active Zone Minutes, 20+ exercise modes and 6+ day battery with 12-minute fast charging, you’ve got all the motivation you need to reach your health & fitness goals.",
+    "dimensions": "1.59 x 1.59 x 0.49 inches; 0.7 Ounces",
+    "feature_bullets": [
+      "Receive a Daily Readiness Score that reveals if you’re ready to exercise or should focus on recovery (requires Fitbit Premium membership. Premium content recommendations are not available in all locales and may be in English only)",
+      "Run, bike, hike and more phone-free—and see your real-time pace & distance—with built-in GPS. Then check out your workout intensity map in the Fitbit app",
+      "Active Zone Minutes uses your resting heart rate to gauge exercise effort and gives you a buzz when you step up the intensity so you can make the most of your workouts. Fitbit Versa 3 is water resistant to 50 meters",
+      "Better track heart rate 24/7 with PurePulse 2.0, Fitbit’s enhanced heart rate technology",
+      "Use Google Assistant or Amazon Alexa Built-in to get quick news, set bedtime reminders and alarms, control your smart home devices and more just by speaking to your watch",
+      "6-month Fitbit Premium trial for new Premium users (Valid payment method required. Cancel before free trial ends to avoid subscription fees. New Premium users only. Content and features may vary by language and are subject to change.)",
+      "Get 6+ days of battery on a full charge plus one day of battery in just 12 minutes with fast charging (Battery life varies with use and other factors; up to 12 hours with continuous GPS)",
+      "Track your time in light, deep and REM sleep, then receive your Sleep Score to better understand your sleep quality each night",
+      "Store and play music & podcasts on Deezer or Pandora, plus control Spotify—all from your wrist. Subscriptions required for use of music services; not available in all countries"
+    ],
+    "feature_bullets_count": 9,
+    "feature_bullets_flat": "Store and play music & podcasts on Deezer or Pandora, plus control Spotify—all from your wrist. Subscriptions required for use of music services; not available in all countries. Track your time in light, deep and REM sleep, then receive your Sleep Score to better understand your sleep quality each night. Get 6+ days of battery on a full charge plus one day of battery in just 12 minutes with fast charging (Battery life varies with use and other factors; up to 12 hours with continuous GPS). 6-month Fitbit Premium trial for new Premium users (Valid payment method required. Cancel before free trial ends to avoid subscription fees. New Premium users only. Content and features may vary by language and are subject to change.). Use Google Assistant or Amazon Alexa Built-in to get quick news, set bedtime reminders and alarms, control your smart home devices and more just by speaking to your watch. Better track heart rate 24/7 with PurePulse 2.0, Fitbit’s enhanced heart rate technology. Active Zone Minutes uses your resting heart rate to gauge exercise effort and gives you a buzz when you step up the intensity so you can make the most of your workouts. Fitbit Versa 3 is water resistant to 50 meters. Run, bike, hike and more phone-free—and see your real-time pace & distance—with built-in GPS. Then check out your workout intensity map in the Fitbit app. Receive a Daily Readiness Score that reveals if you’re ready to exercise or should focus on recovery (requires Fitbit Premium membership. Premium content recommendations are not available in all locales and may be in English only).",
+    "first_available": {
+      "raw": "August 25, 2020",
+      "utc": "2020-08-25T00:00:00.000Z"
+    },
+    "images": [
+      {
+        "link": "https://m.media-amazon.com/images/I/61ZXwnqqOuS._AC_SL1500_.jpg",
+        "variant": "MAIN"
+      },
+      {
+        "link": "https://m.media-amazon.com/images/I/71-kdfCm5aL._AC_SL1500_.jpg",
+        "variant": "PT01"
+      },
+      {
+        "link": "https://m.media-amazon.com/images/I/71WMixwiaAL._AC_SL1500_.jpg",
+        "variant": "PT02"
+      },
+      {
+        "link": "https://m.media-amazon.com/images/I/715GZPpQxLL._AC_SL1500_.jpg",
+        "variant": "PT03"
+      },
+      {
+        "link": "https://m.media-amazon.com/images/I/71DMaklH4IL._AC_SL1500_.jpg",
+        "variant": "PT04"
+      },
+      {
+        "link": "https://m.media-amazon.com/images/I/71Kug5cB1sL._AC_SL1500_.jpg",
+        "variant": "PT05"
+      }
+    ],
+    "images_count": 6,
+    "important_information": {
+      "sections": [
+        {
+          "body": "Statements regarding dietary supplements have not been evaluated by the FDA and are not intended to diagnose, treat, cure, or prevent any disease or health condition.",
+          "title": "Legal Disclaimer"
+        }
+      ]
+    },
+    "is_bundle": false,
+    "keywords": "Fitbit,Versa,3,Health,&,Fitness,Smartwatch,with,GPS,,24/7,Heart,Rate,,Alexa,Built-in,,6+,Days,Battery,,Black/Black,,One,Size,(S,&,L,Bands,Included)",
+    "keywords_list": [
+      "Fitbit",
+      "Versa",
+      "Health",
+      "Fitness",
+      "Smartwatch",
+      "with",
+      "24/7",
+      "Heart",
+      "Rate",
+      "Alexa",
+      "Built-in",
+      "Days",
+      "Battery",
+      "Black/Black",
+      "Size",
+      "Bands",
+      "Included)"
+    ],
+    "link": "https://www.amazon.com/Fitbit-Fitness-Smartwatch-Battery-Included/dp/B08DFPV5Y2",
+    "main_image": {
+      "link": "https://m.media-amazon.com/images/I/61ZXwnqqOuS.jpg"
+    },
+    "manufacturer": "Fitbit Inc",
+    "material": "Silicone",
+    "model_number": "FB511BKBK",
+    "more_buying_choices": [
+      {
+        "free_shipping": true,
+        "position": 1,
+        "price": {
+          "currency": "USD",
+          "raw": "$159.99",
+          "symbol": "$",
+          "value": 159.99
+        },
+        "seller_name": "Just Right!"
+      },
+      {
+        "free_shipping": true,
+        "position": 2,
+        "price": {
+          "currency": "USD",
+          "raw": "$159.99",
+          "symbol": "$",
+          "value": 159.99
+        },
+        "seller_name": "Sisters of Oz"
+      },
+      {
+        "free_shipping": true,
+        "position": 3,
+        "price": {
+          "currency": "USD",
+          "raw": "$218.49",
+          "symbol": "$",
+          "value": 218.49
+        },
+        "seller_name": "Amazon.com"
+      }
+    ],
+    "parent_asin": "B08GLRLL3M",
+    "protection_plans": [
+      {
+        "asin": "B07P97VVKY",
+        "price": {
+          "currency": "USD",
+          "raw": "$21.99",
+          "symbol": "$",
+          "value": 21.99
+        },
+        "title": "3-Year Protection"
+      },
+      {
+        "asin": "B07P97SHQP",
+        "price": {
+          "currency": "USD",
+          "raw": "$15.99",
+          "symbol": "$",
+          "value": 15.99
+        },
+        "title": "2-Year Protection"
+      }
+    ],
+    "rating": 4.5,
+    "rating_breakdown": {
+      "five_star": {
+        "count": 28150,
+        "percentage": 76
+      },
+      "four_star": {
+        "count": 4815,
+        "percentage": 13
+      },
+      "one_star": {
+        "count": 1852,
+        "percentage": 5
+      },
+      "three_star": {
+        "count": 1481,
+        "percentage": 4
+      },
+      "two_star": {
+        "count": 740,
+        "percentage": 2
+      }
+    },
+    "ratings_total": 37040,
+    "reviews_total": 37040,
+    "search_alias": {
+      "title": "Health, Household & Baby Care",
+      "value": "hpc"
+    },
+    "sell_on_amazon": true,
+    "specifications": [
+      {
+        "name": "Product Dimensions",
+        "value": "1.59 x 1.59 x 0.49 inches; 0.7 Ounces"
+      },
+      {
+        "name": "Item model number",
+        "value": "FB511BKBK"
+      },
+      {
+        "name": "Department",
+        "value": "Unisex-Adult"
+      },
+      {
+        "name": "Batteries",
+        "value": "1 D batteries required. (included)"
+      },
+      {
+        "name": "Date First Available",
+        "value": "August 25, 2020"
+      },
+      {
+        "name": "Manufacturer",
+        "value": "Fitbit Inc"
+      },
+      {
+        "name": "ASIN",
+        "value": "B08DFPV5Y2"
+      },
+      {
+        "name": "Supported Application",
+        "value": "Weather, Sleep Monitor, Reminders, Voice Assistant, Alexa, Phone, GPS, Heart Rate Monitor"
+      },
+      {
+        "name": "Special Feature",
+        "value": "Time Display, Alarm Clock"
+      },
+      {
+        "name": "Compatible Devices",
+        "value": "Smartphone"
+      },
+      {
+        "name": "Water Resistance Level",
+        "value": "Water Resistant"
+      },
+      {
+        "name": "Connectivity Technology",
+        "value": "GPS"
+      },
+      {
+        "name": "GPS",
+        "value": "True"
+      },
+      {
+        "name": "Water Resistance Depth",
+        "value": "50 Meters"
+      },
+      {
+        "name": "Band Material Type",
+        "value": "Silicone"
+      },
+      {
+        "name": "Human Interface Input",
+        "value": "Microphone"
+      },
+      {
+        "name": "Style",
+        "value": "Modern"
+      },
+      {
+        "name": "Best Sellers Rank",
+        "value": "See Top 100 in Electronics"
+      }
+    ],
+    "specifications_flat": "Best Sellers Rank: See Top 100 in Electronics. Style: Modern. Human Interface Input: Microphone. Band Material Type: Silicone. Water Resistance Depth: 50 Meters. GPS: True. Connectivity Technology: GPS. Water Resistance Level: Water Resistant. Compatible Devices: Smartphone. Special Feature: Time Display, Alarm Clock. Supported Application: Weather, Sleep Monitor, Reminders, Voice Assistant, Alexa, Phone, GPS, Heart Rate Monitor. ASIN: B08DFPV5Y2. Manufacturer: Fitbit Inc. Date First Available: August 25, 2020. Batteries: 1 D batteries required. (included). Department: Unisex-Adult. Item model number: FB511BKBK. Product Dimensions: 1.59 x 1.59 x 0.49 inches; 0.7 Ounces.",
+    "sub_title": {
+      "link": "https://www.amazon.com/stores/Fitbit/page/8C0C1BB6-B75A-4447-B068-50D4FE8F070C?ref_=ast_bln",
+      "text": "Visit the Fitbit Store"
+    },
+    "title": "Fitbit Versa 3 Health & Fitness Smartwatch with GPS, 24/7 Heart Rate, Alexa Built-in, 6+ Days Battery, Black/Black, One Size (S & L Bands Included)",
+    "top_reviews": [
+      {
+        "body": "I purchased the navy with the gold case (picture with a screen protector and watch band I bought separately).  I was in between this and the sense but decided the extra $100 wasn't worth it for features I didn't think I would need.  Pros  -GPS - I love having it and it works well from what I have seen -All of the watch faces - There are so many options not just from Fitbit but other developers that are super easy to add. Although many haven't been properly adjusted for the new Versa so check before you download one. - 90 days of Premium - IDK if this is every time you get a new one or just the first time you try but it's nice to see the extra features -Size - It's very sleek, not too big or heavy on my wrist. - Relax - This was something my Blaze had however I could only do 2 or 5 minute increments. This allows you to set the duration and whether it vibrates as it guides you through breathing. -Always on display is pretty cool and a great feature to have - I enjoy all the notifications, I don't mind not being able to text because I honestly wouldn't want to text from it. That's why I have my phone, but I appreciate being able to see the message or email at a quick glance. - Charger - Came relatively charged and the charger is really easy to use. I'm not worried about accidentally ripping it out and sending the watch flying although I wish it were a little longer. -The ability to take calls - this was not out when I initially purchased it however as of now (11/25/2021) it has been added and it's so convenient. I always ask if people can tell and their response is \"You're seriously talking into your watch?\"  Cons: - The new bands - They aren't SO bad but I am not the biggest fan. They can be a little uncomfortable at times but I'm keeping an eye out for more options. - Sometimes it takes a try to get the screen to light up although that could be me.  Neutral: - SpO2 % - Pretty cool that it can track this but I don't feel like it's something super important to me. - No music storage except with Pandora or Deezer - I usually have my phone with me so not a big deal - I've see other people complain about the new button but I have had no issues with it.Read more",
+        "body_html": "<div data-a-expander-name=\"review_text_read_more\" data-a-expander-collapsed-height=\"300\" class=\"a-expander-collapsed-height a-row a-expander-container a-expander-partial-collapse-container\" style=\"max-height:300px\"><div data-hook=\"review-collapsed\" aria-expanded=\"false\" class=\"a-expander-content reviewText review-text-content a-expander-partial-collapse-content\">             <span>I purchased the navy with the gold case (picture with a screen protector and watch band I bought separately).<br><br>I was in between this and the sense but decided the extra $100 wasn't worth it for features I didn't think I would need.<br><br>Pros<br><br>-GPS - I love having it and it works well from what I have seen<br>-All of the watch faces - There are so many options not just from Fitbit but other developers that are super easy to add. Although many haven't been properly adjusted for the new Versa so check before you download one.<br>- 90 days of Premium - IDK if this is every time you get a new one or just the first time you try but it's nice to see the extra features<br>-Size - It's very sleek, not too big or heavy on my wrist.<br>- Relax - This was something my Blaze had however I could only do 2 or 5 minute increments. This allows you to set the duration and whether it vibrates as it guides you through breathing.<br>-Always on display is pretty cool and a great feature to have<br>- I enjoy all the notifications, I don't mind not being able to text because I honestly wouldn't want to text from it. That's why I have my phone, but I appreciate being able to see the message or email at a quick glance.<br>- Charger - Came relatively charged and the charger is really easy to use. I'm not worried about accidentally ripping it out and sending the watch flying although I wish it were a little longer.<br>-The ability to take calls - this was not out when I initially purchased it however as of now (11/25/2021) it has been added and it's so convenient. I always ask if people can tell and their response is \"You're seriously talking into your watch?\"<br><br>Cons:<br>- The new bands - They aren't SO bad but I am not the biggest fan. They can be a little uncomfortable at times but I'm keeping an eye out for more options.<br>- Sometimes it takes a try to get the screen to light up although that could be me.<br><br>Neutral:<br>- SpO2 % - Pretty cool that it can track this but I don't feel like it's something super important to me.<br>- No music storage except with Pandora or Deezer - I usually have my phone with me so not a big deal<br>- I've see other people complain about the new button but I have had no issues with it.</span>   </div><div class=\"a-expander-header a-expander-partial-collapse-header\"><div class=\"a-expander-content-fade\"></div><a href=\"javascript:void(0)\" data-csa-c-func-deps=\"aui-da-a-expander-toggle\" data-csa-c-type=\"widget\" data-csa-interaction-events=\"click\" data-hook=\"expand-collapse-read-more-less\" aria-label=\"Toggle full review text\" aria-expanded=\"false\" role=\"button\" data-action=\"a-expander-toggle\" class=\"a-declarative\" data-a-expander-toggle=\"{&quot;allowLinkDefault&quot;:true, &quot;expand_prompt&quot;:&quot;Read more&quot;, &quot;collapse_prompt&quot;:&quot;Read less&quot;}\"><i class=\"a-icon a-icon-extender-expand\"></i><span class=\"a-expander-prompt\">Read more</span></a></div></div>",
+        "date": {
+          "raw": "Reviewed in the United States on October 7, 2020",
+          "utc": "2020-10-07T00:00:00.000Z"
+        },
+        "helpful_votes": 350,
+        "id": "RV595B15Z0QIE",
+        "images": [
+          {
+            "link": "https://images-na.ssl-images-amazon.com/images/G/01/x-locale/common/grey-pixel.gif"
+          }
+        ],
+        "is_global_review": false,
+        "link": "https://www.amazon.com/gp/customer-reviews/RV595B15Z0QIE/ref=cm_cr_dp_d_rvw_ttl?ie=UTF8&ASIN=B08DFPV5Y2",
+        "profile": {
+          "id": "AGOKVP4LPPJEHXHZ3YHUI7Z4L5EA",
+          "link": "https://www.amazon.com/gp/profile/amzn1.account.AGOKVP4LPPJEHXHZ3YHUI7Z4L5EA/ref=cm_cr_dp_d_gw_tr?ie=UTF8",
+          "name": "Berto"
+        },
+        "rating": 5,
+        "review_country": "us",
+        "title": "Love My Versa 3",
+        "verified_purchase": true,
+        "vine_program": false
+      },
+      {
+        "body": "Battery update 2: exactly 6 days and about 10 hours since I removed it from the charger and I'm at 12%. Lots of texts (only a few voice replies),lots of fiddling with settings, my star trek clock is set to update weather hourly,no GPS,haven't played music through it, at least 10k steps per day, display is on motion, not always on.  Battery update: I received and charged it this past Tuesday. It's been on my arm since. At this time, it's at 42% battery life. That's with those initial setups and exploring and a minimum of 10k steps per day. A lot of texts came through but I only replied to a few via text. No GPS usage and the display is not always on (motion)  I've seen a lot of folks complaining about lag and responsiveness. I haven't had that at all (so far). Granted,this might be due to an update that took almost 45 minutes when I was setting it up.  Notes in no particular order: I find it more accurate with heart rate than my charge 3. I've already updated it to the star trek themed clock face It is VERY accurate on voice to text, including in adding in proper commas (so far) It's been off the charger for about 20 hours and is down to 86%, which I find good considering color screen and all the time I spent going over the features and getting the settings where I like Complaint - why does this only track spo2 while sleeping???? That's pretty dumb. I need to measure mine while working out and just going about dialy life I really wish their were more bands on the market for it.Read more",
+        "body_html": "<div data-a-expander-name=\"review_text_read_more\" data-a-expander-collapsed-height=\"300\" class=\"a-expander-collapsed-height a-row a-expander-container a-expander-partial-collapse-container\" style=\"max-height:300px\"><div data-hook=\"review-collapsed\" aria-expanded=\"false\" class=\"a-expander-content reviewText review-text-content a-expander-partial-collapse-content\">             <span>Battery update 2: exactly 6 days and about 10 hours since I removed it from the charger and I'm at 12%. Lots of texts (only a few voice replies),lots of fiddling with settings, my star trek clock is set to update weather hourly,no GPS,haven't played music through it, at least 10k steps per day, display is on motion, not always on.<br><br>Battery update: I received and charged it this past Tuesday. It's been on my arm since. At this time, it's at 42% battery life. That's with those initial setups and exploring and a minimum of 10k steps per day. A lot of texts came through but I only replied to a few via text. No GPS usage and the display is not always on (motion)<br><br>I've seen a lot of folks complaining about lag and responsiveness. I haven't had that at all (so far). Granted,this might be due to an update that took almost 45 minutes when I was setting it up.<br><br>Notes in no particular order:<br>I find it more accurate with heart rate than my charge 3.<br>I've already updated it to the star trek themed clock face<br>It is VERY accurate on voice to text, including in adding in proper commas (so far)<br>It's been off the charger for about 20 hours and is down to 86%, which I find good considering color screen and all the time I spent going over the features and getting the settings where I like<br>Complaint - why does this only track spo2 while sleeping???? That's pretty dumb. I need to measure mine while working out and just going about dialy life<br>I really wish their were more bands on the market for it.</span>   </div><div class=\"a-expander-header a-expander-partial-collapse-header\"><div class=\"a-expander-content-fade\"></div><a href=\"javascript:void(0)\" data-csa-c-func-deps=\"aui-da-a-expander-toggle\" data-csa-c-type=\"widget\" data-csa-interaction-events=\"click\" data-hook=\"expand-collapse-read-more-less\" aria-label=\"Toggle full review text\" aria-expanded=\"false\" role=\"button\" data-action=\"a-expander-toggle\" class=\"a-declarative\" data-a-expander-toggle=\"{&quot;allowLinkDefault&quot;:true, &quot;expand_prompt&quot;:&quot;Read more&quot;, &quot;collapse_prompt&quot;:&quot;Read less&quot;}\"><i class=\"a-icon a-icon-extender-expand\"></i><span class=\"a-expander-prompt\">Read more</span></a></div></div>",
+        "date": {
+          "raw": "Reviewed in the United States on September 30, 2020",
+          "utc": "2020-09-30T00:00:00.000Z"
+        },
+        "helpful_votes": 224,
+        "id": "R21IPAP3IPCB5D",
+        "is_global_review": false,
+        "link": "https://www.amazon.com/gp/customer-reviews/R21IPAP3IPCB5D/ref=cm_cr_dp_d_rvw_ttl?ie=UTF8&ASIN=B08DFPV5Y2",
+        "profile": {
+          "id": "AG2ONAJGN2GYQKFMGGCWXVL4CRYQ",
+          "link": "https://www.amazon.com/gp/profile/amzn1.account.AG2ONAJGN2GYQKFMGGCWXVL4CRYQ/ref=cm_cr_dp_d_gw_tr?ie=UTF8",
+          "name": "NB"
+        },
+        "rating": 5,
+        "review_country": "us",
+        "title": "I'm enjoying it",
+        "verified_purchase": true,
+        "vine_program": false
+      },
+      {
+        "body": "I was so excited for this Fitbit to be released. After using it for several day, I'm pretty bummed and will be returning it tomorrow. Here is my list of pros and cons:  Pros: * GPS - This is the biggest reason for my excitement; finally a Versa with GPS! I wanted a way to track my runs without taking my phone with me. (read cons for why I still can't go without my phone) The GPS lost signal during a portion of my run my run..... My phone still had good signal, so not sure why the Versa lost GPS signal. It wasn't for a long period of time (maybe a 0.10 of a mile?), but still disappointing. * SpO2 % - Pretty cool that it can track this....but it only gives a range from when you are sleeping. No way to spot check this. Cannot figure out why they didn't make this possible. * The flat back - the Versa line is the only fitness/smartwatch I have been able to tolerate. I despise the raised round backs of so many others. The back of this watch causes no discomfort.  Cons: * No music storage - wth Fitbit?!?! So you added GPS, but took away music storage. Major design flaw. It can only stream music when connected to a phone via Bluetooth, so I *still* must take my phone on runs with me. This is the reason I am returning the watch. ***EDIT*** - So....you can store music for offline use *ONLY* if you subscribe to Deezer or Pandora. So, It will cost at $10/month to store music. Spotify will only allow to to control the music from the watch, but doesn't allow for offline music. You can't upload your own music to the watch. * SpO2% - like I mentioned above, there is no way to spot check this. I would love to see what happens with my SpO2 during runs, when I go up to higher altitude and workout, etc. But, nope, it only tells me about the values from when I was asleep. *eyeroll*  I am going to try the new Garmin Venu Sq Music Edition and hope the back of it is not as uncomfortable as I have experienced with other similar watches. It is about $20 more but can do all the things that the Versa 3 can do PLUS the things the Versa 3 can't. Onboard music storage, and spot checking SpO2. I'll miss the Fitbit communities and my familiarity with the Fitbit platform.Read more",
+        "body_html": "<div data-a-expander-name=\"review_text_read_more\" data-a-expander-collapsed-height=\"300\" class=\"a-expander-collapsed-height a-row a-expander-container a-expander-partial-collapse-container\" style=\"max-height:300px\"><div data-hook=\"review-collapsed\" aria-expanded=\"false\" class=\"a-expander-content reviewText review-text-content a-expander-partial-collapse-content\">             <span>I was so excited for this Fitbit to be released. After using it for several day, I'm pretty bummed and will be returning it tomorrow. Here is my list of pros and cons:<br><br>Pros:<br>* GPS - This is the biggest reason for my excitement; finally a Versa with GPS! I wanted a way to track my runs without taking my phone with me. (read cons for why I still can't go without my phone) The GPS lost signal during a portion of my run my run..... My phone still had good signal, so not sure why the Versa lost GPS signal. It wasn't for a long period of time (maybe a 0.10 of a mile?), but still disappointing.<br>* SpO2 % - Pretty cool that it can track this....but it only gives a range from when you are sleeping. No way to spot check this. Cannot figure out why they didn't make this possible.<br>* The flat back - the Versa line is the only fitness/smartwatch I have been able to tolerate. I despise the raised round backs of so many others. The back of this watch causes no discomfort.<br><br>Cons:<br>* No music storage - wth Fitbit?!?! So you added GPS, but took away music storage. Major design flaw. It can only stream music when connected to a phone via Bluetooth, so I *still* must take my phone on runs with me. This is the reason I am returning the watch. ***EDIT*** - So....you can store music for offline use *ONLY* if you subscribe to Deezer or Pandora. So, It will cost at $10/month to store music. Spotify will only allow to to control the music from the watch, but doesn't allow for offline music. You can't upload your own music to the watch.<br>* SpO2% - like I mentioned above, there is no way to spot check this. I would love to see what happens with my SpO2 during runs, when I go up to higher altitude and workout, etc. But, nope, it only tells me about the values from when I was asleep. *eyeroll*<br><br>I am going to try the new Garmin Venu Sq Music Edition and hope the back of it is not as uncomfortable as I have experienced with other similar watches. It is about $20 more but can do all the things that the Versa 3 can do PLUS the things the Versa 3 can't. Onboard music storage, and spot checking SpO2. I'll miss the Fitbit communities and my familiarity with the Fitbit platform.</span>   </div><div class=\"a-expander-header a-expander-partial-collapse-header\"><div class=\"a-expander-content-fade\"></div><a href=\"javascript:void(0)\" data-csa-c-func-deps=\"aui-da-a-expander-toggle\" data-csa-c-type=\"widget\" data-csa-interaction-events=\"click\" data-hook=\"expand-collapse-read-more-less\" aria-label=\"Toggle full review text\" aria-expanded=\"false\" role=\"button\" data-action=\"a-expander-toggle\" class=\"a-declarative\" data-a-expander-toggle=\"{&quot;allowLinkDefault&quot;:true, &quot;expand_prompt&quot;:&quot;Read more&quot;, &quot;collapse_prompt&quot;:&quot;Read less&quot;}\"><i class=\"a-icon a-icon-extender-expand\"></i><span class=\"a-expander-prompt\">Read more</span></a></div></div>",
+        "date": {
+          "raw": "Reviewed in the United States on September 28, 2020",
+          "utc": "2020-09-28T00:00:00.000Z"
+        },
+        "helpful_votes": 1172,
+        "id": "R3S4GVEYYBJLYW",
+        "is_global_review": false,
+        "link": "https://www.amazon.com/gp/customer-reviews/R3S4GVEYYBJLYW/ref=cm_cr_dp_d_rvw_ttl?ie=UTF8&ASIN=B08DFPV5Y2",
+        "profile": {
+          "id": "AFJARQ2COED74TK5XUO7MPPHE5LA",
+          "image": "https://images-na.ssl-images-amazon.com/images/S/amazon-avatars-global/1613aa46-241e-4ec1-80ed-ad6f19642088._CR0,0,393,393_SX48_.jpg",
+          "link": "https://www.amazon.com/gp/profile/amzn1.account.AFJARQ2COED74TK5XUO7MPPHE5LA/ref=cm_cr_dp_d_gw_tr?ie=UTF8",
+          "name": "Zerbs"
+        },
+        "rating": 2,
+        "review_country": "us",
+        "title": "Missed the mark",
+        "verified_purchase": false,
+        "vine_program": false
+      },
+      {
+        "body": "So, I am an ex-Pebble watch owner having funded the first Pebble smart watch way back in 2013 and have had various smart watch devices over the years. I have owned the Amazfit Bip and GTS for the last few years and have been really happy.  Unfortunately, my Amazfit GTS had a falling out with my tiled bathroom floor recently, which resulted in me needing to find a new watch. I had ordered a replacement GTS, but noticed that Fitbit were launching the Versa 3 so thought it might be time for a change.  For context, I use an Android phone so Apple is out of the question, I'm sure the Apple watch is great and if you are in the Apple eco-system (or walled garden depending on which way you want to look at it!) then I would recommend just going for an Apple watch. I'm sure it will do everything you need and work seamlessly with an Apple phone. For those on a more limited budget and who prefer Android devices then ironically we have more options, but not quite as much quality.  So on to my experience with the Versa 3, so far its been pretty good (although do see my Edit at the bottom!).  The GOOD + Comfortable to wear and not too big (Android Wear OS devices Im looking at you!) + Receives notifications and has been pretty stable so far + Have set it up to send emails, + You can see the DNA of a Pebble watch is in here with the UI, payment methods for additional apps and watch faces, which is a good thing as Pebble got a lot of things right. + Ive found the step count to be fairly accurate so far, requires a bit more a longer term test but seems fine to me, I'm not the sort of person who religiously checks every step so its ok. + I like the weather details that you can get + I like the fact I can load my payment card on to the watch fairly easily and use to pay for things + I like the notifications for apps from my phone. + Sleep tracking seems pretty accurate, it doesn't show up immediately in the morning as its trying to figure out if you are awake, but does pop up on the Today screen after a short while. + Alexa works reasonably well and I could imagine if I put in the time I could get it to do all sorts of things. +Lots of potential if the software could catch up with the hardware  The SO, SO + The watch band sizing is a bit odd, this is a bit unique for each user but Im actually in between a small and a large size, so have opted for large but do find the remaining strap a bit too long as its tucked into and under the watch band. Tolerable. + The capacitive button. Not too bad a bit weird at first as really why not a physical button? Its on the left hand side of the watch. Honestly not too bad once you figure it out and really no different from a physical button after a couple of days! - The app store is a bit light on apps! It looks like Fitbit released a new SDK and not a lot off apps have updated yet so not a lot of choice. Miss the Pebble store as it had some great apps. - The screen is a bit smaller than I expected, I only have the GTS as I reasonable point of reference and that device had a superb screen, bigger and still a normal watch size. Tolerable and not a deal breaker. + The Fitbit eco-system seems interesting and I quite like the fitness reminders and functionality - but yet to fully get into this yet having just moved over. - I did have to fiddle around with Do Not Disturb and Silent settings on my phone a bit to get notifications set up. I used to just have the phone on silent, but doing this means you get no notifications on Fitbit. So I've had to reset everything to work with Do Not Disturb. Which is fine but a bit of a faff. - Vibration is a bit weak for notifications and no way of changing the intensity. Interestingly the alarm notification is reasonably strong and has a pattern. But the normal message one needs to be stronger in my opinion as I do find I ignore it more than previous watches. - Responding to text messages, I cant use voice which the later Pebble watches could and were half a decade older in tech(!), so maybe something that will get implemented in the future - Kiezel Pay - still going and a Pebble thing. Bit weird the Fitbit app store uses this. Im sure they could implement something slicker but see point below around the Fitbit UI.  The NOT SO GOOD - Music. Oh dear, naughty to say that the device can store music when in reality its a very poor option. The Versa 2 as I understand it has a specific offline Music app which you can transfer your own MP3s to the watch. Its not really particularly clear that on the Versa 3 only Deezer and Pandora allow music to actually be stored on the device. Two services I haven't really used in the UK, pretty sure Pandora isn't really available in Europe. The Spotify functionality only controls Spotify and there is no offline storage for this app which is a bit disappointing. There is no way to actually transfer MP3s to the watch as this app looks to have been removed. So if you do want music on the device in the UK, looks like you are out of luck. - The speaker. Well there is one as the watch made a noise when I first booted it up. But unfortunately it doesn't actually do anything. I haven't tried a voice call yet. I suspect this will is a 'coming soon' feature and I'm sure Alexa and Google will start talking to me one day, but until later this year the speaker serves no real purpose at present for me. - No Google Play Assistant - well yet anyway! This is coming later in the year too.... - The Fitbit eco-system / UI seems a bit clunky, in fact its a bit of a mess to be honest. Feels a bit like multiple team developing there own tools and features and then somehow it just about hangs together rather than a slick and polished experience. There are all kinds of options and I'm sort of a bit confused what I'm really supposed to be looking at sometimes. The best example is switching the watch faces from 12hr to 24hr clock. You need to log into a web dashboard to find an obscure option to set. Which is a bit daft when I have an app and the watch which would be much better places for this setting! Maybe its just a learning curve Im on.... - The watch bands are expensive. They are also specific to the Versa 3 and Sense and use a clip mechanism, so you cant just use a standard watch band or quick release bands of any kind (of which I now have a load of 20mm bands sitting in a draw from my Amazfit devices) - The screen on when you move the wrist, possibly the most disappointing aspect. The Amazfit GTS was spot on in this regard and would flick on instantly. Not so here, you need a fairly good forced motion to get the screen to come on to view the time and a few times Ive just given up and tapped the capacitive button on the side to wake the screen up. You do have the option of an always on display, but if you want your watch to drain after a day and a bit go for it, I quite like the comfort of a reasonably charged battery. I think I can just about deal with it but I'm sure this should be much better. - The charger cable! What were they thinking here. Its about 25cm long. Im unclear what the expectation is here but I tend to keep the devices near my phone which has a cable that stretches to the wall. Not sure why they don't give a reasonable length cable. I'm lucky(!) as Amazfit also do the same thing, so I already have a simple USB extension cable to solve this problem. But honestly!  TOP TIPS  - The capacitive button! Its fine really, I'm surprised at the one star mentions...Basically put your index finger on the right of the watch and then press with your thumb just under the watch back on the left a little to 'press' it with a good proportion of the thumb. Honestly, when I first opened box and started to use the watch I thought it was going to be massively irritating, but its fine once you figure it out. Not a problem at all. - Notifications on the watch show the notifications on your phone and if you clear on the watch they can be cleared on the phone and vice versa. - My Agenda app wasn't syncing. Agenda shows dairy appointments. I uninstalled the app via the Fitbit app store and then re-installed it. It then woke up and I could see my calendars and I could select which one I wanted to show on the app. - Logging water intake is hidden away in the advanced settings when you swipe up, this can be adjusted on the watch. If you turn water logging on you can then log water when yous wipe up and scroll down and press the log button under the water area. - Disable battery optimisation on your phone! Constant disconnects are largely to do with how your phone deals with background apps. If you let the Fitbit app run in the background and then lock the app on the recent apps screen using the padlock you have a better chance of not having disconnections. This is pretty much the case for most smartwatch companion apps on a phone.  Ill come back and update depending on how i get on and when features are released.  EDIT: So....Ive returned the device!!!, why? Well Garmin have launched the the Venu Sq and to be honest although I like the software in the Versa 3 the actual capability of the Garmin offers pretty much the same (although a bit less polished) functionality and allows me to use my small collection of watch straps. The Fitbit could be great, but the watch strap just didnt fit well and was starting to get annoying, the fitness functionality is limited (in comparison to the Garmin). The music services felt like a bit of a cheat on the Versa 3 and the speaker functionality doesnt really do what it should. Maybe in a few months time this will all get sorted but the Garmin feels more robust and just seems to work out of the box (no fitness subscription, complicted setup or half baked services). Will be interested to see what Google will do with Fitbit, but for the time being Ill stick with the new Garmin Venu Sq.Read more",
+        "body_html": "<div data-a-expander-name=\"review_text_read_more\" data-a-expander-collapsed-height=\"300\" class=\"a-expander-collapsed-height a-row a-expander-container a-expander-partial-collapse-container\" style=\"max-height:300px\"><div data-hook=\"review-collapsed\" aria-expanded=\"false\" class=\"a-expander-content reviewText review-text-content a-expander-partial-collapse-content\">             <span>So, I am an ex-Pebble watch owner having funded the first Pebble smart watch way back in 2013 and have had various smart watch devices over the years. I have owned the Amazfit Bip and GTS for the last few years and have been really happy.<br><br>Unfortunately, my Amazfit GTS had a falling out with my tiled bathroom floor recently, which resulted in me needing to find a new watch. I had ordered a replacement GTS, but noticed that Fitbit were launching the Versa 3 so thought it might be time for a change.<br><br>For context, I use an Android phone so Apple is out of the question, I'm sure the Apple watch is great and if you are in the Apple eco-system (or walled garden depending on which way you want to look at it!) then I would recommend just going for an Apple watch. I'm sure it will do everything you need and work seamlessly with an Apple phone. For those on a more limited budget and who prefer Android devices then ironically we have more options, but not quite as much quality.<br><br>So on to my experience with the Versa 3, so far its been pretty good (although do see my Edit at the bottom!).<br><br>The GOOD<br>+ Comfortable to wear and not too big (Android Wear OS devices Im looking at you!)<br>+ Receives notifications and has been pretty stable so far<br>+ Have set it up to send emails,<br>+ You can see the DNA of a Pebble watch is in here with the UI, payment methods for additional apps and watch faces, which is a good thing as Pebble got a lot of things right.<br>+ Ive found the step count to be fairly accurate so far, requires a bit more a longer term test but seems fine to me, I'm not the sort of person who religiously checks every step so its ok.<br>+ I like the weather details that you can get<br>+ I like the fact I can load my payment card on to the watch fairly easily and use to pay for things<br>+ I like the notifications for apps from my phone.<br>+ Sleep tracking seems pretty accurate, it doesn't show up immediately in the morning as its trying to figure out if you are awake, but does pop up on the Today screen after a short while.<br>+ Alexa works reasonably well and I could imagine if I put in the time I could get it to do all sorts of things.<br>+Lots of potential if the software could catch up with the hardware<br><br>The SO, SO<br>+ The watch band sizing is a bit odd, this is a bit unique for each user but Im actually in between a small and a large size, so have opted for large but do find the remaining strap a bit too long as its tucked into and under the watch band. Tolerable.<br>+ The capacitive button. Not too bad a bit weird at first as really why not a physical button? Its on the left hand side of the watch. Honestly not too bad once you figure it out and really no different from a physical button after a couple of days!<br>- The app store is a bit light on apps! It looks like Fitbit released a new SDK and not a lot off apps have updated yet so not a lot of choice. Miss the Pebble store as it had some great apps.<br>- The screen is a bit smaller than I expected, I only have the GTS as I reasonable point of reference and that device had a superb screen, bigger and still a normal watch size. Tolerable and not a deal breaker.<br>+ The Fitbit eco-system seems interesting and I quite like the fitness reminders and functionality - but yet to fully get into this yet having just moved over.<br>- I did have to fiddle around with Do Not Disturb and Silent settings on my phone a bit to get notifications set up. I used to just have the phone on silent, but doing this means you get no notifications on Fitbit. So I've had to reset everything to work with Do Not Disturb. Which is fine but a bit of a faff.<br>- Vibration is a bit weak for notifications and no way of changing the intensity. Interestingly the alarm notification is reasonably strong and has a pattern. But the normal message one needs to be stronger in my opinion as I do find I ignore it more than previous watches.<br>- Responding to text messages, I cant use voice which the later Pebble watches could and were half a decade older in tech(!), so maybe something that will get implemented in the future<br>- Kiezel Pay - still going and a Pebble thing. Bit weird the Fitbit app store uses this. Im sure they could implement something slicker but see point below around the Fitbit UI.<br><br>The NOT SO GOOD<br>- Music. Oh dear, naughty to say that the device can store music when in reality its a very poor option. The Versa 2 as I understand it has a specific offline Music app which you can transfer your own MP3s to the watch. Its not really particularly clear that on the Versa 3 only Deezer and Pandora allow music to actually be stored on the device. Two services I haven't really used in the UK, pretty sure Pandora isn't really available in Europe. The Spotify functionality only controls Spotify and there is no offline storage for this app which is a bit disappointing. There is no way to actually transfer MP3s to the watch as this app looks to have been removed. So if you do want music on the device in the UK, looks like you are out of luck.<br>- The speaker. Well there is one as the watch made a noise when I first booted it up. But unfortunately it doesn't actually do anything. I haven't tried a voice call yet. I suspect this will is a 'coming soon' feature and I'm sure Alexa and Google will start talking to me one day, but until later this year the speaker serves no real purpose at present for me.<br>- No Google Play Assistant - well yet anyway! This is coming later in the year too....<br>- The Fitbit eco-system / UI seems a bit clunky, in fact its a bit of a mess to be honest. Feels a bit like multiple team developing there own tools and features and then somehow it just about hangs together rather than a slick and polished experience. There are all kinds of options and I'm sort of a bit confused what I'm really supposed to be looking at sometimes. The best example is switching the watch faces from 12hr to 24hr clock. You need to log into a web dashboard to find an obscure option to set. Which is a bit daft when I have an app and the watch which would be much better places for this setting! Maybe its just a learning curve Im on....<br>- The watch bands are expensive. They are also specific to the Versa 3 and Sense and use a clip mechanism, so you cant just use a standard watch band or quick release bands of any kind (of which I now have a load of 20mm bands sitting in a draw from my Amazfit devices)<br>- The screen on when you move the wrist, possibly the most disappointing aspect. The Amazfit GTS was spot on in this regard and would flick on instantly. Not so here, you need a fairly good forced motion to get the screen to come on to view the time and a few times Ive just given up and tapped the capacitive button on the side to wake the screen up. You do have the option of an always on display, but if you want your watch to drain after a day and a bit go for it, I quite like the comfort of a reasonably charged battery. I think I can just about deal with it but I'm sure this should be much better.<br>- The charger cable! What were they thinking here. Its about 25cm long. Im unclear what the expectation is here but I tend to keep the devices near my phone which has a cable that stretches to the wall. Not sure why they don't give a reasonable length cable. I'm lucky(!) as Amazfit also do the same thing, so I already have a simple USB extension cable to solve this problem. But honestly!<br><br>TOP TIPS<br><br>- The capacitive button! Its fine really, I'm surprised at the one star mentions...Basically put your index finger on the right of the watch and then press with your thumb just under the watch back on the left a little to 'press' it with a good proportion of the thumb. Honestly, when I first opened box and started to use the watch I thought it was going to be massively irritating, but its fine once you figure it out. Not a problem at all.<br>- Notifications on the watch show the notifications on your phone and if you clear on the watch they can be cleared on the phone and vice versa.<br>- My Agenda app wasn't syncing. Agenda shows dairy appointments. I uninstalled the app via the Fitbit app store and then re-installed it. It then woke up and I could see my calendars and I could select which one I wanted to show on the app.<br>- Logging water intake is hidden away in the advanced settings when you swipe up, this can be adjusted on the watch. If you turn water logging on you can then log water when yous wipe up and scroll down and press the log button under the water area.<br>- Disable battery optimisation on your phone! Constant disconnects are largely to do with how your phone deals with background apps. If you let the Fitbit app run in the background and then lock the app on the recent apps screen using the padlock you have a better chance of not having disconnections. This is pretty much the case for most smartwatch companion apps on a phone.<br><br>Ill come back and update depending on how i get on and when features are released.<br><br>EDIT: So....Ive returned the device!!!, why? Well Garmin have launched the the Venu Sq and to be honest although I like the software in the Versa 3 the actual capability of the Garmin offers pretty much the same (although a bit less polished) functionality and allows me to use my small collection of watch straps. The Fitbit could be great, but the watch strap just didnt fit well and was starting to get annoying, the fitness functionality is limited (in comparison to the Garmin). The music services felt like a bit of a cheat on the Versa 3 and the speaker functionality doesnt really do what it should. Maybe in a few months time this will all get sorted but the Garmin feels more robust and just seems to work out of the box (no fitness subscription, complicted setup or half baked services). Will be interested to see what Google will do with Fitbit, but for the time being Ill stick with the new Garmin Venu Sq.</span>   </div><div class=\"a-expander-header a-expander-partial-collapse-header\"><div class=\"a-expander-content-fade\"></div><a href=\"javascript:void(0)\" data-csa-c-func-deps=\"aui-da-a-expander-toggle\" data-csa-c-type=\"widget\" data-csa-interaction-events=\"click\" data-hook=\"expand-collapse-read-more-less\" aria-label=\"Toggle full review text\" aria-expanded=\"false\" role=\"button\" data-action=\"a-expander-toggle\" class=\"a-declarative\" data-a-expander-toggle=\"{&quot;allowLinkDefault&quot;:true, &quot;expand_prompt&quot;:&quot;Read more&quot;, &quot;collapse_prompt&quot;:&quot;Read less&quot;}\"><i class=\"a-icon a-icon-extender-expand\"></i><span class=\"a-expander-prompt\">Read more</span></a></div></div>",
+        "date": {
+          "raw": "Reviewed in the United Kingdom on September 28, 2020",
+          "utc": "2020-09-28T00:00:00.000Z"
+        },
+        "helpful_votes": 581,
+        "id": "R273FN1INPMVFM",
+        "is_global_review": true,
+        "profile": {
+          "name": "Bj Gill"
+        },
+        "rating": 3,
+        "review_country": "gb",
+        "title": "So far so good.....BUT....",
+        "verified_purchase": true,
+        "vine_program": false
+      },
+      {
+        "body": "The media could not be loaded. Llevo probando este smartwatch desde el mes de septiembre, en su lanzamiento. Ya por entonces realicé un análisis, pero quiero matizar algunas cosas que han cambiado y otras que no. De entrada haré un repaso de sus características y especificaciones más destacables.  PROS: ✅ DISEÑO Y PANTALLA. Aunque han seguido la estética del Versa 2( algo que veo acertado, pues es discreto, cómodo y elegante), han mejorado el tamaño de la pantalla, aumentando hasta 1,58\" pulgadas. Lo han conseguido haciendo unos marcos más finos y dándole una pequeña curvatura a su pantalla . Una pantalla que, por cierto, es Amoled, con una resolución más que decente de 336 x 336 píxeles y va equipada con protección Gorilla Glass 3. Es un reloj de tamaño medio, rematado con un bisel de aluminio, que queda y se adapta bien a tu muñeca. Viene con dos tamaños de correas fáciles de intercambiar y es muy cómodo de llevar. ✅ GPS INCORPORADO. Es, quizás, la tecnología más destacable y esperada por todos los usuarios de Fitbit Versa. Ya no es necesario llevarse el móvil para salir a caminar o correr. Gracias a que el VERSA 3 también incorpora el sistema GLONASS de posicionamiento, los sensores recogerán todos los datos del recorrido, distancia, ritmo y mapa. ✅ SENSOR ÓPTICO MEJORADO. El nuevo sensor Pure Pulse 2.0, aumenta el número de puntos de lectura sobre la muñeca, aumentando así su precisión. Todos los datos de variación de pulso quedarán reflejados en una gráfica para consultar en la app. Consiguiendo también una mejor monitorización del sueño. ✅ CARGA RÁPIDA Y BATERÍA. Incluye un cable imantado que se acopla perfectamente a los ping de carga de la parte trasera del reloj y proporciona una carga rápida que en sólo 12 minutos, conseguirás 24 horas de autonomía y en 40 minutos el 80% de su carga. El fabricante promete una autonomía de 6 días, evidentemente sin activar ninguna función, como el GPS, notificaciones , pantalla Always On y demás funciones. Todas estas funciones harás disminuir drásticamente su autonomía. ✅ ALEXA, SPOTIFY Y DREEZER. Cuenta con el asistente de Amazon( ahora, después de tres meses funciona). Los demás son previa suscripción claro. Pero ahí están para el que las crea necesarias. ✅ OTRAS CARACTERÍSTICAS. - Pago por NFC, sólo en algunos bancos que vienen especificados en la web de Fitbit. - Más de 20 modos deportivos. Función SmarTrack, que reconocerá el tipo de entrenamiento e iniciará la sesión por su cuenta. - Resistente al agua, 50 metros de profundidad.  CONTRAS: ❌ Hay dos especificaciones y mejoras que llevan anunciando de manera oficial en su web desde su lanzamiento. Pero luego ponían que serían operativas en una actualización a finales del 2020: 1.- MICRÓFONO Y ALTAVOZ. Características con las que podías recibir y contestar llamadas directamente desde el reloj. Recientemente han entrado en funcionamiento en la última actualización, demasiado tarde para mí gusto. Además creo que es duplicar funciones, ya que debes tener cerca el móvil para hablar, algo a lo que no le veo el sentido. 2.- GOOGLE ASSISTANT. Otra promesa que hicieron desde el principio y que también entraría en una actualización a finales de año. Lamentablemente esta promesa NO SE HA CUMPLIDO. En la app pone que no está disponible en mi región. Soy de Barcelona, o sea que tampoco estará toda España. UNA DECEPCIÓN TOTAL!!! 📢 En mi opinión, no se pueden crear unas expectativas en las especificaciones y luego decir que entrarán en una actualización a finales de año, ¡¡¡ DESPUÉS DE TRES MESES DE SU LANZAMIENTO!!! 🤬 ❌ APP GRATUITA A MEDIAS. La app está bien, aunque me costó bastante enlazar mi móvil con el Versa 3 y os aseguro que estoy muy acostumbrado a manejar equipos electrónicos. Lo malo de la app es que si quieres visualizar las gráficas y monitoreo completos de toda tu actividad diaria, TIENES QUE PAGAR UNA SUSCRIPCIÓN QUE NO ES NADA BARATA. EN SERIO? O sea que yo pago un precio por todos los componentes, características y especificaciones que tiene el Fitbit Versa 3, pero si luego quiero sacarle el máximo partido y conocer todos los datos recogidos de mi actividad, TENGO QUE PAGAR OTRA VEZ!!! Lo veo ilógico y ABUSIVO.  CONCLUSIÓN: - El nuevo VERSA 3 no es un mal reloj, pero creo que se han quedado en tierra de nadie. Me explico: - No se puede competir con un reloj deportivo como los Polar o Garmin, y tampoco pueden competir con un smartwatch pensado para monitorizar la salud (aunque se han esforzado en este punto), donde los Apple están muy por encima. Pienso que hay mejores opciones que han lanzado sus competidores y rivales, en estos tres meses de espectativas incumplidas, a un precio muy competitivo y con mejores especificaciones y sin pagar de más para ver todos los datos recogidos en la app. Yo NO ME LO COMPRARÍA, porque pienso que no han cumplido lo que prometían. Por lo tanto NO LO RECOMIENDO.  ************************\"********  [ NOTICIA DE ÚLTIMA HORA 29/06/2021. Actualización y GOOGLE ASSISTANT funcionando, ¡ POR FIN ! Creo que era justo decirlo. Aún así, mi opinión no cambia. Llegan muyyyyyy tarde y todo lo demás sigue igual🤷 ]  ************************\"********  Espero que os sea útil mi opinión y experiencia con este producto 👍Read more",
+        "body_html": "<div data-a-expander-name=\"review_text_read_more\" data-a-expander-collapsed-height=\"300\" class=\"a-expander-collapsed-height a-row a-expander-container a-expander-partial-collapse-container\" style=\"max-height:300px\"><div data-hook=\"review-collapsed\" aria-expanded=\"false\" class=\"a-expander-content reviewText review-text-content a-expander-partial-collapse-content\"><div id=\"video-block-R15JJR8Q7EGEWU\" class=\"a-section a-spacing-small a-spacing-top-mini video-block\">                                               <div id=\"review-video-id-R15JJR8Q7EGEWU\" class=\"cr-video-desktop cr-video-desktop-placeholder\" data-review-id=\"R15JJR8Q7EGEWU\" data-video-url=\"https://images-na.ssl-images-amazon.com/images/I/A1SD43KY+eS.mp4\" data-thumbnail-url=\"https://images-na.ssl-images-amazon.com/images/I/917gm27dmWS._SY256.png\">       <div class=\"cr-media-status-container\">     <span class=\"a-spinner a-spinner-medium cr-media-spinner\"></span>     <span class=\"a-color-inverse cr-media-error-msg\">      The media could not be loaded.     </span>    </div>     </div>            </div><input type=\"hidden\" name=\"\" value=\"https://images-na.ssl-images-amazon.com/images/I/A1SD43KY+eS.mp4\" class=\"video-url\"><input type=\"hidden\" name=\"\" value=\"https://images-na.ssl-images-amazon.com/images/I/917gm27dmWS._SY256.png\" class=\"video-slate-img-url\">           <span class=\"cr-original-review-content\">&nbsp;Llevo probando este smartwatch desde el mes de septiembre, en su lanzamiento.<br>Ya por entonces realicé un análisis, pero quiero matizar algunas cosas que han cambiado y otras que no. De entrada haré un repaso de sus características y especificaciones más destacables.<br><br>PROS:<br>✅ DISEÑO Y PANTALLA. Aunque han seguido la estética del Versa 2( algo que veo acertado, pues es discreto, cómodo y elegante), han mejorado el tamaño de la pantalla, aumentando hasta 1,58\" pulgadas. Lo han conseguido haciendo unos marcos más finos y dándole una pequeña curvatura a su pantalla . Una pantalla que, por cierto, es Amoled, con una resolución más que decente de 336 x 336 píxeles y va equipada con protección Gorilla Glass 3.<br>Es un reloj de tamaño medio, rematado con un bisel de aluminio, que queda y se adapta bien a tu muñeca. Viene con dos tamaños de correas fáciles de intercambiar y es muy cómodo de llevar.<br>✅ GPS INCORPORADO. Es, quizás, la tecnología más destacable y esperada por todos los usuarios de Fitbit Versa.<br>Ya no es necesario llevarse el móvil para salir a caminar o correr. Gracias a que el VERSA 3 también incorpora el sistema GLONASS de posicionamiento, los sensores recogerán todos los datos del recorrido, distancia, ritmo y mapa.<br>✅ SENSOR ÓPTICO MEJORADO. El nuevo sensor Pure Pulse 2.0, aumenta el número de puntos de lectura sobre la muñeca, aumentando así su precisión. Todos los datos de variación de pulso quedarán reflejados en una gráfica para consultar en la app. Consiguiendo también una mejor monitorización del sueño.<br>✅ CARGA RÁPIDA Y BATERÍA. Incluye un cable imantado que se acopla perfectamente a los ping de carga de la parte trasera del reloj y proporciona una carga rápida que en sólo 12 minutos, conseguirás 24 horas de autonomía y en 40 minutos el 80% de su carga. El fabricante promete una autonomía de 6 días, evidentemente sin activar ninguna función, como el GPS, notificaciones , pantalla Always On y demás funciones. Todas estas funciones harás disminuir drásticamente su autonomía.<br>✅ ALEXA, SPOTIFY Y DREEZER. Cuenta con el asistente de Amazon( ahora, después de tres meses funciona). Los demás son previa suscripción claro. Pero ahí están para el que las crea necesarias.<br>✅ OTRAS CARACTERÍSTICAS.<br>- Pago por NFC, sólo en algunos bancos que vienen especificados en la web de Fitbit.<br>- Más de 20 modos deportivos. Función SmarTrack, que reconocerá el tipo de entrenamiento e iniciará la sesión por su cuenta.<br>- Resistente al agua, 50 metros de profundidad.<br><br>CONTRAS:<br>❌ Hay dos especificaciones y mejoras que llevan anunciando de manera oficial en su web desde su lanzamiento.<br>Pero luego ponían que serían operativas en una actualización a finales del 2020:<br>1.- MICRÓFONO Y ALTAVOZ. Características con las que podías recibir y contestar llamadas directamente desde el reloj. Recientemente han entrado en funcionamiento en la última actualización, demasiado tarde para mí gusto. Además creo que es duplicar funciones, ya que debes tener cerca el móvil para hablar, algo a lo que no le veo el sentido.<br>2.- GOOGLE ASSISTANT. Otra promesa que hicieron desde el principio y que también entraría en una actualización a finales de año. Lamentablemente esta promesa NO SE HA CUMPLIDO. En la app pone que no está disponible en mi región. Soy de Barcelona, o sea que tampoco estará toda España. UNA DECEPCIÓN TOTAL!!!<br>📢 En mi opinión, no se pueden crear unas expectativas en las especificaciones y luego decir que entrarán en una actualización a finales de año, ¡¡¡ DESPUÉS DE TRES MESES DE SU LANZAMIENTO!!! 🤬<br>❌ APP GRATUITA A MEDIAS. La app está bien, aunque me costó bastante enlazar mi móvil con el Versa 3 y os aseguro que estoy muy acostumbrado a manejar equipos electrónicos. Lo malo de la app es que si quieres visualizar las gráficas y monitoreo completos de toda tu actividad diaria, TIENES QUE PAGAR UNA SUSCRIPCIÓN QUE NO ES NADA BARATA. EN SERIO? O sea que yo pago un precio por todos los componentes, características y especificaciones que tiene el Fitbit Versa 3, pero si luego quiero sacarle el máximo partido y conocer todos los datos recogidos de mi actividad, TENGO QUE PAGAR OTRA VEZ!!! Lo veo ilógico y ABUSIVO.<br><br>CONCLUSIÓN:<br>- El nuevo VERSA 3 no es un mal reloj, pero creo que se han quedado en tierra de nadie.<br>Me explico:<br>- No se puede competir con un reloj deportivo como los Polar o Garmin, y tampoco pueden competir con un smartwatch pensado para monitorizar la salud (aunque se han esforzado en este punto), donde los Apple están muy por encima.<br>Pienso que hay mejores opciones que han lanzado sus competidores y rivales, en estos tres meses de espectativas incumplidas, a un precio muy competitivo y con mejores especificaciones y sin pagar de más para ver todos los datos recogidos en la app.<br>Yo NO ME LO COMPRARÍA, porque pienso que no han cumplido lo que prometían.<br>Por lo tanto NO LO RECOMIENDO.<br><br> ************************\"********<br><br>[ NOTICIA DE ÚLTIMA HORA 29/06/2021.<br>Actualización y GOOGLE ASSISTANT funcionando, ¡ POR FIN !<br>Creo que era justo decirlo. Aún así, mi opinión no cambia. Llegan muyyyyyy tarde y todo lo demás sigue igual🤷 ]<br><br> ************************\"********<br><br>Espero que os sea útil mi opinión y experiencia con este producto 👍</span><span class=\"cr-translated-review-content aok-hidden\"></span>     </div><div class=\"a-expander-header a-expander-partial-collapse-header\"><div class=\"a-expander-content-fade\"></div><a href=\"javascript:void(0)\" data-csa-c-func-deps=\"aui-da-a-expander-toggle\" data-csa-c-type=\"widget\" data-csa-interaction-events=\"click\" data-hook=\"expand-collapse-read-more-less\" aria-label=\"Toggle full review text\" aria-expanded=\"false\" role=\"button\" data-action=\"a-expander-toggle\" class=\"a-declarative\" data-a-expander-toggle=\"{&quot;allowLinkDefault&quot;:true, &quot;expand_prompt&quot;:&quot;Read more&quot;, &quot;collapse_prompt&quot;:&quot;Read less&quot;}\"><i class=\"a-icon a-icon-extender-expand\"></i><span class=\"a-expander-prompt\">Read more</span></a></div></div>",
+        "date": {
+          "raw": "Reviewed in Spain on December 22, 2020",
+          "utc": "2020-12-22T00:00:00.000Z"
+        },
+        "helpful_votes": 649,
+        "id": "R15JJR8Q7EGEWU",
+        "is_global_review": true,
+        "profile": {
+          "image": "https://images-eu.ssl-images-amazon.com/images/S/amazon-avatars-global/fbadba9b-1080-4f2a-acb3-3e96b4c03276._CR0,0,375,375_SX48_.jpg",
+          "name": "Nachove"
+        },
+        "rating": 3,
+        "review_country": "es",
+        "title": "FITBIT VERSA 3, MUCHAS NOVEDADES PERO...",
+        "verified_purchase": false,
+        "videos": [
+          {
+            "image": "https://images-na.ssl-images-amazon.com/images/I/917gm27dmWS._SY256.png",
+            "video": "https://images-na.ssl-images-amazon.com/images/I/A1SD43KY+eS.mp4"
+          }
+        ],
+        "vine_program": true,
+        "vine_program_free_product": true
+      },
+      {
+        "body": "The new Versa 3 promises a lot, but ultimately it suffers from the inherent unreliability of all Fitbits. I have had several and all have failed in one way or another over the years, but one comment failure that I have had at some point with all Fitbits is difficulty to charge the device. Usually this occurs after several months, but with the New Versa 3, Fitbit have really excelled and produced a device which won't charge straight out of the box even though the charger is magnetised and snaps into place. After several resets and plugging into several different sockets, I still have no joy. It maybe that this is an isolated case and I just got unlucky. Time will tell I guess. In any case I will have to return the device to Amazon so its not a great start .  Update... got replacement from Amazon and guess what it wouldn’t charge either. Before you ask I am capable of charging a multitude of devices so this is not down to me!Read more",
+        "body_html": "<div data-a-expander-name=\"review_text_read_more\" data-a-expander-collapsed-height=\"300\" class=\"a-expander-collapsed-height a-row a-expander-container a-expander-partial-collapse-container\" style=\"max-height:300px\"><div data-hook=\"review-collapsed\" aria-expanded=\"false\" class=\"a-expander-content reviewText review-text-content a-expander-partial-collapse-content\">             <span>The new Versa 3 promises a lot, but ultimately it suffers from the inherent unreliability of all Fitbits. I have had several and all have failed in one way or another over the years, but one comment failure that I have had at some point with all Fitbits is difficulty to charge the device. Usually this occurs after several months, but with the New Versa 3, Fitbit have really excelled and produced a device which won't charge straight out of the box even though the charger is magnetised and snaps into place. After several resets and plugging into several different sockets, I still have no joy. It maybe that this is an isolated case and I just got unlucky. Time will tell I guess. In any case I will have to return the device to Amazon so its not a great start .<br><br>Update... got replacement from Amazon and guess what it wouldn’t charge either. Before you ask I am capable of charging a multitude of devices so this is not down to me!</span>   </div><div class=\"a-expander-header a-expander-partial-collapse-header\"><div class=\"a-expander-content-fade\"></div><a href=\"javascript:void(0)\" data-csa-c-func-deps=\"aui-da-a-expander-toggle\" data-csa-c-type=\"widget\" data-csa-interaction-events=\"click\" data-hook=\"expand-collapse-read-more-less\" aria-label=\"Toggle full review text\" aria-expanded=\"false\" role=\"button\" data-action=\"a-expander-toggle\" class=\"a-declarative\" data-a-expander-toggle=\"{&quot;allowLinkDefault&quot;:true, &quot;expand_prompt&quot;:&quot;Read more&quot;, &quot;collapse_prompt&quot;:&quot;Read less&quot;}\"><i class=\"a-icon a-icon-extender-expand\"></i><span class=\"a-expander-prompt\">Read more</span></a></div></div>",
+        "date": {
+          "raw": "Reviewed in the United Kingdom on September 28, 2020",
+          "utc": "2020-09-28T00:00:00.000Z"
+        },
+        "helpful_votes": 256,
+        "id": "RY4JQOXE383RK",
+        "is_global_review": true,
+        "profile": {
+          "name": "CNutbeem"
+        },
+        "rating": 1,
+        "review_country": "gb",
+        "title": "New Fitbit,  Same Old S***, I mean Problems",
+        "verified_purchase": true,
+        "vine_program": false
+      },
+      {
+        "body": "Auf Grund einiger Vorstellungsbeiträge zu diesem Gerät hab ich mich entschieden die Fitbit Versa 3 vorzubestellen. Mein Hauptgrund, mich für die Versa 3 zu entscheiden, war, dass angeblich ein Lautsprecher verbaut wird und man sie damit auch als \"Freisprecheinrichtung\" nutzen kann. Ich wollte nicht jedes Mal in meiner Tasche nach meinem Handy suchen müssen oder wenn man die Hände voll hat alles weglegen, sondern so einfach schnell Anrufe beantworten. Wie sich herausgestellt hat gibt es diese Funktion aber überhaupt nicht! Es wird in der Gebrauchsanweisung (Download direkt von Fitbit) & laut Infos aus der Fitbit Help-Community darauf hingewiesen, dass nicht damit telefoniert werden kann. Man kann Anrufe lediglich annehmen & ablehnen (bei Annahme muss man dann erst wieder das Telefon zu Hand nehmen). Ein anderer Rezensent schreibt auch, dass Telefonate möglich sind... das fragt man sich ob er dieses Gerät überhaupt getestet hat oder ob er lediglich die Infos aus solchen Produktvorstellungen kopiert und eingefügt hat. Wenn jemand weiß wie es geht, dann freue ich mich natürlich über Info dazu. Da für mich der Hauptgrund das Telefonieren mit der Uhr war und für mich das GPS nicht wirklich wichtig ist, da mein Handy normal sowieso dabei ist, hätte ich mir die knapp 80 Euro mehr sparen können und dafür die Versa 2 kaufen können... die hätte es wenigstens auch in ansprechenderen Farben gegeben. Ich hoffe jetzt weiterhin auf ein Update, dass das Telefonieren ermöglicht - da ja die Hardware angeblich vorhanden ist, sollte sich das problemlos via Update einrichten lassen.  Sonst wirkt das Gerät schön, abgesehen davon, dass ich nach einem Tag daheim auf der Couch beim Häkeln schon eine kleine Mini-Schramme im Alugehäuse unter dem Display habe (ohne irgendwo angestoßen zu sein)... Ob das bei einer Fitness-Uhr normal ist sei dahingestellt. Ich hätte auf jeden Fall erwartet, dass sie unempfindlicher ist.  Auffällig war, dass es auch bei der Schreibtischarbeit (tippen am PC) einige Schritte gezählt hat. Das konnte ich lösen indem ich die Handgelenkseinstellung auf \"dominant\" umgestellt habe (Dominant = wenn man die Uhr auf der Seite trägt mit der man schreibt oder isst, daher reagiert sie nicht auf alle Bewegungen so sensibel).  Die Versa 3 reagiert aber hervorragend und lässt sich flüssig bedienen. Sie kam mit etwas über 60% Akkuladung. Erste Bedienung am Freitagabend. Trotz viel herumspielen und einstellen hatte ich am Sonntagabend noch knapp 20% Akkuladung. Wenn das so bleibt dann bin ich auf jeden Fall mit der Akkuleistung sehr zufrieden. Habe sie dennoch Sonntagabend geladen und sie war binnen 2 Stunden komplett geladen. Clock-Faces sind noch nicht allzu viele verfügbar, das wird sich wahrscheinlich auch noch ändern da sie ja ganz neu auf dem Markt ist. Ob sie wirklich so wasserdicht ist wie beschrieben kann ich derzeit noch nicht beantworten, habe sie lediglich kurz komplett unter fließendes Wasser gehalten, was sie problemlos überstanden hat.  Soviel zum Fazit nach 2,5 Tagen durchgehender Nutzung - mal schauen wie es in einem halben Jahr aussieht.Read more",
+        "body_html": "<div data-a-expander-name=\"review_text_read_more\" data-a-expander-collapsed-height=\"300\" class=\"a-expander-collapsed-height a-row a-expander-container a-expander-partial-collapse-container\" style=\"max-height:300px\"><div data-hook=\"review-collapsed\" aria-expanded=\"false\" class=\"a-expander-content reviewText review-text-content a-expander-partial-collapse-content\">           <span class=\"cr-original-review-content\">Auf Grund einiger Vorstellungsbeiträge zu diesem Gerät hab ich mich entschieden die Fitbit Versa 3 vorzubestellen.<br>Mein Hauptgrund, mich für die Versa 3 zu entscheiden, war, dass angeblich ein Lautsprecher verbaut wird und man sie damit auch als \"Freisprecheinrichtung\" nutzen kann. Ich wollte nicht jedes Mal in meiner Tasche nach meinem Handy suchen müssen oder wenn man die Hände voll hat alles weglegen, sondern so einfach schnell Anrufe beantworten.<br>Wie sich herausgestellt hat gibt es diese Funktion aber überhaupt nicht! Es wird in der Gebrauchsanweisung (Download direkt von Fitbit) &amp; laut Infos aus der Fitbit Help-Community darauf hingewiesen, dass nicht damit telefoniert werden kann. Man kann Anrufe lediglich annehmen &amp; ablehnen (bei Annahme muss man dann erst wieder das Telefon zu Hand nehmen).<br>Ein anderer Rezensent schreibt auch, dass Telefonate möglich sind... das fragt man sich ob er dieses Gerät überhaupt getestet hat oder ob er lediglich die Infos aus solchen Produktvorstellungen kopiert und eingefügt hat.<br>Wenn jemand weiß wie es geht, dann freue ich mich natürlich über Info dazu.<br>Da für mich der Hauptgrund das Telefonieren mit der Uhr war und für mich das GPS nicht wirklich wichtig ist, da mein Handy normal sowieso dabei ist, hätte ich mir die knapp 80 Euro mehr sparen können und dafür die Versa 2 kaufen können... die hätte es wenigstens auch in ansprechenderen Farben gegeben.<br>Ich hoffe jetzt weiterhin auf ein Update, dass das Telefonieren ermöglicht - da ja die Hardware angeblich vorhanden ist, sollte sich das problemlos via Update einrichten lassen.<br><br>Sonst wirkt das Gerät schön, abgesehen davon, dass ich nach einem Tag daheim auf der Couch beim Häkeln schon eine kleine Mini-Schramme im Alugehäuse unter dem Display habe (ohne irgendwo angestoßen zu sein)... Ob das bei einer Fitness-Uhr normal ist sei dahingestellt. Ich hätte auf jeden Fall erwartet, dass sie unempfindlicher ist.<br><br>Auffällig war, dass es auch bei der Schreibtischarbeit (tippen am PC) einige Schritte gezählt hat. Das konnte ich lösen indem ich die Handgelenkseinstellung auf \"dominant\" umgestellt habe (Dominant = wenn man die Uhr auf der Seite trägt mit der man schreibt oder isst, daher reagiert sie nicht auf alle Bewegungen so sensibel).<br><br>Die Versa 3 reagiert aber hervorragend und lässt sich flüssig bedienen.<br>Sie kam mit etwas über 60% Akkuladung. Erste Bedienung am Freitagabend. Trotz viel herumspielen und einstellen hatte ich am Sonntagabend noch knapp 20% Akkuladung. Wenn das so bleibt dann bin ich auf jeden Fall mit der Akkuleistung sehr zufrieden. Habe sie dennoch Sonntagabend geladen und sie war binnen 2 Stunden komplett geladen.<br>Clock-Faces sind noch nicht allzu viele verfügbar, das wird sich wahrscheinlich auch noch ändern da sie ja ganz neu auf dem Markt ist.<br>Ob sie wirklich so wasserdicht ist wie beschrieben kann ich derzeit noch nicht beantworten, habe sie lediglich kurz komplett unter fließendes Wasser gehalten, was sie problemlos überstanden hat.<br><br>Soviel zum Fazit nach 2,5 Tagen durchgehender Nutzung - mal schauen wie es in einem halben Jahr aussieht.</span><span class=\"cr-translated-review-content aok-hidden\"></span>     </div><div class=\"a-expander-header a-expander-partial-collapse-header\"><div class=\"a-expander-content-fade\"></div><a href=\"javascript:void(0)\" data-csa-c-func-deps=\"aui-da-a-expander-toggle\" data-csa-c-type=\"widget\" data-csa-interaction-events=\"click\" data-hook=\"expand-collapse-read-more-less\" aria-label=\"Toggle full review text\" aria-expanded=\"false\" role=\"button\" data-action=\"a-expander-toggle\" class=\"a-declarative\" data-a-expander-toggle=\"{&quot;allowLinkDefault&quot;:true, &quot;expand_prompt&quot;:&quot;Read more&quot;, &quot;collapse_prompt&quot;:&quot;Read less&quot;}\"><i class=\"a-icon a-icon-extender-expand\"></i><span class=\"a-expander-prompt\">Read more</span></a></div></div>",
+        "date": {
+          "raw": "Reviewed in Germany on September 28, 2020",
+          "utc": "2020-09-28T00:00:00.000Z"
+        },
+        "helpful_votes": 285,
+        "id": "RP4GH8M1TQY7M",
+        "is_global_review": true,
+        "profile": {
+          "name": "T.Habs"
+        },
+        "rating": 3,
+        "review_country": "de",
+        "title": "Leider Falschinformationen... Sonst recht in Ordnung",
+        "verified_purchase": true,
+        "vine_program": false
+      },
+      {
+        "body": "I LOVE this fitbit! Trying to get fitter and needed some motivation to get going so I thought I would treat myself to a new fitbit. And I am so glad I did! Firstly, the fitbit came with 60% battery charge so I could use it straight out of the box. It comes with both a small and a large strap. Unlike my previous fitbit, changing straps is super easy. Very easy to connect to the app. Unfortunately one down side is needing to subscribe to the music providers to be able to add music, would be great if amazon music was included. What I love is the simple activity tracker with the built in GPS. Im no marathon runner but being able to just head out the door without needing to carry my phone and just track with the watch is brilliant! The watch is very easy to navigate, GPS kicks in quickly and off you go. Once home it sends it over to the app so you can see a nice map of where you have been. Love the additional features that remind me to get up and move. Lots more features to explore further. All in all I'm very happy with it. 6 Week Update So since owning this fitbit I'm still very happy and super impressed! The battery life is fantastic! Lasts for days, only needs a short charge to give it a decent amount of battery. The best features is the 'get active' feature. I bought this fitbit to increase my activity level. Working at home and just being a bit lazy has seen my activity levels plummet, sometimes not even reaching 1000 steps per day (!) And I could feel my fitness levels have dropped. Once the fitbit knew my average daily step count, the get active feature has set me a challenge to increase my steps over 2 weeks, first to 4000 steps per day and now after achieving that I'm achieving 6600 steps per day as my next target. It has helped me learn how to add activity to my day, I'm not going out and having massive walks, I'm getting up and moving more around the house, getting up and walking for breaks during the day, doing running on the spot for 5 minutes etc. anything to up my step count and surprisingly I have realised I can achieve quite alot of steps in a relatively short period of time. Next I'm hoping to increase to 8000 steps per day which I already feel is achievable, and after that to hit the golden 10,000 per day. All on track to achieve this within 8 weeks or starting! It really has changed my life. I can also feel a real improvement in my fitness levels and I now have way more energy during the day and am sleeping much better at night.Read more",
+        "body_html": "<div data-a-expander-name=\"review_text_read_more\" data-a-expander-collapsed-height=\"300\" class=\"a-expander-collapsed-height a-row a-expander-container a-expander-partial-collapse-container\" style=\"max-height:300px\"><div data-hook=\"review-collapsed\" aria-expanded=\"false\" class=\"a-expander-content reviewText review-text-content a-expander-partial-collapse-content\">             <span>I LOVE this fitbit! Trying to get fitter and needed some motivation to get going so I thought I would treat myself to a new fitbit. And I am so glad I did! Firstly, the fitbit came with 60% battery charge so I could use it straight out of the box. It comes with both a small and a large strap. Unlike my previous fitbit, changing straps is super easy.<br>Very easy to connect to the app. Unfortunately one down side is needing to subscribe to the music providers to be able to add music, would be great if amazon music was included.<br>What I love is the simple activity tracker with the built in GPS. Im no marathon runner but being able to just head out the door without needing to carry my phone and just track with the watch is brilliant! The watch is very easy to navigate, GPS kicks in quickly and off you go. Once home it sends it over to the app so you can see a nice map of where you have been. Love the additional features that remind me to get up and move. Lots more features to explore further. All in all I'm very happy with it.<br>6 Week Update<br>So since owning this fitbit I'm still very happy and super impressed!<br>The battery life is fantastic! Lasts for days, only needs a short charge to give it a decent amount of battery.<br>The best features is the 'get active' feature. I bought this fitbit to increase my activity level. Working at home and just being a bit lazy has seen my activity levels plummet, sometimes not even reaching 1000 steps per day (!) And I could feel my fitness levels have dropped. Once the fitbit knew my average daily step count, the get active feature has set me a challenge to increase my steps over 2 weeks, first to 4000 steps per day and now after achieving that I'm achieving 6600 steps per day as my next target. It has helped me learn how to add activity to my day, I'm not going out and having massive walks, I'm getting up and moving more around the house, getting up and walking for breaks during the day, doing running on the spot for 5 minutes etc. anything to up my step count and surprisingly I have realised I can achieve quite alot of steps in a relatively short period of time. Next I'm hoping to increase to 8000 steps per day which I already feel is achievable, and after that to hit the golden 10,000 per day. All on track to achieve this within 8 weeks or starting! It really has changed my life. I can also feel a real improvement in my fitness levels and I now have way more energy during the day and am sleeping much better at night.</span>   </div><div class=\"a-expander-header a-expander-partial-collapse-header\"><div class=\"a-expander-content-fade\"></div><a href=\"javascript:void(0)\" data-csa-c-func-deps=\"aui-da-a-expander-toggle\" data-csa-c-type=\"widget\" data-csa-interaction-events=\"click\" data-hook=\"expand-collapse-read-more-less\" aria-label=\"Toggle full review text\" aria-expanded=\"false\" role=\"button\" data-action=\"a-expander-toggle\" class=\"a-declarative\" data-a-expander-toggle=\"{&quot;allowLinkDefault&quot;:true, &quot;expand_prompt&quot;:&quot;Read more&quot;, &quot;collapse_prompt&quot;:&quot;Read less&quot;}\"><i class=\"a-icon a-icon-extender-expand\"></i><span class=\"a-expander-prompt\">Read more</span></a></div></div>",
+        "date": {
+          "raw": "Reviewed in the United Kingdom on September 29, 2020",
+          "utc": "2020-09-29T00:00:00.000Z"
+        },
+        "helpful_votes": 114,
+        "id": "R2ZR2P39CBDMKL",
+        "is_global_review": true,
+        "profile": {
+          "image": "https://images-eu.ssl-images-amazon.com/images/S/amazon-avatars-global/7b3e1edd-7606-407a-9056-d2ece07f3f6c._CR29,0,441,441_SX48_.jpg",
+          "name": "Hen"
+        },
+        "rating": 5,
+        "review_country": "gb",
+        "title": "Super duper fitbit! Review includes 6 week update",
+        "verified_purchase": true,
+        "vine_program": false
+      }
+    ],
+    "variant_asins_flat": "B08DFGWDZR,B08W2GKGR4,B08DFPZG71,B08DFPV5Y2",
+    "variants": [
+      {
+        "asin": "B08DFGWDZR",
+        "dimensions": [
+          {
+            "name": "Color",
+            "value": "Pink/Gold"
+          }
+        ],
+        "images": [
+          {
+            "link": "https://m.media-amazon.com/images/I/71s-OXhQNDL._AC_SL1500_.jpg",
+            "variant": "MAIN"
+          },
+          {
+            "link": "https://m.media-amazon.com/images/I/71LNcpI6cDL._AC_SL1500_.jpg",
+            "variant": "PT01"
+          },
+          {
+            "link": "https://m.media-amazon.com/images/I/719Ll4KfvzL._AC_SL1500_.jpg",
+            "variant": "PT02"
+          },
+          {
+            "link": "https://m.media-amazon.com/images/I/71li9obutTL._AC_SL1500_.jpg",
+            "variant": "PT03"
+          },
+          {
+            "link": "https://m.media-amazon.com/images/I/71PKWSamrCL._AC_SL1500_.jpg",
+            "variant": "PT04"
+          },
+          {
+            "link": "https://m.media-amazon.com/images/I/712eQ4d-A7L._AC_SL1500_.jpg",
+            "variant": "PT05"
+          },
+          {
+            "link": "https://m.media-amazon.com/images/I/51yGkrT1NSS._AC_SL1110_.jpg",
+            "variant": "PT06"
+          },
+          {
+            "link": "https://m.media-amazon.com/images/I/51-91V1OC8S._AC_SL1110_.jpg",
+            "variant": "PT07"
+          },
+          {
+            "link": "https://m.media-amazon.com/images/I/41v6lUCTfmS._AC_SL1110_.jpg",
+            "variant": "PT08"
+          },
+          {
+            "link": "https://m.media-amazon.com/images/I/61DnPRIu3oS._AC_SL1110_.jpg",
+            "variant": "PT09"
+          }
+        ],
+        "is_current_product": false,
+        "link": "https://www.amazon.com/dp/B08DFGWDZR?th=1&psc=1",
+        "main_image": "https://m.media-amazon.com/images/I/71s-OXhQNDL._AC_SL1500_.jpg",
+        "price": {
+          "currency": "USD",
+          "raw": "$179.00",
+          "symbol": "$",
+          "value": 179
+        },
+        "title": "Pink/Gold"
+      },
+      {
+        "asin": "B08W2GKGR4",
+        "dimensions": [
+          {
+            "name": "Color",
+            "value": "Thistle"
+          }
+        ],
+        "images": [
+          {
+            "link": "https://m.media-amazon.com/images/I/6162IS3ziJS._AC_SL1500_.jpg",
+            "variant": "MAIN"
+          },
+          {
+            "link": "https://m.media-amazon.com/images/I/71dB2jR8D6L._AC_SL1500_.jpg",
+            "variant": "PT01"
+          },
+          {
+            "link": "https://m.media-amazon.com/images/I/71SAIWK7mdL._AC_SL1500_.jpg",
+            "variant": "PT02"
+          },
+          {
+            "link": "https://m.media-amazon.com/images/I/71Bmou8uDGL._AC_SL1500_.jpg",
+            "variant": "PT03"
+          },
+          {
+            "link": "https://m.media-amazon.com/images/I/713awK77ziL._AC_SL1500_.jpg",
+            "variant": "PT05"
+          },
+          {
+            "link": "https://m.media-amazon.com/images/I/71GcG5baElL._AC_SL1500_.jpg",
+            "variant": "PT06"
+          }
+        ],
+        "is_current_product": false,
+        "link": "https://www.amazon.com/dp/B08W2GKGR4?th=1&psc=1",
+        "main_image": "https://m.media-amazon.com/images/I/6162IS3ziJS._AC_SL1500_.jpg",
+        "price": {
+          "currency": "USD",
+          "raw": "$188.99",
+          "symbol": "$",
+          "value": 188.99
+        },
+        "title": "Thistle"
+      },
+      {
+        "asin": "B08DFPZG71",
+        "dimensions": [
+          {
+            "name": "Color",
+            "value": "Midnight Blue/Gold"
+          }
+        ],
+        "images": [
+          {
+            "link": "https://m.media-amazon.com/images/I/61FKUFQ7XiS._AC_SL1500_.jpg",
+            "variant": "MAIN"
+          },
+          {
+            "link": "https://m.media-amazon.com/images/I/71auITiyv7L._AC_SL1500_.jpg",
+            "variant": "PT01"
+          },
+          {
+            "link": "https://m.media-amazon.com/images/I/719h7DQd+eL._AC_SL1500_.jpg",
+            "variant": "PT02"
+          },
+          {
+            "link": "https://m.media-amazon.com/images/I/71VD6cJIRvL._AC_SL1500_.jpg",
+            "variant": "PT03"
+          },
+          {
+            "link": "https://m.media-amazon.com/images/I/719r+0EXHBL._AC_SL1500_.jpg",
+            "variant": "PT04"
+          },
+          {
+            "link": "https://m.media-amazon.com/images/I/71DOCzP6eLL._AC_SL1500_.jpg",
+            "variant": "PT05"
+          },
+          {
+            "link": "https://m.media-amazon.com/images/I/71QQDOgTMHL._AC_SL1500_.jpg",
+            "variant": "PT06"
+          },
+          {
+            "link": "https://m.media-amazon.com/images/I/61YWhGOwv2S._AC_SL1500_.jpg",
+            "variant": "PT07"
+          },
+          {
+            "link": "https://m.media-amazon.com/images/I/510s0yDrdaL._AC_SL1110_.jpg",
+            "variant": "PT08"
+          }
+        ],
+        "is_current_product": false,
+        "link": "https://www.amazon.com/dp/B08DFPZG71?th=1&psc=1",
+        "main_image": "https://m.media-amazon.com/images/I/61FKUFQ7XiS._AC_SL1500_.jpg",
+        "price": {
+          "currency": "USD",
+          "raw": "$179.30",
+          "symbol": "$",
+          "value": 179.3
+        },
+        "title": "Midnight Blue/Gold"
+      },
+      {
+        "asin": "B08DFPV5Y2",
+        "dimensions": [
+          {
+            "name": "Color",
+            "value": "Black/Black"
+          }
+        ],
+        "images": [
+          {
+            "link": "https://m.media-amazon.com/images/I/61ZXwnqqOuS._AC_SL1500_.jpg",
+            "variant": "MAIN"
+          },
+          {
+            "link": "https://m.media-amazon.com/images/I/71-kdfCm5aL._AC_SL1500_.jpg",
+            "variant": "PT01"
+          },
+          {
+            "link": "https://m.media-amazon.com/images/I/71WMixwiaAL._AC_SL1500_.jpg",
+            "variant": "PT02"
+          },
+          {
+            "link": "https://m.media-amazon.com/images/I/715GZPpQxLL._AC_SL1500_.jpg",
+            "variant": "PT03"
+          },
+          {
+            "link": "https://m.media-amazon.com/images/I/71DMaklH4IL._AC_SL1500_.jpg",
+            "variant": "PT04"
+          },
+          {
+            "link": "https://m.media-amazon.com/images/I/71Kug5cB1sL._AC_SL1500_.jpg",
+            "variant": "PT05"
+          }
+        ],
+        "is_current_product": true,
+        "link": "https://www.amazon.com/dp/B08DFPV5Y2?th=1&psc=1",
+        "main_image": "https://m.media-amazon.com/images/I/61ZXwnqqOuS._AC_SL1500_.jpg",
+        "price": {
+          "currency": "USD",
+          "raw": "$160.00",
+          "symbol": "$",
+          "value": 160
+        },
+        "title": "Black/Black"
+      }
+    ],
+    "videos": [
+      {
+        "duration_seconds": 61,
+        "group_id": "IB_G1",
+        "group_type": "videos_for_this_product",
+        "height": 480,
+        "is_hero_video": false,
+        "link": "https://m.media-amazon.com/images/S/vse-vms-transcoding-artifact-us-east-1-prod/a78f8ab8-d434-414d-bdfd-968268330b83/default.jobtemplate.mp4.480.mp4",
+        "thumbnail": "https://m.media-amazon.com/images/I/41dl8VxNYzL.SX522_.jpg",
+        "title": "Fitbit Versa 3 Product Overview Video",
+        "variant": "MAIN",
+        "width": 854
+      },
+      {
+        "duration_seconds": 141,
+        "group_id": "IB_G2",
+        "group_type": "related_videos",
+        "height": 480,
+        "is_hero_video": false,
+        "link": "https://m.media-amazon.com/images/S/vse-vms-transcoding-artifact-us-east-1-prod/200ed7cb-32e5-4be1-80ff-72a7a2c9c0b5/default.jobtemplate.mp4.480.mp4",
+        "thumbnail": "https://m.media-amazon.com/images/I/91KRuxaGEaL.SX522_.jpg",
+        "title": "Better than Versa 2: GPS & No-phone connection is awesome!",
+        "variant": "MAIN",
+        "width": 854
+      },
+      {
+        "duration_seconds": 256,
+        "group_id": "IB_G2",
+        "group_type": "related_videos",
+        "height": 480,
+        "is_hero_video": false,
+        "link": "https://m.media-amazon.com/images/S/vse-vms-transcoding-artifact-us-east-1-prod/fe2bf7bf-50d1-43e1-8169-0ef5869b9a12/default.jobtemplate.mp4.480.mp4",
+        "thumbnail": "https://m.media-amazon.com/images/I/61K-g-GDKUL.SX522_.jpg",
+        "title": "Fitbit Versa 3 Review - Watch Before You Buy",
+        "variant": "MAIN",
+        "width": 854
+      },
+      {
+        "duration_seconds": 213,
+        "group_id": "IB_G2",
+        "group_type": "related_videos",
+        "height": 480,
+        "is_hero_video": false,
+        "link": "https://m.media-amazon.com/images/S/vse-vms-transcoding-artifact-us-east-1-prod/c6681927-fd38-4c57-8407-f657dc5e5dfe/default.jobtemplate.mp4.480.mp4",
+        "thumbnail": "https://m.media-amazon.com/images/I/A1Ek2EhPLVL.SX522_.png",
+        "title": "Our Point of View on the Fitbit Versa 3 Fitness Smartwatch",
+        "variant": "MAIN",
+        "width": 854
+      },
+      {
+        "duration_seconds": 83,
+        "group_id": "IB_G2",
+        "group_type": "related_videos",
+        "height": 480,
+        "is_hero_video": false,
+        "link": "https://m.media-amazon.com/images/S/vse-vms-transcoding-artifact-us-east-1-prod/64e5b0cd-3bc2-4b38-b3f5-4ef8ac838364/default.jobtemplate.mp4.480.mp4",
+        "thumbnail": "https://m.media-amazon.com/images/I/51PDtSo3csL.SX522_.jpg",
+        "title": "Fitbit Versa 3 - 5 things to know before you buy",
+        "variant": "MAIN",
+        "width": 854
+      }
+    ],
+    "videos_count": 5
+  },
+  "request_info": {
+    "credits_remaining": 98,
+    "credits_used": 2,
+    "credits_used_this_request": 1,
+    "success": true
+  },
+  "request_metadata": {
+    "amazon_url": "https://www.amazon.com/dp/B08DFPV5Y2?th=1&psc=1",
+    "created_at": "2022-06-23T10:25:50.202Z",
+    "processed_at": "2022-06-23T10:25:56.308Z",
+    "total_time_taken": 6.11
+  },
+  "request_parameters": {
+    "amazon_domain": "amazon.com",
+    "gtin": "0811138039813",
+    "type": "product"
+  },
+  "sponsored_products": [
+    {
+      "asin": "B0912YVLTJ",
+      "image": "https://m.media-amazon.com/images/I/411eA+XvVRL._AC_SR160,160_.jpg",
+      "is_prime": true,
+      "link": "https://www.amazon.com/gp/slredirect/picassoRedirect.html/ref=sspa_dk_detail_0?ie=UTF8&adId=A0893301VZCTUYRE47VA&qualifier=1655979951&id=1864026780669768&widgetName=sp_detail2&url=%2Fdp%2FB0912YVLTJ%2Fref%3Dsspa_dk_detail_0%3Fpsc%3D1%26pd_rd_i%3DB0912YVLTJ%26pd_rd_w%3D1zZ1c%26content-id%3Damzn1.sym.f9710d1d-8ae7-460f-b546-5e6e42fbe82a%26pf_rd_p%3Df9710d1d-8ae7-460f-b546-5e6e42fbe82a%26pf_rd_r%3D5GZH6PEM9FZ9VY43CDA6%26pd_rd_wg%3DShBRB%26pd_rd_r%3Def42af67-b956-40af-aada-22e786025180%26s%3Dhpc&sp_csd=d2lkZ2V0TmFtZT1zcF9kZXRhaWwy",
+      "price": {
+        "currency": "USD",
+        "raw": "$228.06",
+        "symbol": "$",
+        "value": 228.06
+      },
+      "rating": 4.5,
+      "ratings_total": 707,
+      "title": "Polar Ignite 2 - Fitness Smartwatch with Integrated GPS - Wrist-Based Heart Monitor - Personalized Guidance for Workouts, Recovery and Sleep Tracking - Music Controls, Weather, Phone Notifications"
+    },
+    {
+      "asin": "B08PCZN26P",
+      "image": "https://m.media-amazon.com/images/I/41RTXpmgl7L._AC_SR160,160_.jpg",
+      "is_prime": true,
+      "link": "https://www.amazon.com/gp/slredirect/picassoRedirect.html/ref=sspa_dk_detail_1?ie=UTF8&adId=A06612081G48UEJDPXRNQ&qualifier=1655979951&id=1864026780669768&widgetName=sp_detail2&url=%2Fdp%2FB08PCZN26P%2Fref%3Dsspa_dk_detail_1%3Fpsc%3D1%26pd_rd_i%3DB08PCZN26P%26pd_rd_w%3D1zZ1c%26content-id%3Damzn1.sym.f9710d1d-8ae7-460f-b546-5e6e42fbe82a%26pf_rd_p%3Df9710d1d-8ae7-460f-b546-5e6e42fbe82a%26pf_rd_r%3D5GZH6PEM9FZ9VY43CDA6%26pd_rd_wg%3DShBRB%26pd_rd_r%3Def42af67-b956-40af-aada-22e786025180%26s%3Dhpc&sp_csd=d2lkZ2V0TmFtZT1zcF9kZXRhaWwy",
+      "price": {
+        "currency": "USD",
+        "raw": "$139.99",
+        "symbol": "$",
+        "value": 139.99
+      },
+      "rating": 4,
+      "ratings_total": 12450,
+      "title": "Amazfit GTS 2e Smart Watch for Men, Alexa Built-In, Health & Fitness Tracker with GPS, 90 Sports Modes, 14 Day Battery Life, Blood Oxygen Heart Rate Sleep Monitoring, 5 ATM Waterproof, Black"
+    },
+    {
+      "asin": "B08HR8QYM1",
+      "image": "https://m.media-amazon.com/images/I/41FduuPCZ9L._AC_SR160,160_.jpg",
+      "is_prime": true,
+      "link": "https://www.amazon.com/gp/slredirect/picassoRedirect.html/ref=sspa_dk_detail_2?ie=UTF8&adId=A00401022QYKLXRF6QL34&qualifier=1655979951&id=1864026780669768&widgetName=sp_detail2&url=%2Fdp%2FB08HR8QYM1%2Fref%3Dsspa_dk_detail_2%3Fpsc%3D1%26pd_rd_i%3DB08HR8QYM1%26pd_rd_w%3D1zZ1c%26content-id%3Damzn1.sym.f9710d1d-8ae7-460f-b546-5e6e42fbe82a%26pf_rd_p%3Df9710d1d-8ae7-460f-b546-5e6e42fbe82a%26pf_rd_r%3D5GZH6PEM9FZ9VY43CDA6%26pd_rd_wg%3DShBRB%26pd_rd_r%3Def42af67-b956-40af-aada-22e786025180%26s%3Dhpc&sp_csd=d2lkZ2V0TmFtZT1zcF9kZXRhaWwy",
+      "price": {
+        "currency": "USD",
+        "raw": "$179.99",
+        "symbol": "$",
+        "value": 179.99
+      },
+      "rating": 4,
+      "ratings_total": 3325,
+      "title": "Amazfit GTS 2 Smart Watch for Android iPhone, Bluetooth Phone Calls, Alexa GPS Built-In, Fitness Sports Watch for Men Women, 90 Sports Modes, Blood Oxygen Heart Rate Sleep Tracking, Waterproof, Gray"
+    },
+    {
+      "asin": "B07R2YWVW8",
+      "image": "https://m.media-amazon.com/images/I/41Nv4P3v8gL._AC_SR160,160_.jpg",
+      "is_prime": true,
+      "link": "https://www.amazon.com/gp/slredirect/picassoRedirect.html/ref=sspa_dk_detail_3?ie=UTF8&adId=A0450880DOPRUDC71T3Z&qualifier=1655979951&id=1864026780669768&widgetName=sp_detail2&url=%2Fdp%2FB07R2YWVW8%2Fref%3Dsspa_dk_detail_3%3Fpsc%3D1%26pd_rd_i%3DB07R2YWVW8%26pd_rd_w%3D1zZ1c%26content-id%3Damzn1.sym.f9710d1d-8ae7-460f-b546-5e6e42fbe82a%26pf_rd_p%3Df9710d1d-8ae7-460f-b546-5e6e42fbe82a%26pf_rd_r%3D5GZH6PEM9FZ9VY43CDA6%26pd_rd_wg%3DShBRB%26pd_rd_r%3Def42af67-b956-40af-aada-22e786025180%26s%3Dhpc&sp_csd=d2lkZ2V0TmFtZT1zcF9kZXRhaWwy",
+      "price": {
+        "currency": "USD",
+        "raw": "$139.99",
+        "symbol": "$",
+        "value": 139.99
+      },
+      "rating": 4.5,
+      "ratings_total": 5283,
+      "title": "Garmin Forerunner 45, 42mm Easy-to-use GPS Running Watch with Coach Free Training Plan Support, Black"
+    },
+    {
+      "asin": "B07SLMHG3M",
+      "image": "https://m.media-amazon.com/images/I/41B8G-cq9VL._AC_SR160,160_.jpg",
+      "is_prime": true,
+      "link": "https://www.amazon.com/gp/slredirect/picassoRedirect.html/ref=sspa_dk_detail_4?ie=UTF8&adId=A09292413BG1NV8W1ZR3B&qualifier=1655979951&id=1864026780669768&widgetName=sp_detail2&url=%2Fdp%2FB07SLMHG3M%2Fref%3Dsspa_dk_detail_4%3Fpsc%3D1%26pd_rd_i%3DB07SLMHG3M%26pd_rd_w%3D1zZ1c%26content-id%3Damzn1.sym.f9710d1d-8ae7-460f-b546-5e6e42fbe82a%26pf_rd_p%3Df9710d1d-8ae7-460f-b546-5e6e42fbe82a%26pf_rd_r%3D5GZH6PEM9FZ9VY43CDA6%26pd_rd_wg%3DShBRB%26pd_rd_r%3Def42af67-b956-40af-aada-22e786025180%26s%3Dhpc&sp_csd=d2lkZ2V0TmFtZT1zcF9kZXRhaWwy",
+      "price": {
+        "currency": "USD",
+        "raw": "$119.00",
+        "symbol": "$",
+        "value": 119
+      },
+      "rating": 4.5,
+      "ratings_total": 1631,
+      "title": "SonoHealth Portable EKG Heart Rate Monitor | Wireless Handheld Home ECG Cardio & Electrocardiogram Machine | Biofeedback Finger & Chest Leads View Irregular Cardiac Arrhythmia Vitals on Mobile Phone"
+    },
+    {
+      "asin": "B082TYT6X4",
+      "image": "https://m.media-amazon.com/images/I/41qOC-mZJ1L._AC_SR160,160_.jpg",
+      "is_prime": true,
+      "link": "https://www.amazon.com/gp/slredirect/picassoRedirect.html/ref=sspa_dk_detail_5?ie=UTF8&adId=A0041793EC7JEL0TKJHG&qualifier=1655979951&id=1864026780669768&widgetName=sp_detail2&url=%2Fdp%2FB082TYT6X4%2Fref%3Dsspa_dk_detail_5%3Fpsc%3D1%26pd_rd_i%3DB082TYT6X4%26pd_rd_w%3D1zZ1c%26content-id%3Damzn1.sym.f9710d1d-8ae7-460f-b546-5e6e42fbe82a%26pf_rd_p%3Df9710d1d-8ae7-460f-b546-5e6e42fbe82a%26pf_rd_r%3D5GZH6PEM9FZ9VY43CDA6%26pd_rd_wg%3DShBRB%26pd_rd_r%3Def42af67-b956-40af-aada-22e786025180%26s%3Dhpc&sp_csd=d2lkZ2V0TmFtZT1zcF9kZXRhaWwy",
+      "price": {
+        "currency": "USD",
+        "raw": "$139.99",
+        "symbol": "$",
+        "value": 139.99
+      },
+      "rating": 4.5,
+      "ratings_total": 3001,
+      "title": "Amazfit T-Rex Smart Watch with GPS, Military Outdoor Sports Watch for Men,20-Day Battery Life, 1.3'' AMOLED Display,5 ATM Water Resistant, 14-Sports Modes, Heart Rate Sleep Monitor, Rock Black"
+    },
+    {
+      "asin": "B092RCLKHN",
+      "image": "https://m.media-amazon.com/images/I/41fEavJZyyS._AC_SR160,160_.jpg",
+      "is_prime": true,
+      "link": "https://www.amazon.com/gp/slredirect/picassoRedirect.html/ref=sspa_dk_detail_6?ie=UTF8&adId=A04506683FT8X0VSSHTPK&qualifier=1655979951&id=1864026780669768&widgetName=sp_detail2&url=%2Fdp%2FB092RCLKHN%2Fref%3Dsspa_dk_detail_6%3Fpsc%3D1%26pd_rd_i%3DB092RCLKHN%26pd_rd_w%3D1zZ1c%26content-id%3Damzn1.sym.f9710d1d-8ae7-460f-b546-5e6e42fbe82a%26pf_rd_p%3Df9710d1d-8ae7-460f-b546-5e6e42fbe82a%26pf_rd_r%3D5GZH6PEM9FZ9VY43CDA6%26pd_rd_wg%3DShBRB%26pd_rd_r%3Def42af67-b956-40af-aada-22e786025180%26s%3Dhpc&sp_csd=d2lkZ2V0TmFtZT1zcF9kZXRhaWwy",
+      "price": {
+        "currency": "USD",
+        "raw": "$199.99",
+        "symbol": "$",
+        "value": 199.99
+      },
+      "rating": 4.5,
+      "ratings_total": 757,
+      "title": "Garmin Forerunner 55, GPS Running Watch with Daily Suggested Workouts, Up to 2 weeks of Battery Life, Black"
+    },
+    {
+      "asin": "B09GBG982Y",
+      "image": "https://m.media-amazon.com/images/I/410I+dSzkcL._AC_SR160,160_.jpg",
+      "is_prime": true,
+      "link": "https://www.amazon.com/gp/slredirect/picassoRedirect.html/ref=sspa_dk_detail_7?ie=UTF8&adId=A055737436GHC02447YAI&qualifier=1655979951&id=1864026780669768&widgetName=sp_detail2&url=%2Fdp%2FB09GBG982Y%2Fref%3Dsspa_dk_detail_7%3Fpsc%3D1%26pd_rd_i%3DB09GBG982Y%26pd_rd_w%3D1zZ1c%26content-id%3Damzn1.sym.f9710d1d-8ae7-460f-b546-5e6e42fbe82a%26pf_rd_p%3Df9710d1d-8ae7-460f-b546-5e6e42fbe82a%26pf_rd_r%3D5GZH6PEM9FZ9VY43CDA6%26pd_rd_wg%3DShBRB%26pd_rd_r%3Def42af67-b956-40af-aada-22e786025180%26s%3Dhpc&sp_csd=d2lkZ2V0TmFtZT1zcF9kZXRhaWwy",
+      "price": {
+        "currency": "USD",
+        "raw": "$499.95",
+        "symbol": "$",
+        "value": 499.95
+      },
+      "rating": 4,
+      "ratings_total": 5379,
+      "title": "Withings Scanwatch Horizon - Hybrid Smartwatch & Activity Tracker with Connected GPS, Heart Rate Monitor, Sleep Monitor, Smart Notifications, Water Resistant with 30-Day Battery Life, Android & iOS"
+    },
+    {
+      "asin": "B07W7YBBVQ",
+      "image": "https://m.media-amazon.com/images/I/41w60AQZNBL._AC_SR160,160_.jpg",
+      "is_prime": true,
+      "link": "https://www.amazon.com/gp/slredirect/picassoRedirect.html/ref=sspa_dk_detail_8?ie=UTF8&adId=A01687272XYCM5JHED4M1&qualifier=1655979951&id=1864026780669768&widgetName=sp_detail2&url=%2Fdp%2FB07W7YBBVQ%2Fref%3Dsspa_dk_detail_8%3Fpsc%3D1%26pd_rd_i%3DB07W7YBBVQ%26pd_rd_w%3D1zZ1c%26content-id%3Damzn1.sym.f9710d1d-8ae7-460f-b546-5e6e42fbe82a%26pf_rd_p%3Df9710d1d-8ae7-460f-b546-5e6e42fbe82a%26pf_rd_r%3D5GZH6PEM9FZ9VY43CDA6%26pd_rd_wg%3DShBRB%26pd_rd_r%3Def42af67-b956-40af-aada-22e786025180%26s%3Dhpc&sp_csd=d2lkZ2V0TmFtZT1zcF9kZXRhaWwy",
+      "price": {
+        "currency": "USD",
+        "raw": "$119.99",
+        "symbol": "$",
+        "value": 119.99
+      },
+      "rating": 4.5,
+      "ratings_total": 635,
+      "title": "Amazfit GTS Fitness Smartwatch with Heart Rate Monitor, 14-Day Battery Life, Music Control, 1.65\" Display, Sleep and Swim Tracking, GPS, Water Resistant, Smart Notifications, Desert Gold"
+    },
+    {
+      "asin": "B086LKSR2Z",
+      "image": "https://m.media-amazon.com/images/I/41Cpe9pnkiS._AC_SR160,160_.jpg",
+      "is_prime": true,
+      "link": "https://www.amazon.com/gp/slredirect/picassoRedirect.html/ref=sspa_dk_detail_9?ie=UTF8&adId=A1045594PFJ86UJCH0AW&qualifier=1655979951&id=1864026780669768&widgetName=sp_detail2&url=%2Fdp%2FB086LKSR2Z%2Fref%3Dsspa_dk_detail_9%3Fpsc%3D1%26pd_rd_i%3DB086LKSR2Z%26pd_rd_w%3D1zZ1c%26content-id%3Damzn1.sym.f9710d1d-8ae7-460f-b546-5e6e42fbe82a%26pf_rd_p%3Df9710d1d-8ae7-460f-b546-5e6e42fbe82a%26pf_rd_r%3D5GZH6PEM9FZ9VY43CDA6%26pd_rd_wg%3DShBRB%26pd_rd_r%3Def42af67-b956-40af-aada-22e786025180%26s%3Dhpc&sp_csd=d2lkZ2V0TmFtZT1zcF9kZXRhaWwy",
+      "price": {
+        "currency": "USD",
+        "raw": "$307.89",
+        "symbol": "$",
+        "value": 307.89
+      },
+      "rating": 4.5,
+      "ratings_total": 1295,
+      "title": "Sunny Health & Fitness Magnetic Belt Drive Indoor Cycling Bike - SF-B1877, silver"
+    }
+  ]
+}

@@ -518,7 +518,16 @@ export namespace Inventory {
                 valid: $.bool,
                 type: $.optional.string,
                 description: $.optional.string,
-                bin: $.bin,
+                bin: {
+                    type: $.linkingObjects,
+                    objectType: $.bin,
+                    property: 'barcode'
+                },
+                location: {
+                    type: $.linkingObjects,
+                    objectType: 'location',
+                    property: 'barcode'
+                },
                 fixture: {
                     type: $.linkingObjects,
                     objectType: $.fixture,
@@ -580,7 +589,8 @@ export namespace Inventory {
                     type: $.linkingObjects,
                     objectType: $.fixture,
                     property: 'location'
-                }
+                },
+                barcode: $.optional.barcode
             }
         };
     }
@@ -612,9 +622,9 @@ export namespace Inventory {
                 barcode: $.barcode,
                 notes: $.optional.string,
                 fixture: $.fixture,
-                skus: {
+                items: {
                     type: $.linkingObjects,
-                    objectType: $.barcode,
+                    objectType: $.item,
                     property: 'bin'
                 }
             }
@@ -671,10 +681,41 @@ export namespace Inventory {
                 packagingWeight: $.optional.double,
                 totalWeight: $.optional.double,
                 narrative: $.optional.string,
-                title: $.optional.string
+                title: $.optional.string,
+                bin: $.optional.bin
             }
         };
     }
+
+    export class EffectivePointer {
+        static schema: ObjectSchema = {
+            name: 'effective-pointer',
+            embedded: true,
+            properties: {
+                location: $.optional.barcode,
+                fixture: $.optional.barcode,
+                bin: $.optional.barcode,
+                item: $.optional.barcode
+            }
+        }
+    }
+
+    
+    export class Scan {
+        static schema: ObjectSchema = {
+            name: 'scan',
+            primaryKey: '_id',
+            properties: {
+                _id: $.objectId,
+                current: $.string,
+                effective: 'effective-pointer',
+                timestamp: { type: $.date, default: new Date(Date.now()) },
+                user: $.optional.string,
+                completed: { type: $.bool, default: false }
+            }
+        }
+    }
+    
 }
 
 export namespace Listings {
@@ -1201,17 +1242,7 @@ export namespace Scrapes {
                 activity: $.activity
             }
         };
-        _id: ObjectId;
-        id: string;
-        label: string;
-        node: 0 | 1 | 2 | 3;
-        activity?: Admin.Activity;
-        constructor() {
-            this._id = new ObjectId();
-            this.id = '';
-            this.label = '';
-            this.node = 0;
-        }
+    
     }
 
     export class Taxonomy {

@@ -1,6 +1,7 @@
 import { nativeImage } from 'electron';
 import { toTitleCase } from '../common';
 import * as fs from 'graceful-fs';
+import { MenuItemRole } from './MenuItemRole';
 
 function _createIcon(fn: string) {
     return nativeImage.createFromBuffer(fs.readFileSync(fn));
@@ -22,50 +23,6 @@ const toNavItem = (nav: any) => ({
     api: _toNavItem('/api/v1', nav),
     data: _toNavItem('/data/v1', nav)
 });
-export type MenuItemRole =
-    | 'about' // ABOUT
-    | 'appMenu'
-    | 'clearRecentDocuments'
-    | 'close' // FILE
-    | 'copy' // EDIT
-    | 'cut' // EDIT
-    | 'delete'
-    | 'editMenu'
-    | 'fileMenu'
-    | 'forceReload'
-    | 'front'
-    | 'help'
-    | 'hide'
-    | 'hideOthers'
-    | 'mergeAllWindows'
-    | 'minimize'
-    | 'moveTabToNewWindow'
-    | 'paste' // EDIT
-    | 'pasteAndMatchStyle'
-    | 'quit' // FILE
-    | 'recentDocuments'
-    | 'redo'
-    | 'reload'
-    | 'resetZoom'
-    | 'selectAll'
-    | 'selectNextTab'
-    | 'selectPreviousTab'
-    | 'services'
-    | 'shareMenu'
-    | 'startSpeaking'
-    | 'stopSpeaking'
-    | 'toggleDevTools'
-    | 'togglefullscreen'
-    | 'toggleSpellChecker'
-    | 'toggleTabBar'
-    | 'undo'
-    | 'unhide'
-    | 'viewMenu'
-    | 'window'
-    | 'windowMenu'
-    | 'zoom'
-    | 'zoomIn'
-    | 'zoomOut';
 
 const toNavSection = (label: string, sublabel?: string, iconPath?: string, ...items: Partial<Electron.MenuItem>[]): Partial<Electron.MenuItem> => ({
     type: 'submenu',

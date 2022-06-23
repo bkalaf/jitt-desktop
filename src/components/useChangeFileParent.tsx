@@ -2,7 +2,7 @@ import { useCallback, useTransition } from 'react';
 import { APP_CONFIG } from '../config';
 import { useMutation, useQueryClient } from 'react-query';
 import { updateFile } from '../queries/insertMutation';
-import { useLocalRealm } from '../hooks/useLocalRealm';
+import useLocalRealm from '../hooks/useLocalRealm';
 import { Files } from '../data';
 import { useSelected } from '../hooks/useSelected';
 import { isNotNil } from '../common/isNotNull';

@@ -1,7 +1,7 @@
 import React, { SelectHTMLAttributes } from 'react';
 import { useQuery } from 'react-query';
 import { isNotNil } from '../../../common/isNotNull';
-import { useLocalRealm } from '../../../hooks/useLocalRealm';
+import useLocalRealm from '../../../hooks/useLocalRealm';
 import { useWhyDidYou } from '../../../hooks/useWhyDidYou';
 import { OptionElementFields } from '../../../types';
 

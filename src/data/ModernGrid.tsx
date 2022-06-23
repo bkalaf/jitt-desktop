@@ -16,11 +16,11 @@ import { matchPath } from 'react-router';
 import { app, BrowserWindow, dialog } from '@electron/remote';
 import { getCurrentWindow, getCurrentWebContents, getGlobal, getBuiltin } from '@electron/remote/renderer';
 import { useLog } from '../hooks/useLog';
-import { useLocalRealm } from '../hooks/useLocalRealm';
+import useLocalRealm from '../hooks/useLocalRealm';
 import { useElementRef } from '../hooks/useForm';
 import { useToast } from '../hooks/useToast';
 import { useSorted } from '../components/useSorted';
-import { useRealm } from '../hooks/useRealm';
+import useRealm from '../hooks/useRealm';
 
 export function useOnMount(func: () => void) {
     console.log(`ONMOUNT`, func.name);

@@ -112,6 +112,24 @@ ipcMain.on('enable-photo-pipeline', (event: Electron.IpcMainEvent) => {
         log('internal:ran:photo-pipeline');
     });
 });
+ipcMain.on('new-scan', (event: Electron.IpcMainEvent, scan: string) => {
+    async function enqueue() {
+        try {
+            const connection = await amqp.connect($$rabbitMQ);
+            const channel = await connection.createChannel();
+            const queue = await channel.assertQueue('scans');
+            channel.sendToQueue(queue.queue, Buffer.from(scan), { persistent: true });
+            setTimeout(() => connection.close(), 2000);
+        } catch (error) {
+            console.error((error as any).name);
+            console.error((error as any).message);
+            throw error;
+        }
+    }
+    console.log('received: new-scan');
+    enqueue().then(x => console.log('enqueued'));
+});
+
 ipcMain.on(
     'enqueue-photo-pipeline',
     rabbitMqHandler('photo-pipeline', (...args: string[]) => {
@@ -169,9 +187,7 @@ ipcMain.on(
 //             console.log('loading finished');
 //             process.stdout.write('finished loading');
 //         }
-//     );
-
-//     window!.webContents.on(
+//     );>
 //         'did-fail-load', function (err) {
 //             console.log('loading finished');
 //             process.stdout.write('error');

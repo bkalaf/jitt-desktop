@@ -2,9 +2,9 @@ import React, { useCallback, useRef, useState } from 'react';
 import { useMemo } from 'react';
 import { RegisterFunction, useRegister } from '../../hooks/useRegister';
 import { $cn } from '../../util/$cn';
-import { useLocalRealm } from '../../hooks/useLocalRealm';
+import useLocalRealm from '../../hooks/useLocalRealm';
 import { IDefinitionProps } from './index';
-import { getProps } from "./getProps";
+import { getProps } from './getProps';
 import { DuotoneIcon } from '../../components/icons/DuotoneIcon';
 import { faMessagePlus, faPlusSquare, faTrashCan } from '@fortawesome/pro-duotone-svg-icons';
 import { usePreventDefault } from '../../hooks/usePreventDefault';
@@ -24,21 +24,7 @@ export function EmbeddedEle(outer: { Controls: [string, any][] }) {
     return function InnerEmbedded(props: { register: RegisterFunction } & IDefinitionProps) {
         const realm = useLocalRealm();
 
-        const {
-            name,
-            register,
-            defaultValue,
-            init,
-            lookupTable,
-            optionLabel,
-            optionValue,
-            enumMap,
-            sort,
-            list,
-            span,
-            displayName: $displayName,
-            ...remain
-        } = props;
+        const { name, register, defaultValue, init, lookupTable, optionLabel, optionValue, enumMap, sort, list, span, displayName: $displayName, ...remain } = props;
         const spread = $cn(remain, {}, 'hidden peer flex');
         const displayName = $displayName ? $displayName : toTitleCase(name);
         return outer.Controls.map(([key, Comp]) => {
@@ -85,8 +71,7 @@ export function DictionaryControl<TKey extends string, TValue>(
                             name: `${name}.${k}`,
                             register: register,
                             defaultValue: v,
-                            className:
-                                'flex text-black bg-white border border-black py-0.5 px-2 font-fira-sans font-normal text-base rounded-lg shadow-inner shadow-black peer',
+                            className: 'flex text-black bg-white border border-black py-0.5 px-2 font-fira-sans font-normal text-base rounded-lg shadow-inner shadow-black peer',
                             ...({ ...remain, optionLabel, optionValue } as any)
                         })}
                     </div>
@@ -179,19 +164,20 @@ export function DatalistEle(props: { list: string; register: RegisterFunction } 
     );
 }
 
-export function lookup(realm: Realm, table: string,   optLabel: string, optValue = '_id', format?: (x: any) => any,...filter: string[]) {
-     const objs = isNil(table) ? realm.objects('self-storage').filtered('name == $0', '') : realm.objects(table);
-     const objs2 = filter.length > 0 ? filter.length === 1 ? objs.filtered(filter[0]) : objs.filtered(filter[0], filter[1]) : objs;
-     return format ? objs.map((x: any) => ({ ...x, [optValue]: format(x[optLabel ?? ''])})) as any as Realm.Results<any> : objs;
+export function lookup(realm: Realm, table: string, optLabel: string, optValue = '_id', format?: (x: any) => any, ...filter: string[]) {
+    const objs = isNil(table) ? realm.objects('self-storage').filtered('name == $0', '') : realm.objects(table);
+    const objs2 = filter.length === 0 ? objs : filter.length === 1 ? objs.filtered(filter[0]) : filter.length === 2 ? objs.filtered(filter[0], filter[1]) : objs;
+
+    return format ? (objs.map((x: any) => ({ ...x, [optValue]: format(x[optLabel ?? '']) })) as any as Realm.Results<any>) : objs;
 }
 export function LookupEle(props: { register: RegisterFunction } & IDefinitionProps) {
     const realm = useLocalRealm();
     const { name, register, defaultValue, init, lookupTable, optionLabel, optionValue, enumMap, sort, filter, toOutput, ...remain } = props;
-    console.log(`LookupEle`, lookupTable, toOutput)
+    console.log(`LookupEle`, lookupTable, toOutput);
     const $defaultValue = defaultValue ?? (init == null ? null : init());
     const spread = $cn(remain, {}, 'peer');
     console.log(`lookup`, lookupTable, optionValue, optionLabel);
-    const data = lookup(realm, lookupTable ?? '', optionLabel ?? '', optionValue, toOutput, ...filter ?? []);
+    const data = lookup(realm, lookupTable ?? '', optionLabel ?? '', optionValue, toOutput, ...(filter ?? []));
     console.log(`LookupEle`, lookupTable, data, toOutput);
 
     // console.log(data);
@@ -201,7 +187,7 @@ export function LookupEle(props: { register: RegisterFunction } & IDefinitionPro
                 ? [['', 'Choose from...'], ...Object.entries(enumMap)]
                 : [
                       ['', 'Choose from...'],
-                      ...((filter ? filter.length === 1 ? data?.filtered(filter[0]) : filter.length === 0 ? data : data?.filtered(filter[0], filter[1]) : data)
+                      ...((filter ? (filter.length === 1 ? data?.filtered(filter[0]) : filter.length === 0 ? data : data?.filtered(filter[0], filter[1])) : data)
                           ?.map((x) => [x[optionValue ?? ''], toOutput ? toOutput(x[optionLabel ?? '']) : x[optionLabel ?? '']] as [string, string])
                           ?.sort((a, b) => (a[1] < b[1] ? -1 : a[1] > b[1] ? 1 : 0)) ?? [])
                   ],

@@ -4,8 +4,9 @@ import { Country } from './data/enums/country';
 import { Provinces } from './data/enums/province';
 import { LengthUOMS } from './data/enums/lengthUOM';
 import { CapacityUOMS } from './data/enums/capacityUOM';
-import { BarcodeType, Conditions } from './data/enums';
+import { Age, BarcodeType, BookType, Conditions, Gender, MediaType } from './data/enums';
 import { MovieRatings, VideoGameRatings } from './data/enums/movieRatings';
+import { ConsoleType } from './data/enums/consoleTypes';
 
 declare global {
     export type IEventPublisher = {
@@ -19,7 +20,7 @@ declare global {
     export type StateUpdaterFunc<T> = (prev: T) => T;
     export type StateSetterFunc<T> = (setOrUpdate: T | StateUpdaterFunc<T>) => void;
 
-    export type RealmClass<T> = Realm.ObjectClass & { new (): T & Realm.Object };
+    export type RealmClass<T> = Realm.ObjectClass & { new(): T & Realm.Object; };
     export type Result<T> = (T & Realm.Object);
     export type Children = React.ReactNode | React.ReactNode[];
 
@@ -147,6 +148,7 @@ declare global {
         notes?: string;
         fixtures?: IFixture[];
         address?: IAddress;
+        barcode: IBarcode;
     }
     export interface ICustomItem {
         _id: ObjectId;
@@ -172,10 +174,10 @@ declare global {
         origin?: Country;
         itemType?: IItemType;
         color?: string;
-        
+
         dims: Partial<Record<string, IDimension<string>>>;
         barcodes: Partial<Record<BarcodeType & 'UPC', IBarcode>>;
-        
+
         birthYear?: number;
         details?: IDetails;
         links?: string[];
@@ -189,6 +191,20 @@ declare global {
         name: string;
         details: string[];
         superType: IItemType;
+    }
+    export interface IEffectivePointer {
+        location?: IBarcode;
+        fixture?: IBarcode;
+        bin?: IBarcode;
+        item?: IBarcode;
+    }
+    export interface IScan {
+        _id: ObjectId;
+        current: string;
+        effective: IEffectivePointer;
+        timestamp: Date;
+        user?: string;
+        completed: boolean;
     }
     // export interface ICategory {
 
@@ -211,16 +227,16 @@ declare global {
         isDiscontinued: boolean;
 
     }
-    export interface IDetails { 
+    export interface IDetails {
         title?: string;
         subtitle?: string;
         authors?: string[];
         starring?: string[];
         rating?: MovieRatings | VideoGameRatings;
-        awards?: strings[];
+        awards?: string[];
         copyright?: number;
         studio?: string;
-        measurements: Record<string, IMeasurement>
+        measurements: Record<string, IMeasurement>;
         size?: string;
         gender?: Gender;
         flags: IFlags;
@@ -251,6 +267,26 @@ declare global {
         rn: ITexttileRn;
 
     }
+    export interface IVerifiedBrand {
+        _id: ObjectId;
+        name: string;
+    }
+    export interface ICategory {
+        _id: ObjectId;
+        id: string;
+        label: string;
+        node: 0 | 1 | 2;
+    }
+    export interface ITaxonomy {
+        _id: ObjectId;
+        category: ICategory;
+        subCategory: ICategory;
+        subSubCategory: ICategory;
+        materializedPath: string;
+        selectors: [string, string, string];
+        itemType: IItemType;
+        activity: any;
+    }
     export interface IBrand {
         _id: ObjectId;
         name: string;
@@ -266,6 +302,7 @@ declare global {
         type: BarcodeType;
         description?: string;
         bin?: IBin[];
+        location?: ILocation[];
         fixture?: IFixture[];
         product?: IProduct;
         item?: IItem[];
@@ -276,6 +313,7 @@ declare global {
         barcode: IBarcode;
         notes?: string;
         location: ILocation;
+        bins: IBin[];
     }
     export interface IBin {
         _id: ObjectId;
@@ -283,11 +321,12 @@ declare global {
         barcode: IBarcode;
         notes?: string;
         fixture?: IFixture;
+        items: IItem[];
     }
     export interface IDimension<TUOM> {
         value: number;
         uom: TUOM;
-        remaining?: IDimension<TUOM>
+        remaining?: IDimension<TUOM>;
     }
 }
 export const i = 1;

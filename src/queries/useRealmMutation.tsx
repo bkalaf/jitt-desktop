@@ -2,7 +2,7 @@ import { useCallback, useMemo, useTransition } from 'react';
 import { useMutation, useQueryClient } from 'react-query';
 import { toTitleCase } from '../common';
 import { useLog } from "../hooks/useLog";
-import { useLocalRealm } from '../hooks/useLocalRealm';
+import useLocalRealm from '../hooks/useLocalRealm';
 import { useNavigateDown } from '../hooks/useNavigateDown.1';
 import { useRoutedCollection } from '../hooks/useRoutedCollection';
 import { useToast } from '../hooks/useToast';

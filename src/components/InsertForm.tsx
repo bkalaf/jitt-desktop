@@ -3,7 +3,7 @@ import { FormProvider } from './providers/FormProvider';
 import { useUncontrolledForm } from '../hooks/useForm';
 import { setReferenceField } from '../util/convertFormData';
 import { useRoutedCollection } from '../hooks/useRoutedCollection';
-import { useLocalRealm } from '../hooks/useLocalRealm';
+import useLocalRealm from '../hooks/useLocalRealm';
 import { useMetaDataContext } from './Toaster';
 import { convertFromFormData } from './convertFromFormData';
 import { determineGridSize } from './determineGridSize';

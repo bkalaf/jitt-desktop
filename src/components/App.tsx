@@ -15,7 +15,7 @@ import { MetaDataContextProvider } from './providers/MetaDataProvider';
 import { getAccessToken } from '../util/getAccessToken';
 import { Boundary } from './grid/Boundary';
 import { DataOrModifiedFn, useAsyncResource } from 'use-async-resource';
-import { useRealm } from '../hooks/useRealm';
+import useRealm from '../hooks/useRealm';
 import { Registrar } from '../reflection/Registrar';
 import { $ } from './../data/$';
 

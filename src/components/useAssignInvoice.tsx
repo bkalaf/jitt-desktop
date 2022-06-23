@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { useLocalRealm } from '../hooks/useLocalRealm';
+import useLocalRealm from '../hooks/useLocalRealm';
 import { useChangeFileParent } from "./useChangeFileParent";
 
 export function useAssignInvoice(): [boolean, () => void] {
